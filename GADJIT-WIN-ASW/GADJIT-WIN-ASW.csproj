@@ -46,7 +46,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminPanel.Designer.cs">
+      <DependentUpon>AdminPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="GADJIT.cs" />
+    <Compile Include="GestionStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionStaff.Designer.cs">
+      <DependentUpon>GestionStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImageShow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImageShow.Designer.cs">
+      <DependentUpon>ImageShow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -55,6 +73,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdminPanel.resx">
+      <DependentUpon>AdminPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionStaff.resx">
+      <DependentUpon>GestionStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImageShow.resx">
+      <DependentUpon>ImageShow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
