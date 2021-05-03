@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CircularPicture.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CirucularButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GADJIT.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -55,6 +61,21 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaffPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StaffPanel.Designer.cs">
+      <DependentUpon>StaffPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkerPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkerPanel.Designer.cs">
+      <DependentUpon>WorkerPanel.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -63,7 +84,14 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="StaffPanel.resx">
+      <DependentUpon>StaffPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkerPanel.resx">
+      <DependentUpon>WorkerPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -76,6 +104,36 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\namewithstyle.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logowithphone.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_power_off_button_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shutdown_26px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shutdown_60px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user_60px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sign_out_160px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout_rounded_left_96px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout_rounded_left_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout_rounded_left_48pxblue.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
