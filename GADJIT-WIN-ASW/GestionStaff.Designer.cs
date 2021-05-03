@@ -29,6 +29,7 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TextBoxClosedTickets = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.TextBoxActiveTickets = new System.Windows.Forms.TextBox();
@@ -71,7 +72,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxClosedTickets.BackColor = System.Drawing.Color.Red;
             this.TextBoxClosedTickets.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxClosedTickets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxClosedTickets.Location = new System.Drawing.Point(897, 421);
+            this.TextBoxClosedTickets.Location = new System.Drawing.Point(1201, 583);
             this.TextBoxClosedTickets.Name = "TextBoxClosedTickets";
             this.TextBoxClosedTickets.Size = new System.Drawing.Size(49, 15);
             this.TextBoxClosedTickets.TabIndex = 8;
@@ -80,7 +81,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(808, 420);
+            this.label16.Location = new System.Drawing.Point(1112, 582);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(83, 16);
             this.label16.TabIndex = 50;
@@ -91,7 +92,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxActiveTickets.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.TextBoxActiveTickets.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxActiveTickets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxActiveTickets.Location = new System.Drawing.Point(753, 420);
+            this.TextBoxActiveTickets.Location = new System.Drawing.Point(1057, 582);
             this.TextBoxActiveTickets.Name = "TextBoxActiveTickets";
             this.TextBoxActiveTickets.Size = new System.Drawing.Size(49, 15);
             this.TextBoxActiveTickets.TabIndex = 7;
@@ -217,7 +218,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(696, 420);
+            this.label17.Location = new System.Drawing.Point(1000, 582);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(56, 16);
             this.label17.TabIndex = 48;
@@ -228,7 +229,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxTotalTickets.BackColor = System.Drawing.Color.White;
             this.TextBoxTotalTickets.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxTotalTickets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxTotalTickets.Location = new System.Drawing.Point(1002, 421);
+            this.TextBoxTotalTickets.Location = new System.Drawing.Point(1306, 583);
             this.TextBoxTotalTickets.Name = "TextBoxTotalTickets";
             this.TextBoxTotalTickets.Size = new System.Drawing.Size(49, 15);
             this.TextBoxTotalTickets.TabIndex = 9;
@@ -237,7 +238,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(952, 421);
+            this.label18.Location = new System.Drawing.Point(1256, 583);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(44, 16);
             this.label18.TabIndex = 46;
@@ -262,7 +263,7 @@ namespace GADJIT_WIN_ASW
             this.ColumnComboBoxStatus});
             this.DGVStaff.Location = new System.Drawing.Point(11, 113);
             this.DGVStaff.Name = "DGVStaff";
-            this.DGVStaff.Size = new System.Drawing.Size(1044, 302);
+            this.DGVStaff.Size = new System.Drawing.Size(1345, 464);
             this.DGVStaff.TabIndex = 6;
             this.DGVStaff.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVStaff_CellDoubleClick);
             this.DGVStaff.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVStaff_CellMouseClick);
@@ -335,6 +336,10 @@ namespace GADJIT_WIN_ASW
             // 
             // ColumnTextBoxSalary
             // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "0.00";
+            dataGridViewCellStyle1.NullValue = null;
+            this.ColumnTextBoxSalary.DefaultCellStyle = dataGridViewCellStyle1;
             this.ColumnTextBoxSalary.HeaderText = "Salaire";
             this.ColumnTextBoxSalary.Name = "ColumnTextBoxSalary";
             // 
@@ -357,7 +362,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1063, 443);
+            this.ClientSize = new System.Drawing.Size(1367, 604);
             this.Controls.Add(this.TextBoxClosedTickets);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.TextBoxActiveTickets);

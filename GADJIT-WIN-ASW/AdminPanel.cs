@@ -30,7 +30,7 @@ namespace GADJIT_WIN_ASW
         private void ButtonStaffManagment_Click(object sender, EventArgs e)
         {
             CloseMdiChildIdExists();
-            this.Size = new Size(1280, 650);
+            this.Size = new Size(1600, 650);
             GestionStaff gestionStaff = new GestionStaff();
             gestionStaff.MdiParent = this;
             gestionStaff.Dock = DockStyle.Fill;

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace GADJIT_WIN_ASW
 {
@@ -40,13 +41,12 @@ namespace GADJIT_WIN_ASW
 
         private bool CheckDGVCellsIfEmpty()
         {
-            if(DGVStaff["ColumnTextBoxID", DGVStaff.CurrentRow.Index].Value != null && DGVStaff["ColumnPictureBox", DGVStaff.CurrentRow.Index].Value != null
-                && DGVStaff["ColumnTextBoxCIN", DGVStaff.CurrentRow.Index].Value != null && DGVStaff["ColumnTextBoxLastName", DGVStaff.CurrentRow.Index].Value != null
-                && DGVStaff["ColumnTextBoxFirstName", DGVStaff.CurrentRow.Index].Value != null && DGVStaff["ColumnTextBoxEmail", DGVStaff.CurrentRow.Index].Value != null
-                && DGVStaff["ColumnTextBoxPassword", DGVStaff.CurrentRow.Index].Value != null && DGVStaff["ColumnTextBoxPhoneNumber", DGVStaff.CurrentRow.Index].Value != null
-                && DGVStaff["ColumnTextBoxAdress", DGVStaff.CurrentRow.Index].Value != null && DGVStaff["ColumnComboBoxCity", DGVStaff.CurrentRow.Index].Value != null
-                && DGVStaff["ColumnTextBoxSalary", DGVStaff.CurrentRow.Index].Value != null && DGVStaff["ColumnTextBoxDisponibility", DGVStaff.CurrentRow.Index].Value != null
-                && DGVStaff["ColumnComboBoxStatus", DGVStaff.CurrentRow.Index].Value != null)
+            if(DGVStaff["ColumnTextBoxID", DGVStaff.CurrentRow.Index].Value != null && DGVStaff["ColumnTextBoxCIN", DGVStaff.CurrentRow.Index].Value != null 
+                && DGVStaff["ColumnTextBoxLastName", DGVStaff.CurrentRow.Index].Value != null && DGVStaff["ColumnTextBoxFirstName", DGVStaff.CurrentRow.Index].Value != null 
+                && DGVStaff["ColumnTextBoxEmail", DGVStaff.CurrentRow.Index].Value != null && DGVStaff["ColumnTextBoxPassword", DGVStaff.CurrentRow.Index].Value != null 
+                && DGVStaff["ColumnTextBoxPhoneNumber", DGVStaff.CurrentRow.Index].Value != null && DGVStaff["ColumnTextBoxAdress", DGVStaff.CurrentRow.Index].Value != null 
+                && DGVStaff["ColumnComboBoxCity", DGVStaff.CurrentRow.Index].Value != null && DGVStaff["ColumnTextBoxSalary", DGVStaff.CurrentRow.Index].Value != null 
+                && DGVStaff["ColumnTextBoxDisponibility", DGVStaff.CurrentRow.Index].Value != null && DGVStaff["ColumnComboBoxStatus", DGVStaff.CurrentRow.Index].Value != null)
             {
                 return false;
             }
@@ -57,7 +57,8 @@ namespace GADJIT_WIN_ASW
         {
             try
             {
-                SqlCommand sqlCommand = new SqlCommand("select StafID from Staff", GADJIT.sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("select StafID from Staff where StafID = @id", GADJIT.sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@id", id);
                 GADJIT.sqlConnection.Open();
                 object idFromDB = sqlCommand.ExecuteScalar();
                 if(idFromDB != DBNull.Value)
@@ -81,28 +82,13 @@ namespace GADJIT_WIN_ASW
 
         private void InsertNewIDInDGV()
         {
-            try
+            if (DGVStaff.Rows.Count > 0)
             {
-                SqlCommand sqlCommandID = new SqlCommand("select max(StafID) from Staff", GADJIT.sqlConnection);
-                GADJIT.sqlConnection.Open();
-                object id = sqlCommandID.ExecuteScalar();
-                if (id != DBNull.Value)
-                {
-                    DGVStaff[0, DGVStaff.CurrentRow.Index].Value = GADJIT.IDGenerator((string)id);
-                }
-                else
-                {
-                    DGVStaff[0, DGVStaff.CurrentRow.Index].Value = GADJIT.IDGenerator("S0");
-                }
-                GADJIT.sqlConnection.Close();
+                DGVStaff[0, DGVStaff.CurrentRow.Index].Value = GADJIT.IDGenerator((string)DGVStaff[0, DGVStaff.CurrentRow.Index - 1].Value);
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Error InsertNewIDInDGV()", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                GADJIT.sqlConnection.Close();
+                DGVStaff[0, DGVStaff.CurrentRow.Index].Value = GADJIT.IDGenerator("S0");
             }
         }
 
@@ -134,9 +120,39 @@ namespace GADJIT_WIN_ASW
             }
         }
 
+        private void FillDGVStaff()
+        {
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand("select * from Staff", GADJIT.sqlConnection);
+                GADJIT.sqlConnection.Open();
+                SqlDataReader dataReader = sqlCommand.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        String status = (dataReader.GetBoolean(12)) ? "Activer" : "Désactiver";
+                        DGVStaff.Rows.Add(dataReader["StafID"], dataReader["StafCIN"], new Bitmap(new MemoryStream((byte[])dataReader["StafPicture"])), dataReader["StafLastName"],
+                            dataReader["StafFirstName"], dataReader["StafEmail"], dataReader["StafPassWord"], dataReader["StafPhoneNumber"], 
+                            dataReader["StafAdress"], dataReader["CitDesig"], dataReader["StafSalary"], dataReader["StafDispo"], 
+                            status);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error FillDGVStaff()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                GADJIT.sqlConnection.Close();
+            }
+        }
+
         private void GestionStaff_Load(object sender, EventArgs e)
         {
             FillComboBoxCity();
+            FillDGVStaff();
             i = 1;
         }
 
@@ -152,7 +168,74 @@ namespace GADJIT_WIN_ASW
                 {
                     if (CheckIDIfExists(DGVStaff[0, DGVStaff.CurrentRow.Index].Value.ToString())) // update
                     {
+                        try
+                        {
+                            string sqlQuery = "update Staff set StafCIN = @cin, StafPicture = @img, StafLastName = @lastName, StafFirstName = @firstName, StafEmail = @email, " +
+                                "StafPassWord = @password, StafPhoneNumber = @phoneNumber, StafAdress = @adress, CitDesig = @city, StafSalary = @salary, StafDispo = @dispo, " +
+                                "StafSta = @status where StafID = @id";
+                            SqlCommand sqlCommandUpdate = new SqlCommand(sqlQuery, GADJIT.sqlConnection);
 
+                            sqlCommandUpdate.Parameters.Add("@id", SqlDbType.VarChar);
+                            sqlCommandUpdate.Parameters["@id"].Value = DGVStaff["ColumnTextBoxID", DGVStaff.CurrentRow.Index].Value.ToString();
+
+                            sqlCommandUpdate.Parameters.Add("@cin", SqlDbType.VarChar);
+                            sqlCommandUpdate.Parameters["@cin"].Value = DGVStaff["ColumnTextBoxCIN", DGVStaff.CurrentRow.Index].Value.ToString();
+
+                            sqlCommandUpdate.Parameters.Add("@img", SqlDbType.Image);
+                            sqlCommandUpdate.Parameters["@img"].Value = (byte[])new ImageConverter().ConvertTo(DGVStaff["ColumnPictureBox", DGVStaff.CurrentRow.Index].Value, typeof(byte[]));
+
+                            sqlCommandUpdate.Parameters.Add("@lastName", SqlDbType.VarChar);
+                            sqlCommandUpdate.Parameters["@lastName"].Value = DGVStaff["ColumnTextBoxLastName", DGVStaff.CurrentRow.Index].Value.ToString();
+
+                            sqlCommandUpdate.Parameters.Add("@firstName", SqlDbType.VarChar);
+                            sqlCommandUpdate.Parameters["@firstName"].Value = DGVStaff["ColumnTextBoxFirstName", DGVStaff.CurrentRow.Index].Value.ToString();
+
+                            sqlCommandUpdate.Parameters.Add("@email", SqlDbType.NVarChar);
+                            sqlCommandUpdate.Parameters["@email"].Value = DGVStaff["ColumnTextBoxEmail", DGVStaff.CurrentRow.Index].Value.ToString();
+
+                            sqlCommandUpdate.Parameters.Add("@password", SqlDbType.NVarChar);
+                            sqlCommandUpdate.Parameters["@password"].Value = DGVStaff["ColumnTextBoxPassword", DGVStaff.CurrentRow.Index].Value.ToString();
+
+                            sqlCommandUpdate.Parameters.Add("@phoneNumber", SqlDbType.VarChar);
+                            sqlCommandUpdate.Parameters["@phoneNumber"].Value = DGVStaff["ColumnTextBoxPhoneNumber", DGVStaff.CurrentRow.Index].Value.ToString();
+
+                            sqlCommandUpdate.Parameters.Add("@adress", SqlDbType.VarChar);
+                            sqlCommandUpdate.Parameters["@adress"].Value = DGVStaff["ColumnTextBoxAdress", DGVStaff.CurrentRow.Index].Value.ToString();
+
+                            sqlCommandUpdate.Parameters.Add("@city", SqlDbType.VarChar);
+                            sqlCommandUpdate.Parameters["@city"].Value = DGVStaff["ColumnComboBoxCity", DGVStaff.CurrentRow.Index].Value.ToString();
+
+                            sqlCommandUpdate.Parameters.Add("@salary", SqlDbType.Money);
+                            sqlCommandUpdate.Parameters["@salary"].Value = Convert.ToDecimal(DGVStaff["ColumnTextBoxSalary", DGVStaff.CurrentRow.Index].Value.ToString());
+
+                            sqlCommandUpdate.Parameters.Add("@dispo", SqlDbType.VarChar);
+                            sqlCommandUpdate.Parameters["@dispo"].Value = DGVStaff["ColumnTextBoxDisponibility", DGVStaff.CurrentRow.Index].Value.ToString();
+
+                            sqlCommandUpdate.Parameters.Add("@status", SqlDbType.Bit);
+                            string status = DGVStaff["ColumnComboBoxStatus", DGVStaff.CurrentRow.Index].Value.ToString();
+                            if (status == "Activer")
+                            {
+                                sqlCommandUpdate.Parameters["@status"].Value = 1;
+                            }
+                            else if (status == "Désactiver")
+                            {
+                                sqlCommandUpdate.Parameters["@status"].Value = 0;
+                            }
+
+                            GADJIT.sqlConnection.Open();
+
+                            MessageBox.Show(sqlCommandUpdate.ExecuteNonQuery() + " réussi", "Mise à jour", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            GADJIT.sqlConnection.Close();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Error DGVStaff_CellValueChanged update", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        finally
+                        {
+                            GADJIT.sqlConnection.Close();
+                        }
                     }
                     else // insert
                     {
