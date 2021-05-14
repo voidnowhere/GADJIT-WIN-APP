@@ -24,7 +24,8 @@ namespace GADJIT_WIN_ASW
 
         private void AdminPanel_Load(object sender, EventArgs e)
         {
-
+            PanelStatistics.Visible = false;
+            PanelGadgetManagment.Visible = false;
         }
 
         private void ButtonStaffManagment_Click(object sender, EventArgs e)
@@ -35,6 +36,18 @@ namespace GADJIT_WIN_ASW
             gestionStaff.MdiParent = this;
             gestionStaff.Dock = DockStyle.Fill;
             gestionStaff.Show();
+        }
+
+        private void ButtonStatisticsMenu_Click(object sender, EventArgs e)
+        {
+            PanelStatistics.Visible = true;
+            PanelGadgetManagment.Visible = false;
+        }
+
+        private void ButtonGadgetMenu_Click(object sender, EventArgs e)
+        {
+            PanelStatistics.Visible = false;
+            PanelGadgetManagment.Visible = true;
         }
     }
 }

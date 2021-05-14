@@ -30,7 +30,7 @@ namespace GADJIT_WIN_ASW
         private void InitializeComponent()
         {
             this.label2 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.PanelGadgetManagment = new System.Windows.Forms.Panel();
             this.ButtonGadgetReferenceManagment = new System.Windows.Forms.Button();
             this.ButtonGadgetCategoryBrandManagment = new System.Windows.Forms.Button();
             this.LabelAdminMail = new System.Windows.Forms.Label();
@@ -39,7 +39,6 @@ namespace GADJIT_WIN_ASW
             this.ButtonWorkerManagment = new System.Windows.Forms.Button();
             this.ButtonStaffManagment = new System.Windows.Forms.Button();
             this.ButtonTicketManagment = new System.Windows.Forms.Button();
-            this.PictureBoxLogOut = new System.Windows.Forms.PictureBox();
             this.ButtonClientManagment = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.PanelStatistics = new System.Windows.Forms.Panel();
@@ -47,12 +46,13 @@ namespace GADJIT_WIN_ASW
             this.PanelTop = new System.Windows.Forms.Panel();
             this.PanelBottom = new System.Windows.Forms.Panel();
             this.SideMenuPanel = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogOut)).BeginInit();
+            this.PictureBoxLogOut = new System.Windows.Forms.PictureBox();
+            this.PanelGadgetManagment.SuspendLayout();
             this.PanelStatistics.SuspendLayout();
             this.PanelTop.SuspendLayout();
             this.PanelBottom.SuspendLayout();
             this.SideMenuPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogOut)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -64,16 +64,16 @@ namespace GADJIT_WIN_ASW
             this.label2.TabIndex = 6;
             this.label2.Text = "First Name";
             // 
-            // panel1
+            // PanelGadgetManagment
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.ButtonGadgetReferenceManagment);
-            this.panel1.Controls.Add(this.ButtonGadgetCategoryBrandManagment);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 384);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(197, 96);
-            this.panel1.TabIndex = 3;
+            this.PanelGadgetManagment.BackColor = System.Drawing.Color.White;
+            this.PanelGadgetManagment.Controls.Add(this.ButtonGadgetReferenceManagment);
+            this.PanelGadgetManagment.Controls.Add(this.ButtonGadgetCategoryBrandManagment);
+            this.PanelGadgetManagment.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelGadgetManagment.Location = new System.Drawing.Point(0, 384);
+            this.PanelGadgetManagment.Name = "PanelGadgetManagment";
+            this.PanelGadgetManagment.Size = new System.Drawing.Size(197, 96);
+            this.PanelGadgetManagment.TabIndex = 3;
             // 
             // ButtonGadgetReferenceManagment
             // 
@@ -149,6 +149,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonGadgetMenu.Text = "Gestion Gadget";
             this.ButtonGadgetMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonGadgetMenu.UseVisualStyleBackColor = false;
+            this.ButtonGadgetMenu.Click += new System.EventHandler(this.ButtonGadgetMenu_Click);
             // 
             // ButtonWorkerManagment
             // 
@@ -205,16 +206,6 @@ namespace GADJIT_WIN_ASW
             this.ButtonTicketManagment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonTicketManagment.UseVisualStyleBackColor = false;
             // 
-            // PictureBoxLogOut
-            // 
-            this.PictureBoxLogOut.BackColor = System.Drawing.Color.Goldenrod;
-            this.PictureBoxLogOut.Location = new System.Drawing.Point(0, 0);
-            this.PictureBoxLogOut.Name = "PictureBoxLogOut";
-            this.PictureBoxLogOut.Size = new System.Drawing.Size(52, 46);
-            this.PictureBoxLogOut.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PictureBoxLogOut.TabIndex = 3;
-            this.PictureBoxLogOut.TabStop = false;
-            // 
             // ButtonClientManagment
             // 
             this.ButtonClientManagment.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -269,6 +260,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonStatisticsMenu.Text = "Statistiques";
             this.ButtonStatisticsMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonStatisticsMenu.UseVisualStyleBackColor = false;
+            this.ButtonStatisticsMenu.Click += new System.EventHandler(this.ButtonStatisticsMenu_Click);
             // 
             // PanelTop
             // 
@@ -294,7 +286,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.SideMenuPanel.AutoScroll = true;
             this.SideMenuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(165)))), ((int)(((byte)(33)))));
-            this.SideMenuPanel.Controls.Add(this.panel1);
+            this.SideMenuPanel.Controls.Add(this.PanelGadgetManagment);
             this.SideMenuPanel.Controls.Add(this.ButtonGadgetMenu);
             this.SideMenuPanel.Controls.Add(this.ButtonWorkerManagment);
             this.SideMenuPanel.Controls.Add(this.ButtonStaffManagment);
@@ -310,6 +302,16 @@ namespace GADJIT_WIN_ASW
             this.SideMenuPanel.Size = new System.Drawing.Size(197, 626);
             this.SideMenuPanel.TabIndex = 1;
             // 
+            // PictureBoxLogOut
+            // 
+            this.PictureBoxLogOut.BackColor = System.Drawing.Color.Goldenrod;
+            this.PictureBoxLogOut.Location = new System.Drawing.Point(0, 0);
+            this.PictureBoxLogOut.Name = "PictureBoxLogOut";
+            this.PictureBoxLogOut.Size = new System.Drawing.Size(52, 46);
+            this.PictureBoxLogOut.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBoxLogOut.TabIndex = 3;
+            this.PictureBoxLogOut.TabStop = false;
+            // 
             // AdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,12 +323,12 @@ namespace GADJIT_WIN_ASW
             this.Name = "AdminPanel";
             this.Text = "AdminPanel";
             this.Load += new System.EventHandler(this.AdminPanel_Load);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogOut)).EndInit();
+            this.PanelGadgetManagment.ResumeLayout(false);
             this.PanelStatistics.ResumeLayout(false);
             this.PanelTop.ResumeLayout(false);
             this.PanelBottom.ResumeLayout(false);
             this.SideMenuPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogOut)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -334,7 +336,7 @@ namespace GADJIT_WIN_ASW
         #endregion
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel PanelGadgetManagment;
         private System.Windows.Forms.Button ButtonGadgetReferenceManagment;
         private System.Windows.Forms.Button ButtonGadgetCategoryBrandManagment;
         private System.Windows.Forms.Label LabelAdminMail;
