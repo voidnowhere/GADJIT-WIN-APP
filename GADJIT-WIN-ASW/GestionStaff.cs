@@ -38,7 +38,8 @@ namespace GADJIT_WIN_ASW
         StafID StafCIN StafPicture StafLastName StafFirstName StafEmail StafPassWord StafPhoneNumber StafAdress CitDesig StafSalary StafDispo StafSta
         */
 
-        byte i = 0;
+        bool filledDGV = false;
+        bool where = false;
 
         private bool CheckDGVCellsIfEmpty()
         {
@@ -106,6 +107,7 @@ namespace GADJIT_WIN_ASW
                 SqlDataReader dataReader = sqlCommand.ExecuteReader();
                 if (dataReader.HasRows)
                 {
+                    ComboBoxCitySearch.Items.Add("--choisissez--");
                     while (dataReader.Read())
                     {
                         ComboBoxCitySearch.Items.Add(dataReader.GetString(0));
@@ -129,7 +131,56 @@ namespace GADJIT_WIN_ASW
         {
             try
             {
-                SqlCommand sqlCommand = new SqlCommand("select * from Staff", GADJIT.sqlConnection);
+                DGVStaff.Rows.Clear();
+                where = false;
+                //
+                String sqlQuery = "select * from Staff";
+                SqlCommand sqlCommand = new SqlCommand();
+                if (TextBoxCINSearch.Text != "" || TextBoxEmailSearch.Text != "" || TextBoxLastNameSearch.Text != "" 
+                    || ComboBoxCitySearch.SelectedIndex > 0 || ComboBoxStatusSearch.SelectedIndex > 0)
+                {
+                    DGVStaff.AllowUserToAddRows = false;
+                    sqlQuery += " where";
+                    if (TextBoxCINSearch.Text != "")
+                    {
+                        sqlQuery += " StafCIN like @cin";
+                        sqlCommand.Parameters.Add("@cin", SqlDbType.VarChar).Value = "%" + TextBoxCINSearch.Text + "%";
+                        where = true;
+                    }
+                    if (TextBoxEmailSearch.Text != "")
+                    {
+                        if (where) sqlQuery += " and";
+                        sqlQuery += " StafEmail like @email";
+                        sqlCommand.Parameters.Add("@email", SqlDbType.NVarChar).Value = "%" + TextBoxEmailSearch.Text + "%";
+                        where = true;
+                    }
+                    if (TextBoxLastNameSearch.Text != "")
+                    {
+                        if (where) sqlQuery += " and";
+                        sqlQuery += " StafLastName like @name";
+                        sqlCommand.Parameters.Add("@name", SqlDbType.VarChar).Value = "%" + TextBoxLastNameSearch.Text + "%";
+                        where = true;
+                    }
+                    if (ComboBoxCitySearch.SelectedIndex > 0)
+                    {
+                        if (where) sqlQuery += " and";
+                        sqlQuery += " CitDesig = @city";
+                        sqlCommand.Parameters.Add("@city", SqlDbType.VarChar).Value = ComboBoxCitySearch.Text;
+                        where = true;
+                    }
+                    if (ComboBoxStatusSearch.SelectedIndex > 0)
+                    {
+                        if (where) sqlQuery += " and";
+                        sqlQuery += " StafSta = @sta";
+                        sqlCommand.Parameters.Add("@sta", SqlDbType.Bit).Value = (ComboBoxStatusSearch.SelectedIndex == 1) ? 1 : 0;
+                    }
+                }
+                else
+                {
+                    DGVStaff.AllowUserToAddRows = true;
+                }
+                sqlCommand.CommandText = sqlQuery;
+                sqlCommand.Connection = GADJIT.sqlConnection;
                 GADJIT.sqlConnection.Open();
                 SqlDataReader dataReader = sqlCommand.ExecuteReader();
                 if (dataReader.HasRows)
@@ -157,8 +208,10 @@ namespace GADJIT_WIN_ASW
         private void GestionStaff_Load(object sender, EventArgs e)
         {
             FillComboBoxCity();
+            ComboBoxCitySearch.SelectedIndex = 0;
+            ComboBoxStatusSearch.SelectedIndex = 0;
             FillDGVStaff();
-            i = 1;
+            filledDGV = true;
         }
 
         private void DGVStaff_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -190,7 +243,7 @@ namespace GADJIT_WIN_ASW
         private void DGVStaff_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
-            if (i == 1)
+            if (filledDGV)
             {
                 if(DGVStaff[0, rowIndex].Value == null) // ID
                 {
@@ -449,6 +502,21 @@ namespace GADJIT_WIN_ASW
                 e.Handled = true;
                 MessageBox.Show("N'entrez que des lettres", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ButtonSearch_Click(object sender, EventArgs e)
+        {
+            FillDGVStaff();
+        }
+
+        private void ButtonReset_Click(object sender, EventArgs e)
+        {
+            TextBoxCINSearch.Clear();
+            TextBoxEmailSearch.Clear();
+            TextBoxLastNameSearch.Clear();
+            ComboBoxCitySearch.SelectedIndex = 0;
+            ComboBoxStatusSearch.SelectedIndex = 0;
+            FillDGVStaff();
         }
     }
 }

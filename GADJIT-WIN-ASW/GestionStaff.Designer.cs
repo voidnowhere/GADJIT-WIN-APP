@@ -29,11 +29,12 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.TextBoxClosedTickets = new System.Windows.Forms.TextBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.TextBoxDeactivateStaff = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.TextBoxActiveTickets = new System.Windows.Forms.TextBox();
+            this.TextBoxActiveStaff = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ButtonReset = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.ComboBoxCitySearch = new System.Windows.Forms.ComboBox();
             this.ComboBoxStatusSearch = new System.Windows.Forms.ComboBox();
@@ -46,7 +47,7 @@ namespace GADJIT_WIN_ASW
             this.label13 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.TextBoxTotalTickets = new System.Windows.Forms.TextBox();
+            this.TextBoxTotalStaff = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.DGVStaff = new System.Windows.Forms.DataGridView();
             this.ColumnTextBoxID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,15 +68,15 @@ namespace GADJIT_WIN_ASW
             ((System.ComponentModel.ISupportInitialize)(this.DGVStaff)).BeginInit();
             this.SuspendLayout();
             // 
-            // TextBoxClosedTickets
+            // TextBoxDeactivateStaff
             // 
-            this.TextBoxClosedTickets.BackColor = System.Drawing.Color.Red;
-            this.TextBoxClosedTickets.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBoxClosedTickets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxClosedTickets.Location = new System.Drawing.Point(1201, 583);
-            this.TextBoxClosedTickets.Name = "TextBoxClosedTickets";
-            this.TextBoxClosedTickets.Size = new System.Drawing.Size(49, 15);
-            this.TextBoxClosedTickets.TabIndex = 8;
+            this.TextBoxDeactivateStaff.BackColor = System.Drawing.Color.Red;
+            this.TextBoxDeactivateStaff.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxDeactivateStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxDeactivateStaff.Location = new System.Drawing.Point(1201, 583);
+            this.TextBoxDeactivateStaff.Name = "TextBoxDeactivateStaff";
+            this.TextBoxDeactivateStaff.Size = new System.Drawing.Size(49, 15);
+            this.TextBoxDeactivateStaff.TabIndex = 8;
             // 
             // label16
             // 
@@ -87,18 +88,19 @@ namespace GADJIT_WIN_ASW
             this.label16.TabIndex = 50;
             this.label16.Text = "Desavtiver";
             // 
-            // TextBoxActiveTickets
+            // TextBoxActiveStaff
             // 
-            this.TextBoxActiveTickets.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.TextBoxActiveTickets.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBoxActiveTickets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxActiveTickets.Location = new System.Drawing.Point(1057, 582);
-            this.TextBoxActiveTickets.Name = "TextBoxActiveTickets";
-            this.TextBoxActiveTickets.Size = new System.Drawing.Size(49, 15);
-            this.TextBoxActiveTickets.TabIndex = 7;
+            this.TextBoxActiveStaff.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.TextBoxActiveStaff.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxActiveStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxActiveStaff.Location = new System.Drawing.Point(1057, 582);
+            this.TextBoxActiveStaff.Name = "TextBoxActiveStaff";
+            this.TextBoxActiveStaff.Size = new System.Drawing.Size(49, 15);
+            this.TextBoxActiveStaff.TabIndex = 7;
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ButtonReset);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.ComboBoxCitySearch);
             this.groupBox1.Controls.Add(this.ComboBoxStatusSearch);
@@ -113,10 +115,20 @@ namespace GADJIT_WIN_ASW
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(11, 49);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1044, 58);
+            this.groupBox1.Size = new System.Drawing.Size(1095, 58);
             this.groupBox1.TabIndex = 45;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Recherche";
+            // 
+            // ButtonReset
+            // 
+            this.ButtonReset.Location = new System.Drawing.Point(992, 25);
+            this.ButtonReset.Name = "ButtonReset";
+            this.ButtonReset.Size = new System.Drawing.Size(97, 24);
+            this.ButtonReset.TabIndex = 53;
+            this.ButtonReset.Text = "Réinitialiser";
+            this.ButtonReset.UseVisualStyleBackColor = true;
+            this.ButtonReset.Click += new System.EventHandler(this.ButtonReset_Click);
             // 
             // label3
             // 
@@ -141,6 +153,7 @@ namespace GADJIT_WIN_ASW
             this.ComboBoxStatusSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxStatusSearch.FormattingEnabled = true;
             this.ComboBoxStatusSearch.Items.AddRange(new object[] {
+            "--choisissez--",
             "Activer",
             "Désactiver"});
             this.ComboBoxStatusSearch.Location = new System.Drawing.Point(765, 24);
@@ -154,6 +167,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxEmailSearch.Name = "TextBoxEmailSearch";
             this.TextBoxEmailSearch.Size = new System.Drawing.Size(196, 22);
             this.TextBoxEmailSearch.TabIndex = 1;
+            this.TextBoxEmailSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyEmailCharKeyPressCheck);
             // 
             // label4
             // 
@@ -166,12 +180,13 @@ namespace GADJIT_WIN_ASW
             // 
             // ButtonSearch
             // 
-            this.ButtonSearch.Location = new System.Drawing.Point(929, 25);
+            this.ButtonSearch.Location = new System.Drawing.Point(901, 25);
             this.ButtonSearch.Name = "ButtonSearch";
             this.ButtonSearch.Size = new System.Drawing.Size(85, 24);
             this.ButtonSearch.TabIndex = 5;
             this.ButtonSearch.Text = "Recherche";
             this.ButtonSearch.UseVisualStyleBackColor = true;
+            this.ButtonSearch.Click += new System.EventHandler(this.ButtonSearch_Click);
             // 
             // TextBoxCINSearch
             // 
@@ -179,6 +194,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxCINSearch.Name = "TextBoxCINSearch";
             this.TextBoxCINSearch.Size = new System.Drawing.Size(100, 22);
             this.TextBoxCINSearch.TabIndex = 0;
+            this.TextBoxCINSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyLetterNumberKeyPressCheck);
             // 
             // label11
             // 
@@ -195,6 +211,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxLastNameSearch.Name = "TextBoxLastNameSearch";
             this.TextBoxLastNameSearch.Size = new System.Drawing.Size(100, 22);
             this.TextBoxLastNameSearch.TabIndex = 2;
+            this.TextBoxLastNameSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.OnlyLetterKeyPressCheck);
             // 
             // label13
             // 
@@ -224,15 +241,15 @@ namespace GADJIT_WIN_ASW
             this.label17.TabIndex = 48;
             this.label17.Text = "Activer";
             // 
-            // TextBoxTotalTickets
+            // TextBoxTotalStaff
             // 
-            this.TextBoxTotalTickets.BackColor = System.Drawing.Color.White;
-            this.TextBoxTotalTickets.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBoxTotalTickets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxTotalTickets.Location = new System.Drawing.Point(1306, 583);
-            this.TextBoxTotalTickets.Name = "TextBoxTotalTickets";
-            this.TextBoxTotalTickets.Size = new System.Drawing.Size(49, 15);
-            this.TextBoxTotalTickets.TabIndex = 9;
+            this.TextBoxTotalStaff.BackColor = System.Drawing.Color.White;
+            this.TextBoxTotalStaff.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxTotalStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxTotalStaff.Location = new System.Drawing.Point(1306, 583);
+            this.TextBoxTotalStaff.Name = "TextBoxTotalStaff";
+            this.TextBoxTotalStaff.Size = new System.Drawing.Size(49, 15);
+            this.TextBoxTotalStaff.TabIndex = 9;
             // 
             // label18
             // 
@@ -328,10 +345,10 @@ namespace GADJIT_WIN_ASW
             // 
             // ColumnTextBoxSalary
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "0.00";
-            dataGridViewCellStyle1.NullValue = null;
-            this.ColumnTextBoxSalary.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "0.00";
+            dataGridViewCellStyle3.NullValue = null;
+            this.ColumnTextBoxSalary.DefaultCellStyle = dataGridViewCellStyle3;
             this.ColumnTextBoxSalary.HeaderText = "Salaire";
             this.ColumnTextBoxSalary.Name = "ColumnTextBoxSalary";
             // 
@@ -372,12 +389,12 @@ namespace GADJIT_WIN_ASW
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1367, 604);
-            this.Controls.Add(this.TextBoxClosedTickets);
+            this.Controls.Add(this.TextBoxDeactivateStaff);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.TextBoxActiveTickets);
+            this.Controls.Add(this.TextBoxActiveStaff);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label17);
-            this.Controls.Add(this.TextBoxTotalTickets);
+            this.Controls.Add(this.TextBoxTotalStaff);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.DGVStaff);
             this.Controls.Add(this.label1);
@@ -395,9 +412,9 @@ namespace GADJIT_WIN_ASW
 
         #endregion
 
-        private System.Windows.Forms.TextBox TextBoxClosedTickets;
+        private System.Windows.Forms.TextBox TextBoxDeactivateStaff;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox TextBoxActiveTickets;
+        private System.Windows.Forms.TextBox TextBoxActiveStaff;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox ComboBoxCitySearch;
@@ -411,7 +428,7 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox TextBoxTotalTickets;
+        private System.Windows.Forms.TextBox TextBoxTotalStaff;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.DataGridView DGVStaff;
         private System.Windows.Forms.Label label1;
@@ -428,5 +445,6 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTextBoxSalary;
         private System.Windows.Forms.DataGridViewComboBoxColumn ColumnComboBoxDisponibility;
         private System.Windows.Forms.DataGridViewComboBoxColumn ColumnComboBoxStatus;
+        private System.Windows.Forms.Button ButtonReset;
     }
 }
