@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace GADJIT_WIN_ASW
 {
@@ -31,7 +32,7 @@ namespace GADJIT_WIN_ASW
         ColumnTextBoxAdress
         ColumnComboBoxCity
         ColumnTextBoxSalary
-        ColumnTextBoxDisponibility
+        ColumnComboBoxDisponibility
         ColumnComboBoxStatus
 
         StafID StafCIN StafPicture StafLastName StafFirstName StafEmail StafPassWord StafPhoneNumber StafAdress CitDesig StafSalary StafDispo StafSta
@@ -41,12 +42,16 @@ namespace GADJIT_WIN_ASW
 
         private bool CheckDGVCellsIfEmpty()
         {
-            if(DGVStaff["ColumnTextBoxID", DGVStaff.CurrentRow.Index].Value != null && DGVStaff["ColumnTextBoxCIN", DGVStaff.CurrentRow.Index].Value != null 
-                && DGVStaff["ColumnTextBoxLastName", DGVStaff.CurrentRow.Index].Value != null && DGVStaff["ColumnTextBoxFirstName", DGVStaff.CurrentRow.Index].Value != null 
-                && DGVStaff["ColumnTextBoxEmail", DGVStaff.CurrentRow.Index].Value != null && DGVStaff["ColumnTextBoxPassword", DGVStaff.CurrentRow.Index].Value != null 
-                && DGVStaff["ColumnTextBoxPhoneNumber", DGVStaff.CurrentRow.Index].Value != null && DGVStaff["ColumnTextBoxAdress", DGVStaff.CurrentRow.Index].Value != null 
-                && DGVStaff["ColumnComboBoxCity", DGVStaff.CurrentRow.Index].Value != null && DGVStaff["ColumnTextBoxSalary", DGVStaff.CurrentRow.Index].Value != null 
-                && DGVStaff["ColumnTextBoxDisponibility", DGVStaff.CurrentRow.Index].Value != null && DGVStaff["ColumnComboBoxStatus", DGVStaff.CurrentRow.Index].Value != null)
+            if(DGVStaff["ColumnTextBoxID", DGVStaff.CurrentRow.Index].Value != null
+                && DGVStaff["ColumnTextBoxCIN", DGVStaff.CurrentRow.Index].Value != null
+                && DGVStaff["ColumnTextBoxLastName", DGVStaff.CurrentRow.Index].Value != null
+                && DGVStaff["ColumnTextBoxFirstName", DGVStaff.CurrentRow.Index].Value != null
+                && DGVStaff["ColumnTextBoxEmail", DGVStaff.CurrentRow.Index].Value != null
+                && DGVStaff["ColumnTextBoxPassword", DGVStaff.CurrentRow.Index].Value != null
+                && DGVStaff["ColumnTextBoxPhoneNumber", DGVStaff.CurrentRow.Index].Value != null
+                && DGVStaff["ColumnTextBoxAdress", DGVStaff.CurrentRow.Index].Value != null
+                && DGVStaff["ColumnComboBoxCity", DGVStaff.CurrentRow.Index].Value != null
+                && DGVStaff["ColumnTextBoxSalary", DGVStaff.CurrentRow.Index].Value != null)
             {
                 return false;
             }
@@ -82,7 +87,7 @@ namespace GADJIT_WIN_ASW
 
         private void InsertNewIDInDGV()
         {
-            if (DGVStaff.Rows.Count > 0)
+            if (DGVStaff.Rows.Count > 2)
             {
                 DGVStaff[0, DGVStaff.CurrentRow.Index].Value = GADJIT.IDGenerator((string)DGVStaff[0, DGVStaff.CurrentRow.Index - 1].Value);
             }
@@ -156,17 +161,46 @@ namespace GADJIT_WIN_ASW
             i = 1;
         }
 
+        private void DGVStaff_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DGVStaff.CurrentCell.ColumnIndex == 2) // ColumnPictureBox
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Filter = "Image |*.jpg; *.jpeg; *.png;";
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    DGVStaff[2, DGVStaff.CurrentRow.Index].Value = Image.FromFile(ofd.FileName);
+                }
+            }
+        }
+
+        private void DGVStaff_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (DGVStaff.CurrentCell.ColumnIndex == 2) // ColumnPictureBox
+            {
+                if (e.Button == MouseButtons.Right)
+                {
+                    ImageShow imageShow = new ImageShow();
+                    imageShow.PictureBox.Image = (Image)DGVStaff[2, DGVStaff.CurrentRow.Index].Value;
+                    imageShow.ShowDialog();
+                }
+            }
+        }
+
         private void DGVStaff_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            int rowIndex = e.RowIndex;
             if (i == 1)
             {
-                if(DGVStaff[0, DGVStaff.CurrentRow.Index].Value == null) // ID
+                if(DGVStaff[0, rowIndex].Value == null) // ID
                 {
                     InsertNewIDInDGV();
+                    DGVStaff[11, rowIndex].Value = "Hors Ligne"; //Disponibility
+                    DGVStaff[12, rowIndex].Value = "Désactiver"; //Status
                 }
                 if (!CheckDGVCellsIfEmpty())
                 {
-                    if (CheckIDIfExists(DGVStaff[0, DGVStaff.CurrentRow.Index].Value.ToString())) // update
+                    if (CheckIDIfExists(DGVStaff[0, rowIndex].Value.ToString())) // update
                     {
                         try
                         {
@@ -175,44 +209,32 @@ namespace GADJIT_WIN_ASW
                                 "StafSta = @status where StafID = @id";
                             SqlCommand sqlCommandUpdate = new SqlCommand(sqlQuery, GADJIT.sqlConnection);
 
-                            sqlCommandUpdate.Parameters.Add("@id", SqlDbType.VarChar);
-                            sqlCommandUpdate.Parameters["@id"].Value = DGVStaff["ColumnTextBoxID", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@id", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxID", rowIndex].Value.ToString();
 
-                            sqlCommandUpdate.Parameters.Add("@cin", SqlDbType.VarChar);
-                            sqlCommandUpdate.Parameters["@cin"].Value = DGVStaff["ColumnTextBoxCIN", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@cin", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxCIN", rowIndex].Value.ToString().ToUpper();
 
-                            sqlCommandUpdate.Parameters.Add("@img", SqlDbType.Image);
-                            sqlCommandUpdate.Parameters["@img"].Value = (byte[])new ImageConverter().ConvertTo(DGVStaff["ColumnPictureBox", DGVStaff.CurrentRow.Index].Value, typeof(byte[]));
+                            sqlCommandUpdate.Parameters.Add("@img", SqlDbType.Image).Value = (byte[])new ImageConverter().ConvertTo(DGVStaff["ColumnPictureBox", rowIndex].Value, typeof(byte[]));
 
-                            sqlCommandUpdate.Parameters.Add("@lastName", SqlDbType.VarChar);
-                            sqlCommandUpdate.Parameters["@lastName"].Value = DGVStaff["ColumnTextBoxLastName", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@lastName", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxLastName", rowIndex].Value.ToString();
 
-                            sqlCommandUpdate.Parameters.Add("@firstName", SqlDbType.VarChar);
-                            sqlCommandUpdate.Parameters["@firstName"].Value = DGVStaff["ColumnTextBoxFirstName", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@firstName", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxFirstName", rowIndex].Value.ToString();
 
-                            sqlCommandUpdate.Parameters.Add("@email", SqlDbType.NVarChar);
-                            sqlCommandUpdate.Parameters["@email"].Value = DGVStaff["ColumnTextBoxEmail", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@email", SqlDbType.NVarChar).Value = DGVStaff["ColumnTextBoxEmail", rowIndex].Value.ToString();
 
-                            sqlCommandUpdate.Parameters.Add("@password", SqlDbType.NVarChar);
-                            sqlCommandUpdate.Parameters["@password"].Value = DGVStaff["ColumnTextBoxPassword", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@password", SqlDbType.NVarChar).Value = DGVStaff["ColumnTextBoxPassword", rowIndex].Value.ToString();
 
-                            sqlCommandUpdate.Parameters.Add("@phoneNumber", SqlDbType.VarChar);
-                            sqlCommandUpdate.Parameters["@phoneNumber"].Value = DGVStaff["ColumnTextBoxPhoneNumber", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@phoneNumber", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxPhoneNumber", rowIndex].Value.ToString();
 
-                            sqlCommandUpdate.Parameters.Add("@adress", SqlDbType.VarChar);
-                            sqlCommandUpdate.Parameters["@adress"].Value = DGVStaff["ColumnTextBoxAdress", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@adress", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxAdress", rowIndex].Value.ToString();
 
-                            sqlCommandUpdate.Parameters.Add("@city", SqlDbType.VarChar);
-                            sqlCommandUpdate.Parameters["@city"].Value = DGVStaff["ColumnComboBoxCity", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@city", SqlDbType.VarChar).Value = DGVStaff["ColumnComboBoxCity", rowIndex].Value.ToString();
 
-                            sqlCommandUpdate.Parameters.Add("@salary", SqlDbType.Money);
-                            sqlCommandUpdate.Parameters["@salary"].Value = Convert.ToDecimal(DGVStaff["ColumnTextBoxSalary", DGVStaff.CurrentRow.Index].Value.ToString());
+                            sqlCommandUpdate.Parameters.Add("@salary", SqlDbType.Money).Value = Convert.ToDecimal(DGVStaff["ColumnTextBoxSalary", rowIndex].Value.ToString());
 
-                            sqlCommandUpdate.Parameters.Add("@dispo", SqlDbType.VarChar);
-                            sqlCommandUpdate.Parameters["@dispo"].Value = DGVStaff["ColumnTextBoxDisponibility", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@dispo", SqlDbType.VarChar).Value = DGVStaff["ColumnComboBoxDisponibility", rowIndex].Value.ToString();
 
                             sqlCommandUpdate.Parameters.Add("@status", SqlDbType.Bit);
-                            string status = DGVStaff["ColumnComboBoxStatus", DGVStaff.CurrentRow.Index].Value.ToString();
+                            string status = DGVStaff["ColumnComboBoxStatus", rowIndex].Value.ToString();
                             if (status == "Activer")
                             {
                                 sqlCommandUpdate.Parameters["@status"].Value = 1;
@@ -245,49 +267,37 @@ namespace GADJIT_WIN_ASW
                             "values(@id, @cin, @img, @lastName, @firstName, @email, @password, @phoneNumber, @adress, @city, @salary, @dispo, @status)";
                             SqlCommand sqlCommandInsert = new SqlCommand(sqlQuery, GADJIT.sqlConnection);
 
-                            sqlCommandInsert.Parameters.Add("@id", SqlDbType.VarChar);
-                            sqlCommandInsert.Parameters["@id"].Value = DGVStaff["ColumnTextBoxID", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandInsert.Parameters.Add("@id", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxID", rowIndex].Value.ToString();
 
-                            sqlCommandInsert.Parameters.Add("@cin", SqlDbType.VarChar);
-                            sqlCommandInsert.Parameters["@cin"].Value = DGVStaff["ColumnTextBoxCIN", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandInsert.Parameters.Add("@cin", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxCIN", rowIndex].Value.ToString().ToUpper();
 
-                            sqlCommandInsert.Parameters.Add("@img", SqlDbType.Image);
-                            sqlCommandInsert.Parameters["@img"].Value = (byte[])new ImageConverter().ConvertTo(DGVStaff["ColumnPictureBox", DGVStaff.CurrentRow.Index].Value, typeof(byte[]));
+                            sqlCommandInsert.Parameters.Add("@img", SqlDbType.Image).Value = (byte[])new ImageConverter().ConvertTo(DGVStaff["ColumnPictureBox", rowIndex].Value, typeof(byte[]));
 
-                            sqlCommandInsert.Parameters.Add("@lastName", SqlDbType.VarChar);
-                            sqlCommandInsert.Parameters["@lastName"].Value = DGVStaff["ColumnTextBoxLastName", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandInsert.Parameters.Add("@lastName", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxLastName", rowIndex].Value.ToString();
 
-                            sqlCommandInsert.Parameters.Add("@firstName", SqlDbType.VarChar);
-                            sqlCommandInsert.Parameters["@firstName"].Value = DGVStaff["ColumnTextBoxFirstName", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandInsert.Parameters.Add("@firstName", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxFirstName", rowIndex].Value.ToString();
 
-                            sqlCommandInsert.Parameters.Add("@email", SqlDbType.NVarChar);
-                            sqlCommandInsert.Parameters["@email"].Value = DGVStaff["ColumnTextBoxEmail", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandInsert.Parameters.Add("@email", SqlDbType.NVarChar).Value = DGVStaff["ColumnTextBoxEmail", rowIndex].Value.ToString();
 
-                            sqlCommandInsert.Parameters.Add("@password", SqlDbType.NVarChar);
-                            sqlCommandInsert.Parameters["@password"].Value = DGVStaff["ColumnTextBoxPassword", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandInsert.Parameters.Add("@password", SqlDbType.NVarChar).Value = DGVStaff["ColumnTextBoxPassword", rowIndex].Value.ToString();
 
-                            sqlCommandInsert.Parameters.Add("@phoneNumber", SqlDbType.VarChar);
-                            sqlCommandInsert.Parameters["@phoneNumber"].Value = DGVStaff["ColumnTextBoxPhoneNumber", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandInsert.Parameters.Add("@phoneNumber", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxPhoneNumber", rowIndex].Value.ToString();
 
-                            sqlCommandInsert.Parameters.Add("@adress", SqlDbType.VarChar);
-                            sqlCommandInsert.Parameters["@adress"].Value = DGVStaff["ColumnTextBoxAdress", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandInsert.Parameters.Add("@adress", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxAdress", rowIndex].Value.ToString();
 
-                            sqlCommandInsert.Parameters.Add("@city", SqlDbType.VarChar);
-                            sqlCommandInsert.Parameters["@city"].Value = DGVStaff["ColumnComboBoxCity", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandInsert.Parameters.Add("@city", SqlDbType.VarChar).Value = DGVStaff["ColumnComboBoxCity", rowIndex].Value.ToString();
 
-                            sqlCommandInsert.Parameters.Add("@salary", SqlDbType.Money);
-                            sqlCommandInsert.Parameters["@salary"].Value = Convert.ToDecimal(DGVStaff["ColumnTextBoxSalary", DGVStaff.CurrentRow.Index].Value.ToString());
+                            sqlCommandInsert.Parameters.Add("@salary", SqlDbType.Money).Value = Convert.ToDecimal(DGVStaff["ColumnTextBoxSalary", rowIndex].Value.ToString());
 
-                            sqlCommandInsert.Parameters.Add("@dispo", SqlDbType.VarChar);
-                            sqlCommandInsert.Parameters["@dispo"].Value = DGVStaff["ColumnTextBoxDisponibility", DGVStaff.CurrentRow.Index].Value.ToString();
+                            sqlCommandInsert.Parameters.Add("@dispo", SqlDbType.VarChar).Value = DGVStaff["ColumnComboBoxDisponibility", rowIndex].Value.ToString();
 
                             sqlCommandInsert.Parameters.Add("@status", SqlDbType.Bit);
-                            string status = DGVStaff["ColumnComboBoxStatus", DGVStaff.CurrentRow.Index].Value.ToString();
+                            string status = DGVStaff["ColumnComboBoxStatus", rowIndex].Value.ToString();
                             if (status == "Activer")
                             {
                                 sqlCommandInsert.Parameters["@status"].Value = 1;
                             }
-                            else if(status == "Désactiver")
+                            else if (status == "Désactiver")
                             {
                                 sqlCommandInsert.Parameters["@status"].Value = 0;
                             }
@@ -313,32 +323,131 @@ namespace GADJIT_WIN_ASW
 
         private void DGVStaff_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-
+            switch (DGVStaff.CurrentCell.ColumnIndex)
+            {
+                case 1: //CIN
+                    //Clear KeyPressEvents
+                    e.Control.KeyPress -= OnlyLetterKeyPressCheck;
+                    e.Control.KeyPress -= OnlyEmailCharKeyPressCheck;
+                    e.Control.KeyPress -= OnlyNumberKeyPressCheck;
+                    e.Control.KeyPress -= OnlyLetterNumberWhiteSpaceKeyPressCheck;
+                    e.Control.KeyPress -= OnlyDoubleNumberKeyPressCheck;
+                    //
+                    e.Control.KeyPress += OnlyLetterNumberKeyPressCheck;
+                    break;
+                case 3: //LastName
+                case 4: //FirstName
+                    //Clear KeyPressEvents
+                    e.Control.KeyPress -= OnlyLetterNumberKeyPressCheck;
+                    e.Control.KeyPress -= OnlyLetterKeyPressCheck;
+                    e.Control.KeyPress -= OnlyEmailCharKeyPressCheck;
+                    e.Control.KeyPress -= OnlyNumberKeyPressCheck;
+                    e.Control.KeyPress -= OnlyLetterNumberWhiteSpaceKeyPressCheck;
+                    e.Control.KeyPress -= OnlyDoubleNumberKeyPressCheck;
+                    //
+                    e.Control.KeyPress += OnlyLetterKeyPressCheck;
+                    break;
+                case 5: //Email
+                    //Clear KeyPressEvents
+                    e.Control.KeyPress -= OnlyLetterNumberKeyPressCheck;
+                    e.Control.KeyPress -= OnlyLetterKeyPressCheck;
+                    e.Control.KeyPress -= OnlyEmailCharKeyPressCheck;
+                    e.Control.KeyPress -= OnlyNumberKeyPressCheck;
+                    e.Control.KeyPress -= OnlyLetterNumberWhiteSpaceKeyPressCheck;
+                    e.Control.KeyPress -= OnlyDoubleNumberKeyPressCheck;
+                    //
+                    e.Control.KeyPress += OnlyEmailCharKeyPressCheck;
+                    break;
+                case 7: //Phone
+                    //Clear KeyPressEvents
+                    e.Control.KeyPress -= OnlyLetterNumberKeyPressCheck;
+                    e.Control.KeyPress -= OnlyLetterKeyPressCheck;
+                    e.Control.KeyPress -= OnlyEmailCharKeyPressCheck;
+                    e.Control.KeyPress -= OnlyNumberKeyPressCheck;
+                    e.Control.KeyPress -= OnlyLetterNumberWhiteSpaceKeyPressCheck;
+                    e.Control.KeyPress -= OnlyDoubleNumberKeyPressCheck;
+                    //
+                    e.Control.KeyPress += OnlyNumberKeyPressCheck;
+                    break;
+                case 8: //Adress
+                    //Clear KeyPressEvents
+                    e.Control.KeyPress -= OnlyLetterNumberKeyPressCheck;
+                    e.Control.KeyPress -= OnlyLetterKeyPressCheck;
+                    e.Control.KeyPress -= OnlyEmailCharKeyPressCheck;
+                    e.Control.KeyPress -= OnlyNumberKeyPressCheck;
+                    e.Control.KeyPress -= OnlyLetterNumberWhiteSpaceKeyPressCheck;
+                    e.Control.KeyPress -= OnlyDoubleNumberKeyPressCheck;
+                    //
+                    e.Control.KeyPress += OnlyLetterNumberWhiteSpaceKeyPressCheck;
+                    break;
+                case 10: //Salary
+                    //Clear KeyPressEvents
+                    e.Control.KeyPress -= OnlyLetterNumberKeyPressCheck;
+                    e.Control.KeyPress -= OnlyLetterKeyPressCheck;
+                    e.Control.KeyPress -= OnlyEmailCharKeyPressCheck;
+                    e.Control.KeyPress -= OnlyNumberKeyPressCheck;
+                    e.Control.KeyPress -= OnlyLetterNumberWhiteSpaceKeyPressCheck;
+                    e.Control.KeyPress -= OnlyDoubleNumberKeyPressCheck;
+                    //
+                    e.Control.KeyPress += OnlyDoubleNumberKeyPressCheck;
+                    break;
+            }
         }
 
-        private void DGVStaff_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void OnlyNumberKeyPressCheck(object sender, KeyPressEventArgs e)
         {
-            if(DGVStaff.CurrentCell.ColumnIndex == 2) // ColumnPictureBox
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
-                OpenFileDialog ofd = new OpenFileDialog();
-                ofd.Filter = "Image |*.jpg; *.jpeg; *.png;";
-                if(ofd.ShowDialog() == DialogResult.OK)
-                {
-                    DGVStaff[2, DGVStaff.CurrentRow.Index].Value = Image.FromFile(ofd.FileName);
-                }
-            }   
+                e.Handled = true;
+                MessageBox.Show("N'entrez que des nombres", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void DGVStaff_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void OnlyEmailCharKeyPressCheck(object sender, KeyPressEventArgs e)
         {
-            if (DGVStaff.CurrentCell.ColumnIndex == 2) // ColumnPictureBox
+            // 46 => . && 64 => @ && 45 => - && 95 => _
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) 
+                && e.KeyChar != 46 && e.KeyChar != 64 && e.KeyChar != 45 && e.KeyChar != 95
+                && !char.IsControl(e.KeyChar))
             {
-                if(e.Button == MouseButtons.Right)
-                {
-                    ImageShow imageShow = new ImageShow();
-                    imageShow.PictureBox.Image = (Image)DGVStaff[2, DGVStaff.CurrentRow.Index].Value;
-                    imageShow.ShowDialog();
-                }
+                e.Handled = true;
+                MessageBox.Show("Caractère interdit", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void OnlyDoubleNumberKeyPressCheck(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != 46)
+            {
+                e.Handled = true;
+                MessageBox.Show("N'entrez que des nombres décimaux", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void OnlyLetterNumberWhiteSpaceKeyPressCheck(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                MessageBox.Show("Caractère interdit", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void OnlyLetterNumberKeyPressCheck(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                MessageBox.Show("Caractère interdit", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void OnlyLetterKeyPressCheck(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+                MessageBox.Show("N'entrez que des lettres", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

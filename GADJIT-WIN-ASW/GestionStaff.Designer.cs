@@ -49,7 +49,6 @@ namespace GADJIT_WIN_ASW
             this.TextBoxTotalTickets = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.DGVStaff = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.ColumnTextBoxID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTextBoxCIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPictureBox = new System.Windows.Forms.DataGridViewImageColumn();
@@ -61,8 +60,9 @@ namespace GADJIT_WIN_ASW
             this.ColumnTextBoxAdress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnComboBoxCity = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.ColumnTextBoxSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTextBoxDisponibility = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnComboBoxDisponibility = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.ColumnComboBoxStatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVStaff)).BeginInit();
             this.SuspendLayout();
@@ -246,6 +246,7 @@ namespace GADJIT_WIN_ASW
             // 
             // DGVStaff
             // 
+            this.DGVStaff.AllowUserToDeleteRows = false;
             this.DGVStaff.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVStaff.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnTextBoxID,
@@ -259,7 +260,7 @@ namespace GADJIT_WIN_ASW
             this.ColumnTextBoxAdress,
             this.ColumnComboBoxCity,
             this.ColumnTextBoxSalary,
-            this.ColumnTextBoxDisponibility,
+            this.ColumnComboBoxDisponibility,
             this.ColumnComboBoxStatus});
             this.DGVStaff.Location = new System.Drawing.Point(11, 113);
             this.DGVStaff.Name = "DGVStaff";
@@ -269,16 +270,6 @@ namespace GADJIT_WIN_ASW
             this.DGVStaff.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVStaff_CellMouseClick);
             this.DGVStaff.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVStaff_CellValueChanged);
             this.DGVStaff.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGVStaff_EditingControlShowing);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(433, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(190, 25);
-            this.label1.TabIndex = 43;
-            this.label1.Text = "Gestion Employé";
             // 
             // ColumnTextBoxID
             // 
@@ -322,6 +313,7 @@ namespace GADJIT_WIN_ASW
             // ColumnTextBoxPhoneNumber
             // 
             this.ColumnTextBoxPhoneNumber.HeaderText = "Téléphone";
+            this.ColumnTextBoxPhoneNumber.MaxInputLength = 10;
             this.ColumnTextBoxPhoneNumber.Name = "ColumnTextBoxPhoneNumber";
             // 
             // ColumnTextBoxAdress
@@ -343,10 +335,17 @@ namespace GADJIT_WIN_ASW
             this.ColumnTextBoxSalary.HeaderText = "Salaire";
             this.ColumnTextBoxSalary.Name = "ColumnTextBoxSalary";
             // 
-            // ColumnTextBoxDisponibility
+            // ColumnComboBoxDisponibility
             // 
-            this.ColumnTextBoxDisponibility.HeaderText = "Disponibilité";
-            this.ColumnTextBoxDisponibility.Name = "ColumnTextBoxDisponibility";
+            this.ColumnComboBoxDisponibility.HeaderText = "Disponibilité";
+            this.ColumnComboBoxDisponibility.Items.AddRange(new object[] {
+            "Hors Ligne",
+            "En Ligne",
+            "Break"});
+            this.ColumnComboBoxDisponibility.Name = "ColumnComboBoxDisponibility";
+            this.ColumnComboBoxDisponibility.ReadOnly = true;
+            this.ColumnComboBoxDisponibility.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnComboBoxDisponibility.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // ColumnComboBoxStatus
             // 
@@ -357,6 +356,16 @@ namespace GADJIT_WIN_ASW
             this.ColumnComboBoxStatus.Name = "ColumnComboBoxStatus";
             this.ColumnComboBoxStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnComboBoxStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(433, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(190, 25);
+            this.label1.TabIndex = 43;
+            this.label1.Text = "Gestion Employé";
             // 
             // GestionStaff
             // 
@@ -417,7 +426,7 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTextBoxAdress;
         private System.Windows.Forms.DataGridViewComboBoxColumn ColumnComboBoxCity;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTextBoxSalary;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTextBoxDisponibility;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ColumnComboBoxDisponibility;
         private System.Windows.Forms.DataGridViewComboBoxColumn ColumnComboBoxStatus;
     }
 }
