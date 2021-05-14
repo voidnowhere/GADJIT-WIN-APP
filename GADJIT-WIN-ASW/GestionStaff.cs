@@ -115,7 +115,6 @@ namespace GADJIT_WIN_ASW
                     }
                 }
                 dataReader.Close();
-                GADJIT.sqlConnection.Close();
             }
             catch(Exception ex)
             {
@@ -193,6 +192,7 @@ namespace GADJIT_WIN_ASW
                             dataReader["StafAdress"], dataReader["CitDesig"], dataReader["StafSalary"], dataReader["StafDispo"], 
                             status);
                     }
+                    StaffsStats();
                 }
             }
             catch (Exception ex)
@@ -203,6 +203,21 @@ namespace GADJIT_WIN_ASW
             {
                 GADJIT.sqlConnection.Close();
             }
+        }
+
+        private void StaffsStats()
+        {
+            int c = DGVStaff.Rows.Count - 1;
+            int a = 0;
+            int d = 0;
+            for (int i = 0; i < c; i++)
+            {
+                if (DGVStaff[12, i].Value.ToString() == "Activer") a++;
+                else if (DGVStaff[12, i].Value.ToString() == "Désactiver") d++;
+            }
+            TextBoxActivedStaffs.Text = a.ToString();
+            TextBoxDeactivatedStaffs.Text = d.ToString();
+            TextBoxTotalStaffs.Text = c.ToString();
         }
 
         private void GestionStaff_Load(object sender, EventArgs e)
@@ -301,7 +316,7 @@ namespace GADJIT_WIN_ASW
 
                             MessageBox.Show(sqlCommandUpdate.ExecuteNonQuery() + " réussi", "Mise à jour", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            GADJIT.sqlConnection.Close();
+                            StaffsStats();
                         }
                         catch (Exception ex)
                         {
@@ -359,7 +374,7 @@ namespace GADJIT_WIN_ASW
 
                             MessageBox.Show(sqlCommandInsert.ExecuteNonQuery() + " réussi", "Ajout", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            GADJIT.sqlConnection.Close();
+                            StaffsStats();
                         }
                         catch (Exception ex)
                         {

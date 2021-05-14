@@ -29,10 +29,10 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.TextBoxDeactivateStaff = new System.Windows.Forms.TextBox();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.TextBoxDeactivatedStaffs = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.TextBoxActiveStaff = new System.Windows.Forms.TextBox();
+            this.TextBoxActivedStaffs = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ButtonReset = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,7 +47,7 @@ namespace GADJIT_WIN_ASW
             this.label13 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.TextBoxTotalStaff = new System.Windows.Forms.TextBox();
+            this.TextBoxTotalStaffs = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.DGVStaff = new System.Windows.Forms.DataGridView();
             this.ColumnTextBoxID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -70,13 +70,13 @@ namespace GADJIT_WIN_ASW
             // 
             // TextBoxDeactivateStaff
             // 
-            this.TextBoxDeactivateStaff.BackColor = System.Drawing.Color.Red;
-            this.TextBoxDeactivateStaff.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBoxDeactivateStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxDeactivateStaff.Location = new System.Drawing.Point(1201, 583);
-            this.TextBoxDeactivateStaff.Name = "TextBoxDeactivateStaff";
-            this.TextBoxDeactivateStaff.Size = new System.Drawing.Size(49, 15);
-            this.TextBoxDeactivateStaff.TabIndex = 8;
+            this.TextBoxDeactivatedStaffs.BackColor = System.Drawing.Color.Red;
+            this.TextBoxDeactivatedStaffs.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxDeactivatedStaffs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxDeactivatedStaffs.Location = new System.Drawing.Point(1201, 583);
+            this.TextBoxDeactivatedStaffs.Name = "TextBoxDeactivateStaff";
+            this.TextBoxDeactivatedStaffs.Size = new System.Drawing.Size(49, 15);
+            this.TextBoxDeactivatedStaffs.TabIndex = 8;
             // 
             // label16
             // 
@@ -90,13 +90,13 @@ namespace GADJIT_WIN_ASW
             // 
             // TextBoxActiveStaff
             // 
-            this.TextBoxActiveStaff.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.TextBoxActiveStaff.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBoxActiveStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxActiveStaff.Location = new System.Drawing.Point(1057, 582);
-            this.TextBoxActiveStaff.Name = "TextBoxActiveStaff";
-            this.TextBoxActiveStaff.Size = new System.Drawing.Size(49, 15);
-            this.TextBoxActiveStaff.TabIndex = 7;
+            this.TextBoxActivedStaffs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.TextBoxActivedStaffs.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxActivedStaffs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxActivedStaffs.Location = new System.Drawing.Point(1057, 582);
+            this.TextBoxActivedStaffs.Name = "TextBoxActiveStaff";
+            this.TextBoxActivedStaffs.Size = new System.Drawing.Size(49, 15);
+            this.TextBoxActivedStaffs.TabIndex = 7;
             // 
             // groupBox1
             // 
@@ -241,15 +241,15 @@ namespace GADJIT_WIN_ASW
             this.label17.TabIndex = 48;
             this.label17.Text = "Activer";
             // 
-            // TextBoxTotalStaff
+            // TextBoxTotalStaffs
             // 
-            this.TextBoxTotalStaff.BackColor = System.Drawing.Color.White;
-            this.TextBoxTotalStaff.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBoxTotalStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxTotalStaff.Location = new System.Drawing.Point(1306, 583);
-            this.TextBoxTotalStaff.Name = "TextBoxTotalStaff";
-            this.TextBoxTotalStaff.Size = new System.Drawing.Size(49, 15);
-            this.TextBoxTotalStaff.TabIndex = 9;
+            this.TextBoxTotalStaffs.BackColor = System.Drawing.Color.White;
+            this.TextBoxTotalStaffs.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxTotalStaffs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxTotalStaffs.Location = new System.Drawing.Point(1306, 583);
+            this.TextBoxTotalStaffs.Name = "TextBoxTotalStaffs";
+            this.TextBoxTotalStaffs.Size = new System.Drawing.Size(49, 15);
+            this.TextBoxTotalStaffs.TabIndex = 9;
             // 
             // label18
             // 
@@ -345,10 +345,10 @@ namespace GADJIT_WIN_ASW
             // 
             // ColumnTextBoxSalary
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "0.00";
-            dataGridViewCellStyle3.NullValue = null;
-            this.ColumnTextBoxSalary.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "0.00";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ColumnTextBoxSalary.DefaultCellStyle = dataGridViewCellStyle2;
             this.ColumnTextBoxSalary.HeaderText = "Salaire";
             this.ColumnTextBoxSalary.Name = "ColumnTextBoxSalary";
             // 
@@ -389,12 +389,12 @@ namespace GADJIT_WIN_ASW
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1367, 604);
-            this.Controls.Add(this.TextBoxDeactivateStaff);
+            this.Controls.Add(this.TextBoxDeactivatedStaffs);
             this.Controls.Add(this.label16);
-            this.Controls.Add(this.TextBoxActiveStaff);
+            this.Controls.Add(this.TextBoxActivedStaffs);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label17);
-            this.Controls.Add(this.TextBoxTotalStaff);
+            this.Controls.Add(this.TextBoxTotalStaffs);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.DGVStaff);
             this.Controls.Add(this.label1);
@@ -412,9 +412,9 @@ namespace GADJIT_WIN_ASW
 
         #endregion
 
-        private System.Windows.Forms.TextBox TextBoxDeactivateStaff;
+        private System.Windows.Forms.TextBox TextBoxDeactivatedStaffs;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox TextBoxActiveStaff;
+        private System.Windows.Forms.TextBox TextBoxActivedStaffs;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox ComboBoxCitySearch;
@@ -428,7 +428,7 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox TextBoxTotalStaff;
+        private System.Windows.Forms.TextBox TextBoxTotalStaffs;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.DataGridView DGVStaff;
         private System.Windows.Forms.Label label1;
