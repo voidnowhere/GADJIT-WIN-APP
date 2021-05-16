@@ -13,9 +13,9 @@ using System.Text.RegularExpressions;
 
 namespace GADJIT_WIN_ASW
 {
-    public partial class GestionStaff : Form
+    public partial class StaffManagment : Form
     {
-        public GestionStaff()
+        public StaffManagment()
         {
             InitializeComponent();
         }
@@ -38,6 +38,8 @@ namespace GADJIT_WIN_ASW
         StafID StafCIN StafPicture StafLastName StafFirstName StafEmail StafPassWord StafPhoneNumber StafAdress CitDesig StafSalary StafDispo StafSta
         */
 
+        SqlDataReader dataReader;
+        //
         bool filledDGV = false;
         bool where = false;
 
@@ -104,7 +106,7 @@ namespace GADJIT_WIN_ASW
             {
                 SqlCommand sqlCommand = new SqlCommand("select CitDesig from City", GADJIT.sqlConnection);
                 GADJIT.sqlConnection.Open();
-                SqlDataReader dataReader = sqlCommand.ExecuteReader();
+                dataReader = sqlCommand.ExecuteReader();
                 if (dataReader.HasRows)
                 {
                     ComboBoxCitySearch.Items.Add("--choisissez--");
@@ -114,7 +116,6 @@ namespace GADJIT_WIN_ASW
                         ColumnComboBoxCity.Items.Add(dataReader.GetString(0));
                     }
                 }
-                dataReader.Close();
             }
             catch(Exception ex)
             {
@@ -122,6 +123,7 @@ namespace GADJIT_WIN_ASW
             }
             finally
             {
+                dataReader.Close();
                 GADJIT.sqlConnection.Close();
             }
         }
@@ -201,6 +203,7 @@ namespace GADJIT_WIN_ASW
             }
             finally
             {
+                dataReader.Close();
                 GADJIT.sqlConnection.Close();
             }
         }
@@ -231,25 +234,25 @@ namespace GADJIT_WIN_ASW
 
         private void DGVStaff_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (DGVStaff.CurrentCell.ColumnIndex == 2) // ColumnPictureBox
+            if (e.ColumnIndex == 2) // ColumnPictureBox
             {
                 OpenFileDialog ofd = new OpenFileDialog();
                 ofd.Filter = "Image |*.jpg; *.jpeg; *.png;";
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    DGVStaff[2, DGVStaff.CurrentRow.Index].Value = Image.FromFile(ofd.FileName);
+                    DGVStaff[2, e.RowIndex].Value = Image.FromFile(ofd.FileName);
                 }
             }
         }
 
         private void DGVStaff_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (DGVStaff.CurrentCell.ColumnIndex == 2) // ColumnPictureBox
+            if (e.ColumnIndex == 2) // ColumnPictureBox
             {
                 if (e.Button == MouseButtons.Right)
                 {
                     ImageShow imageShow = new ImageShow();
-                    imageShow.PictureBox.Image = (Image)DGVStaff[2, DGVStaff.CurrentRow.Index].Value;
+                    imageShow.PictureBox.Image = (Image)DGVStaff[2, e.RowIndex].Value;
                     imageShow.ShowDialog();
                 }
             }
@@ -425,6 +428,15 @@ namespace GADJIT_WIN_ASW
                     e.Control.KeyPress -= OnlyDoubleNumberKeyPressCheck;
                     //
                     e.Control.KeyPress += OnlyEmailCharKeyPressCheck;
+                    break;
+                case 6: //Password
+                    //Clear KeyPressEvents
+                    e.Control.KeyPress -= OnlyLetterNumberKeyPressCheck;
+                    e.Control.KeyPress -= OnlyLetterKeyPressCheck;
+                    e.Control.KeyPress -= OnlyEmailCharKeyPressCheck;
+                    e.Control.KeyPress -= OnlyNumberKeyPressCheck;
+                    e.Control.KeyPress -= OnlyLetterNumberWhiteSpaceKeyPressCheck;
+                    e.Control.KeyPress -= OnlyDoubleNumberKeyPressCheck;
                     break;
                 case 7: //Phone
                     //Clear KeyPressEvents
