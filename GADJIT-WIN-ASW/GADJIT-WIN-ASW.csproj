@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -59,11 +60,11 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="GADJIT.cs" />
-    <Compile Include="GestionStaff.cs">
+    <Compile Include="StaffManagment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GestionStaff.Designer.cs">
-      <DependentUpon>GestionStaff.cs</DependentUpon>
+    <Compile Include="StaffManagment.Designer.cs">
+      <DependentUpon>StaffManagment.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageShow.cs">
       <SubType>Form</SubType>
@@ -79,11 +80,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorkerSpeciality.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkerSpeciality.Designer.cs">
+      <DependentUpon>WorkerSpeciality.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GestionStaff.resx">
-      <DependentUpon>GestionStaff.cs</DependentUpon>
+    <EmbeddedResource Include="StaffManagment.resx">
+      <DependentUpon>StaffManagment.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ImageShow.resx">
@@ -94,6 +101,12 @@
     </Compile>
     <Compile Include="StaffPanel.Designer.cs">
       <DependentUpon>StaffPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkerManagment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkerManagment.Designer.cs">
+      <DependentUpon>WorkerManagment.cs</DependentUpon>
     </Compile>
     <Compile Include="WorkerPanel.cs">
       <SubType>Form</SubType>
@@ -117,8 +130,14 @@
     <EmbeddedResource Include="StaffPanel.resx">
       <DependentUpon>StaffPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="WorkerManagment.resx">
+      <DependentUpon>WorkerManagment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WorkerPanel.resx">
       <DependentUpon>WorkerPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkerSpeciality.resx">
+      <DependentUpon>WorkerSpeciality.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -29,40 +29,41 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            this.label2 = new System.Windows.Forms.Label();
+            this.LabelFirstName = new System.Windows.Forms.Label();
             this.PanelGadgetManagment = new System.Windows.Forms.Panel();
             this.ButtonGadgetReferenceManagment = new System.Windows.Forms.Button();
             this.ButtonGadgetCategoryBrandManagment = new System.Windows.Forms.Button();
-            this.LabelAdminMail = new System.Windows.Forms.Label();
+            this.LabelEmail = new System.Windows.Forms.Label();
             this.ButtonIncomes = new System.Windows.Forms.Button();
             this.ButtonGadgetMenu = new System.Windows.Forms.Button();
             this.ButtonWorkerManagment = new System.Windows.Forms.Button();
             this.ButtonStaffManagment = new System.Windows.Forms.Button();
             this.ButtonTicketManagment = new System.Windows.Forms.Button();
             this.ButtonClientManagment = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.LabelLastName = new System.Windows.Forms.Label();
             this.PanelStatistics = new System.Windows.Forms.Panel();
             this.ButtonStatisticsMenu = new System.Windows.Forms.Button();
             this.PanelTop = new System.Windows.Forms.Panel();
+            this.ButtonDisponibility = new GADJIT_WIN_ASW.CirucularButton();
             this.PanelBottom = new System.Windows.Forms.Panel();
-            this.SideMenuPanel = new System.Windows.Forms.Panel();
             this.PictureBoxLogOut = new System.Windows.Forms.PictureBox();
+            this.SideMenuPanel = new System.Windows.Forms.Panel();
             this.PanelGadgetManagment.SuspendLayout();
             this.PanelStatistics.SuspendLayout();
             this.PanelTop.SuspendLayout();
             this.PanelBottom.SuspendLayout();
-            this.SideMenuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogOut)).BeginInit();
+            this.SideMenuPanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label2
+            // LabelFirstName
             // 
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(3, 37);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(125, 17);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "First Name";
+            this.LabelFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelFirstName.Location = new System.Drawing.Point(3, 37);
+            this.LabelFirstName.Name = "LabelFirstName";
+            this.LabelFirstName.Size = new System.Drawing.Size(125, 17);
+            this.LabelFirstName.TabIndex = 6;
+            this.LabelFirstName.Text = "First Name";
             // 
             // PanelGadgetManagment
             // 
@@ -107,14 +108,14 @@ namespace GADJIT_WIN_ASW
             this.ButtonGadgetCategoryBrandManagment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonGadgetCategoryBrandManagment.UseVisualStyleBackColor = true;
             // 
-            // LabelAdminMail
+            // LabelEmail
             // 
-            this.LabelAdminMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelAdminMail.Location = new System.Drawing.Point(3, 67);
-            this.LabelAdminMail.Name = "LabelAdminMail";
-            this.LabelAdminMail.Size = new System.Drawing.Size(182, 17);
-            this.LabelAdminMail.TabIndex = 4;
-            this.LabelAdminMail.Text = "Admin Mail";
+            this.LabelEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelEmail.Location = new System.Drawing.Point(3, 67);
+            this.LabelEmail.Name = "LabelEmail";
+            this.LabelEmail.Size = new System.Drawing.Size(182, 17);
+            this.LabelEmail.TabIndex = 4;
+            this.LabelEmail.Text = "Admin Mail";
             // 
             // ButtonIncomes
             // 
@@ -168,6 +169,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonWorkerManagment.Text = "Gestion Employé";
             this.ButtonWorkerManagment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonWorkerManagment.UseVisualStyleBackColor = false;
+            this.ButtonWorkerManagment.Click += new System.EventHandler(this.ButtonWorkerManagment_Click);
             // 
             // ButtonStaffManagment
             // 
@@ -224,14 +226,14 @@ namespace GADJIT_WIN_ASW
             this.ButtonClientManagment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonClientManagment.UseVisualStyleBackColor = false;
             // 
-            // label1
+            // LabelLastName
             // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(110, 17);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Last Name";
+            this.LabelLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelLastName.Location = new System.Drawing.Point(3, 9);
+            this.LabelLastName.Name = "LabelLastName";
+            this.LabelLastName.Size = new System.Drawing.Size(125, 17);
+            this.LabelLastName.TabIndex = 5;
+            this.LabelLastName.Text = "Last Name";
             // 
             // PanelStatistics
             // 
@@ -264,23 +266,46 @@ namespace GADJIT_WIN_ASW
             // 
             // PanelTop
             // 
-            this.PanelTop.Controls.Add(this.label2);
-            this.PanelTop.Controls.Add(this.label1);
-            this.PanelTop.Controls.Add(this.LabelAdminMail);
+            this.PanelTop.Controls.Add(this.ButtonDisponibility);
+            this.PanelTop.Controls.Add(this.LabelFirstName);
+            this.PanelTop.Controls.Add(this.LabelLastName);
+            this.PanelTop.Controls.Add(this.LabelEmail);
             this.PanelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelTop.Location = new System.Drawing.Point(0, 0);
             this.PanelTop.Name = "PanelTop";
             this.PanelTop.Size = new System.Drawing.Size(197, 96);
             this.PanelTop.TabIndex = 0;
             // 
+            // ButtonDisponibility
+            // 
+            this.ButtonDisponibility.BackColor = System.Drawing.Color.Lime;
+            this.ButtonDisponibility.Location = new System.Drawing.Point(174, 3);
+            this.ButtonDisponibility.Name = "ButtonDisponibility";
+            this.ButtonDisponibility.Size = new System.Drawing.Size(20, 20);
+            this.ButtonDisponibility.TabIndex = 3;
+            this.ButtonDisponibility.UseVisualStyleBackColor = false;
+            this.ButtonDisponibility.Click += new System.EventHandler(this.ButtonDisponibility_Click);
+            // 
             // PanelBottom
             // 
             this.PanelBottom.Controls.Add(this.PictureBoxLogOut);
             this.PanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PanelBottom.Location = new System.Drawing.Point(0, 580);
+            this.PanelBottom.Location = new System.Drawing.Point(0, 570);
             this.PanelBottom.Name = "PanelBottom";
-            this.PanelBottom.Size = new System.Drawing.Size(197, 46);
+            this.PanelBottom.Size = new System.Drawing.Size(197, 56);
             this.PanelBottom.TabIndex = 3;
+            // 
+            // PictureBoxLogOut
+            // 
+            this.PictureBoxLogOut.BackColor = System.Drawing.Color.Goldenrod;
+            this.PictureBoxLogOut.Image = global::GADJIT_WIN_ASW.Properties.Resources.shutdown_60px;
+            this.PictureBoxLogOut.Location = new System.Drawing.Point(0, 0);
+            this.PictureBoxLogOut.Name = "PictureBoxLogOut";
+            this.PictureBoxLogOut.Size = new System.Drawing.Size(56, 52);
+            this.PictureBoxLogOut.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBoxLogOut.TabIndex = 3;
+            this.PictureBoxLogOut.TabStop = false;
+            this.PictureBoxLogOut.Click += new System.EventHandler(this.PictureBoxLogOut_Click);
             // 
             // SideMenuPanel
             // 
@@ -302,23 +327,13 @@ namespace GADJIT_WIN_ASW
             this.SideMenuPanel.Size = new System.Drawing.Size(197, 626);
             this.SideMenuPanel.TabIndex = 1;
             // 
-            // PictureBoxLogOut
-            // 
-            this.PictureBoxLogOut.BackColor = System.Drawing.Color.Goldenrod;
-            this.PictureBoxLogOut.Location = new System.Drawing.Point(0, 0);
-            this.PictureBoxLogOut.Name = "PictureBoxLogOut";
-            this.PictureBoxLogOut.Size = new System.Drawing.Size(52, 46);
-            this.PictureBoxLogOut.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PictureBoxLogOut.TabIndex = 3;
-            this.PictureBoxLogOut.TabStop = false;
-            // 
             // AdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(952, 626);
             this.Controls.Add(this.SideMenuPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IsMdiContainer = true;
             this.Name = "AdminPanel";
             this.Text = "AdminPanel";
@@ -327,19 +342,16 @@ namespace GADJIT_WIN_ASW
             this.PanelStatistics.ResumeLayout(false);
             this.PanelTop.ResumeLayout(false);
             this.PanelBottom.ResumeLayout(false);
-            this.SideMenuPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogOut)).EndInit();
+            this.SideMenuPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel PanelGadgetManagment;
         private System.Windows.Forms.Button ButtonGadgetReferenceManagment;
         private System.Windows.Forms.Button ButtonGadgetCategoryBrandManagment;
-        private System.Windows.Forms.Label LabelAdminMail;
         private System.Windows.Forms.Button ButtonIncomes;
         private System.Windows.Forms.Button ButtonGadgetMenu;
         private System.Windows.Forms.Button ButtonWorkerManagment;
@@ -347,11 +359,14 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.Button ButtonTicketManagment;
         private System.Windows.Forms.PictureBox PictureBoxLogOut;
         private System.Windows.Forms.Button ButtonClientManagment;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel PanelStatistics;
         private System.Windows.Forms.Button ButtonStatisticsMenu;
         private System.Windows.Forms.Panel PanelTop;
         private System.Windows.Forms.Panel PanelBottom;
         private System.Windows.Forms.Panel SideMenuPanel;
+        private CirucularButton ButtonDisponibility;
+        public System.Windows.Forms.Label LabelFirstName;
+        public System.Windows.Forms.Label LabelEmail;
+        public System.Windows.Forms.Label LabelLastName;
     }
 }

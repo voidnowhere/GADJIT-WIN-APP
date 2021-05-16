@@ -43,13 +43,17 @@ namespace GADJIT_WIN_ASW
                 switch(Regex.Match(dr.GetString(4), @"^[A-Z]{1}").ToString())
                 {
                     case "A":
-                        //AdminPanel Admin = new AdminPanel();
-                        //Admin.LabelLastName.Text = dr.GetString(0);
-                        //Admin.LabelFirstName.Text = dr.GetString(1);
-                        //Admin.LabelEmail.Text = dr.GetString(2);
-                        //dr.Close();
-                        //GADJIT.sqlConnection.Close();
-                        //Admin.ShowDialog();
+                        AdminPanel Admin = new AdminPanel();
+                        Admin.login = this;
+                        //
+                        Admin.LabelLastName.Text = dr.GetString(0);
+                        Admin.LabelFirstName.Text = dr.GetString(1);
+                        Admin.LabelEmail.Text = dr.GetString(2);
+                        dr.Close();
+                        GADJIT.sqlConnection.Close();
+                        //
+                        this.Hide();
+                        Admin.ShowDialog();
                         break;
                     case "S":
                         StaffPanel Staff = new StaffPanel();
