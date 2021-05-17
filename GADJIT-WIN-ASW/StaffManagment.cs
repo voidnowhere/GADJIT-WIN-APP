@@ -65,17 +65,10 @@ namespace GADJIT_WIN_ASW
         {
             try
             {
-                SqlCommand sqlCommand = new SqlCommand("select StafID from Staff where StafID = @id", GADJIT.sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("select COUNT(StafID) from Staff where StafID = @id", GADJIT.sqlConnection);
                 sqlCommand.Parameters.AddWithValue("@id", id);
                 GADJIT.sqlConnection.Open();
-                object idFromDB = sqlCommand.ExecuteScalar();
-                if(idFromDB != DBNull.Value)
-                {
-                    if ((string)idFromDB == id)
-                    {
-                        return true;
-                    }
-                }
+                if ((int)sqlCommand.ExecuteScalar() == 1) return true;
             }
             catch (Exception ex)
             {
@@ -304,16 +297,7 @@ namespace GADJIT_WIN_ASW
 
                             sqlCommandUpdate.Parameters.Add("@dispo", SqlDbType.VarChar).Value = DGVStaff["ColumnComboBoxDisponibility", rowIndex].Value.ToString();
 
-                            sqlCommandUpdate.Parameters.Add("@status", SqlDbType.Bit);
-                            string status = DGVStaff["ColumnComboBoxStatus", rowIndex].Value.ToString();
-                            if (status == "Activer")
-                            {
-                                sqlCommandUpdate.Parameters["@status"].Value = 1;
-                            }
-                            else if (status == "Désactiver")
-                            {
-                                sqlCommandUpdate.Parameters["@status"].Value = 0;
-                            }
+                            sqlCommandUpdate.Parameters.Add("@status", SqlDbType.Bit).Value = (DGVStaff["ColumnComboBoxStatus", rowIndex].Value.ToString() == "Activer") ? 1 : 0;
 
                             GADJIT.sqlConnection.Open();
 
@@ -362,16 +346,7 @@ namespace GADJIT_WIN_ASW
 
                             sqlCommandInsert.Parameters.Add("@dispo", SqlDbType.VarChar).Value = DGVStaff["ColumnComboBoxDisponibility", rowIndex].Value.ToString();
 
-                            sqlCommandInsert.Parameters.Add("@status", SqlDbType.Bit);
-                            string status = DGVStaff["ColumnComboBoxStatus", rowIndex].Value.ToString();
-                            if (status == "Activer")
-                            {
-                                sqlCommandInsert.Parameters["@status"].Value = 1;
-                            }
-                            else if (status == "Désactiver")
-                            {
-                                sqlCommandInsert.Parameters["@status"].Value = 0;
-                            }
+                            sqlCommandInsert.Parameters.Add("@status", SqlDbType.Bit).Value = (DGVStaff["ColumnComboBoxStatus", rowIndex].Value.ToString() == "Activer") ? 1 : 0;
 
                             GADJIT.sqlConnection.Open();
 

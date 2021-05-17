@@ -326,6 +326,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxDeactivatedStaffs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxDeactivatedStaffs.Location = new System.Drawing.Point(1301, 622);
             this.TextBoxDeactivatedStaffs.Name = "TextBoxDeactivatedStaffs";
+            this.TextBoxDeactivatedStaffs.ReadOnly = true;
             this.TextBoxDeactivatedStaffs.Size = new System.Drawing.Size(49, 15);
             this.TextBoxDeactivatedStaffs.TabIndex = 52;
             // 
@@ -346,6 +347,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxActivedStaffs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxActivedStaffs.Location = new System.Drawing.Point(1157, 621);
             this.TextBoxActivedStaffs.Name = "TextBoxActivedStaffs";
+            this.TextBoxActivedStaffs.ReadOnly = true;
             this.TextBoxActivedStaffs.Size = new System.Drawing.Size(49, 15);
             this.TextBoxActivedStaffs.TabIndex = 51;
             // 
@@ -366,6 +368,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxTotalStaffs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxTotalStaffs.Location = new System.Drawing.Point(1406, 622);
             this.TextBoxTotalStaffs.Name = "TextBoxTotalStaffs";
+            this.TextBoxTotalStaffs.ReadOnly = true;
             this.TextBoxTotalStaffs.Size = new System.Drawing.Size(49, 15);
             this.TextBoxTotalStaffs.TabIndex = 53;
             // 
