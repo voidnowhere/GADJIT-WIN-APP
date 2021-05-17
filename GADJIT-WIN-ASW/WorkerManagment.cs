@@ -195,8 +195,8 @@ namespace GADJIT_WIN_ASW
                             dataReader["WorDispo"],
                             status);
                     }
-                    WorkersStats();
                 }
+                WorkersStats();
             }
             catch (Exception ex)
             {
@@ -211,7 +211,7 @@ namespace GADJIT_WIN_ASW
 
         private void WorkersStats()
         {
-            int c = DGVWorker.Rows.Count - 1;
+            int c = (DGVWorker.AllowUserToAddRows) ? DGVWorker.Rows.Count - 1 : DGVWorker.Rows.Count;
             int a = 0;
             int d = 0;
             for (int i = 0; i < c; i++)

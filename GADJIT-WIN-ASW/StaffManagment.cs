@@ -194,8 +194,8 @@ namespace GADJIT_WIN_ASW
                             dataReader["StafAdress"], dataReader["CitDesig"], dataReader["StafSalary"], dataReader["StafDispo"], 
                             status);
                     }
-                    StaffsStats();
                 }
+                StaffsStats();
             }
             catch (Exception ex)
             {
@@ -210,7 +210,7 @@ namespace GADJIT_WIN_ASW
 
         private void StaffsStats()
         {
-            int c = DGVStaff.Rows.Count - 1;
+            int c = (DGVStaff.AllowUserToAddRows) ? DGVStaff.Rows.Count - 1 : DGVStaff.Rows.Count;
             int a = 0;
             int d = 0;
             for (int i = 0; i < c; i++)
