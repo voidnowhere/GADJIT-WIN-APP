@@ -68,6 +68,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonConfirmer.TabIndex = 31;
             this.ButtonConfirmer.Text = "Confirmer";
             this.ButtonConfirmer.UseVisualStyleBackColor = false;
+            this.ButtonConfirmer.Click += new System.EventHandler(this.ButtonConfirmer_Click);
             // 
             // RichTextBoxProbTicket
             // 
@@ -85,6 +86,8 @@ namespace GADJIT_WIN_CLIENT
             this.ComboBoxRefGadjit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ComboBoxRefGadjit.DisplayMember = "reference";
             this.ComboBoxRefGadjit.FormattingEnabled = true;
+            this.ComboBoxRefGadjit.Items.AddRange(new object[] {
+            "choisissez une reference"});
             this.ComboBoxRefGadjit.Location = new System.Drawing.Point(297, 160);
             this.ComboBoxRefGadjit.Name = "ComboBoxRefGadjit";
             this.ComboBoxRefGadjit.Size = new System.Drawing.Size(527, 25);
@@ -94,6 +97,8 @@ namespace GADJIT_WIN_CLIENT
             // 
             this.ComboBoxMarque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ComboBoxMarque.FormattingEnabled = true;
+            this.ComboBoxMarque.Items.AddRange(new object[] {
+            "Choisissez une marque"});
             this.ComboBoxMarque.Location = new System.Drawing.Point(297, 119);
             this.ComboBoxMarque.Name = "ComboBoxMarque";
             this.ComboBoxMarque.Size = new System.Drawing.Size(527, 25);
@@ -103,6 +108,8 @@ namespace GADJIT_WIN_CLIENT
             // 
             this.ComboBoxCatGadjit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ComboBoxCatGadjit.FormattingEnabled = true;
+            this.ComboBoxCatGadjit.Items.AddRange(new object[] {
+            "Choisissez une categotie"});
             this.ComboBoxCatGadjit.Location = new System.Drawing.Point(297, 79);
             this.ComboBoxCatGadjit.Name = "ComboBoxCatGadjit";
             this.ComboBoxCatGadjit.Size = new System.Drawing.Size(527, 25);

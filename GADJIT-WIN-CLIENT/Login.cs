@@ -35,8 +35,8 @@ namespace GADJIT_WIN_CLIENT
             if ((int) cmd.ExecuteScalar() == 1)
             {
                 Cemail = TexrBoxEmail.Text.Trim();
-                this.Hide();
                 GADJIT.sqlConnection.Close();
+                this.Hide();
                 HOME home = new HOME();
                 home.ShowDialog();
                 this.Show();
