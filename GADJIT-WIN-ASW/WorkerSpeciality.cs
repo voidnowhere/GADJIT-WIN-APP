@@ -34,20 +34,20 @@ namespace GADJIT_WIN_ASW
                 //
                 sqlCommand.CommandText = "select GadCatID, GadCatDesig from GadgetCategory";
                 dataReader = sqlCommand.ExecuteReader();
+                ColumnComboBoxCategory.DisplayMember = "desig";
+                ColumnComboBoxCategory.ValueMember = "id";
                 while (dataReader.Read())
                 {
-                    ColumnComboBoxCategory.DisplayMember = "desig";
-                    ColumnComboBoxCategory.ValueMember = "id";
                     ColumnComboBoxCategory.Items.Add(new { id = dataReader.GetString(0), desig = dataReader.GetString(1) });
                 }
                 dataReader.Close();
                 //
                 sqlCommand.CommandText = "select GadBraID, GadBraDesig from GadgetBrand";
                 dataReader = sqlCommand.ExecuteReader();
+                ColumnComboBoxBrand.DisplayMember = "desig";
+                ColumnComboBoxBrand.ValueMember = "id";
                 while (dataReader.Read())
                 {
-                    ColumnComboBoxBrand.DisplayMember = "desig";
-                    ColumnComboBoxBrand.ValueMember = "id";
                     ColumnComboBoxBrand.Items.Add(new { id = dataReader.GetString(0), desig = dataReader.GetString(1) });
                 }
             }
