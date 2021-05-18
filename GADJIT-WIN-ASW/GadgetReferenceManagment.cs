@@ -338,10 +338,10 @@ namespace GADJIT_WIN_ASW
                     {
                         SqlCommand sqlCommandDelete = new SqlCommand("delete from GadgetReference where GadRefID = @id", GADJIT.sqlConnection);
                         sqlCommandDelete.Parameters.Add("@id", SqlDbType.VarChar).Value = e.Row.Cells[0].Value;
-                        GADJIT.sqlConnection.Open();
 
                         if (MessageBox.Show("Voulez vous supprimer cet référence", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                         {
+                            GADJIT.sqlConnection.Open();
                             MessageBox.Show(sqlCommandDelete.ExecuteNonQuery() + " réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         else
