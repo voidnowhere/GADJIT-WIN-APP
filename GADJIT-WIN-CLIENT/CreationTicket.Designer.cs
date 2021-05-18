@@ -40,6 +40,8 @@ namespace GADJIT_WIN_CLIENT
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.PictureBoxExit = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).BeginInit();
             this.SuspendLayout();
             // 
             // ButtonAnnuler
@@ -103,6 +105,7 @@ namespace GADJIT_WIN_CLIENT
             this.ComboBoxMarque.Name = "ComboBoxMarque";
             this.ComboBoxMarque.Size = new System.Drawing.Size(527, 25);
             this.ComboBoxMarque.TabIndex = 28;
+            this.ComboBoxMarque.SelectedIndexChanged += new System.EventHandler(this.ComboBoxMarque_SelectedIndexChanged);
             // 
             // ComboBoxCatGadjit
             // 
@@ -114,6 +117,7 @@ namespace GADJIT_WIN_CLIENT
             this.ComboBoxCatGadjit.Name = "ComboBoxCatGadjit";
             this.ComboBoxCatGadjit.Size = new System.Drawing.Size(527, 25);
             this.ComboBoxCatGadjit.TabIndex = 27;
+            this.ComboBoxCatGadjit.SelectedIndexChanged += new System.EventHandler(this.ComboBoxCatGadjit_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -162,12 +166,24 @@ namespace GADJIT_WIN_CLIENT
             this.label1.TabIndex = 22;
             this.label1.Text = "NOUVELLE TICKET";
             // 
+            // PictureBoxExit
+            // 
+            this.PictureBoxExit.Image = global::GADJIT_WIN_CLIENT.Properties.Resources.close_window_52px;
+            this.PictureBoxExit.Location = new System.Drawing.Point(1036, -1);
+            this.PictureBoxExit.Name = "PictureBoxExit";
+            this.PictureBoxExit.Size = new System.Drawing.Size(31, 27);
+            this.PictureBoxExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBoxExit.TabIndex = 34;
+            this.PictureBoxExit.TabStop = false;
+            this.PictureBoxExit.Click += new System.EventHandler(this.PictureBoxExit_Click);
+            // 
             // CreationTicket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1067, 588);
+            this.Controls.Add(this.PictureBoxExit);
             this.Controls.Add(this.ButtonAnnuler);
             this.Controls.Add(this.ButtonConfirmer);
             this.Controls.Add(this.RichTextBoxProbTicket);
@@ -186,6 +202,7 @@ namespace GADJIT_WIN_CLIENT
             this.Name = "CreationTicket";
             this.Text = "CreationTicket";
             this.Load += new System.EventHandler(this.CreationTicket_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,5 +221,6 @@ namespace GADJIT_WIN_CLIENT
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox PictureBoxExit;
     }
 }

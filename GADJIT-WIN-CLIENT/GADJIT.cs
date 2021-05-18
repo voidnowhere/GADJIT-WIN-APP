@@ -9,6 +9,6 @@ namespace GADJIT_WIN_CLIENT
 {
     class GADJIT
     {
-        public static SqlConnection sqlConnection = new SqlConnection(@"Server=.\SQLEXPRESS; Database=GADJIT; User Id=gadjit_basic; Password=g_2021;");
+        public static SqlConnection sqlConnection = new SqlConnection(@"Server=pff-win-app.database.windows.net; Database=GADJIT; User Id=gadjit_basic; Password=cz3l@K$H%!W2;");
     }
 }

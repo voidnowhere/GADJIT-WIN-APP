@@ -52,7 +52,15 @@ namespace GADJIT_WIN_CLIENT
             SqlCommand cmd = new SqlCommand("select max(CliID) from client ", GADJIT.sqlConnection);
             SqlDataReader dr = cmd.ExecuteReader();
             dr.Read();
-            ID +=(Convert.ToInt32(Regex.Match(dr.GetString(0), @"[0-9]").ToString())+1).ToString();
+            try
+            {
+                ID += (Convert.ToInt32(Regex.Match(dr.GetString(0), @"[0-9]").ToString()) + 1).ToString();
+            }
+            catch
+            {
+                ID = "C0";
+            }
+            
             GADJIT.sqlConnection.Close();
             dr.Close();
 
@@ -106,7 +114,9 @@ namespace GADJIT_WIN_CLIENT
                         cmd.ExecuteNonQuery();
                         errorProviderCaptcha.SetError(TextBoxCaptcha, null);
                         errorProviderEmail.SetError(TextBoxEmail, null);
-                        MessageBox.Show("Inscription reussite");
+                        MessageBox.Show("Inscription reussite", "Inscritpion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Login login = new Login();
+                        login.Show();
                         this.Close();
                     }
                     else

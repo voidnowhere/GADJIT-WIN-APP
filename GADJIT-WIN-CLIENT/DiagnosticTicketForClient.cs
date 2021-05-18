@@ -16,5 +16,10 @@ namespace GADJIT_WIN_CLIENT
         {
             InitializeComponent();
         }
+
+        private void PictureBoxExit_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(1);
+        }
     }
 }

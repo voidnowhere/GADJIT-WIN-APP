@@ -44,6 +44,8 @@ namespace GADJIT_WIN_CLIENT
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.PictureBoxExit = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).BeginInit();
             this.SuspendLayout();
             // 
             // button2
@@ -205,12 +207,24 @@ namespace GADJIT_WIN_CLIENT
             this.label1.TabIndex = 33;
             this.label1.Text = "Diagnostique du ticket";
             // 
+            // PictureBoxExit
+            // 
+            this.PictureBoxExit.Image = global::GADJIT_WIN_CLIENT.Properties.Resources.close_window_52px;
+            this.PictureBoxExit.Location = new System.Drawing.Point(1118, -1);
+            this.PictureBoxExit.Name = "PictureBoxExit";
+            this.PictureBoxExit.Size = new System.Drawing.Size(31, 27);
+            this.PictureBoxExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBoxExit.TabIndex = 48;
+            this.PictureBoxExit.TabStop = false;
+            this.PictureBoxExit.Click += new System.EventHandler(this.PictureBoxExit_Click);
+            // 
             // DiagnosticTicketForClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1149, 691);
+            this.Controls.Add(this.PictureBoxExit);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox3);
@@ -229,10 +243,11 @@ namespace GADJIT_WIN_CLIENT
             this.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(165)))), ((int)(((byte)(169)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DiagnosticTicketForClient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DiagnosticTicketForClient";
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,5 +270,6 @@ namespace GADJIT_WIN_CLIENT
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox PictureBoxExit;
     }
 }
