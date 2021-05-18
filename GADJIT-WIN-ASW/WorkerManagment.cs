@@ -65,17 +65,10 @@ namespace GADJIT_WIN_ASW
         {
             try
             {
-                SqlCommand sqlCommand = new SqlCommand("select WorID from Worker where WorID = @id", GADJIT.sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("select COUNT(WorID) from Worker where WorID = @id", GADJIT.sqlConnection);
                 sqlCommand.Parameters.AddWithValue("@id", id);
                 GADJIT.sqlConnection.Open();
-                object idFromDB = sqlCommand.ExecuteScalar();
-                if (idFromDB != DBNull.Value)
-                {
-                    if ((string)idFromDB == id)
-                    {
-                        return true;
-                    }
-                }
+                if ((int)sqlCommand.ExecuteScalar() == 1) return true;
             }
             catch (Exception ex)
             {
@@ -195,8 +188,8 @@ namespace GADJIT_WIN_ASW
                             dataReader["WorDispo"],
                             status);
                     }
-                    WorkersStats();
                 }
+                WorkersStats();
             }
             catch (Exception ex)
             {
@@ -211,7 +204,7 @@ namespace GADJIT_WIN_ASW
 
         private void WorkersStats()
         {
-            int c = DGVWorker.Rows.Count - 1;
+            int c = (DGVWorker.AllowUserToAddRows) ? DGVWorker.Rows.Count - 1 : DGVWorker.Rows.Count;
             int a = 0;
             int d = 0;
             for (int i = 0; i < c; i++)
@@ -311,16 +304,7 @@ namespace GADJIT_WIN_ASW
 
                             sqlCommandUpdate.Parameters.Add("@dispo", SqlDbType.VarChar).Value = DGVWorker["ColumnComboBoxDisponibility", rowIndex].Value.ToString();
 
-                            sqlCommandUpdate.Parameters.Add("@status", SqlDbType.Bit);
-                            string status = DGVWorker["ColumnComboBoxStatus", rowIndex].Value.ToString();
-                            if (status == "Activer")
-                            {
-                                sqlCommandUpdate.Parameters["@status"].Value = 1;
-                            }
-                            else if (status == "Désactiver")
-                            {
-                                sqlCommandUpdate.Parameters["@status"].Value = 0;
-                            }
+                            sqlCommandUpdate.Parameters.Add("@status", SqlDbType.Bit).Value = (DGVWorker["ColumnComboBoxStatus", rowIndex].Value.ToString() == "Activer") ? 1 : 0;
 
                             GADJIT.sqlConnection.Open();
 
@@ -369,16 +353,7 @@ namespace GADJIT_WIN_ASW
 
                             sqlCommandInsert.Parameters.Add("@dispo", SqlDbType.VarChar).Value = DGVWorker["ColumnComboBoxDisponibility", rowIndex].Value.ToString();
 
-                            sqlCommandInsert.Parameters.Add("@status", SqlDbType.Bit);
-                            string status = DGVWorker["ColumnComboBoxStatus", rowIndex].Value.ToString();
-                            if (status == "Activer")
-                            {
-                                sqlCommandInsert.Parameters["@status"].Value = 1;
-                            }
-                            else if (status == "Désactiver")
-                            {
-                                sqlCommandInsert.Parameters["@status"].Value = 0;
-                            }
+                            sqlCommandInsert.Parameters.Add("@status", SqlDbType.Bit).Value = (DGVWorker["ColumnComboBoxStatus", rowIndex].Value.ToString() == "Activer") ? 1 : 0;
 
                             GADJIT.sqlConnection.Open();
 
@@ -397,6 +372,77 @@ namespace GADJIT_WIN_ASW
                     }
                 }
             }
+        }
+
+        private bool CheckIfWorkerCanBeDeleted(string id)
+        {
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand("select COUNT(WorID) from Ticket where WorID = @id", GADJIT.sqlConnection);
+                sqlCommand.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                GADJIT.sqlConnection.Open();
+                if ((int)sqlCommand.ExecuteScalar() >= 1)
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error CheckIfWorkerCanBeDeleted(string id)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                GADJIT.sqlConnection.Close();
+            }
+            return true;
+        }
+
+        private void DGVWorker_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            try
+            {
+                if (CheckIDIfExists(e.Row.Cells[0].Value.ToString()))
+                {
+                    if (CheckIfWorkerCanBeDeleted(e.Row.Cells[0].Value.ToString()))
+                    {
+                        string id = e.Row.Cells[0].Value.ToString();
+
+                        SqlCommand WorkerSpecialty = new SqlCommand("delete from WorkerSpecialty where WorID = @id", GADJIT.sqlConnection);
+                        WorkerSpecialty.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+
+                        SqlCommand sqlCommandDeleteWorker = new SqlCommand("delete from Worker where WorID = @id", GADJIT.sqlConnection);
+                        sqlCommandDeleteWorker.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+
+                        if (MessageBox.Show("Voulez vous supprimer cet employé", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                        {
+                            GADJIT.sqlConnection.Open();
+                            MessageBox.Show(WorkerSpecialty.ExecuteNonQuery() + sqlCommandDeleteWorker.ExecuteNonQuery() + " réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            e.Cancel = true;
+                        }
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show("interdit", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error DGVWorker_UserDeletingRow", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                GADJIT.sqlConnection.Close();
+            }
+        }
+
+        private void DGVWorker_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            WorkersStats();
         }
 
         private void DGVStaff_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)

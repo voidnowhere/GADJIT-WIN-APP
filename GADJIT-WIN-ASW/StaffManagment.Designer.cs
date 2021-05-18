@@ -29,7 +29,7 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TextBoxDeactivatedStaffs = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.TextBoxActivedStaffs = new System.Windows.Forms.TextBox();
@@ -75,6 +75,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxDeactivatedStaffs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxDeactivatedStaffs.Location = new System.Drawing.Point(1201, 629);
             this.TextBoxDeactivatedStaffs.Name = "TextBoxDeactivatedStaffs";
+            this.TextBoxDeactivatedStaffs.ReadOnly = true;
             this.TextBoxDeactivatedStaffs.Size = new System.Drawing.Size(49, 15);
             this.TextBoxDeactivatedStaffs.TabIndex = 8;
             // 
@@ -95,6 +96,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxActivedStaffs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxActivedStaffs.Location = new System.Drawing.Point(1057, 628);
             this.TextBoxActivedStaffs.Name = "TextBoxActivedStaffs";
+            this.TextBoxActivedStaffs.ReadOnly = true;
             this.TextBoxActivedStaffs.Size = new System.Drawing.Size(49, 15);
             this.TextBoxActivedStaffs.TabIndex = 7;
             // 
@@ -248,6 +250,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxTotalStaffs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxTotalStaffs.Location = new System.Drawing.Point(1306, 629);
             this.TextBoxTotalStaffs.Name = "TextBoxTotalStaffs";
+            this.TextBoxTotalStaffs.ReadOnly = true;
             this.TextBoxTotalStaffs.Size = new System.Drawing.Size(49, 15);
             this.TextBoxTotalStaffs.TabIndex = 9;
             // 
@@ -263,7 +266,6 @@ namespace GADJIT_WIN_ASW
             // 
             // DGVStaff
             // 
-            this.DGVStaff.AllowUserToDeleteRows = false;
             this.DGVStaff.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVStaff.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnTextBoxID,
@@ -287,6 +289,8 @@ namespace GADJIT_WIN_ASW
             this.DGVStaff.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVStaff_CellMouseClick);
             this.DGVStaff.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVStaff_CellValueChanged);
             this.DGVStaff.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGVStaff_EditingControlShowing);
+            this.DGVStaff.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DGVStaff_UserDeletedRow);
+            this.DGVStaff.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DGVStaff_UserDeletingRow);
             // 
             // ColumnTextBoxID
             // 
@@ -345,10 +349,10 @@ namespace GADJIT_WIN_ASW
             // 
             // ColumnTextBoxSalary
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "0.00";
-            dataGridViewCellStyle4.NullValue = null;
-            this.ColumnTextBoxSalary.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "0.00";
+            dataGridViewCellStyle1.NullValue = null;
+            this.ColumnTextBoxSalary.DefaultCellStyle = dataGridViewCellStyle1;
             this.ColumnTextBoxSalary.HeaderText = "Salaire";
             this.ColumnTextBoxSalary.Name = "ColumnTextBoxSalary";
             // 

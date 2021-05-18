@@ -25,47 +25,7 @@ namespace GADJIT_WIN_ASW
             if (this.ActiveMdiChild != null) this.ActiveMdiChild.Close();
         }
 
-        private void AdminPanel_Load(object sender, EventArgs e)
-        {
-            AdminDispo("En Ligne");
-            //
-            PanelStatistics.Visible = false;
-            PanelGadgetManagment.Visible = false;
-        }
-
-        private void ButtonStatisticsMenu_Click(object sender, EventArgs e)
-        {
-            PanelStatistics.Visible = true;
-            PanelGadgetManagment.Visible = false;
-        }
-
-        private void ButtonGadgetMenu_Click(object sender, EventArgs e)
-        {
-            PanelStatistics.Visible = false;
-            PanelGadgetManagment.Visible = true;
-        }
-
-        private void ButtonStaffManagment_Click(object sender, EventArgs e)
-        {
-            CloseMdiChildIdExists();
-            this.Size = new Size(1575, 690);
-            StaffManagment staffManage = new StaffManagment();
-            staffManage.MdiParent = this;
-            staffManage.Dock = DockStyle.Fill;
-            staffManage.Show();
-        }
-
-        private void ButtonWorkerManagment_Click(object sender, EventArgs e)
-        {
-            CloseMdiChildIdExists();
-            this.Size = new Size(1675, 685);
-            WorkerManagment workerManage = new WorkerManagment();
-            workerManage.MdiParent = this;
-            workerManage.Dock = DockStyle.Fill;
-            workerManage.Show();
-        }
-
-        private void AdminDispo(string dispo)
+        private void AdminDispoChanger(string dispo)
         {
             try
             {
@@ -85,25 +45,94 @@ namespace GADJIT_WIN_ASW
             }
         }
 
+        private void AdminPanel_Load(object sender, EventArgs e)
+        {
+            AdminDispoChanger("En Ligne");
+            //
+            this.CenterToScreen();
+            PanelStatistics.Visible = false;
+            PanelGadgetManagment.Visible = false;
+        }
+
         private void ButtonDisponibility_Click(object sender, EventArgs e)
         {
             if (ButtonDisponibility.BackColor == Color.Lime)
             {
-                AdminDispo("Break");
+                AdminDispoChanger("Break");
                 ButtonDisponibility.BackColor = Color.Orange;
             }
             else if (ButtonDisponibility.BackColor == Color.Orange)
             {
-                AdminDispo("En Ligne");
+                AdminDispoChanger("En Ligne");
                 ButtonDisponibility.BackColor = Color.Lime;
             }
         }
 
         private void PictureBoxLogOut_Click(object sender, EventArgs e)
         {
-            AdminDispo("Hors Ligne");
+            AdminDispoChanger("Hors Ligne");
             this.Close();
             login.Show();
+        }
+
+        private void ButtonStatisticsMenu_Click(object sender, EventArgs e)
+        {
+            PanelStatistics.Visible = true;
+            PanelGadgetManagment.Visible = false;
+        }
+
+        private void ButtonGadgetMenu_Click(object sender, EventArgs e)
+        {
+            PanelStatistics.Visible = false;
+            PanelGadgetManagment.Visible = true;
+        }
+
+        private void ButtonStaffManagment_Click(object sender, EventArgs e)
+        {
+            CloseMdiChildIdExists();
+            PanelStatistics.Visible = false;
+            PanelGadgetManagment.Visible = false;
+            this.Size = new Size(1565, 650);
+            this.CenterToScreen();
+            StaffManagment staffManage = new StaffManagment();
+            staffManage.MdiParent = this;
+            staffManage.Dock = DockStyle.Fill;
+            staffManage.Show();
+        }
+
+        private void ButtonWorkerManagment_Click(object sender, EventArgs e)
+        {
+            CloseMdiChildIdExists();
+            PanelStatistics.Visible = false;
+            PanelGadgetManagment.Visible = false;
+            this.Size = new Size(1665, 645);
+            this.CenterToScreen();
+            WorkerManagment workerManage = new WorkerManagment();
+            workerManage.MdiParent = this;
+            workerManage.Dock = DockStyle.Fill;
+            workerManage.Show();
+        }
+
+        private void ButtonGadgetCategoryBrandManagment_Click(object sender, EventArgs e)
+        {
+            CloseMdiChildIdExists();
+            this.Size = new Size(1200, 500);
+            this.CenterToScreen();
+            GadgetCategoryBrandManagment categoryBrandManagment = new GadgetCategoryBrandManagment();
+            categoryBrandManagment.MdiParent = this;
+            categoryBrandManagment.Dock = DockStyle.Fill;
+            categoryBrandManagment.Show();
+        }
+
+        private void ButtonGadgetReferenceManagment_Click(object sender, EventArgs e)
+        {
+            CloseMdiChildIdExists();
+            this.Size = new Size(1290, 630);
+            this.CenterToScreen();
+            GadgetReferenceManagment referenceManagment = new GadgetReferenceManagment();
+            referenceManagment.MdiParent = this;
+            referenceManagment.Dock = DockStyle.Fill;
+            referenceManagment.Show();
         }
     }
 }
