@@ -59,6 +59,18 @@
     <Compile Include="CirucularButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="GadgetCategoryBrandManagment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GadgetCategoryBrandManagment.Designer.cs">
+      <DependentUpon>GadgetCategoryBrandManagment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GadgetReferenceManagment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GadgetReferenceManagment.Designer.cs">
+      <DependentUpon>GadgetReferenceManagment.cs</DependentUpon>
+    </Compile>
     <Compile Include="GADJIT.cs" />
     <Compile Include="StaffManagment.cs">
       <SubType>Form</SubType>
@@ -88,6 +100,12 @@
     </Compile>
     <EmbeddedResource Include="AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GadgetCategoryBrandManagment.resx">
+      <DependentUpon>GadgetCategoryBrandManagment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GadgetReferenceManagment.resx">
+      <DependentUpon>GadgetReferenceManagment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="StaffManagment.resx">
       <DependentUpon>StaffManagment.cs</DependentUpon>
