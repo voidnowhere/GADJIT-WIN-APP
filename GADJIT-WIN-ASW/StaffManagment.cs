@@ -367,6 +367,72 @@ namespace GADJIT_WIN_ASW
             }
         }
 
+        private bool CheckIfStaffCanBeDeleted(string id)
+        {
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand("select COUNT(StafID) from Ticket where StafID = @id", GADJIT.sqlConnection);
+                sqlCommand.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                GADJIT.sqlConnection.Open();
+                if ((int)sqlCommand.ExecuteScalar() >= 1)
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error CheckIfStaffCanBeDeleted(string id)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                GADJIT.sqlConnection.Close();
+            }
+            return true;
+        }
+
+        private void DGVStaff_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            try
+            {
+                if (CheckIDIfExists(e.Row.Cells[0].Value.ToString()))
+                {
+                    if (CheckIfStaffCanBeDeleted(e.Row.Cells[0].Value.ToString()))
+                    {
+                        SqlCommand sqlCommandDelete = new SqlCommand("delete from Staff where StafID = @id", GADJIT.sqlConnection);
+                        sqlCommandDelete.Parameters.Add("@id", SqlDbType.VarChar).Value = e.Row.Cells[0].Value;
+
+                        if (MessageBox.Show("Voulez vous supprimer ce personnel", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                        {
+                            GADJIT.sqlConnection.Open();
+                            MessageBox.Show(sqlCommandDelete.ExecuteNonQuery() + " réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            e.Cancel = true;
+                        }
+                    }
+                    else
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show("interdit", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error DGVStaff_UserDeletingRow", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                GADJIT.sqlConnection.Close();
+            }
+        }
+
+        private void DGVStaff_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            StaffsStats();
+        }
+
         private void DGVStaff_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             switch (DGVStaff.CurrentCell.ColumnIndex)

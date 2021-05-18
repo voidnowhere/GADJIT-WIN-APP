@@ -29,7 +29,7 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGVWorker = new System.Windows.Forms.DataGridView();
             this.ColumnTextBoxID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTextBoxCIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,7 +71,6 @@ namespace GADJIT_WIN_ASW
             // 
             // DGVWorker
             // 
-            this.DGVWorker.AllowUserToDeleteRows = false;
             this.DGVWorker.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVWorker.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnTextBoxID,
@@ -96,6 +95,8 @@ namespace GADJIT_WIN_ASW
             this.DGVWorker.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVWorker_CellMouseClick);
             this.DGVWorker.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVWorker_CellValueChanged);
             this.DGVWorker.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGVStaff_EditingControlShowing);
+            this.DGVWorker.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DGVWorker_UserDeletedRow);
+            this.DGVWorker.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DGVWorker_UserDeletingRow);
             // 
             // ColumnTextBoxID
             // 
@@ -154,10 +155,10 @@ namespace GADJIT_WIN_ASW
             // 
             // ColumnTextBoxSalary
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "0.00";
-            dataGridViewCellStyle1.NullValue = null;
-            this.ColumnTextBoxSalary.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "0.00";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ColumnTextBoxSalary.DefaultCellStyle = dataGridViewCellStyle2;
             this.ColumnTextBoxSalary.HeaderText = "Salaire";
             this.ColumnTextBoxSalary.Name = "ColumnTextBoxSalary";
             // 

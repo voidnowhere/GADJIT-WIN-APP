@@ -266,7 +266,6 @@ namespace GADJIT_WIN_ASW
             // 
             // DGVStaff
             // 
-            this.DGVStaff.AllowUserToDeleteRows = false;
             this.DGVStaff.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVStaff.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnTextBoxID,
@@ -290,6 +289,8 @@ namespace GADJIT_WIN_ASW
             this.DGVStaff.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVStaff_CellMouseClick);
             this.DGVStaff.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVStaff_CellValueChanged);
             this.DGVStaff.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGVStaff_EditingControlShowing);
+            this.DGVStaff.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DGVStaff_UserDeletedRow);
+            this.DGVStaff.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DGVStaff_UserDeletingRow);
             // 
             // ColumnTextBoxID
             // 
