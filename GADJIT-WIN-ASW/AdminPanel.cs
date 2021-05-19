@@ -49,6 +49,7 @@ namespace GADJIT_WIN_ASW
         {
             AdminDispoChanger("En Ligne");
             //
+            this.Size = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
             this.CenterToScreen();
             PanelStatistics.Visible = false;
             PanelGadgetManagment.Visible = false;
@@ -92,8 +93,6 @@ namespace GADJIT_WIN_ASW
             CloseMdiChildIdExists();
             PanelStatistics.Visible = false;
             PanelGadgetManagment.Visible = false;
-            this.Size = new Size(1565, 650);
-            this.CenterToScreen();
             StaffManagment staffManage = new StaffManagment();
             staffManage.MdiParent = this;
             staffManage.Dock = DockStyle.Fill;
@@ -105,8 +104,6 @@ namespace GADJIT_WIN_ASW
             CloseMdiChildIdExists();
             PanelStatistics.Visible = false;
             PanelGadgetManagment.Visible = false;
-            this.Size = new Size(1665, 645);
-            this.CenterToScreen();
             WorkerManagment workerManage = new WorkerManagment();
             workerManage.MdiParent = this;
             workerManage.Dock = DockStyle.Fill;
@@ -116,8 +113,8 @@ namespace GADJIT_WIN_ASW
         private void ButtonGadgetCategoryBrandManagment_Click(object sender, EventArgs e)
         {
             CloseMdiChildIdExists();
-            this.Size = new Size(1200, 500);
-            this.CenterToScreen();
+            PanelStatistics.Visible = false;
+            PanelGadgetManagment.Visible = false;
             GadgetCategoryBrandManagment categoryBrandManagment = new GadgetCategoryBrandManagment();
             categoryBrandManagment.MdiParent = this;
             categoryBrandManagment.Dock = DockStyle.Fill;
@@ -127,12 +124,23 @@ namespace GADJIT_WIN_ASW
         private void ButtonGadgetReferenceManagment_Click(object sender, EventArgs e)
         {
             CloseMdiChildIdExists();
-            this.Size = new Size(1290, 630);
-            this.CenterToScreen();
+            PanelStatistics.Visible = false;
+            PanelGadgetManagment.Visible = false;
             GadgetReferenceManagment referenceManagment = new GadgetReferenceManagment();
             referenceManagment.MdiParent = this;
             referenceManagment.Dock = DockStyle.Fill;
             referenceManagment.Show();
+        }
+
+        private void ButtonClientManagment_Click(object sender, EventArgs e)
+        {
+            CloseMdiChildIdExists();
+            PanelStatistics.Visible = false;
+            PanelGadgetManagment.Visible = false;
+            ClientManagment clientManagment = new ClientManagment();
+            clientManagment.MdiParent = this;
+            clientManagment.Dock = DockStyle.Fill;
+            clientManagment.Show();
         }
     }
 }

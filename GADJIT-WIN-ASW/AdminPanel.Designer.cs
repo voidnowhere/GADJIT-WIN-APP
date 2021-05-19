@@ -227,6 +227,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonClientManagment.Text = "Gestion Client";
             this.ButtonClientManagment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonClientManagment.UseVisualStyleBackColor = false;
+            this.ButtonClientManagment.Click += new System.EventHandler(this.ButtonClientManagment_Click);
             // 
             // LabelLastName
             // 
@@ -338,6 +339,7 @@ namespace GADJIT_WIN_ASW
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IsMdiContainer = true;
             this.Name = "AdminPanel";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "AdminPanel";
             this.Load += new System.EventHandler(this.AdminPanel_Load);
             this.PanelGadgetManagment.ResumeLayout(false);
