@@ -44,6 +44,7 @@ namespace GADJIT_WIN_CLIENT
             }
             dr.Close();
             ComboBoxCodeTicket.SelectedIndex = -1;
+            GADJIT.sqlConnection.Close();
         }
 
         private void PictureBoxExit_Click(object sender, EventArgs e)

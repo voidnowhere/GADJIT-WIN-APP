@@ -94,6 +94,7 @@ namespace GADJIT_WIN_CLIENT
             this.ComboBoxRefGadjit.Name = "ComboBoxRefGadjit";
             this.ComboBoxRefGadjit.Size = new System.Drawing.Size(527, 25);
             this.ComboBoxRefGadjit.TabIndex = 29;
+            this.ComboBoxRefGadjit.SelectedIndexChanged += new System.EventHandler(this.ComboBoxRefGadjit_SelectedIndexChanged);
             // 
             // ComboBoxMarque
             // 
