@@ -77,6 +77,8 @@ namespace GADJIT_WIN_ASW
             }
             else
             {
+                dr.Close();
+                GADJIT.sqlConnection.Close();
                 MessageBox.Show( "Veuillez vérifier vos informations", "Informations Erronées", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
