@@ -37,5 +37,14 @@ namespace GADJIT_WIN_ASW
             }
             return false;
         }
+
+        public static bool IsSalaryValid(string salary)
+        {
+            if(Regex.IsMatch(salary, @"^\d+(\.\d+)?$"))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
