@@ -181,10 +181,11 @@ namespace GADJIT_WIN_ASW
                 {
                     while (dataReader.Read())
                     {
+                        String status = (dataReader.GetBoolean(12)) ? "Activer" : "Désactiver";
                         DGVStaff.Rows.Add(dataReader["StafID"], dataReader["StafCIN"], new Bitmap(new MemoryStream((byte[])dataReader["StafPicture"])), dataReader["StafLastName"],
                             dataReader["StafFirstName"], dataReader["StafEmail"], dataReader["StafPassWord"], dataReader["StafPhoneNumber"], 
-                            dataReader["StafAdress"], dataReader["CitDesig"], dataReader["StafSalary"], dataReader["StafDispo"],
-                            (dataReader.GetBoolean(12)) ? "Activer" : "Désactiver");
+                            dataReader["StafAdress"], dataReader["CitDesig"], dataReader["StafSalary"], dataReader["StafDispo"], 
+                            status);
                     }
                     StaffsStats();
                 }
@@ -435,7 +436,6 @@ namespace GADJIT_WIN_ASW
                             {
                                 GADJIT.sqlConnection.Open();
                                 MessageBox.Show(sqlCommandDelete.ExecuteNonQuery() + " réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                StaffsStats();
                             }
                             else
                             {
