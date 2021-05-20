@@ -110,6 +110,27 @@ namespace GADJIT_WIN_ASW
             return false;
         }
 
+        private bool CheckIfCategoryDesigExists(string id, string desig)
+        {
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand("select COUNT(GadCatDesig) from GadgetCategory where GadCatID != @id and GadCatDesig = @desig", GADJIT.sqlConnection);
+                sqlCommand.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                sqlCommand.Parameters.Add("@desig", SqlDbType.VarChar).Value = desig;
+                GADJIT.sqlConnection.Open();
+                if ((int)sqlCommand.ExecuteScalar() == 1) return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error CheckIfCategoryDesigExists(string desig)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                GADJIT.sqlConnection.Close();
+            }
+            return false;
+        }
+
         private void CategoryStats()
         {
             int c = DGVCategory.Rows.Count - 1;
@@ -153,7 +174,7 @@ namespace GADJIT_WIN_ASW
 
                             GADJIT.sqlConnection.Open();
 
-                            MessageBox.Show(sqlCommandUpdateCategory.ExecuteNonQuery() + sqlCommandUpdateReference.ExecuteNonQuery() + " réussi", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("réussi pour " + sqlCommandUpdateCategory.ExecuteNonQuery() + " catégorie et " + sqlCommandUpdateReference.ExecuteNonQuery() + " référence", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             CategoryStats();
                         }
@@ -194,6 +215,18 @@ namespace GADJIT_WIN_ASW
             }
         }
 
+        private void DGVCategory_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 1 && e.FormattedValue != null && DGVCategory[0, e.RowIndex].Value != null)
+            {
+                if (CheckIfCategoryDesigExists(DGVCategory[0, e.RowIndex].Value.ToString(), e.FormattedValue.ToString()))
+                {
+                    e.Cancel = true;
+                    MessageBox.Show("cet désignation existe déjà pour une catégorie", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
         private bool CheckIfCategoryCanBeDeleted(string id)
         {
             try
@@ -226,39 +259,43 @@ namespace GADJIT_WIN_ASW
 
         private void DGVCategory_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            try
+            if(e.Row.Cells[0].Value != null)
             {
-                if (CheckIfCategoryIDExists(e.Row.Cells[0].Value.ToString()))
+                try
                 {
-                    if (CheckIfCategoryCanBeDeleted(e.Row.Cells[0].Value.ToString()))
+                    if (CheckIfCategoryIDExists(e.Row.Cells[0].Value.ToString()))
                     {
-                        SqlCommand sqlCommandDelete = new SqlCommand("delete from GadgetCategory where GadCatID = @id", GADJIT.sqlConnection);
-                        sqlCommandDelete.Parameters.Add("@id", SqlDbType.VarChar).Value = e.Row.Cells[0].Value;
-
-                        if (MessageBox.Show("Voulez vous supprimer cet catégorie", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                        if (CheckIfCategoryCanBeDeleted(e.Row.Cells[0].Value.ToString()))
                         {
-                            GADJIT.sqlConnection.Open();
-                            MessageBox.Show(sqlCommandDelete.ExecuteNonQuery() + " réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            SqlCommand sqlCommandDelete = new SqlCommand("delete from GadgetCategory where GadCatID = @id", GADJIT.sqlConnection);
+                            sqlCommandDelete.Parameters.Add("@id", SqlDbType.VarChar).Value = e.Row.Cells[0].Value;
+
+                            if (MessageBox.Show("Voulez vous supprimer cet catégorie", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                            {
+                                GADJIT.sqlConnection.Open();
+                                MessageBox.Show(sqlCommandDelete.ExecuteNonQuery() + " réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                CategoryStats();
+                            }
+                            else
+                            {
+                                e.Cancel = true;
+                            }
                         }
                         else
                         {
                             e.Cancel = true;
+                            MessageBox.Show("interdit cet catégorie est deja assigné a une reference ou une specialité d'un employé", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                    else
-                    {
-                        e.Cancel = true;
-                        MessageBox.Show("interdit", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error DGVCategory_UserDeletingRow", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                GADJIT.sqlConnection.Close();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error DGVCategory_UserDeletingRow", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    GADJIT.sqlConnection.Close();
+                }
             }
         }
 
@@ -300,6 +337,27 @@ namespace GADJIT_WIN_ASW
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error CheckIfBrandIDExists(string id)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                GADJIT.sqlConnection.Close();
+            }
+            return false;
+        }
+
+        private bool CheckIfBrandDesigExists(string id, string desig)
+        {
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand("select COUNT(GadBraDesig) from GadgetBrand where GadBraID != @id and GadBraDesig = @desig", GADJIT.sqlConnection);
+                sqlCommand.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                sqlCommand.Parameters.Add("@desig", SqlDbType.VarChar).Value = desig;
+                GADJIT.sqlConnection.Open();
+                if ((int)sqlCommand.ExecuteScalar() == 1) return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error CheckIfBrandDesigExists(string desig)", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -351,7 +409,8 @@ namespace GADJIT_WIN_ASW
 
                             GADJIT.sqlConnection.Open();
 
-                            MessageBox.Show(sqlCommandUpdateCategory.ExecuteNonQuery() + sqlCommandUpdateReference.ExecuteNonQuery() + " réussi", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("réussi pour " + sqlCommandUpdateCategory.ExecuteNonQuery() + " marque et "
+                                + sqlCommandUpdateReference.ExecuteNonQuery() + " référence", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             BrandStats();
                         }
@@ -392,6 +451,18 @@ namespace GADJIT_WIN_ASW
             }
         }
 
+        private void DGVBrand_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 1 && e.FormattedValue != null && DGVBrand[0, e.RowIndex].Value != null)
+            {
+                if (CheckIfBrandDesigExists(DGVBrand[0, e.RowIndex].Value.ToString(), e.FormattedValue.ToString()))
+                {
+                    e.Cancel = true;
+                    MessageBox.Show("cet désignation existe déjà pour une marque", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
         private bool CheckIfBrandCanBeDeleted(string id)
         {
             try
@@ -424,39 +495,43 @@ namespace GADJIT_WIN_ASW
 
         private void DGVBrand_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            try
+            if (e.Row.Cells[0].Value != null)
             {
-                if (CheckIfBrandIDExists(e.Row.Cells[0].Value.ToString()))
+                try
                 {
-                    if (CheckIfBrandCanBeDeleted(e.Row.Cells[0].Value.ToString()))
+                    if (CheckIfBrandIDExists(e.Row.Cells[0].Value.ToString()))
                     {
-                        SqlCommand sqlCommandDelete = new SqlCommand("delete from GadgetBrand where GadBraID = @id", GADJIT.sqlConnection);
-                        sqlCommandDelete.Parameters.Add("@id", SqlDbType.VarChar).Value = e.Row.Cells[0].Value;
-
-                        if (MessageBox.Show("Voulez vous supprimer cet marque", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                        if (CheckIfBrandCanBeDeleted(e.Row.Cells[0].Value.ToString()))
                         {
-                            GADJIT.sqlConnection.Open();
-                            MessageBox.Show(sqlCommandDelete.ExecuteNonQuery() + " réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            SqlCommand sqlCommandDelete = new SqlCommand("delete from GadgetBrand where GadBraID = @id", GADJIT.sqlConnection);
+                            sqlCommandDelete.Parameters.Add("@id", SqlDbType.VarChar).Value = e.Row.Cells[0].Value;
+
+                            if (MessageBox.Show("Voulez vous supprimer cet marque", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                            {
+                                GADJIT.sqlConnection.Open();
+                                MessageBox.Show(sqlCommandDelete.ExecuteNonQuery() + " réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                BrandStats();
+                            }
+                            else
+                            {
+                                e.Cancel = true;
+                            }
                         }
                         else
                         {
                             e.Cancel = true;
+                            MessageBox.Show("interdit cet marque est deja assigné a une reference ou une specialité d'un employé", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                    else
-                    {
-                        e.Cancel = true;
-                        MessageBox.Show("interdit", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error DGVBrand_UserDeletingRow", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                GADJIT.sqlConnection.Close();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error DGVBrand_UserDeletingRow", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    GADJIT.sqlConnection.Close();
+                }
             }
         }
 
