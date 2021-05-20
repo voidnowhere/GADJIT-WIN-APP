@@ -45,6 +45,18 @@ namespace GADJIT_WIN_CLIENT
             dr.Close();
             ComboBoxCodeTicket.SelectedIndex = -1;
             GADJIT.sqlConnection.Close();
+            //
+            dataGridView1.DataSource = TicketList();
+        }
+
+        private DataTable TicketList()
+        {
+            DataTable TList = new DataTable();
+            GADJIT.sqlConnection.Open();
+            SqlCommand cmd = new SqlCommand("Select * from ticket ", GADJIT.sqlConnection);
+            SqlDataReader dr = cmd.ExecuteReader();
+            TList.Load(dr);
+            return TList;
         }
 
         private void PictureBoxExit_Click(object sender, EventArgs e)

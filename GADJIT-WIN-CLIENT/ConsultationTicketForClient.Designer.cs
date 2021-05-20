@@ -330,7 +330,7 @@ namespace GADJIT_WIN_CLIENT
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ConsultationTicketForClient";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "ConsultationTicketForClient";
             this.Load += new System.EventHandler(this.ConsultationTicketForClient_Load);
             this.groupBox2.ResumeLayout(false);
