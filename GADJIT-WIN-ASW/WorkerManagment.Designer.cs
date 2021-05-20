@@ -29,22 +29,8 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGVWorker = new System.Windows.Forms.DataGridView();
-            this.ColumnTextBoxID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTextBoxCIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPictureBox = new System.Windows.Forms.DataGridViewImageColumn();
-            this.ColumnTextBoxLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTextBoxFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTextBoxEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTextBoxPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTextBoxPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTextBoxAdress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnComboBoxCity = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.ColumnTextBoxSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSpecialty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnComboBoxDisponibility = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.ColumnComboBoxStatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ButtonReset = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -65,12 +51,29 @@ namespace GADJIT_WIN_ASW
             this.TextBoxTotalStaffs = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.ColumnTextBoxID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTextBoxCIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPictureBox = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ColumnTextBoxLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTextBoxFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTextBoxEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTextBoxPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTextBoxPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTextBoxAdress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnComboBoxCity = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ColumnTextBoxSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSpecialty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnComboBoxDisponibility = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ColumnComboBoxStatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGVWorker)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // DGVWorker
             // 
+            this.DGVWorker.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVWorker.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVWorker.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnTextBoxID,
@@ -87,111 +90,22 @@ namespace GADJIT_WIN_ASW
             this.ColumnSpecialty,
             this.ColumnComboBoxDisponibility,
             this.ColumnComboBoxStatus});
-            this.DGVWorker.Location = new System.Drawing.Point(12, 106);
+            this.DGVWorker.Location = new System.Drawing.Point(12, 133);
             this.DGVWorker.Name = "DGVWorker";
-            this.DGVWorker.Size = new System.Drawing.Size(1443, 510);
+            this.DGVWorker.Size = new System.Drawing.Size(928, 374);
             this.DGVWorker.TabIndex = 7;
             this.DGVWorker.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVWorker_CellDoubleClick);
             this.DGVWorker.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVWorker_CellMouseClick);
+            this.DGVWorker.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.DGVWorker_CellValidating);
             this.DGVWorker.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVWorker_CellValueChanged);
             this.DGVWorker.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGVStaff_EditingControlShowing);
             this.DGVWorker.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DGVWorker_UserDeletedRow);
             this.DGVWorker.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DGVWorker_UserDeletingRow);
             // 
-            // ColumnTextBoxID
-            // 
-            this.ColumnTextBoxID.HeaderText = "Code";
-            this.ColumnTextBoxID.Name = "ColumnTextBoxID";
-            this.ColumnTextBoxID.ReadOnly = true;
-            // 
-            // ColumnTextBoxCIN
-            // 
-            this.ColumnTextBoxCIN.HeaderText = "CIN";
-            this.ColumnTextBoxCIN.Name = "ColumnTextBoxCIN";
-            // 
-            // ColumnPictureBox
-            // 
-            this.ColumnPictureBox.HeaderText = "Photo";
-            this.ColumnPictureBox.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.ColumnPictureBox.Name = "ColumnPictureBox";
-            this.ColumnPictureBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnPictureBox.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // ColumnTextBoxLastName
-            // 
-            this.ColumnTextBoxLastName.HeaderText = "Nom";
-            this.ColumnTextBoxLastName.Name = "ColumnTextBoxLastName";
-            // 
-            // ColumnTextBoxFirstName
-            // 
-            this.ColumnTextBoxFirstName.HeaderText = "Prénom";
-            this.ColumnTextBoxFirstName.Name = "ColumnTextBoxFirstName";
-            // 
-            // ColumnTextBoxEmail
-            // 
-            this.ColumnTextBoxEmail.HeaderText = "Email";
-            this.ColumnTextBoxEmail.Name = "ColumnTextBoxEmail";
-            // 
-            // ColumnTextBoxPassword
-            // 
-            this.ColumnTextBoxPassword.HeaderText = "Mot de passe";
-            this.ColumnTextBoxPassword.Name = "ColumnTextBoxPassword";
-            // 
-            // ColumnTextBoxPhoneNumber
-            // 
-            this.ColumnTextBoxPhoneNumber.HeaderText = "Téléphone";
-            this.ColumnTextBoxPhoneNumber.MaxInputLength = 10;
-            this.ColumnTextBoxPhoneNumber.Name = "ColumnTextBoxPhoneNumber";
-            // 
-            // ColumnTextBoxAdress
-            // 
-            this.ColumnTextBoxAdress.HeaderText = "Adresse";
-            this.ColumnTextBoxAdress.Name = "ColumnTextBoxAdress";
-            // 
-            // ColumnComboBoxCity
-            // 
-            this.ColumnComboBoxCity.HeaderText = "Ville";
-            this.ColumnComboBoxCity.Name = "ColumnComboBoxCity";
-            // 
-            // ColumnTextBoxSalary
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "0.00";
-            dataGridViewCellStyle2.NullValue = null;
-            this.ColumnTextBoxSalary.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ColumnTextBoxSalary.HeaderText = "Salaire";
-            this.ColumnTextBoxSalary.Name = "ColumnTextBoxSalary";
-            // 
-            // ColumnSpecialty
-            // 
-            this.ColumnSpecialty.HeaderText = "Spécialité";
-            this.ColumnSpecialty.Name = "ColumnSpecialty";
-            this.ColumnSpecialty.ReadOnly = true;
-            // 
-            // ColumnComboBoxDisponibility
-            // 
-            this.ColumnComboBoxDisponibility.HeaderText = "Disponibilité";
-            this.ColumnComboBoxDisponibility.Items.AddRange(new object[] {
-            "Hors Ligne",
-            "En Ligne",
-            "Break"});
-            this.ColumnComboBoxDisponibility.Name = "ColumnComboBoxDisponibility";
-            this.ColumnComboBoxDisponibility.ReadOnly = true;
-            this.ColumnComboBoxDisponibility.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnComboBoxDisponibility.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // ColumnComboBoxStatus
-            // 
-            this.ColumnComboBoxStatus.HeaderText = "Status";
-            this.ColumnComboBoxStatus.Items.AddRange(new object[] {
-            "Activer",
-            "Désactiver"});
-            this.ColumnComboBoxStatus.Name = "ColumnComboBoxStatus";
-            this.ColumnComboBoxStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnComboBoxStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.ButtonReset);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.ComboBoxCitySearch);
@@ -207,16 +121,17 @@ namespace GADJIT_WIN_ASW
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 42);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1095, 58);
+            this.groupBox1.Size = new System.Drawing.Size(928, 85);
             this.groupBox1.TabIndex = 46;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Recherche";
             // 
             // ButtonReset
             // 
-            this.ButtonReset.Location = new System.Drawing.Point(992, 25);
+            this.ButtonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonReset.Location = new System.Drawing.Point(835, 35);
             this.ButtonReset.Name = "ButtonReset";
-            this.ButtonReset.Size = new System.Drawing.Size(97, 24);
+            this.ButtonReset.Size = new System.Drawing.Size(87, 24);
             this.ButtonReset.TabIndex = 53;
             this.ButtonReset.Text = "Réinitialiser";
             this.ButtonReset.UseVisualStyleBackColor = true;
@@ -225,7 +140,7 @@ namespace GADJIT_WIN_ASW
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(714, 28);
+            this.label3.Location = new System.Drawing.Point(173, 55);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 16);
             this.label3.TabIndex = 52;
@@ -235,7 +150,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.ComboBoxCitySearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxCitySearch.FormattingEnabled = true;
-            this.ComboBoxCitySearch.Location = new System.Drawing.Point(587, 24);
+            this.ComboBoxCitySearch.Location = new System.Drawing.Point(46, 51);
             this.ComboBoxCitySearch.Name = "ComboBoxCitySearch";
             this.ComboBoxCitySearch.Size = new System.Drawing.Size(121, 24);
             this.ComboBoxCitySearch.TabIndex = 3;
@@ -245,17 +160,17 @@ namespace GADJIT_WIN_ASW
             this.ComboBoxStatusSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxStatusSearch.FormattingEnabled = true;
             this.ComboBoxStatusSearch.Items.AddRange(new object[] {
-            "--choisissez--",
+            "--tous--",
             "Activer",
             "Désactiver"});
-            this.ComboBoxStatusSearch.Location = new System.Drawing.Point(765, 24);
+            this.ComboBoxStatusSearch.Location = new System.Drawing.Point(224, 51);
             this.ComboBoxStatusSearch.Name = "ComboBoxStatusSearch";
             this.ComboBoxStatusSearch.Size = new System.Drawing.Size(121, 24);
             this.ComboBoxStatusSearch.TabIndex = 4;
             // 
             // TextBoxEmailSearch
             // 
-            this.TextBoxEmailSearch.Location = new System.Drawing.Point(196, 25);
+            this.TextBoxEmailSearch.Location = new System.Drawing.Point(224, 23);
             this.TextBoxEmailSearch.Name = "TextBoxEmailSearch";
             this.TextBoxEmailSearch.Size = new System.Drawing.Size(196, 22);
             this.TextBoxEmailSearch.TabIndex = 1;
@@ -263,7 +178,7 @@ namespace GADJIT_WIN_ASW
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(148, 28);
+            this.label4.Location = new System.Drawing.Point(176, 26);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(42, 16);
             this.label4.TabIndex = 31;
@@ -271,7 +186,8 @@ namespace GADJIT_WIN_ASW
             // 
             // ButtonSearch
             // 
-            this.ButtonSearch.Location = new System.Drawing.Point(901, 25);
+            this.ButtonSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonSearch.Location = new System.Drawing.Point(744, 35);
             this.ButtonSearch.Name = "ButtonSearch";
             this.ButtonSearch.Size = new System.Drawing.Size(85, 24);
             this.ButtonSearch.TabIndex = 5;
@@ -281,15 +197,15 @@ namespace GADJIT_WIN_ASW
             // 
             // TextBoxCINSearch
             // 
-            this.TextBoxCINSearch.Location = new System.Drawing.Point(42, 25);
+            this.TextBoxCINSearch.Location = new System.Drawing.Point(46, 23);
             this.TextBoxCINSearch.Name = "TextBoxCINSearch";
-            this.TextBoxCINSearch.Size = new System.Drawing.Size(100, 22);
+            this.TextBoxCINSearch.Size = new System.Drawing.Size(121, 22);
             this.TextBoxCINSearch.TabIndex = 0;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 28);
+            this.label11.Location = new System.Drawing.Point(6, 26);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(30, 16);
             this.label11.TabIndex = 26;
@@ -297,7 +213,7 @@ namespace GADJIT_WIN_ASW
             // 
             // TextBoxLastNameSearch
             // 
-            this.TextBoxLastNameSearch.Location = new System.Drawing.Point(441, 25);
+            this.TextBoxLastNameSearch.Location = new System.Drawing.Point(469, 23);
             this.TextBoxLastNameSearch.Name = "TextBoxLastNameSearch";
             this.TextBoxLastNameSearch.Size = new System.Drawing.Size(100, 22);
             this.TextBoxLastNameSearch.TabIndex = 2;
@@ -305,7 +221,7 @@ namespace GADJIT_WIN_ASW
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(398, 28);
+            this.label13.Location = new System.Drawing.Point(426, 26);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(37, 16);
             this.label13.TabIndex = 26;
@@ -314,7 +230,7 @@ namespace GADJIT_WIN_ASW
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(547, 28);
+            this.label9.Location = new System.Drawing.Point(6, 55);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(34, 16);
             this.label9.TabIndex = 14;
@@ -322,10 +238,11 @@ namespace GADJIT_WIN_ASW
             // 
             // TextBoxDeactivatedStaffs
             // 
+            this.TextBoxDeactivatedStaffs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxDeactivatedStaffs.BackColor = System.Drawing.Color.Red;
             this.TextBoxDeactivatedStaffs.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxDeactivatedStaffs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxDeactivatedStaffs.Location = new System.Drawing.Point(1301, 622);
+            this.TextBoxDeactivatedStaffs.Location = new System.Drawing.Point(786, 513);
             this.TextBoxDeactivatedStaffs.Name = "TextBoxDeactivatedStaffs";
             this.TextBoxDeactivatedStaffs.ReadOnly = true;
             this.TextBoxDeactivatedStaffs.Size = new System.Drawing.Size(49, 15);
@@ -333,9 +250,10 @@ namespace GADJIT_WIN_ASW
             // 
             // label16
             // 
+            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(1212, 621);
+            this.label16.Location = new System.Drawing.Point(697, 512);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(83, 16);
             this.label16.TabIndex = 56;
@@ -343,10 +261,11 @@ namespace GADJIT_WIN_ASW
             // 
             // TextBoxActivedStaffs
             // 
+            this.TextBoxActivedStaffs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxActivedStaffs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.TextBoxActivedStaffs.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxActivedStaffs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxActivedStaffs.Location = new System.Drawing.Point(1157, 621);
+            this.TextBoxActivedStaffs.Location = new System.Drawing.Point(642, 513);
             this.TextBoxActivedStaffs.Name = "TextBoxActivedStaffs";
             this.TextBoxActivedStaffs.ReadOnly = true;
             this.TextBoxActivedStaffs.Size = new System.Drawing.Size(49, 15);
@@ -354,9 +273,10 @@ namespace GADJIT_WIN_ASW
             // 
             // label17
             // 
+            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(1100, 621);
+            this.label17.Location = new System.Drawing.Point(580, 512);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(56, 16);
             this.label17.TabIndex = 55;
@@ -364,10 +284,11 @@ namespace GADJIT_WIN_ASW
             // 
             // TextBoxTotalStaffs
             // 
+            this.TextBoxTotalStaffs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxTotalStaffs.BackColor = System.Drawing.Color.White;
             this.TextBoxTotalStaffs.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxTotalStaffs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxTotalStaffs.Location = new System.Drawing.Point(1406, 622);
+            this.TextBoxTotalStaffs.Location = new System.Drawing.Point(891, 513);
             this.TextBoxTotalStaffs.Name = "TextBoxTotalStaffs";
             this.TextBoxTotalStaffs.ReadOnly = true;
             this.TextBoxTotalStaffs.Size = new System.Drawing.Size(49, 15);
@@ -375,9 +296,10 @@ namespace GADJIT_WIN_ASW
             // 
             // label18
             // 
+            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(1356, 622);
+            this.label18.Location = new System.Drawing.Point(841, 512);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(44, 16);
             this.label18.TabIndex = 54;
@@ -385,19 +307,131 @@ namespace GADJIT_WIN_ASW
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(530, 9);
+            this.label1.Location = new System.Drawing.Point(383, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(190, 25);
             this.label1.TabIndex = 57;
             this.label1.Text = "Gestion Employé";
             // 
+            // ColumnTextBoxID
+            // 
+            this.ColumnTextBoxID.HeaderText = "Code";
+            this.ColumnTextBoxID.MinimumWidth = 100;
+            this.ColumnTextBoxID.Name = "ColumnTextBoxID";
+            this.ColumnTextBoxID.ReadOnly = true;
+            // 
+            // ColumnTextBoxCIN
+            // 
+            this.ColumnTextBoxCIN.HeaderText = "CIN";
+            this.ColumnTextBoxCIN.MaxInputLength = 8;
+            this.ColumnTextBoxCIN.MinimumWidth = 100;
+            this.ColumnTextBoxCIN.Name = "ColumnTextBoxCIN";
+            // 
+            // ColumnPictureBox
+            // 
+            this.ColumnPictureBox.HeaderText = "Photo";
+            this.ColumnPictureBox.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.ColumnPictureBox.MinimumWidth = 50;
+            this.ColumnPictureBox.Name = "ColumnPictureBox";
+            this.ColumnPictureBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnPictureBox.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ColumnPictureBox.Width = 50;
+            // 
+            // ColumnTextBoxLastName
+            // 
+            this.ColumnTextBoxLastName.HeaderText = "Nom";
+            this.ColumnTextBoxLastName.MinimumWidth = 100;
+            this.ColumnTextBoxLastName.Name = "ColumnTextBoxLastName";
+            // 
+            // ColumnTextBoxFirstName
+            // 
+            this.ColumnTextBoxFirstName.HeaderText = "Prénom";
+            this.ColumnTextBoxFirstName.MinimumWidth = 100;
+            this.ColumnTextBoxFirstName.Name = "ColumnTextBoxFirstName";
+            // 
+            // ColumnTextBoxEmail
+            // 
+            this.ColumnTextBoxEmail.HeaderText = "Email";
+            this.ColumnTextBoxEmail.MinimumWidth = 150;
+            this.ColumnTextBoxEmail.Name = "ColumnTextBoxEmail";
+            this.ColumnTextBoxEmail.Width = 150;
+            // 
+            // ColumnTextBoxPassword
+            // 
+            this.ColumnTextBoxPassword.HeaderText = "Mot de passe";
+            this.ColumnTextBoxPassword.MinimumWidth = 100;
+            this.ColumnTextBoxPassword.Name = "ColumnTextBoxPassword";
+            // 
+            // ColumnTextBoxPhoneNumber
+            // 
+            this.ColumnTextBoxPhoneNumber.HeaderText = "Téléphone";
+            this.ColumnTextBoxPhoneNumber.MaxInputLength = 10;
+            this.ColumnTextBoxPhoneNumber.MinimumWidth = 100;
+            this.ColumnTextBoxPhoneNumber.Name = "ColumnTextBoxPhoneNumber";
+            // 
+            // ColumnTextBoxAdress
+            // 
+            this.ColumnTextBoxAdress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnTextBoxAdress.HeaderText = "Adresse";
+            this.ColumnTextBoxAdress.MinimumWidth = 200;
+            this.ColumnTextBoxAdress.Name = "ColumnTextBoxAdress";
+            // 
+            // ColumnComboBoxCity
+            // 
+            this.ColumnComboBoxCity.HeaderText = "Ville";
+            this.ColumnComboBoxCity.MinimumWidth = 100;
+            this.ColumnComboBoxCity.Name = "ColumnComboBoxCity";
+            // 
+            // ColumnTextBoxSalary
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "0.00";
+            dataGridViewCellStyle4.NullValue = null;
+            this.ColumnTextBoxSalary.DefaultCellStyle = dataGridViewCellStyle4;
+            this.ColumnTextBoxSalary.HeaderText = "Salaire";
+            this.ColumnTextBoxSalary.MinimumWidth = 100;
+            this.ColumnTextBoxSalary.Name = "ColumnTextBoxSalary";
+            // 
+            // ColumnSpecialty
+            // 
+            this.ColumnSpecialty.HeaderText = "Spécialité";
+            this.ColumnSpecialty.MinimumWidth = 60;
+            this.ColumnSpecialty.Name = "ColumnSpecialty";
+            this.ColumnSpecialty.ReadOnly = true;
+            this.ColumnSpecialty.Width = 60;
+            // 
+            // ColumnComboBoxDisponibility
+            // 
+            this.ColumnComboBoxDisponibility.HeaderText = "Disponibilité";
+            this.ColumnComboBoxDisponibility.Items.AddRange(new object[] {
+            "Hors Ligne",
+            "En Ligne",
+            "Break"});
+            this.ColumnComboBoxDisponibility.MinimumWidth = 100;
+            this.ColumnComboBoxDisponibility.Name = "ColumnComboBoxDisponibility";
+            this.ColumnComboBoxDisponibility.ReadOnly = true;
+            this.ColumnComboBoxDisponibility.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnComboBoxDisponibility.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // ColumnComboBoxStatus
+            // 
+            this.ColumnComboBoxStatus.HeaderText = "Status";
+            this.ColumnComboBoxStatus.Items.AddRange(new object[] {
+            "Activer",
+            "Désactiver"});
+            this.ColumnComboBoxStatus.MinimumWidth = 100;
+            this.ColumnComboBoxStatus.Name = "ColumnComboBoxStatus";
+            this.ColumnComboBoxStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnComboBoxStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // WorkerManagment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1465, 645);
+            this.ClientSize = new System.Drawing.Size(952, 540);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TextBoxDeactivatedStaffs);
             this.Controls.Add(this.label16);
@@ -408,6 +442,7 @@ namespace GADJIT_WIN_ASW
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.DGVWorker);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MinimumSize = new System.Drawing.Size(800, 0);
             this.Name = "WorkerManagment";
             this.Text = "WorkerManagment";
             this.Load += new System.EventHandler(this.WorkerManagment_Load);
