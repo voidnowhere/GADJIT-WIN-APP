@@ -29,99 +29,100 @@ namespace GADJIT_WIN_CLIENT
         /// </summary>
         private void InitializeComponent()
         {
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ComboBoxCodeTicket = new System.Windows.Forms.ComboBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.ButtonDiagnostic = new System.Windows.Forms.Button();
+            this.TextBoxDiag = new System.Windows.Forms.TextBox();
+            this.labelDiag = new System.Windows.Forms.Label();
+            this.RichTextBoxProb = new System.Windows.Forms.RichTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.TexrBoxNom = new System.Windows.Forms.TextBox();
+            this.TextBoxRef = new System.Windows.Forms.TextBox();
+            this.TextBoxMarque = new System.Windows.Forms.TextBox();
+            this.TextBoxCat = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.PictureBoxSearch = new System.Windows.Forms.PictureBox();
             this.Information = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DGVTicket = new System.Windows.Forms.DataGridView();
+            this.TicketID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DTTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrixTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StatutTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.PictureBoxExit = new System.Windows.Forms.PictureBox();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxSearch)).BeginInit();
             this.Information.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVTicket)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CalendarTitleBackColor = System.Drawing.SystemColors.ControlText;
-            this.dateTimePicker1.CalendarTitleForeColor = System.Drawing.Color.AliceBlue;
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(117, 64);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(187, 25);
-            this.dateTimePicker1.TabIndex = 38;
             // 
             // ComboBoxCodeTicket
             // 
             this.ComboBoxCodeTicket.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ComboBoxCodeTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComboBoxCodeTicket.FormattingEnabled = true;
-            this.ComboBoxCodeTicket.Location = new System.Drawing.Point(212, 24);
+            this.ComboBoxCodeTicket.Location = new System.Drawing.Point(157, 27);
             this.ComboBoxCodeTicket.Name = "ComboBoxCodeTicket";
             this.ComboBoxCodeTicket.Size = new System.Drawing.Size(443, 25);
             this.ComboBoxCodeTicket.TabIndex = 36;
             // 
-            // button4
+            // ButtonDiagnostic
             // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(522, 315);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(105, 33);
-            this.button4.TabIndex = 39;
-            this.button4.Text = "Diagnostic";
-            this.button4.UseVisualStyleBackColor = false;
+            this.ButtonDiagnostic.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonDiagnostic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.ButtonDiagnostic.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonDiagnostic.FlatAppearance.BorderSize = 0;
+            this.ButtonDiagnostic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonDiagnostic.ForeColor = System.Drawing.Color.White;
+            this.ButtonDiagnostic.Location = new System.Drawing.Point(322, 257);
+            this.ButtonDiagnostic.Name = "ButtonDiagnostic";
+            this.ButtonDiagnostic.Size = new System.Drawing.Size(132, 33);
+            this.ButtonDiagnostic.TabIndex = 39;
+            this.ButtonDiagnostic.Text = "Diagnostic";
+            this.ButtonDiagnostic.UseVisualStyleBackColor = false;
+            this.ButtonDiagnostic.Visible = false;
+            this.ButtonDiagnostic.Click += new System.EventHandler(this.ButtonDiagnostic_Click);
             // 
-            // textBox3
+            // TextBoxDiag
             // 
-            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(157, 315);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(271, 28);
-            this.textBox3.TabIndex = 37;
+            this.TextBoxDiag.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBoxDiag.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.TextBoxDiag.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxDiag.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxDiag.Location = new System.Drawing.Point(115, 257);
+            this.TextBoxDiag.Multiline = true;
+            this.TextBoxDiag.Name = "TextBoxDiag";
+            this.TextBoxDiag.Size = new System.Drawing.Size(201, 28);
+            this.TextBoxDiag.TabIndex = 37;
+            this.TextBoxDiag.Visible = false;
             // 
-            // label7
+            // labelDiag
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(16, 319);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(99, 17);
-            this.label7.TabIndex = 36;
-            this.label7.Text = "Diagnostique :";
+            this.labelDiag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelDiag.AutoSize = true;
+            this.labelDiag.Location = new System.Drawing.Point(16, 261);
+            this.labelDiag.Name = "labelDiag";
+            this.labelDiag.Size = new System.Drawing.Size(99, 17);
+            this.labelDiag.TabIndex = 36;
+            this.labelDiag.Text = "Diagnostique :";
+            this.labelDiag.Visible = false;
             // 
-            // richTextBox1
+            // RichTextBoxProb
             // 
-            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.ForeColor = System.Drawing.Color.Black;
-            this.richTextBox1.Location = new System.Drawing.Point(157, 177);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(470, 102);
-            this.richTextBox1.TabIndex = 35;
-            this.richTextBox1.Text = "";
+            this.RichTextBoxProb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RichTextBoxProb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.RichTextBoxProb.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.RichTextBoxProb.ForeColor = System.Drawing.Color.Black;
+            this.RichTextBoxProb.Location = new System.Drawing.Point(115, 177);
+            this.RichTextBoxProb.Name = "RichTextBoxProb";
+            this.RichTextBoxProb.Size = new System.Drawing.Size(339, 51);
+            this.RichTextBoxProb.TabIndex = 35;
+            this.RichTextBoxProb.Text = "";
             // 
             // label5
             // 
@@ -132,38 +133,44 @@ namespace GADJIT_WIN_CLIENT
             this.label5.TabIndex = 34;
             this.label5.Text = "Problème :";
             // 
-            // textBox2
+            // TextBoxRef
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(157, 124);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(470, 28);
-            this.textBox2.TabIndex = 33;
+            this.TextBoxRef.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBoxRef.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.TextBoxRef.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxRef.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxRef.Location = new System.Drawing.Point(115, 124);
+            this.TextBoxRef.Multiline = true;
+            this.TextBoxRef.Name = "TextBoxRef";
+            this.TextBoxRef.Size = new System.Drawing.Size(339, 28);
+            this.TextBoxRef.TabIndex = 33;
             // 
-            // textBox1
+            // TextBoxMarque
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(157, 83);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(470, 28);
-            this.textBox1.TabIndex = 32;
+            this.TextBoxMarque.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBoxMarque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.TextBoxMarque.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxMarque.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxMarque.Location = new System.Drawing.Point(115, 83);
+            this.TextBoxMarque.Multiline = true;
+            this.TextBoxMarque.Name = "TextBoxMarque";
+            this.TextBoxMarque.Size = new System.Drawing.Size(339, 28);
+            this.TextBoxMarque.TabIndex = 32;
             // 
-            // TexrBoxNom
+            // TextBoxCat
             // 
-            this.TexrBoxNom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.TexrBoxNom.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TexrBoxNom.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TexrBoxNom.Location = new System.Drawing.Point(157, 35);
-            this.TexrBoxNom.Multiline = true;
-            this.TexrBoxNom.Name = "TexrBoxNom";
-            this.TexrBoxNom.Size = new System.Drawing.Size(470, 28);
-            this.TexrBoxNom.TabIndex = 31;
+            this.TextBoxCat.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBoxCat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.TextBoxCat.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxCat.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxCat.Location = new System.Drawing.Point(115, 28);
+            this.TextBoxCat.Multiline = true;
+            this.TextBoxCat.Name = "TextBoxCat";
+            this.TextBoxCat.Size = new System.Drawing.Size(339, 28);
+            this.TextBoxCat.TabIndex = 31;
             // 
             // label4
             // 
@@ -183,24 +190,10 @@ namespace GADJIT_WIN_CLIENT
             this.label3.TabIndex = 29;
             this.label3.Text = "Marques :";
             // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(1267, 64);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(105, 30);
-            this.button3.TabIndex = 37;
-            this.button3.Text = "Rechercher";
-            this.button3.UseVisualStyleBackColor = false;
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(72, 32);
+            this.label14.Location = new System.Drawing.Point(17, 35);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(112, 17);
             this.label14.TabIndex = 32;
@@ -215,115 +208,127 @@ namespace GADJIT_WIN_CLIENT
             this.label6.TabIndex = 28;
             this.label6.Text = "Catégories :";
             // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(72, 68);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(26, 17);
-            this.label21.TabIndex = 41;
-            this.label21.Text = "Du";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(344, 68);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(25, 17);
-            this.label20.TabIndex = 40;
-            this.label20.Text = "Au";
-            // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.groupBox2.BackColor = System.Drawing.Color.White;
-            this.groupBox2.Controls.Add(this.label21);
-            this.groupBox2.Controls.Add(this.label20);
-            this.groupBox2.Controls.Add(this.dateTimePicker2);
-            this.groupBox2.Controls.Add(this.dateTimePicker1);
-            this.groupBox2.Controls.Add(this.button3);
+            this.groupBox2.Controls.Add(this.PictureBoxSearch);
             this.groupBox2.Controls.Add(this.ComboBoxCodeTicket);
             this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Location = new System.Drawing.Point(18, 83);
+            this.groupBox2.Location = new System.Drawing.Point(161, 54);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1387, 100);
+            this.groupBox2.Size = new System.Drawing.Size(662, 83);
             this.groupBox2.TabIndex = 39;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Recherche :";
             // 
-            // dateTimePicker2
+            // PictureBoxSearch
             // 
-            this.dateTimePicker2.CalendarTitleBackColor = System.Drawing.SystemColors.ControlText;
-            this.dateTimePicker2.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(441, 62);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(214, 25);
-            this.dateTimePicker2.TabIndex = 39;
+            this.PictureBoxSearch.Image = global::GADJIT_WIN_CLIENT.Properties.Resources.search_96px;
+            this.PictureBoxSearch.Location = new System.Drawing.Point(626, 27);
+            this.PictureBoxSearch.Name = "PictureBoxSearch";
+            this.PictureBoxSearch.Size = new System.Drawing.Size(32, 27);
+            this.PictureBoxSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBoxSearch.TabIndex = 42;
+            this.PictureBoxSearch.TabStop = false;
+            this.PictureBoxSearch.Click += new System.EventHandler(this.PictureBoxSearch_Click);
             // 
             // Information
             // 
-            this.Information.Controls.Add(this.button4);
-            this.Information.Controls.Add(this.textBox3);
-            this.Information.Controls.Add(this.label7);
-            this.Information.Controls.Add(this.richTextBox1);
+            this.Information.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.Information.Controls.Add(this.ButtonDiagnostic);
+            this.Information.Controls.Add(this.TextBoxDiag);
+            this.Information.Controls.Add(this.labelDiag);
+            this.Information.Controls.Add(this.RichTextBoxProb);
             this.Information.Controls.Add(this.label5);
-            this.Information.Controls.Add(this.textBox2);
-            this.Information.Controls.Add(this.textBox1);
-            this.Information.Controls.Add(this.TexrBoxNom);
+            this.Information.Controls.Add(this.TextBoxRef);
+            this.Information.Controls.Add(this.TextBoxMarque);
+            this.Information.Controls.Add(this.TextBoxCat);
             this.Information.Controls.Add(this.label4);
             this.Information.Controls.Add(this.label3);
             this.Information.Controls.Add(this.label6);
-            this.Information.Location = new System.Drawing.Point(763, 203);
+            this.Information.Location = new System.Drawing.Point(491, 164);
             this.Information.Name = "Information";
-            this.Information.Size = new System.Drawing.Size(642, 417);
+            this.Information.Size = new System.Drawing.Size(469, 353);
             this.Information.TabIndex = 38;
             this.Information.TabStop = false;
             this.Information.Text = "Information :";
             // 
-            // dataGridView1
+            // DGVTicket
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(18, 212);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(720, 408);
-            this.dataGridView1.TabIndex = 36;
+            this.DGVTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.DGVTicket.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVTicket.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TicketID,
+            this.DTTicket,
+            this.PrixTicket,
+            this.StatutTicket});
+            this.DGVTicket.Location = new System.Drawing.Point(11, 166);
+            this.DGVTicket.Name = "DGVTicket";
+            this.DGVTicket.Size = new System.Drawing.Size(464, 351);
+            this.DGVTicket.TabIndex = 36;
+            this.DGVTicket.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentClick);
+            this.DGVTicket.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentDoubleClick);
+            this.DGVTicket.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellDoubleClick);
+            // 
+            // TicketID
+            // 
+            this.TicketID.HeaderText = "Code Ticket";
+            this.TicketID.MinimumWidth = 50;
+            this.TicketID.Name = "TicketID";
+            this.TicketID.Width = 50;
+            // 
+            // DTTicket
+            // 
+            this.DTTicket.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.Format = "g";
+            dataGridViewCellStyle1.NullValue = null;
+            this.DTTicket.DefaultCellStyle = dataGridViewCellStyle1;
+            this.DTTicket.FillWeight = 279.5918F;
+            this.DTTicket.HeaderText = "Date Ticket";
+            this.DTTicket.MinimumWidth = 150;
+            this.DTTicket.Name = "DTTicket";
+            // 
+            // PrixTicket
+            // 
+            this.PrixTicket.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Format = "0.00";
+            dataGridViewCellStyle2.NullValue = null;
+            this.PrixTicket.DefaultCellStyle = dataGridViewCellStyle2;
+            this.PrixTicket.FillWeight = 10.20409F;
+            this.PrixTicket.HeaderText = "Prix Ticket";
+            this.PrixTicket.MinimumWidth = 50;
+            this.PrixTicket.Name = "PrixTicket";
+            // 
+            // StatutTicket
+            // 
+            this.StatutTicket.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.StatutTicket.FillWeight = 10.20409F;
+            this.StatutTicket.HeaderText = "Statut Ticket";
+            this.StatutTicket.MinimumWidth = 171;
+            this.StatutTicket.Name = "StatutTicket";
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.label1.Location = new System.Drawing.Point(538, 22);
+            this.label1.Location = new System.Drawing.Point(337, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(253, 27);
             this.label1.TabIndex = 35;
             this.label1.Text = "Consultation Ticket";
-            // 
-            // PictureBoxExit
-            // 
-            this.PictureBoxExit.Image = global::GADJIT_WIN_CLIENT.Properties.Resources.close_window_52px;
-            this.PictureBoxExit.Location = new System.Drawing.Point(1385, 0);
-            this.PictureBoxExit.Name = "PictureBoxExit";
-            this.PictureBoxExit.Size = new System.Drawing.Size(31, 27);
-            this.PictureBoxExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PictureBoxExit.TabIndex = 40;
-            this.PictureBoxExit.TabStop = false;
-            this.PictureBoxExit.Click += new System.EventHandler(this.PictureBoxExit_Click);
             // 
             // ConsultationTicketForClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1416, 650);
-            this.Controls.Add(this.PictureBoxExit);
+            this.ClientSize = new System.Drawing.Size(970, 529);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.Information);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.DGVTicket);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(165)))), ((int)(((byte)(169)))));
@@ -335,39 +340,37 @@ namespace GADJIT_WIN_CLIENT
             this.Load += new System.EventHandler(this.ConsultationTicketForClient_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxSearch)).EndInit();
             this.Information.ResumeLayout(false);
             this.Information.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVTicket)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ComboBox ComboBoxCodeTicket;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button ButtonDiagnostic;
+        private System.Windows.Forms.TextBox TextBoxDiag;
+        private System.Windows.Forms.Label labelDiag;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox TexrBoxNom;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.GroupBox Information;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView DGVTicket;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox PictureBoxExit;
+        private System.Windows.Forms.PictureBox PictureBoxSearch;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TicketID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DTTicket;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrixTicket;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StatutTicket;
+        public System.Windows.Forms.RichTextBox RichTextBoxProb;
+        public System.Windows.Forms.TextBox TextBoxRef;
+        public System.Windows.Forms.TextBox TextBoxMarque;
+        public System.Windows.Forms.TextBox TextBoxCat;
     }
 }

@@ -26,7 +26,6 @@ namespace GADJIT_WIN_CLIENT
         {
             TextBoxEmail.Text= emailtemp= Login.Cemail;
             ComboxBoxCity.SelectedIndex = 0;
-            groupBoxNewPass.Visible = false;
             //
             GADJIT.sqlConnection.Open();
             SqlCommand cmd = new SqlCommand("select CliLastName,CliFirstName,CliPassWord,CliPhoneNumber,CliAdress,CitDesig from Client where CliEmail=@email ", GADJIT.sqlConnection);
@@ -58,30 +57,14 @@ namespace GADJIT_WIN_CLIENT
                 if (textBoxPassord.Text==passCont)
                 {
                     GADJIT.sqlConnection.Open();
-                    SqlCommand cmd;
-                    if (groupBoxNewPass.Visible == true)
-                    {
-                        cmd = new SqlCommand("update Client set CliEmail=@email " +
-                            "CliLastName=@name," +
-                            "CliFirstName=@prenom," +
-                            "CliPassWord=@pass," +
-                            "CliPhoneNumber=@phone," +
-                            "CliAdress=@adress," +
-                            "CitDesig=@city " +
-                            "where CliEmail = @emailtemp", GADJIT.sqlConnection);
-                        cmd.Parameters.AddWithValue("@pass", TextBoxNewPassWord.Text.Trim());
-                    }
-                    else
-                    {
-                        cmd = new SqlCommand("update Client set" +
+                    SqlCommand cmd = new SqlCommand("update Client set" +
                                                    "CliEmail=@email" +
                                                    "CliLastName=@name," +
                                                    "CliFirstName=@prenom," +
                                                    "CliPhoneNumber=@phone," +
                                                    "CliAdress=@adress," +
                                                    "CitDesig=@city " +
-                                                   "where CliEmail = @emailtemp", GADJIT.sqlConnection);
-                    }                   
+                                                   "where CliEmail = @emailtemp", GADJIT.sqlConnection);                 
                     cmd.Parameters.AddWithValue("@name", TextBoxNom.Text.Trim());
                     cmd.Parameters.AddWithValue("@prenom", TextBoxPrenom.Text.Trim());
                     cmd.Parameters.AddWithValue("@email", TextBoxEmail.Text.Trim());
@@ -101,18 +84,6 @@ namespace GADJIT_WIN_CLIENT
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "Verifiez vos information", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void TextBoxConfPassWord_Validating(object sender, CancelEventArgs e)
-        {
-            if (TextBoxNewPassWord.Text != TextBoxConfPassWord.Text)
-            {
-                errorProviderConfPass.SetError(TextBoxConfPassWord, "mot de passe n'est pas identique");
-            }
-            else
-            {
-                errorProviderConfPass.SetError(TextBoxConfPassWord, null);
             }
         }
 
@@ -141,15 +112,18 @@ namespace GADJIT_WIN_CLIENT
 
         private void labelshowGroupBox_Click(object sender, EventArgs e)
         {
-            if(groupBoxNewPass.Visible == false)
+            if(textBoxPassord.Text == passCont)
             {
-                groupBoxNewPass.Visible = true;
+                UpdatePassword passupd = new UpdatePassword();
+                passupd.ShowDialog();
+                errorProviderPass.SetError(textBoxPassord, null);
+                ClientInformation_Load(sender,e);
             }
             else
             {
-                groupBoxNewPass.Visible = false;
+                errorProviderPass.SetError(textBoxPassord, "Pour votre sécurité entrez votre ancien mot de passe");
             }
-            
+           
         }
     }
 }

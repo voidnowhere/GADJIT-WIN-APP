@@ -43,7 +43,8 @@ namespace GADJIT_WIN_CLIENT
 
         private void HOME_Load(object sender, EventArgs e)
         {
-
+            this.Size = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
+            this.CenterToScreen();
         }
 
         private void ButtonConsultationTicket_Click(object sender, EventArgs e)

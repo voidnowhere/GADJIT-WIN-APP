@@ -29,14 +29,14 @@ namespace GADJIT_WIN_CLIENT
         /// </summary>
         private void InitializeComponent()
         {
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.TexrBoxNom = new System.Windows.Forms.TextBox();
+            this.ButtonRejeter = new System.Windows.Forms.Button();
+            this.ButtonAccepter = new System.Windows.Forms.Button();
+            this.TextBoxPrice = new System.Windows.Forms.TextBox();
+            this.RichTextBoxDiag = new System.Windows.Forms.RichTextBox();
+            this.RichtextBoxProbDiag = new System.Windows.Forms.RichTextBox();
+            this.TextBoxRefDiag = new System.Windows.Forms.TextBox();
+            this.TextBoxMarDiag = new System.Windows.Forms.TextBox();
+            this.TextBoxCatDiag = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -48,98 +48,100 @@ namespace GADJIT_WIN_CLIENT
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).BeginInit();
             this.SuspendLayout();
             // 
-            // button2
+            // ButtonRejeter
             // 
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.button2.Location = new System.Drawing.Point(343, 605);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(216, 35);
-            this.button2.TabIndex = 47;
-            this.button2.Text = "REJETER";
-            this.button2.UseVisualStyleBackColor = false;
+            this.ButtonRejeter.BackColor = System.Drawing.Color.White;
+            this.ButtonRejeter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonRejeter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonRejeter.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.ButtonRejeter.Location = new System.Drawing.Point(343, 605);
+            this.ButtonRejeter.Name = "ButtonRejeter";
+            this.ButtonRejeter.Size = new System.Drawing.Size(216, 35);
+            this.ButtonRejeter.TabIndex = 47;
+            this.ButtonRejeter.Text = "REJETER";
+            this.ButtonRejeter.UseVisualStyleBackColor = false;
+            this.ButtonRejeter.Click += new System.EventHandler(this.ButtonRejeter_Click);
             // 
-            // button1
+            // ButtonAccepter
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(654, 605);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(216, 35);
-            this.button1.TabIndex = 46;
-            this.button1.Text = "ACCEPTER";
-            this.button1.UseVisualStyleBackColor = false;
+            this.ButtonAccepter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.ButtonAccepter.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonAccepter.FlatAppearance.BorderSize = 0;
+            this.ButtonAccepter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonAccepter.ForeColor = System.Drawing.Color.White;
+            this.ButtonAccepter.Location = new System.Drawing.Point(654, 605);
+            this.ButtonAccepter.Name = "ButtonAccepter";
+            this.ButtonAccepter.Size = new System.Drawing.Size(216, 35);
+            this.ButtonAccepter.TabIndex = 46;
+            this.ButtonAccepter.Text = "ACCEPTER";
+            this.ButtonAccepter.UseVisualStyleBackColor = false;
+            this.ButtonAccepter.Click += new System.EventHandler(this.ButtonAccepter_Click);
             // 
-            // textBox3
+            // TextBoxPrice
             // 
-            this.textBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(343, 513);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(527, 28);
-            this.textBox3.TabIndex = 45;
+            this.TextBoxPrice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.TextBoxPrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxPrice.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxPrice.Location = new System.Drawing.Point(343, 513);
+            this.TextBoxPrice.Multiline = true;
+            this.TextBoxPrice.Name = "TextBoxPrice";
+            this.TextBoxPrice.Size = new System.Drawing.Size(527, 28);
+            this.TextBoxPrice.TabIndex = 45;
             // 
-            // richTextBox2
+            // RichTextBoxDiag
             // 
-            this.richTextBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox2.ForeColor = System.Drawing.Color.Black;
-            this.richTextBox2.Location = new System.Drawing.Point(343, 395);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(527, 102);
-            this.richTextBox2.TabIndex = 44;
-            this.richTextBox2.Text = "";
+            this.RichTextBoxDiag.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.RichTextBoxDiag.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.RichTextBoxDiag.ForeColor = System.Drawing.Color.Black;
+            this.RichTextBoxDiag.Location = new System.Drawing.Point(343, 395);
+            this.RichTextBoxDiag.Name = "RichTextBoxDiag";
+            this.RichTextBoxDiag.Size = new System.Drawing.Size(527, 102);
+            this.RichTextBoxDiag.TabIndex = 44;
+            this.RichTextBoxDiag.Text = "";
             // 
-            // richTextBox1
+            // RichtextBoxProbDiag
             // 
-            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.ForeColor = System.Drawing.Color.Black;
-            this.richTextBox1.Location = new System.Drawing.Point(343, 267);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(527, 102);
-            this.richTextBox1.TabIndex = 43;
-            this.richTextBox1.Text = "";
+            this.RichtextBoxProbDiag.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.RichtextBoxProbDiag.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.RichtextBoxProbDiag.ForeColor = System.Drawing.Color.Black;
+            this.RichtextBoxProbDiag.Location = new System.Drawing.Point(343, 267);
+            this.RichtextBoxProbDiag.Name = "RichtextBoxProbDiag";
+            this.RichtextBoxProbDiag.Size = new System.Drawing.Size(527, 102);
+            this.RichtextBoxProbDiag.TabIndex = 43;
+            this.RichtextBoxProbDiag.Text = "";
             // 
-            // textBox2
+            // TextBoxRefDiag
             // 
-            this.textBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(343, 216);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(527, 28);
-            this.textBox2.TabIndex = 42;
+            this.TextBoxRefDiag.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.TextBoxRefDiag.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxRefDiag.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxRefDiag.Location = new System.Drawing.Point(343, 216);
+            this.TextBoxRefDiag.Multiline = true;
+            this.TextBoxRefDiag.Name = "TextBoxRefDiag";
+            this.TextBoxRefDiag.Size = new System.Drawing.Size(527, 28);
+            this.TextBoxRefDiag.TabIndex = 42;
             // 
-            // textBox1
+            // TextBoxMarDiag
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(343, 175);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(527, 28);
-            this.textBox1.TabIndex = 41;
+            this.TextBoxMarDiag.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.TextBoxMarDiag.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxMarDiag.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxMarDiag.Location = new System.Drawing.Point(343, 175);
+            this.TextBoxMarDiag.Multiline = true;
+            this.TextBoxMarDiag.Name = "TextBoxMarDiag";
+            this.TextBoxMarDiag.Size = new System.Drawing.Size(527, 28);
+            this.TextBoxMarDiag.TabIndex = 41;
             // 
-            // TexrBoxNom
+            // TextBoxCatDiag
             // 
-            this.TexrBoxNom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.TexrBoxNom.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TexrBoxNom.Font = new System.Drawing.Font("MS UI Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TexrBoxNom.Location = new System.Drawing.Point(343, 127);
-            this.TexrBoxNom.Multiline = true;
-            this.TexrBoxNom.Name = "TexrBoxNom";
-            this.TexrBoxNom.Size = new System.Drawing.Size(527, 28);
-            this.TexrBoxNom.TabIndex = 40;
+            this.TextBoxCatDiag.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.TextBoxCatDiag.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxCatDiag.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxCatDiag.Location = new System.Drawing.Point(343, 127);
+            this.TextBoxCatDiag.Multiline = true;
+            this.TextBoxCatDiag.Name = "TextBoxCatDiag";
+            this.TextBoxCatDiag.Size = new System.Drawing.Size(527, 28);
+            this.TextBoxCatDiag.TabIndex = 40;
             // 
             // label8
             // 
@@ -225,14 +227,14 @@ namespace GADJIT_WIN_CLIENT
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1149, 691);
             this.Controls.Add(this.PictureBoxExit);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.richTextBox2);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.TexrBoxNom);
+            this.Controls.Add(this.ButtonRejeter);
+            this.Controls.Add(this.ButtonAccepter);
+            this.Controls.Add(this.TextBoxPrice);
+            this.Controls.Add(this.RichTextBoxDiag);
+            this.Controls.Add(this.RichtextBoxProbDiag);
+            this.Controls.Add(this.TextBoxRefDiag);
+            this.Controls.Add(this.TextBoxMarDiag);
+            this.Controls.Add(this.TextBoxCatDiag);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
@@ -247,6 +249,7 @@ namespace GADJIT_WIN_CLIENT
             this.Name = "DiagnosticTicketForClient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DiagnosticTicketForClient";
+            this.Load += new System.EventHandler(this.DiagnosticTicketForClient_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -255,14 +258,14 @@ namespace GADJIT_WIN_CLIENT
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox TexrBoxNom;
+        private System.Windows.Forms.Button ButtonRejeter;
+        private System.Windows.Forms.Button ButtonAccepter;
+        private System.Windows.Forms.TextBox TextBoxPrice;
+        private System.Windows.Forms.RichTextBox RichTextBoxDiag;
+        private System.Windows.Forms.RichTextBox RichtextBoxProbDiag;
+        private System.Windows.Forms.TextBox TextBoxRefDiag;
+        private System.Windows.Forms.TextBox TextBoxMarDiag;
+        private System.Windows.Forms.TextBox TextBoxCatDiag;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label5;

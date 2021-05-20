@@ -30,14 +30,14 @@ namespace GADJIT_WIN_CLIENT
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.PictureBoxLogout = new System.Windows.Forms.PictureBox();
             this.ButtonProfil = new System.Windows.Forms.Button();
             this.ButtonConsultationTicket = new System.Windows.Forms.Button();
             this.ButtonNewTicket = new System.Windows.Forms.Button();
             this.PictureBoxExit = new System.Windows.Forms.PictureBox();
+            this.PictureBoxLogout = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogout)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -47,21 +47,11 @@ namespace GADJIT_WIN_CLIENT
             this.panel1.Controls.Add(this.ButtonProfil);
             this.panel1.Controls.Add(this.ButtonConsultationTicket);
             this.panel1.Controls.Add(this.ButtonNewTicket);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(158, 865);
+            this.panel1.Size = new System.Drawing.Size(158, 587);
             this.panel1.TabIndex = 1;
-            // 
-            // PictureBoxLogout
-            // 
-            this.PictureBoxLogout.Image = global::GADJIT_WIN_CLIENT.Properties.Resources.logout_rounded_left_48pxclient;
-            this.PictureBoxLogout.Location = new System.Drawing.Point(0, 815);
-            this.PictureBoxLogout.Name = "PictureBoxLogout";
-            this.PictureBoxLogout.Size = new System.Drawing.Size(64, 50);
-            this.PictureBoxLogout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PictureBoxLogout.TabIndex = 9;
-            this.PictureBoxLogout.TabStop = false;
-            this.PictureBoxLogout.Click += new System.EventHandler(this.PictureBoxLogout_Click);
             // 
             // ButtonProfil
             // 
@@ -122,8 +112,9 @@ namespace GADJIT_WIN_CLIENT
             // 
             // PictureBoxExit
             // 
+            this.PictureBoxExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PictureBoxExit.Image = global::GADJIT_WIN_CLIENT.Properties.Resources.close_window_52px;
-            this.PictureBoxExit.Location = new System.Drawing.Point(1600, 0);
+            this.PictureBoxExit.Location = new System.Drawing.Point(566, 0);
             this.PictureBoxExit.Name = "PictureBoxExit";
             this.PictureBoxExit.Size = new System.Drawing.Size(34, 33);
             this.PictureBoxExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -131,11 +122,23 @@ namespace GADJIT_WIN_CLIENT
             this.PictureBoxExit.TabStop = false;
             this.PictureBoxExit.Click += new System.EventHandler(this.PictureBoxExit_Click);
             // 
+            // PictureBoxLogout
+            // 
+            this.PictureBoxLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.PictureBoxLogout.Image = global::GADJIT_WIN_CLIENT.Properties.Resources.logout_rounded_left_48pxclient;
+            this.PictureBoxLogout.Location = new System.Drawing.Point(0, 537);
+            this.PictureBoxLogout.Name = "PictureBoxLogout";
+            this.PictureBoxLogout.Size = new System.Drawing.Size(64, 50);
+            this.PictureBoxLogout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBoxLogout.TabIndex = 9;
+            this.PictureBoxLogout.TabStop = false;
+            this.PictureBoxLogout.Click += new System.EventHandler(this.PictureBoxLogout_Click);
+            // 
             // HOME
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1633, 865);
+            this.ClientSize = new System.Drawing.Size(599, 587);
             this.Controls.Add(this.PictureBoxExit);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -147,8 +150,8 @@ namespace GADJIT_WIN_CLIENT
             this.Text = "HOME";
             this.Load += new System.EventHandler(this.HOME_Load);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogout)).EndInit();
             this.ResumeLayout(false);
 
         }
