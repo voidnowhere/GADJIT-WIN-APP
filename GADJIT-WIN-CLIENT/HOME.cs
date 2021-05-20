@@ -35,7 +35,6 @@ namespace GADJIT_WIN_CLIENT
         private void ButtonNewTicket_Click(object sender, EventArgs e)
         {
             CloseMdiChildIdExists();
-            this.Size = new Size(1225, 789);
             CreationTicket creationTicket = new CreationTicket();
             creationTicket.MdiParent = this;
             creationTicket.Dock = DockStyle.Fill;
@@ -50,7 +49,6 @@ namespace GADJIT_WIN_CLIENT
         private void ButtonConsultationTicket_Click(object sender, EventArgs e)
         {
             CloseMdiChildIdExists();
-            this.Size = new Size(1574, 663);
             ConsultationTicketForClient consultationTicket = new ConsultationTicketForClient();
             consultationTicket.MdiParent = this;
             consultationTicket.Dock = DockStyle.Fill;
@@ -60,7 +58,6 @@ namespace GADJIT_WIN_CLIENT
         private void ButtonProfil_Click(object sender, EventArgs e)
         {
             CloseMdiChildIdExists();
-            this.Size = new Size(1219, 865);
             ClientInformation clientinfo = new ClientInformation();
             clientinfo.MdiParent = this;
             clientinfo.Dock = DockStyle.Fill;

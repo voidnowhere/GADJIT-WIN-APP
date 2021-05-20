@@ -56,6 +56,7 @@ namespace GADJIT_WIN_CLIENT
             SqlCommand cmd = new SqlCommand("Select * from ticket ", GADJIT.sqlConnection);
             SqlDataReader dr = cmd.ExecuteReader();
             TList.Load(dr);
+            GADJIT.sqlConnection.Close();
             return TList;
         }
 
