@@ -102,7 +102,7 @@ namespace GADJIT_WIN_ASW
                 dataReader = sqlCommand.ExecuteReader();
                 if (dataReader.HasRows)
                 {
-                    ComboBoxCitySearch.Items.Add("--choisissez--");
+                    ComboBoxCitySearch.Items.Add("--tous--");
                     while (dataReader.Read())
                     {
                         ComboBoxCitySearch.Items.Add(dataReader.GetString(0));
@@ -187,8 +187,8 @@ namespace GADJIT_WIN_ASW
                             dataReader["StafAdress"], dataReader["CitDesig"], dataReader["StafSalary"], dataReader["StafDispo"], 
                             status);
                     }
+                    StaffsStats();
                 }
-                StaffsStats();
             }
             catch (Exception ex)
             {
@@ -269,7 +269,7 @@ namespace GADJIT_WIN_ASW
                         try
                         {
                             string sqlQuery = "update Staff set StafCIN = @cin, StafPicture = @img, StafLastName = @lastName, StafFirstName = @firstName, StafEmail = @email, " +
-                                "StafPassWord = @password, StafPhoneNumber = @phoneNumber, StafAdress = @adress, CitDesig = @city, StafSalary = @salary, StafDispo = @dispo, " +
+                                "StafPassWord = @password, StafPhoneNumber = @phoneNumber, StafAdress = @adress, CitDesig = @city, StafSalary = @salary, " +
                                 "StafSta = @status where StafID = @id";
                             SqlCommand sqlCommandUpdate = new SqlCommand(sqlQuery, GADJIT.sqlConnection);
 
@@ -294,8 +294,6 @@ namespace GADJIT_WIN_ASW
                             sqlCommandUpdate.Parameters.Add("@city", SqlDbType.VarChar).Value = DGVStaff["ColumnComboBoxCity", rowIndex].Value.ToString();
 
                             sqlCommandUpdate.Parameters.Add("@salary", SqlDbType.Money).Value = Convert.ToDecimal(DGVStaff["ColumnTextBoxSalary", rowIndex].Value.ToString());
-
-                            sqlCommandUpdate.Parameters.Add("@dispo", SqlDbType.VarChar).Value = DGVStaff["ColumnComboBoxDisponibility", rowIndex].Value.ToString();
 
                             sqlCommandUpdate.Parameters.Add("@status", SqlDbType.Bit).Value = (DGVStaff["ColumnComboBoxStatus", rowIndex].Value.ToString() == "Activer") ? 1 : 0;
 
@@ -367,6 +365,37 @@ namespace GADJIT_WIN_ASW
             }
         }
 
+        private void DGVStaff_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if(e.FormattedValue != null && (e.RowIndex < ((DGVStaff.AllowUserToAddRows) ? DGVStaff.Rows.Count - 1 : DGVStaff.Rows.Count)))
+            {
+                if (e.ColumnIndex == 1) //CIN
+                {
+                    if (!GADJIT.IsCINValid(e.FormattedValue.ToString()))
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show("format CIN incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else if (e.ColumnIndex == 5) //Email
+                {
+                    if (!GADJIT.IsEmailValid(e.FormattedValue.ToString()))
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show("format d'email incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else if(e.ColumnIndex == 10) //Salary
+                {
+                    if (!GADJIT.IsSalaryValid(e.FormattedValue.ToString()))
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show("format du salaire incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
         private bool CheckIfStaffCanBeDeleted(string id)
         {
             try
@@ -392,39 +421,42 @@ namespace GADJIT_WIN_ASW
 
         private void DGVStaff_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            try
+            if(e.Row.Cells[0].Value != null)
             {
-                if (CheckIDIfExists(e.Row.Cells[0].Value.ToString()))
+                try
                 {
-                    if (CheckIfStaffCanBeDeleted(e.Row.Cells[0].Value.ToString()))
+                    if (CheckIDIfExists(e.Row.Cells[0].Value.ToString()))
                     {
-                        SqlCommand sqlCommandDelete = new SqlCommand("delete from Staff where StafID = @id", GADJIT.sqlConnection);
-                        sqlCommandDelete.Parameters.Add("@id", SqlDbType.VarChar).Value = e.Row.Cells[0].Value;
-
-                        if (MessageBox.Show("Voulez vous supprimer ce personnel", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                        if (CheckIfStaffCanBeDeleted(e.Row.Cells[0].Value.ToString()))
                         {
-                            GADJIT.sqlConnection.Open();
-                            MessageBox.Show(sqlCommandDelete.ExecuteNonQuery() + " réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            SqlCommand sqlCommandDelete = new SqlCommand("delete from Staff where StafID = @id", GADJIT.sqlConnection);
+                            sqlCommandDelete.Parameters.Add("@id", SqlDbType.VarChar).Value = e.Row.Cells[0].Value;
+
+                            if (MessageBox.Show("Voulez vous supprimer ce personnel", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                            {
+                                GADJIT.sqlConnection.Open();
+                                MessageBox.Show(sqlCommandDelete.ExecuteNonQuery() + " réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                e.Cancel = true;
+                            }
                         }
                         else
                         {
                             e.Cancel = true;
+                            MessageBox.Show("interdit ce personnel est affecté dans des tickets", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                    else
-                    {
-                        e.Cancel = true;
-                        MessageBox.Show("interdit", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error DGVStaff_UserDeletingRow", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                GADJIT.sqlConnection.Close();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error DGVStaff_UserDeletingRow", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    GADJIT.sqlConnection.Close();
+                }
             }
         }
 
