@@ -104,6 +104,12 @@
     <Compile Include="TicketManagment.Designer.cs">
       <DependentUpon>TicketManagment.cs</DependentUpon>
     </Compile>
+    <Compile Include="UnlockAdminPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UnlockAdminPanel.Designer.cs">
+      <DependentUpon>UnlockAdminPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="WorkerSpeciality.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TicketManagment.resx">
       <DependentUpon>TicketManagment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UnlockAdminPanel.resx">
+      <DependentUpon>UnlockAdminPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WorkerManagment.resx">
       <DependentUpon>WorkerManagment.cs</DependentUpon>

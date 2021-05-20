@@ -55,15 +55,33 @@ namespace GADJIT_WIN_ASW
             PanelGadgetManagment.Visible = false;
         }
 
+        private void PannelButtonsLock(bool tf)
+        {
+            ButtonStatisticsMenu.Enabled = tf;
+            ButtonClientManagment.Enabled = tf;
+            ButtonTicketManagment.Enabled = tf;
+            ButtonStaffManagment.Enabled = tf;
+            ButtonWorkerManagment.Enabled = tf;
+            ButtonGadgetMenu.Enabled = tf;
+        }
+
         private void ButtonDisponibility_Click(object sender, EventArgs e)
         {
             if (ButtonDisponibility.BackColor == Color.Lime)
             {
                 AdminDispoChanger("Break");
                 ButtonDisponibility.BackColor = Color.Orange;
+                CloseMdiChildIdExists();
+                PannelButtonsLock(false);
             }
             else if (ButtonDisponibility.BackColor == Color.Orange)
             {
+                UnlockAdminPanel unlockAdminPanel = new UnlockAdminPanel();
+                unlockAdminPanel.login = login;
+                unlockAdminPanel.adminPanel = this;
+                unlockAdminPanel.email = LabelEmail.Text;
+                unlockAdminPanel.ShowDialog();
+                //
                 AdminDispoChanger("En Ligne");
                 ButtonDisponibility.BackColor = Color.Lime;
             }
