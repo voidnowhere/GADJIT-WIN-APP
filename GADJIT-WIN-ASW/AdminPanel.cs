@@ -138,5 +138,16 @@ namespace GADJIT_WIN_ASW
             clientManagment.Dock = DockStyle.Fill;
             clientManagment.Show();
         }
+
+        private void ButtonTicketManagment_Click(object sender, EventArgs e)
+        {
+            CloseMdiChildIdExists();
+            PanelStatistics.Visible = false;
+            PanelGadgetManagment.Visible = false;
+            TicketManagment ticketManagment = new TicketManagment();
+            ticketManagment.MdiParent = this;
+            ticketManagment.Dock = DockStyle.Fill;
+            ticketManagment.Show();
+        }
     }
 }

@@ -44,10 +44,10 @@ namespace GADJIT_WIN_ASW
             this.PanelStatistics = new System.Windows.Forms.Panel();
             this.ButtonStatisticsMenu = new System.Windows.Forms.Button();
             this.PanelTop = new System.Windows.Forms.Panel();
+            this.ButtonDisponibility = new GADJIT_WIN_ASW.CirucularButton();
             this.PanelBottom = new System.Windows.Forms.Panel();
             this.PictureBoxLogOut = new System.Windows.Forms.PictureBox();
             this.SideMenuPanel = new System.Windows.Forms.Panel();
-            this.ButtonDisponibility = new GADJIT_WIN_ASW.CirucularButton();
             this.PanelGadgetManagment.SuspendLayout();
             this.PanelStatistics.SuspendLayout();
             this.PanelTop.SuspendLayout();
@@ -209,6 +209,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonTicketManagment.Text = "Gestion Ticket";
             this.ButtonTicketManagment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonTicketManagment.UseVisualStyleBackColor = false;
+            this.ButtonTicketManagment.Click += new System.EventHandler(this.ButtonTicketManagment_Click);
             // 
             // ButtonClientManagment
             // 
@@ -279,6 +280,16 @@ namespace GADJIT_WIN_ASW
             this.PanelTop.Size = new System.Drawing.Size(197, 96);
             this.PanelTop.TabIndex = 0;
             // 
+            // ButtonDisponibility
+            // 
+            this.ButtonDisponibility.BackColor = System.Drawing.Color.Lime;
+            this.ButtonDisponibility.Location = new System.Drawing.Point(174, 3);
+            this.ButtonDisponibility.Name = "ButtonDisponibility";
+            this.ButtonDisponibility.Size = new System.Drawing.Size(20, 20);
+            this.ButtonDisponibility.TabIndex = 3;
+            this.ButtonDisponibility.UseVisualStyleBackColor = false;
+            this.ButtonDisponibility.Click += new System.EventHandler(this.ButtonDisponibility_Click);
+            // 
             // PanelBottom
             // 
             this.PanelBottom.Controls.Add(this.PictureBoxLogOut);
@@ -319,16 +330,6 @@ namespace GADJIT_WIN_ASW
             this.SideMenuPanel.Name = "SideMenuPanel";
             this.SideMenuPanel.Size = new System.Drawing.Size(197, 626);
             this.SideMenuPanel.TabIndex = 1;
-            // 
-            // ButtonDisponibility
-            // 
-            this.ButtonDisponibility.BackColor = System.Drawing.Color.Lime;
-            this.ButtonDisponibility.Location = new System.Drawing.Point(174, 3);
-            this.ButtonDisponibility.Name = "ButtonDisponibility";
-            this.ButtonDisponibility.Size = new System.Drawing.Size(20, 20);
-            this.ButtonDisponibility.TabIndex = 3;
-            this.ButtonDisponibility.UseVisualStyleBackColor = false;
-            this.ButtonDisponibility.Click += new System.EventHandler(this.ButtonDisponibility_Click);
             // 
             // AdminPanel
             // 
