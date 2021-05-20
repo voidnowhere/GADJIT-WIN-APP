@@ -60,10 +60,11 @@ namespace GADJIT_WIN_ASW
             // 
             // TextBoxActivedReference
             // 
+            this.TextBoxActivedReference.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxActivedReference.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.TextBoxActivedReference.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxActivedReference.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxActivedReference.Location = new System.Drawing.Point(793, 604);
+            this.TextBoxActivedReference.Location = new System.Drawing.Point(697, 546);
             this.TextBoxActivedReference.Name = "TextBoxActivedReference";
             this.TextBoxActivedReference.ReadOnly = true;
             this.TextBoxActivedReference.Size = new System.Drawing.Size(38, 15);
@@ -71,9 +72,10 @@ namespace GADJIT_WIN_ASW
             // 
             // label19
             // 
+            this.label19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(731, 603);
+            this.label19.Location = new System.Drawing.Point(635, 545);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(56, 16);
             this.label19.TabIndex = 75;
@@ -81,10 +83,11 @@ namespace GADJIT_WIN_ASW
             // 
             // TextBoxTotalReference
             // 
+            this.TextBoxTotalReference.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxTotalReference.BackColor = System.Drawing.Color.White;
             this.TextBoxTotalReference.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxTotalReference.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxTotalReference.Location = new System.Drawing.Point(1042, 605);
+            this.TextBoxTotalReference.Location = new System.Drawing.Point(923, 547);
             this.TextBoxTotalReference.Name = "TextBoxTotalReference";
             this.TextBoxTotalReference.ReadOnly = true;
             this.TextBoxTotalReference.Size = new System.Drawing.Size(40, 15);
@@ -93,7 +96,7 @@ namespace GADJIT_WIN_ASW
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(655, 27);
+            this.label3.Location = new System.Drawing.Point(593, 27);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 16);
             this.label3.TabIndex = 52;
@@ -104,10 +107,10 @@ namespace GADJIT_WIN_ASW
             this.ComboBoxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxStatus.FormattingEnabled = true;
             this.ComboBoxStatus.Items.AddRange(new object[] {
-            "--choisissez--",
+            "--tous--",
             "Activer",
             "Désactiver"});
-            this.ComboBoxStatus.Location = new System.Drawing.Point(704, 24);
+            this.ComboBoxStatus.Location = new System.Drawing.Point(640, 23);
             this.ComboBoxStatus.Name = "ComboBoxStatus";
             this.ComboBoxStatus.Size = new System.Drawing.Size(121, 24);
             this.ComboBoxStatus.TabIndex = 3;
@@ -116,7 +119,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.ComboBoxBrand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxBrand.FormattingEnabled = true;
-            this.ComboBoxBrand.Location = new System.Drawing.Point(258, 24);
+            this.ComboBoxBrand.Location = new System.Drawing.Point(245, 24);
             this.ComboBoxBrand.Name = "ComboBoxBrand";
             this.ComboBoxBrand.Size = new System.Drawing.Size(100, 24);
             this.ComboBoxBrand.TabIndex = 1;
@@ -125,22 +128,22 @@ namespace GADJIT_WIN_ASW
             // 
             this.ComboBoxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxCategory.FormattingEnabled = true;
-            this.ComboBoxCategory.Location = new System.Drawing.Point(92, 24);
+            this.ComboBoxCategory.Location = new System.Drawing.Point(79, 24);
             this.ComboBoxCategory.Name = "ComboBoxCategory";
             this.ComboBoxCategory.Size = new System.Drawing.Size(100, 24);
             this.ComboBoxCategory.TabIndex = 0;
             // 
             // TextBoxDesignation
             // 
-            this.TextBoxDesignation.Location = new System.Drawing.Point(450, 24);
+            this.TextBoxDesignation.Location = new System.Drawing.Point(437, 24);
             this.TextBoxDesignation.Name = "TextBoxDesignation";
-            this.TextBoxDesignation.Size = new System.Drawing.Size(199, 22);
+            this.TextBoxDesignation.Size = new System.Drawing.Size(150, 22);
             this.TextBoxDesignation.TabIndex = 2;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(364, 27);
+            this.label9.Location = new System.Drawing.Point(351, 27);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(80, 16);
             this.label9.TabIndex = 6;
@@ -148,7 +151,8 @@ namespace GADJIT_WIN_ASW
             // 
             // ButtonSearch
             // 
-            this.ButtonSearch.Location = new System.Drawing.Point(863, 23);
+            this.ButtonSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonSearch.Location = new System.Drawing.Point(766, 24);
             this.ButtonSearch.Name = "ButtonSearch";
             this.ButtonSearch.Size = new System.Drawing.Size(86, 24);
             this.ButtonSearch.TabIndex = 4;
@@ -168,7 +172,7 @@ namespace GADJIT_WIN_ASW
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(198, 27);
+            this.label8.Location = new System.Drawing.Point(185, 27);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(54, 16);
             this.label8.TabIndex = 4;
@@ -176,10 +180,11 @@ namespace GADJIT_WIN_ASW
             // 
             // TextBoxDeactivatedReference
             // 
+            this.TextBoxDeactivatedReference.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxDeactivatedReference.BackColor = System.Drawing.Color.Red;
             this.TextBoxDeactivatedReference.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxDeactivatedReference.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxDeactivatedReference.Location = new System.Drawing.Point(937, 603);
+            this.TextBoxDeactivatedReference.Location = new System.Drawing.Point(830, 547);
             this.TextBoxDeactivatedReference.Name = "TextBoxDeactivatedReference";
             this.TextBoxDeactivatedReference.ReadOnly = true;
             this.TextBoxDeactivatedReference.Size = new System.Drawing.Size(37, 15);
@@ -187,6 +192,8 @@ namespace GADJIT_WIN_ASW
             // 
             // groupBox8
             // 
+            this.groupBox8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox8.Controls.Add(this.ButtonReset);
             this.groupBox8.Controls.Add(this.label3);
             this.groupBox8.Controls.Add(this.ComboBoxStatus);
@@ -200,14 +207,15 @@ namespace GADJIT_WIN_ASW
             this.groupBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox8.Location = new System.Drawing.Point(12, 57);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(1070, 63);
+            this.groupBox8.Size = new System.Drawing.Size(949, 60);
             this.groupBox8.TabIndex = 72;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Recherche";
             // 
             // ButtonReset
             // 
-            this.ButtonReset.Location = new System.Drawing.Point(955, 23);
+            this.ButtonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonReset.Location = new System.Drawing.Point(858, 24);
             this.ButtonReset.Name = "ButtonReset";
             this.ButtonReset.Size = new System.Drawing.Size(86, 24);
             this.ButtonReset.TabIndex = 5;
@@ -217,9 +225,10 @@ namespace GADJIT_WIN_ASW
             // 
             // label15
             // 
+            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(848, 603);
+            this.label15.Location = new System.Drawing.Point(741, 545);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(83, 16);
             this.label15.TabIndex = 77;
@@ -227,6 +236,9 @@ namespace GADJIT_WIN_ASW
             // 
             // DGVReference
             // 
+            this.DGVReference.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVReference.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVReference.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnTextBoxID,
@@ -235,10 +247,11 @@ namespace GADJIT_WIN_ASW
             this.ColumnTextBoxDesignation,
             this.ColumnTextBoxDescription,
             this.ColumnComboBoxStatus});
-            this.DGVReference.Location = new System.Drawing.Point(12, 126);
+            this.DGVReference.Location = new System.Drawing.Point(12, 123);
             this.DGVReference.Name = "DGVReference";
-            this.DGVReference.Size = new System.Drawing.Size(1070, 473);
+            this.DGVReference.Size = new System.Drawing.Size(951, 419);
             this.DGVReference.TabIndex = 71;
+            this.DGVReference.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.DGVReference_CellValidating);
             this.DGVReference.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVReference_CellValueChanged);
             this.DGVReference.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGVReference_EditingControlShowing);
             this.DGVReference.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DGVReference_UserDeletedRow);
@@ -247,12 +260,14 @@ namespace GADJIT_WIN_ASW
             // ColumnTextBoxID
             // 
             this.ColumnTextBoxID.HeaderText = "Code";
+            this.ColumnTextBoxID.MinimumWidth = 100;
             this.ColumnTextBoxID.Name = "ColumnTextBoxID";
             this.ColumnTextBoxID.ReadOnly = true;
             // 
             // ColumnComboBoxCategory
             // 
             this.ColumnComboBoxCategory.HeaderText = "Catégorie";
+            this.ColumnComboBoxCategory.MinimumWidth = 100;
             this.ColumnComboBoxCategory.Name = "ColumnComboBoxCategory";
             this.ColumnComboBoxCategory.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnComboBoxCategory.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
@@ -260,6 +275,7 @@ namespace GADJIT_WIN_ASW
             // ColumnComboBoxBrand
             // 
             this.ColumnComboBoxBrand.HeaderText = "Marque";
+            this.ColumnComboBoxBrand.MinimumWidth = 100;
             this.ColumnComboBoxBrand.Name = "ColumnComboBoxBrand";
             this.ColumnComboBoxBrand.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnComboBoxBrand.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
@@ -267,6 +283,7 @@ namespace GADJIT_WIN_ASW
             // ColumnTextBoxDesignation
             // 
             this.ColumnTextBoxDesignation.HeaderText = "Désignation";
+            this.ColumnTextBoxDesignation.MinimumWidth = 150;
             this.ColumnTextBoxDesignation.Name = "ColumnTextBoxDesignation";
             this.ColumnTextBoxDesignation.Width = 150;
             // 
@@ -274,6 +291,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.ColumnTextBoxDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ColumnTextBoxDescription.HeaderText = "Déscription";
+            this.ColumnTextBoxDescription.MinimumWidth = 400;
             this.ColumnTextBoxDescription.Name = "ColumnTextBoxDescription";
             // 
             // ColumnComboBoxStatus
@@ -282,15 +300,17 @@ namespace GADJIT_WIN_ASW
             this.ColumnComboBoxStatus.Items.AddRange(new object[] {
             "Activer",
             "Désactiver"});
+            this.ColumnComboBoxStatus.MinimumWidth = 100;
             this.ColumnComboBoxStatus.Name = "ColumnComboBoxStatus";
             this.ColumnComboBoxStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnComboBoxStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // label20
             // 
+            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(992, 604);
+            this.label20.Location = new System.Drawing.Point(873, 546);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(44, 16);
             this.label20.TabIndex = 73;
@@ -298,9 +318,10 @@ namespace GADJIT_WIN_ASW
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(370, 9);
+            this.label1.Location = new System.Drawing.Point(348, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(291, 25);
             this.label1.TabIndex = 70;
@@ -310,7 +331,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1093, 625);
+            this.ClientSize = new System.Drawing.Size(975, 574);
             this.Controls.Add(this.TextBoxActivedReference);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.TextBoxTotalReference);
@@ -321,6 +342,7 @@ namespace GADJIT_WIN_ASW
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MinimumSize = new System.Drawing.Size(975, 400);
             this.Name = "GadgetReferenceManagment";
             this.Text = "GadgetReferenceManagment";
             this.Load += new System.EventHandler(this.GadgetReferenceManagment_Load);
