@@ -122,7 +122,7 @@ namespace GADJIT_WIN_ASW
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error CheckIfCategoryDesigExists(string desig)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error CheckIfCategoryDesigExists(string id, string desig)", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -357,7 +357,7 @@ namespace GADJIT_WIN_ASW
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error CheckIfBrandDesigExists(string desig)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error CheckIfBrandDesigExists(string id, string desig)", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
