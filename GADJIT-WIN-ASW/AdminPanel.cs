@@ -113,8 +113,6 @@ namespace GADJIT_WIN_ASW
         private void ButtonGadgetCategoryBrandManagment_Click(object sender, EventArgs e)
         {
             CloseMdiChildIdExists();
-            PanelStatistics.Visible = false;
-            PanelGadgetManagment.Visible = false;
             GadgetCategoryBrandManagment categoryBrandManagment = new GadgetCategoryBrandManagment();
             categoryBrandManagment.MdiParent = this;
             categoryBrandManagment.Dock = DockStyle.Fill;
@@ -124,8 +122,6 @@ namespace GADJIT_WIN_ASW
         private void ButtonGadgetReferenceManagment_Click(object sender, EventArgs e)
         {
             CloseMdiChildIdExists();
-            PanelStatistics.Visible = false;
-            PanelGadgetManagment.Visible = false;
             GadgetReferenceManagment referenceManagment = new GadgetReferenceManagment();
             referenceManagment.MdiParent = this;
             referenceManagment.Dock = DockStyle.Fill;
