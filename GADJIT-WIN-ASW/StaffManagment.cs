@@ -176,7 +176,7 @@ namespace GADJIT_WIN_ASW
                 sqlCommand.CommandText = sqlQuery;
                 sqlCommand.Connection = GADJIT.sqlConnection;
                 GADJIT.sqlConnection.Open();
-                SqlDataReader dataReader = sqlCommand.ExecuteReader();
+                dataReader = sqlCommand.ExecuteReader();
                 if (dataReader.HasRows)
                 {
                     while (dataReader.Read())
