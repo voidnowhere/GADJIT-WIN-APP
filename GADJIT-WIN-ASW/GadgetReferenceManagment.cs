@@ -204,8 +204,11 @@ namespace GADJIT_WIN_ASW
             int d = 0;
             for (int i = 0; i < c; i++)
             {
-                if (DGVReference[5, i].Value.ToString() == "Activer") a++;
-                else if (DGVReference[5, i].Value.ToString() == "Désactiver") d++;
+                if(DGVReference[5, i].Value != null)
+                {
+                    if (DGVReference[5, i].Value.ToString() == "Activer") a++;
+                    else if (DGVReference[5, i].Value.ToString() == "Désactiver") d++;
+                }
             }
             TextBoxActivedReference.Text = a.ToString();
             TextBoxDeactivatedReference.Text = d.ToString();

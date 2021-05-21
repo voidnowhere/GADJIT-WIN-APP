@@ -207,8 +207,11 @@ namespace GADJIT_WIN_ASW
             int d = 0;
             for (int i = 0; i < c; i++)
             {
-                if (DGVStaff[12, i].Value.ToString() == "Activer") a++;
-                else if (DGVStaff[12, i].Value.ToString() == "Désactiver") d++;
+                if (DGVStaff[12, i].Value != null)
+                {
+                    if (DGVStaff[12, i].Value.ToString() == "Activer") a++;
+                    else if (DGVStaff[12, i].Value.ToString() == "Désactiver") d++;
+                }
             }
             TextBoxActivedStaffs.Text = a.ToString();
             TextBoxDeactivatedStaffs.Text = d.ToString();
