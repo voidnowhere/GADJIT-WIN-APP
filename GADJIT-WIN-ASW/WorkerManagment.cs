@@ -102,7 +102,7 @@ namespace GADJIT_WIN_ASW
                 dataReader = sqlCommand.ExecuteReader();
                 if (dataReader.HasRows)
                 {
-                    ComboBoxCitySearch.Items.Add("--choisissez--");
+                    ComboBoxCitySearch.Items.Add("--tous--");
                     while (dataReader.Read())
                     {
                         ComboBoxCitySearch.Items.Add(dataReader.GetString(0));
@@ -181,15 +181,13 @@ namespace GADJIT_WIN_ASW
                 {
                     while (dataReader.Read())
                     {
-                        String status = (dataReader.GetBoolean(12)) ? "Activer" : "Désactiver";
                         DGVWorker.Rows.Add(dataReader["WorID"], dataReader["WorCIN"], new Bitmap(new MemoryStream((byte[])dataReader["WorPicture"])),
                             dataReader["WorLastName"], dataReader["WorFirstName"], dataReader["WorEmail"], dataReader["WorPassWord"], 
                             dataReader["WorPhoneNumber"], dataReader["WorAdress"], dataReader["CitDesig"], dataReader["WorSalary"], null,
-                            dataReader["WorDispo"],
-                            status);
+                            dataReader["WorDispo"], (dataReader.GetBoolean(12)) ? "Activer" : "Désactiver");
                     }
+                    WorkersStats();
                 }
-                WorkersStats();
             }
             catch (Exception ex)
             {
@@ -276,7 +274,7 @@ namespace GADJIT_WIN_ASW
                         try
                         {
                             string sqlQuery = "update Worker set WorCIN = @cin, WorPicture = @img, WorLastName = @lastName, WorFirstName = @firstName, WorEmail = @email, " +
-                                "WorPassWord = @password, WorPhoneNumber = @phoneNumber, WorAdress = @adress, CitDesig = @city, WorSalary = @salary, WorDispo = @dispo, " +
+                                "WorPassWord = @password, WorPhoneNumber = @phoneNumber, WorAdress = @adress, CitDesig = @city, WorSalary = @salary, " +
                                 "WorSta = @status where WorID = @id";
                             SqlCommand sqlCommandUpdate = new SqlCommand(sqlQuery, GADJIT.sqlConnection);
 
@@ -301,8 +299,6 @@ namespace GADJIT_WIN_ASW
                             sqlCommandUpdate.Parameters.Add("@city", SqlDbType.VarChar).Value = DGVWorker["ColumnComboBoxCity", rowIndex].Value.ToString();
 
                             sqlCommandUpdate.Parameters.Add("@salary", SqlDbType.Money).Value = Convert.ToDecimal(DGVWorker["ColumnTextBoxSalary", rowIndex].Value.ToString());
-
-                            sqlCommandUpdate.Parameters.Add("@dispo", SqlDbType.VarChar).Value = DGVWorker["ColumnComboBoxDisponibility", rowIndex].Value.ToString();
 
                             sqlCommandUpdate.Parameters.Add("@status", SqlDbType.Bit).Value = (DGVWorker["ColumnComboBoxStatus", rowIndex].Value.ToString() == "Activer") ? 1 : 0;
 
@@ -374,6 +370,37 @@ namespace GADJIT_WIN_ASW
             }
         }
 
+        private void DGVWorker_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.FormattedValue != null && (e.RowIndex < ((DGVWorker.AllowUserToAddRows) ? DGVWorker.Rows.Count - 1 : DGVWorker.Rows.Count)))
+            {
+                if (e.ColumnIndex == 1) //CIN
+                {
+                    if (!GADJIT.IsCINValid(e.FormattedValue.ToString()))
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show("format CIN incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else if (e.ColumnIndex == 5) //Email
+                {
+                    if (!GADJIT.IsEmailValid(e.FormattedValue.ToString()))
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show("format d'email incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else if (e.ColumnIndex == 10) //Salary
+                {
+                    if (!GADJIT.IsSalaryValid(e.FormattedValue.ToString()))
+                    {
+                        e.Cancel = true;
+                        MessageBox.Show("format du salaire incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
         private bool CheckIfWorkerCanBeDeleted(string id)
         {
             try
@@ -416,7 +443,8 @@ namespace GADJIT_WIN_ASW
                         if (MessageBox.Show("Voulez vous supprimer cet employé", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                         {
                             GADJIT.sqlConnection.Open();
-                            MessageBox.Show(WorkerSpecialty.ExecuteNonQuery() + sqlCommandDeleteWorker.ExecuteNonQuery() + " réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(" réussi de " + WorkerSpecialty.ExecuteNonQuery() + " spécialité et " + sqlCommandDeleteWorker.ExecuteNonQuery() + " employé", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            WorkersStats();
                         }
                         else
                         {
@@ -426,7 +454,7 @@ namespace GADJIT_WIN_ASW
                     else
                     {
                         e.Cancel = true;
-                        MessageBox.Show("interdit", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("interdit cet employé est affecté dans des tickets", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

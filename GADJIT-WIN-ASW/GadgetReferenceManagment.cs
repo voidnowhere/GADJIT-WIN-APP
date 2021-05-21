@@ -88,7 +88,7 @@ namespace GADJIT_WIN_ASW
 
                 ColumnComboBoxCategory.DisplayMember = "desig";
                 ColumnComboBoxCategory.ValueMember = "id";
-                ComboBoxCategory.Items.Add("--choisissez--");
+                ComboBoxCategory.Items.Add("--tous--");
 
                 while (dataReader.Read())
                 {
@@ -103,7 +103,7 @@ namespace GADJIT_WIN_ASW
 
                 ColumnComboBoxBrand.DisplayMember = "desig";
                 ColumnComboBoxBrand.ValueMember = "id";
-                ComboBoxBrand.Items.Add("--choisissez--");
+                ComboBoxBrand.Items.Add("--tous--");
                 while (dataReader.Read())
                 {
                     ColumnComboBoxBrand.Items.Add(new { id = dataReader.GetString(0), desig = dataReader.GetString(1) });
@@ -183,8 +183,8 @@ namespace GADJIT_WIN_ASW
                             dataReader["GadRefDescr"],
                             (dataReader.GetBoolean(5)) ? "Activer" : "Désactiver");
                     }
+                    ReferencesStats();
                 }
-                ReferencesStats();
             }
             catch (Exception ex)
             {
@@ -305,6 +305,39 @@ namespace GADJIT_WIN_ASW
             }
         }
 
+        private bool CheckIfReferenceDesigExists(string id, string desig)
+        {
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand("select COUNT(GadRefDesig) from GadgetReference where GadRefID != @id and GadRefDesig = @desig", GADJIT.sqlConnection);
+                sqlCommand.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                sqlCommand.Parameters.Add("@desig", SqlDbType.VarChar).Value = desig;
+                GADJIT.sqlConnection.Open();
+                if ((int)sqlCommand.ExecuteScalar() == 1) return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error CheckIfReferenceDesigExists(string id, string desig)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                GADJIT.sqlConnection.Close();
+            }
+            return false;
+        }
+
+        private void DGVReference_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 3 && e.FormattedValue != null && DGVReference[0, e.RowIndex].Value != null)
+            {
+                if (CheckIfReferenceDesigExists(DGVReference[0, e.RowIndex].Value.ToString(), e.FormattedValue.ToString()))
+                {
+                    e.Cancel = true;
+                    MessageBox.Show("cet désignation existe déjà pour une référence", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
         private bool CheckIfReferenceCanBeDeleted(string id)
         {
             try
@@ -330,39 +363,42 @@ namespace GADJIT_WIN_ASW
 
         private void DGVReference_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            try
+            if(e.Row.Cells[0].Value != null)
             {
-                if (CheckIDIfExists(e.Row.Cells[0].Value.ToString()))
+                try
                 {
-                    if (CheckIfReferenceCanBeDeleted(e.Row.Cells[0].Value.ToString()))
+                    if (CheckIDIfExists(e.Row.Cells[0].Value.ToString()))
                     {
-                        SqlCommand sqlCommandDelete = new SqlCommand("delete from GadgetReference where GadRefID = @id", GADJIT.sqlConnection);
-                        sqlCommandDelete.Parameters.Add("@id", SqlDbType.VarChar).Value = e.Row.Cells[0].Value;
-
-                        if (MessageBox.Show("Voulez vous supprimer cet référence", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                        if (CheckIfReferenceCanBeDeleted(e.Row.Cells[0].Value.ToString()))
                         {
-                            GADJIT.sqlConnection.Open();
-                            MessageBox.Show(sqlCommandDelete.ExecuteNonQuery() + " réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            SqlCommand sqlCommandDelete = new SqlCommand("delete from GadgetReference where GadRefID = @id", GADJIT.sqlConnection);
+                            sqlCommandDelete.Parameters.Add("@id", SqlDbType.VarChar).Value = e.Row.Cells[0].Value;
+
+                            if (MessageBox.Show("Voulez vous supprimer cet référence", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                            {
+                                GADJIT.sqlConnection.Open();
+                                MessageBox.Show(sqlCommandDelete.ExecuteNonQuery() + " réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                e.Cancel = true;
+                            }
                         }
                         else
                         {
                             e.Cancel = true;
+                            MessageBox.Show("interdit cette référence est deja assigné a une ticket", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                    else
-                    {
-                        e.Cancel = true;
-                        MessageBox.Show("interdit", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error DGVReference_UserDeletingRow", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                GADJIT.sqlConnection.Close();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error DGVReference_UserDeletingRow", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    GADJIT.sqlConnection.Close();
+                }
             }
         }
 

@@ -59,6 +59,12 @@
     <Compile Include="CirucularButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ClientManagment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientManagment.Designer.cs">
+      <DependentUpon>ClientManagment.cs</DependentUpon>
+    </Compile>
     <Compile Include="GadgetCategoryBrandManagment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +98,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TicketManagment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TicketManagment.Designer.cs">
+      <DependentUpon>TicketManagment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UnlockAdminPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UnlockAdminPanel.Designer.cs">
+      <DependentUpon>UnlockAdminPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="WorkerSpeciality.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,6 +118,9 @@
     </Compile>
     <EmbeddedResource Include="AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientManagment.resx">
+      <DependentUpon>ClientManagment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GadgetCategoryBrandManagment.resx">
       <DependentUpon>GadgetCategoryBrandManagment.cs</DependentUpon>
@@ -147,6 +168,12 @@
     </Compile>
     <EmbeddedResource Include="StaffPanel.resx">
       <DependentUpon>StaffPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TicketManagment.resx">
+      <DependentUpon>TicketManagment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UnlockAdminPanel.resx">
+      <DependentUpon>UnlockAdminPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WorkerManagment.resx">
       <DependentUpon>WorkerManagment.cs</DependentUpon>
