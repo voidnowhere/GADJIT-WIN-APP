@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Net;
+using System.Net.Mail;
 
 namespace GADJIT_WIN_CLIENT
 {
@@ -17,7 +19,7 @@ namespace GADJIT_WIN_CLIENT
         {
             InitializeComponent();
         }
-
+        string emailtemp = "";
         private void PictureBoxExit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -25,6 +27,7 @@ namespace GADJIT_WIN_CLIENT
 
         private void DiagnosticTicketForClient_Load(object sender, EventArgs e)
         {
+            emailtemp = Login.Cemail;
             TextBoxCatDiag.Text = ConsultationTicketForClient.Cat;
             TextBoxMarDiag.Text = ConsultationTicketForClient.Cat;
             TextBoxRefDiag.Text = ConsultationTicketForClient.Ref;
@@ -50,7 +53,18 @@ namespace GADJIT_WIN_CLIENT
             GADJIT.sqlConnection.Open();
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
-            MessageBox.Show("Ticket Accepter , merci pour votre confiance reparation en cours ", "Ticket Accepter",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            MessageBox.Show("Ticket Accepter!!", "Ticket Accepter", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+            client.EnableSsl = true;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new NetworkCredential("GADJITMA@gmail.com", "GADJIT2021");
+            MailMessage msg = new MailMessage();
+            msg.To.Add(emailtemp);
+            msg.From = new MailAddress("GADJITMA@gmail.com");
+            msg.Subject = "Acceptation Ticket chez GADJIT";
+            msg.Body = "Bonjour:\n \n Votre Ticket a été Accepté.\n Merci pour votre confiance. \n reparation en cours.\n \nGADJIT MAROC.";
+            client.Send(msg);
         }
 
         private void ButtonRejeter_Click(object sender, EventArgs e)
@@ -61,6 +75,17 @@ namespace GADJIT_WIN_CLIENT
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
             MessageBox.Show("Ticket Annuler , on vous contactera pour livre votre Gadget dans le plus bref délais  ", "Ticket Annuler", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+            client.EnableSsl = true;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new NetworkCredential("GADJITMA@gmail.com", "GADJIT2021");
+            MailMessage msg = new MailMessage();
+            msg.To.Add(emailtemp);
+            msg.From = new MailAddress("GADJITMA@gmail.com");
+            msg.Subject = "Annulation ticket chez GADJIT";
+            msg.Body = "Bonjour:\n \n Votre Ticket a été Annuler.\n Merci de nous envoyer votre feedback sur la cause d'annulation de ticket pour améliorer.\n \nGADJIT MAROC.";
+            client.Send(msg);
         }
     }
 }

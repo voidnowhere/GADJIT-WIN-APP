@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.Net;
+using System.Net.Mail;
 
 namespace GADJIT_WIN_CLIENT
 {
@@ -70,7 +72,17 @@ namespace GADJIT_WIN_CLIENT
             cmd.Parameters.AddWithValue("@Ref", RefID);
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
-            MessageBox.Show("Nouvelle Ticket Créer. Voici votre code de ticket :[ " + ID + " ]. \n\n -Pour consulter votre ticket veuillez rejoindre le panel consultez votre ticket. ", "Nouvelle Ticket", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+            client.EnableSsl = true;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new NetworkCredential("GADJITMA@gmail.com", "GADJIT2021");
+            MailMessage msg = new MailMessage();
+            msg.To.Add(emailtemp);
+            msg.From = new MailAddress("GADJITMA@gmail.com");
+            msg.Subject = "Création d'une nouvelle ticket";
+            msg.Body = "Bonjour:\n \n Votre Ticket a été Crée.\nVoici votre code de ticket :[ " + ID + " ]. \n\n -Pour consulter votre ticket veuillez rejoindre le panel consultez votre ticket.\n Merci \n \nGADJIT MAROC.";
+            client.Send(msg);
         }
 
         private void ComboBoxCatGadjit_SelectedIndexChanged(object sender, EventArgs e)
