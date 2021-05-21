@@ -60,7 +60,8 @@ namespace GADJIT_WIN_CLIENT
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("Select TicID,TicDT,TicRepPri,TicSta from ticket ", GADJIT.sqlConnection);
+                SqlCommand cmd = new SqlCommand("Select TicID,TicDT,TicRepPri,TicSta from ticket where CliID=@CID ", GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("@CID", CID);
                 GADJIT.sqlConnection.Open();
                 dr = cmd.ExecuteReader();
                 if (dr.HasRows)

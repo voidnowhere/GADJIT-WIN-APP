@@ -18,7 +18,7 @@ namespace GADJIT_WIN_ASW
         {
             InitializeComponent();
         }
-
+        public static string WID;
         private void cirucularButton_Click(object sender, EventArgs e)
         {
             GADJIT.sqlConnection.Open();
@@ -47,6 +47,16 @@ namespace GADJIT_WIN_ASW
             GADJIT.sqlConnection.Open();
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
+            cmd = new SqlCommand("select WorID from Worker where WorEmail=@Email", GADJIT.sqlConnection);
+            cmd.Parameters.AddWithValue("@Email", LabelEmail.Text);
+            GADJIT.sqlConnection.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            dr.Read();
+            WID = dr["WorID"].ToString();
+            dr.Close();
+            GADJIT.sqlConnection.Close();
+            this.Size = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
+            this.CenterToScreen();
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)
@@ -61,6 +71,14 @@ namespace GADJIT_WIN_ASW
             GADJIT.sqlConnection.Open();
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
+        }
+
+        private void ShowSubMenuButton_Click(object sender, EventArgs e)
+        {
+            TicketConsultationWorker ticketworker = new TicketConsultationWorker();
+            ticketworker.MdiParent = this;
+            ticketworker.Dock = DockStyle.Fill;
+            ticketworker.Show();
         }
     }
 }
