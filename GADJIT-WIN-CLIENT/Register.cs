@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Net;
+using System.Net.Mail;
 
 namespace GADJIT_WIN_CLIENT
 {
@@ -76,8 +78,7 @@ namespace GADJIT_WIN_CLIENT
             TextBoxPhone.Clear();
             RichTextBoxAdress.Clear();
             TextBoxCaptcha.Clear();
-            ComboxBoxCity.SelectedIndex = 0;
-            
+            ComboxBoxCity.SelectedIndex = 0;     
         }
 
         private void PictureBoxExit_Click(object sender, EventArgs e)
@@ -101,20 +102,38 @@ namespace GADJIT_WIN_CLIENT
                 {
                     if (ComboxBoxCity.SelectedIndex != 0)
                     {
-                        errorProviderCity.SetError(ComboxBoxCity, null);
-                        SqlCommand cmd = new SqlCommand("insert into client values(@ClientID,@LastName,@FirstName,@Email,@PassWord,@PhoneNumber,@Adress,@City,1)", GADJIT.sqlConnection);
-                        cmd.Parameters.AddWithValue("@ClientID", ID);
-                        cmd.Parameters.AddWithValue("@LastName", TextBoxNom.Text.Trim());
-                        cmd.Parameters.AddWithValue("@FirstName", TextBoxPrenom.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Email", TextBoxEmail.Text.Trim());
-                        cmd.Parameters.AddWithValue("@PassWord", TextBoxPassword.Text.Trim());
-                        cmd.Parameters.AddWithValue("@PhoneNumber", TextBoxPhone.Text.Trim());
-                        cmd.Parameters.AddWithValue("@Adress", RichTextBoxAdress.Text);
-                        cmd.Parameters.AddWithValue("@City", ComboxBoxCity.GetItemText(ComboxBoxCity.SelectedItem));
-                        cmd.ExecuteNonQuery();
-                        errorProviderCaptcha.SetError(TextBoxCaptcha, null);
-                        errorProviderEmail.SetError(TextBoxEmail, null);
-                        MessageBox.Show("Inscription reussite", "Inscritpion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        try
+                        {
+                            errorProviderCity.SetError(ComboxBoxCity, null);
+                            errorProviderCaptcha.SetError(TextBoxCaptcha, null);
+                            errorProviderEmail.SetError(TextBoxEmail, null);
+                            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                            client.EnableSsl = true;
+                            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                            client.UseDefaultCredentials = false;
+                            client.Credentials = new NetworkCredential("GADJITMA@gmail.com", "GADJIT2021");
+                            MailMessage msg = new MailMessage();
+                            msg.To.Add(TextBoxEmail.Text);
+                            msg.From = new MailAddress("GADJITMA@gmail.com");
+                            msg.Subject = "Inscription chez GADJIT";
+                            msg.Body = "Bonjour " + TextBoxNom.Text + " :\n votre inscription a bien été traitée bienvenue chez GADJIT. \n GADJIT MAROC.";
+                            client.Send(msg);
+                            MessageBox.Show("mail envoyez", "un mail de confirmation d'inscription a été envoyer a votre boite mail");
+                            SqlCommand cmd = new SqlCommand("insert into client values(@ClientID,@LastName,@FirstName,@Email,@PassWord,@PhoneNumber,@Adress,@City,1)", GADJIT.sqlConnection);
+                            cmd.Parameters.AddWithValue("@ClientID", ID);
+                            cmd.Parameters.AddWithValue("@LastName", TextBoxNom.Text.Trim());
+                            cmd.Parameters.AddWithValue("@FirstName", TextBoxPrenom.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Email", TextBoxEmail.Text.Trim());
+                            cmd.Parameters.AddWithValue("@PassWord", TextBoxPassword.Text.Trim());
+                            cmd.Parameters.AddWithValue("@PhoneNumber", TextBoxPhone.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Adress", RichTextBoxAdress.Text);
+                            cmd.Parameters.AddWithValue("@City", ComboxBoxCity.GetItemText(ComboxBoxCity.SelectedItem));
+                            cmd.ExecuteNonQuery();
+                        }
+                        catch(Exception ex)
+                        {
+                            MessageBox.Show(ex.Message,"Email non valider");
+                        }
                         Login login = new Login();
                         login.Show();
                         this.Close();
@@ -127,14 +146,14 @@ namespace GADJIT_WIN_CLIENT
                 }
                 catch(Exception ex)
                 {
-                    MessageBox.Show( ex.Message, "Verifiez vos information", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show( ex.Message, "veuillez vérifier vos informations", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         
                 }             
                                        
             }
             else
             {
-                errorProviderCaptcha.SetError(TextBoxCaptcha, "Captcha pas correcte");
+                errorProviderCaptcha.SetError(TextBoxCaptcha, "Captcha incorrect");
                 this.OnLoad(e);
             }
             GADJIT.sqlConnection.Close();
@@ -146,7 +165,7 @@ namespace GADJIT_WIN_CLIENT
             bool isValid = ex.IsMatch(TextBoxPhone.Text);
             if (!isValid)
             {
-                errorProviderTelephone.SetError(TextBoxPhone, "Entrez un numero de telephone valide ");
+                errorProviderTelephone.SetError(TextBoxPhone, "Entrez un numéro de téléphone valide ");
             }
             else
             {
@@ -158,7 +177,7 @@ namespace GADJIT_WIN_CLIENT
         {
             if (TextBoxPassword.Text != TextBoxConfPassword.Text)
             {
-                errorProviderPasswordConfirmation.SetError(TextBoxConfPassword, "mot de passe n'est pas identique");
+                errorProviderPasswordConfirmation.SetError(TextBoxConfPassword, "Les mots de passe saisis ne sont pas identiques");
             }
             else
             {

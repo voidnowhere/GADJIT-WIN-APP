@@ -17,7 +17,6 @@ namespace GADJIT_WIN_CLIENT
         {
             InitializeComponent();
         }
-
         string emailtemp = "";
         string CID = "";
         public static string TID = "";
@@ -29,9 +28,8 @@ namespace GADJIT_WIN_CLIENT
         public static string Cat = "";
         public static string Brand = "";
         public static string prob = "";
-        
+        //
         SqlDataReader dr;
-
         private void ConsultationTicketForClient_Load(object sender, EventArgs e)
         {
             emailtemp = Login.Cemail;
@@ -192,7 +190,6 @@ namespace GADJIT_WIN_CLIENT
             TextBoxRef.Clear();
             RichTextBoxProb.Clear();
             labelDiag.Visible = TextBoxDiag.Visible = ButtonDiagnostic.Visible = false;
-
         }
 
         private void DGVTicket_CellDoubleClick(object sender, DataGridViewCellEventArgs e)

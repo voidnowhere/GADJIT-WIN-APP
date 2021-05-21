@@ -18,14 +18,12 @@ namespace GADJIT_WIN_CLIENT
         {
             InitializeComponent();
         }
-
         string emailtemp = "";
         string CID = "";
         string ID = "T";
         string CatID = "";
         string BrandID = "";
         string RefID = "";
-
         private void CreationTicket_Load(object sender, EventArgs e)
         {
             emailtemp = Login.Cemail;
@@ -59,7 +57,6 @@ namespace GADJIT_WIN_CLIENT
             }       
             GADJIT.sqlConnection.Close();
             dr.Close();
-
         }
 
         private void ButtonConfirmer_Click(object sender, EventArgs e)
@@ -74,7 +71,6 @@ namespace GADJIT_WIN_CLIENT
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
             MessageBox.Show("Nouvelle Ticket Créer. Voici votre code de ticket :[ " + ID + " ]. \n\n -Pour consulter votre ticket veuillez rejoindre le panel consultez votre ticket. ", "Nouvelle Ticket", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
         }
 
         private void ComboBoxCatGadjit_SelectedIndexChanged(object sender, EventArgs e)
@@ -99,7 +95,6 @@ namespace GADJIT_WIN_CLIENT
                 ComboBoxMarque.SelectedIndex = 0;
                 GADJIT.sqlConnection.Close();
             }
-
         }
 
         private void ComboBoxMarque_SelectedIndexChanged(object sender, EventArgs e)

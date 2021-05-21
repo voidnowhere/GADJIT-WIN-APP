@@ -18,10 +18,8 @@ namespace GADJIT_WIN_CLIENT
         {
             InitializeComponent();
         }
-
         string passCont = "";
         string emailtemp = "";
-
         private void ClientInformation_Load(object sender, EventArgs e)
         {
             TextBoxEmail.Text= emailtemp= Login.Cemail;

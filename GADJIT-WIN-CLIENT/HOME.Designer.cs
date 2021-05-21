@@ -29,15 +29,18 @@ namespace GADJIT_WIN_CLIENT
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HOME));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.PictureBoxLogout = new System.Windows.Forms.PictureBox();
             this.ButtonProfil = new System.Windows.Forms.Button();
             this.ButtonConsultationTicket = new System.Windows.Forms.Button();
             this.ButtonNewTicket = new System.Windows.Forms.Button();
             this.PictureBoxExit = new System.Windows.Forms.PictureBox();
-            this.PictureBoxLogout = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogout)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -52,6 +55,18 @@ namespace GADJIT_WIN_CLIENT
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(158, 587);
             this.panel1.TabIndex = 1;
+            // 
+            // PictureBoxLogout
+            // 
+            this.PictureBoxLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.PictureBoxLogout.Image = global::GADJIT_WIN_CLIENT.Properties.Resources.logout_rounded_left_48pxclient;
+            this.PictureBoxLogout.Location = new System.Drawing.Point(0, 537);
+            this.PictureBoxLogout.Name = "PictureBoxLogout";
+            this.PictureBoxLogout.Size = new System.Drawing.Size(64, 50);
+            this.PictureBoxLogout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBoxLogout.TabIndex = 9;
+            this.PictureBoxLogout.TabStop = false;
+            this.PictureBoxLogout.Click += new System.EventHandler(this.PictureBoxLogout_Click);
             // 
             // ButtonProfil
             // 
@@ -114,7 +129,7 @@ namespace GADJIT_WIN_CLIENT
             // 
             this.PictureBoxExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.PictureBoxExit.Image = global::GADJIT_WIN_CLIENT.Properties.Resources.close_window_52px;
-            this.PictureBoxExit.Location = new System.Drawing.Point(566, 0);
+            this.PictureBoxExit.Location = new System.Drawing.Point(562, 0);
             this.PictureBoxExit.Name = "PictureBoxExit";
             this.PictureBoxExit.Size = new System.Drawing.Size(34, 33);
             this.PictureBoxExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -122,23 +137,42 @@ namespace GADJIT_WIN_CLIENT
             this.PictureBoxExit.TabStop = false;
             this.PictureBoxExit.Click += new System.EventHandler(this.PictureBoxExit_Click);
             // 
-            // PictureBoxLogout
+            // label1
             // 
-            this.PictureBoxLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.PictureBoxLogout.Image = global::GADJIT_WIN_CLIENT.Properties.Resources.logout_rounded_left_48pxclient;
-            this.PictureBoxLogout.Location = new System.Drawing.Point(0, 537);
-            this.PictureBoxLogout.Name = "PictureBoxLogout";
-            this.PictureBoxLogout.Size = new System.Drawing.Size(64, 50);
-            this.PictureBoxLogout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PictureBoxLogout.TabIndex = 9;
-            this.PictureBoxLogout.TabStop = false;
-            this.PictureBoxLogout.Click += new System.EventHandler(this.PictureBoxLogout_Click);
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Nirmala UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.label1.Location = new System.Drawing.Point(154, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(409, 80);
+            this.label1.TabIndex = 35;
+            this.label1.Text = "Bienvenue chez GADJIT : ";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBox1.BackColor = System.Drawing.Color.White;
+            this.richTextBox1.Font = new System.Drawing.Font("Nirmala UI", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.ForeColor = System.Drawing.Color.DarkSlateBlue;
+            this.richTextBox1.Location = new System.Drawing.Point(153, 77);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(443, 507);
+            this.richTextBox1.TabIndex = 36;
+            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
             // HOME
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(599, 587);
+            this.Controls.Add(this.richTextBox1);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.PictureBoxExit);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -150,8 +184,8 @@ namespace GADJIT_WIN_CLIENT
             this.Text = "HOME";
             this.Load += new System.EventHandler(this.HOME_Load);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogout)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -164,5 +198,7 @@ namespace GADJIT_WIN_CLIENT
         private System.Windows.Forms.Button ButtonNewTicket;
         private System.Windows.Forms.PictureBox PictureBoxLogout;
         private System.Windows.Forms.PictureBox PictureBoxExit;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }
