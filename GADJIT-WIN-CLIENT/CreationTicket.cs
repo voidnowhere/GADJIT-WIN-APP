@@ -81,14 +81,17 @@ namespace GADJIT_WIN_CLIENT
             msg.To.Add(emailtemp);
             msg.From = new MailAddress("GADJITMA@gmail.com");
             msg.Subject = "Création d'une nouvelle ticket";
-            msg.Body = "Bonjour:\n \n Votre Ticket a été Crée.\nVoici votre code de ticket :[ " + ID + " ]. \n\n -Pour consulter votre ticket veuillez rejoindre le panel consultez votre ticket.\n Merci \n \nGADJIT MAROC.";
+            msg.Body = "Bonjour:\n\nVotre Ticket a été Crée.\nVoici votre code de ticket :[ " + ID + " ]. \n\n -Pour consulter votre ticket veuillez rejoindre le panel consultez votre ticket.\n Merci \n \nGADJIT MAROC.";
             client.Send(msg);
+            MessageBox.Show("Ticket a été Crée", "Nouvelle Ticket",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            this.Close();
         }
 
         private void ComboBoxCatGadjit_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(ComboBoxCatGadjit.SelectedIndex > 0)
             {
+                ComboBoxMarque.Items.Clear();
                 GADJIT.sqlConnection.Open();
                 SqlCommand cmd = new SqlCommand("select GadBraDesig from GadgetBrand where GadBraSta = 1", GADJIT.sqlConnection);
                 SqlDataReader dr = cmd.ExecuteReader();
@@ -97,6 +100,7 @@ namespace GADJIT_WIN_CLIENT
                     ComboBoxMarque.Items.Add(dr["GadBraDesig"].ToString());
                 }
                 dr.Close();
+                ComboBoxMarque.Items.Insert(0, "Choisissez une marque");
                 //
                 cmd = new SqlCommand("select GadCatID from GadgetCategory where GadCatDesig = @CatDes", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("CatDes", ComboBoxCatGadjit.Text);
@@ -112,7 +116,7 @@ namespace GADJIT_WIN_CLIENT
         private void ComboBoxMarque_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(ComboBoxCatGadjit.SelectedIndex!=0 && ComboBoxMarque.SelectedIndex != 0)
-            {
+            {                
                 GADJIT.sqlConnection.Open();
                 SqlCommand cmd = new SqlCommand("select GadBraID from GadgetBrand where GadBraDesig=@bradDes", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@bradDes", ComboBoxMarque.Text);
@@ -121,6 +125,7 @@ namespace GADJIT_WIN_CLIENT
                 BrandID = dr["GadBraID"].ToString();
                 dr.Close();
                 //
+                ComboBoxRefGadjit.Items.Clear();
                 cmd = new SqlCommand("select GadRefDesig from GadgetReference where GadCatID = @CatID and GadBraID = @BrandID and GadRefSta=1", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@CatID", CatID);
                 cmd.Parameters.AddWithValue("@BrandID", BrandID);
@@ -130,6 +135,7 @@ namespace GADJIT_WIN_CLIENT
                     ComboBoxRefGadjit.Items.Add(dr["GadRefDesig"].ToString());
                 }
                 dr.Close();
+                ComboBoxRefGadjit.Items.Insert(0, "choisissez une reference");
                 ComboBoxRefGadjit.SelectedIndex = 0;
                 GADJIT.sqlConnection.Close();
             }
@@ -153,6 +159,11 @@ namespace GADJIT_WIN_CLIENT
                 dr.Close();
                 GADJIT.sqlConnection.Close();
             }   
+        }
+
+        private void ButtonAnnuler_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

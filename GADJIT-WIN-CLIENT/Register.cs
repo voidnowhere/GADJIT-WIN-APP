@@ -50,8 +50,8 @@ namespace GADJIT_WIN_CLIENT
             } while (true);
             LabelCaptcha.Text = captcha;
             //
-            GADJIT.sqlConnection.Open();
             SqlCommand cmd = new SqlCommand("select max(CliID) from client ", GADJIT.sqlConnection);
+            GADJIT.sqlConnection.Open();
             SqlDataReader dr = cmd.ExecuteReader();
             dr.Read();
             try
@@ -61,8 +61,7 @@ namespace GADJIT_WIN_CLIENT
             catch
             {
                 ID = "C0";
-            }
-            
+            } 
             GADJIT.sqlConnection.Close();
             dr.Close();
 
@@ -95,7 +94,6 @@ namespace GADJIT_WIN_CLIENT
 
         private void ButtonRegister_Click(object sender, EventArgs e)
         {
-            GADJIT.sqlConnection.Open();
             if (LabelCaptcha.Text == TextBoxCaptcha.Text.Trim())
             {
                 try
@@ -107,6 +105,17 @@ namespace GADJIT_WIN_CLIENT
                             errorProviderCity.SetError(ComboxBoxCity, null);
                             errorProviderCaptcha.SetError(TextBoxCaptcha, null);
                             errorProviderEmail.SetError(TextBoxEmail, null);
+                            SqlCommand cmd = new SqlCommand("insert into client values(@ClientID,@LastName,@FirstName,@Email,@PassWord,@PhoneNumber,@Adress,@City,1)", GADJIT.sqlConnection);
+                            cmd.Parameters.AddWithValue("@ClientID", ID);
+                            cmd.Parameters.AddWithValue("@LastName", TextBoxNom.Text.Trim());
+                            cmd.Parameters.AddWithValue("@FirstName", TextBoxPrenom.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Email", TextBoxEmail.Text.Trim());
+                            cmd.Parameters.AddWithValue("@PassWord", TextBoxPassword.Text.Trim());
+                            cmd.Parameters.AddWithValue("@PhoneNumber", TextBoxPhone.Text.Trim());
+                            cmd.Parameters.AddWithValue("@Adress", RichTextBoxAdress.Text);
+                            cmd.Parameters.AddWithValue("@City", ComboxBoxCity.GetItemText(ComboxBoxCity.SelectedItem));
+                            GADJIT.sqlConnection.Open();
+                            cmd.ExecuteNonQuery();
                             SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
                             client.EnableSsl = true;
                             client.DeliveryMethod = SmtpDeliveryMethod.Network;
@@ -119,16 +128,6 @@ namespace GADJIT_WIN_CLIENT
                             msg.Body = "Bonjour " + TextBoxNom.Text + " :\n votre inscription a bien été traitée bienvenue chez GADJIT. \n GADJIT MAROC.";
                             client.Send(msg);
                             MessageBox.Show("mail envoyez", "un mail de confirmation d'inscription a été envoyer a votre boite mail");
-                            SqlCommand cmd = new SqlCommand("insert into client values(@ClientID,@LastName,@FirstName,@Email,@PassWord,@PhoneNumber,@Adress,@City,1)", GADJIT.sqlConnection);
-                            cmd.Parameters.AddWithValue("@ClientID", ID);
-                            cmd.Parameters.AddWithValue("@LastName", TextBoxNom.Text.Trim());
-                            cmd.Parameters.AddWithValue("@FirstName", TextBoxPrenom.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Email", TextBoxEmail.Text.Trim());
-                            cmd.Parameters.AddWithValue("@PassWord", TextBoxPassword.Text.Trim());
-                            cmd.Parameters.AddWithValue("@PhoneNumber", TextBoxPhone.Text.Trim());
-                            cmd.Parameters.AddWithValue("@Adress", RichTextBoxAdress.Text);
-                            cmd.Parameters.AddWithValue("@City", ComboxBoxCity.GetItemText(ComboxBoxCity.SelectedItem));
-                            cmd.ExecuteNonQuery();
                         }
                         catch(Exception ex)
                         {

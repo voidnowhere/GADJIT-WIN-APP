@@ -65,6 +65,7 @@ namespace GADJIT_WIN_CLIENT
             msg.Subject = "Acceptation Ticket chez GADJIT";
             msg.Body = "Bonjour:\n \n Votre Ticket a été Accepté.\n Merci pour votre confiance. \n reparation en cours.\n \nGADJIT MAROC.";
             client.Send(msg);
+            this.Close();
         }
 
         private void ButtonRejeter_Click(object sender, EventArgs e)
@@ -84,8 +85,9 @@ namespace GADJIT_WIN_CLIENT
             msg.To.Add(emailtemp);
             msg.From = new MailAddress("GADJITMA@gmail.com");
             msg.Subject = "Annulation ticket chez GADJIT";
-            msg.Body = "Bonjour:\n \n Votre Ticket a été Annuler.\n Merci de nous envoyer votre feedback sur la cause d'annulation de ticket pour améliorer.\n \nGADJIT MAROC.";
+            msg.Body = "Bonjour:\n \n Votre Ticket a été Annuler.\n Merci de nous envoyer votre feedback sur la cause d'annulation de ticket pour améliorer notre service.\n \nGADJIT MAROC.";
             client.Send(msg);
+            this.Close();
         }
     }
 }

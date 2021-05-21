@@ -34,11 +34,6 @@ namespace GADJIT_WIN_CLIENT
         {
             emailtemp = Login.Cemail;
             //
-            foreach (DataGridViewRow row in DGVTicket.Rows)
-            {
-                row.ReadOnly = true;
-            }
-            //
             GADJIT.sqlConnection.Open();
             SqlCommand cmd = new SqlCommand("select CliID from Client where CliEmail = '" + emailtemp + "'", GADJIT.sqlConnection);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -57,6 +52,7 @@ namespace GADJIT_WIN_CLIENT
             ComboBoxCodeTicket.SelectedIndex = -1;
             //
             GADJIT.sqlConnection.Close();
+            DGVTicket.Rows.Clear();
             FillDGVTicket();
         }
 
@@ -107,6 +103,7 @@ namespace GADJIT_WIN_CLIENT
                         DGVTicket.Rows.Add(dr["TicID"], dr["TicDT"], dr["TicRepPri"], dr["TicSta"]);
                     }
                 }
+                price = dr["TicRepPri"].ToString();
             }
             catch (Exception ex)
             {
@@ -199,7 +196,7 @@ namespace GADJIT_WIN_CLIENT
             {
                 DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
                 TID = row.Cells["TicketID"].Value.ToString();
-                SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicSta from Ticket where TicID=@TID", GADJIT.sqlConnection);
+                SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicSta,TicRepPri from Ticket where TicID=@TID", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@TID", TID);
                 GADJIT.sqlConnection.Open();
                 dr = cmd.ExecuteReader();
@@ -213,6 +210,7 @@ namespace GADJIT_WIN_CLIENT
                         TextBoxDiag.Text = "Diagnostic Disponible";
                     }
                     RefID = dr["GadRefID"].ToString();
+                    price = dr["TicRepPri"].ToString();
                     dr.Close();
                     GADJIT.sqlConnection.Close();
                     BringBrandCatRef();
@@ -241,6 +239,7 @@ namespace GADJIT_WIN_CLIENT
                         TextBoxDiag.Text = "Diagnostic Disponible";
                     }
                     RefID = dr["GadRefID"].ToString();
+                    price = dr["TicRepPri"].ToString();
                     dr.Close();
                     GADJIT.sqlConnection.Close();
                     BringBrandCatRef();
@@ -252,6 +251,7 @@ namespace GADJIT_WIN_CLIENT
         {
             DiagnosticTicketForClient diag = new DiagnosticTicketForClient();
             diag.ShowDialog();
+            ConsultationTicketForClient_Load(sender, e);
         }
     }
 }

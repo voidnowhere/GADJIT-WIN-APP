@@ -46,6 +46,11 @@ namespace GADJIT_WIN_CLIENT
         {
             this.Size = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
             this.CenterToScreen();
+            if (label1.Visible == false && richTextBox1.Visible == false)
+            {
+                label1.Visible = true;
+                richTextBox1.Visible = true;
+            }
         }
 
         private void ButtonConsultationTicket_Click(object sender, EventArgs e)
@@ -74,7 +79,6 @@ namespace GADJIT_WIN_CLIENT
                 label1.Visible = false;
                 richTextBox1.Visible = false;
             }
-          
          }
     }
 }

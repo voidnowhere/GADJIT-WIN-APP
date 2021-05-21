@@ -40,8 +40,6 @@ namespace GADJIT_WIN_CLIENT
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.PictureBoxExit = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).BeginInit();
             this.SuspendLayout();
             // 
             // ButtonAnnuler
@@ -56,6 +54,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonAnnuler.TabIndex = 32;
             this.ButtonAnnuler.Text = "Annuler";
             this.ButtonAnnuler.UseVisualStyleBackColor = false;
+            this.ButtonAnnuler.Click += new System.EventHandler(this.ButtonAnnuler_Click);
             // 
             // ButtonConfirmer
             // 
@@ -93,8 +92,6 @@ namespace GADJIT_WIN_CLIENT
             this.ComboBoxRefGadjit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ComboBoxRefGadjit.DisplayMember = "reference";
             this.ComboBoxRefGadjit.FormattingEnabled = true;
-            this.ComboBoxRefGadjit.Items.AddRange(new object[] {
-            "choisissez une reference"});
             this.ComboBoxRefGadjit.Location = new System.Drawing.Point(163, 160);
             this.ComboBoxRefGadjit.Name = "ComboBoxRefGadjit";
             this.ComboBoxRefGadjit.Size = new System.Drawing.Size(527, 25);
@@ -107,8 +104,6 @@ namespace GADJIT_WIN_CLIENT
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxMarque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ComboBoxMarque.FormattingEnabled = true;
-            this.ComboBoxMarque.Items.AddRange(new object[] {
-            "Choisissez une marque"});
             this.ComboBoxMarque.Location = new System.Drawing.Point(163, 119);
             this.ComboBoxMarque.Name = "ComboBoxMarque";
             this.ComboBoxMarque.Size = new System.Drawing.Size(527, 25);
@@ -185,24 +180,12 @@ namespace GADJIT_WIN_CLIENT
             this.label1.TabIndex = 22;
             this.label1.Text = "NOUVELLE TICKET";
             // 
-            // PictureBoxExit
-            // 
-            this.PictureBoxExit.Image = global::GADJIT_WIN_CLIENT.Properties.Resources.close_window_52px;
-            this.PictureBoxExit.Location = new System.Drawing.Point(788, 0);
-            this.PictureBoxExit.Name = "PictureBoxExit";
-            this.PictureBoxExit.Size = new System.Drawing.Size(31, 27);
-            this.PictureBoxExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PictureBoxExit.TabIndex = 34;
-            this.PictureBoxExit.TabStop = false;
-            this.PictureBoxExit.Click += new System.EventHandler(this.PictureBoxExit_Click);
-            // 
             // CreationTicket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(818, 588);
-            this.Controls.Add(this.PictureBoxExit);
             this.Controls.Add(this.ButtonAnnuler);
             this.Controls.Add(this.ButtonConfirmer);
             this.Controls.Add(this.RichTextBoxProbTicket);
@@ -222,7 +205,6 @@ namespace GADJIT_WIN_CLIENT
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CreationTicket";
             this.Load += new System.EventHandler(this.CreationTicket_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,6 +223,5 @@ namespace GADJIT_WIN_CLIENT
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox PictureBoxExit;
     }
 }

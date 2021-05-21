@@ -256,6 +256,8 @@ namespace GADJIT_WIN_CLIENT
             // 
             // DGVTicket
             // 
+            this.DGVTicket.AllowUserToAddRows = false;
+            this.DGVTicket.AllowUserToDeleteRows = false;
             this.DGVTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.DGVTicket.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVTicket.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -265,6 +267,7 @@ namespace GADJIT_WIN_CLIENT
             this.StatutTicket});
             this.DGVTicket.Location = new System.Drawing.Point(11, 166);
             this.DGVTicket.Name = "DGVTicket";
+            this.DGVTicket.ReadOnly = true;
             this.DGVTicket.Size = new System.Drawing.Size(464, 351);
             this.DGVTicket.TabIndex = 36;
             this.DGVTicket.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentClick);
@@ -276,6 +279,7 @@ namespace GADJIT_WIN_CLIENT
             this.TicketID.HeaderText = "Code Ticket";
             this.TicketID.MinimumWidth = 50;
             this.TicketID.Name = "TicketID";
+            this.TicketID.ReadOnly = true;
             this.TicketID.Width = 50;
             // 
             // DTTicket
@@ -288,6 +292,7 @@ namespace GADJIT_WIN_CLIENT
             this.DTTicket.HeaderText = "Date Ticket";
             this.DTTicket.MinimumWidth = 150;
             this.DTTicket.Name = "DTTicket";
+            this.DTTicket.ReadOnly = true;
             // 
             // PrixTicket
             // 
@@ -299,6 +304,7 @@ namespace GADJIT_WIN_CLIENT
             this.PrixTicket.HeaderText = "Prix Ticket";
             this.PrixTicket.MinimumWidth = 50;
             this.PrixTicket.Name = "PrixTicket";
+            this.PrixTicket.ReadOnly = true;
             // 
             // StatutTicket
             // 
@@ -307,6 +313,7 @@ namespace GADJIT_WIN_CLIENT
             this.StatutTicket.HeaderText = "Statut Ticket";
             this.StatutTicket.MinimumWidth = 171;
             this.StatutTicket.Name = "StatutTicket";
+            this.StatutTicket.ReadOnly = true;
             // 
             // label1
             // 
