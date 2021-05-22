@@ -20,7 +20,7 @@ namespace GADJIT_WIN_ASW
         {
             InitializeComponent();
         }
-        SqlDataReader dr;
+        SqlDataReader dataReader;
         string WID = WorkerPanel.WID;
         string TID = "";
         string RefID = "";
@@ -79,18 +79,58 @@ namespace GADJIT_WIN_ASW
             {
                 DGVTicket.Rows.Clear();
                 //
-                SqlCommand cmd = new SqlCommand("Select TicID,TicDT,TicSta from ticket where WorID=@WID ", GADJIT.sqlConnection);
-                cmd.Parameters.AddWithValue("@WID", WID);
-                GADJIT.sqlConnection.Open();
-                dr = cmd.ExecuteReader();
-                if (dr.HasRows)
+                String sqlQuery = "select distinct TicID, TicDT, GadRefDesig " +
+                    "from Ticket as t, GadgetReference as gr, GadgetCategory as gc, GadgetBrand as gb, Worker as w, Client as c " +
+                    "where (t.StafID is null or t.StafID = @id) and t.WorID is null and t.GadRefID = gr.GadRefID and TicDT between @dateF and @dateT";
+
+                SqlCommand sqlCommand = new SqlCommand();
+
+                sqlCommand.Parameters.Add("@id", SqlDbType.VarChar).Value = stafID;
+                sqlCommand.Parameters.Add("@dateF", SqlDbType.DateTime).Value = DTPTicketFromSearch.Value;
+                sqlCommand.Parameters.Add("@dateT", SqlDbType.DateTime).Value = DTPTicketToSearch.Value;
+
+                if (ComboBoxCategorySearch.SelectedIndex > 0 || ComboBoxBrandSearch.SelectedIndex > 0 || ComboBoxReferenceSearch.SelectedIndex > 0
+                    || TextBoxClientLastNameSearch.Text != "" || TextBoxWorkerLastNameSearch.Text != "")
                 {
-                    while (dr.Read())
+                    if (ComboBoxCategorySearch.SelectedIndex > 0)
                     {
-                        DGVTicket.Rows.Add(dr["TicID"], dr["TicDT"], dr["TicSta"]);
+                        sqlQuery += " and gr.GadCatID = gc.GadCatID and gc.GadCatDesig = @gcDesig";
+                        sqlCommand.Parameters.Add("@gcDesig", SqlDbType.VarChar).Value = ComboBoxCategorySearch.Text;
+                    }
+                    if (ComboBoxBrandSearch.SelectedIndex > 0)
+                    {
+                        sqlQuery += " and gr.GadBraID = gb.GadBraID and gb.GadBraDesig = @gbDesig";
+                        sqlCommand.Parameters.Add("@gbDesig", SqlDbType.VarChar).Value = ComboBoxBrandSearch.Text;
+                    }
+                    if (ComboBoxReferenceSearch.SelectedIndex > 0)
+                    {
+                        sqlQuery += " and gr.GadRefDesig = @grDesig";
+                        sqlCommand.Parameters.Add("@grDesig", SqlDbType.VarChar).Value = ComboBoxReferenceSearch.Text;
+                    }
+                    if (TextBoxClientLastNameSearch.Text != "")
+                    {
+                        sqlQuery += " and t.CliID = c.CliID and c.CliLastName like @cLastName";
+                        sqlCommand.Parameters.Add("@cLastName", SqlDbType.VarChar).Value = "%" + TextBoxClientLastNameSearch.Text + "%";
+                    }
+                    if (TextBoxWorkerLastNameSearch.Text != "")
+                    {
+                        sqlQuery += " and t.WorID = w.WorID and w.WorLastName like @wLastName";
+                        sqlCommand.Parameters.Add("@wLastName", SqlDbType.VarChar).Value = "%" + TextBoxWorkerLastNameSearch.Text + "%";
                     }
                 }
 
+                sqlCommand.CommandText = sqlQuery;
+                sqlCommand.Connection = GADJIT.sqlConnection;
+                GADJIT.sqlConnection.Open();
+                dataReader = sqlCommand.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        DGVTicket.Rows.Add(dataReader.GetString(0), dataReader.GetDateTime(1), dataReader.GetString(2));
+                    }
+                    TextBoxTotalTickets.Text = DGVTicket.Rows.Count.ToString();
+                }
             }
             catch (Exception ex)
             {
@@ -98,7 +138,7 @@ namespace GADJIT_WIN_ASW
             }
             finally
             {
-                dr.Close();
+                dataReader.Close();
                 GADJIT.sqlConnection.Close();
             }
         }
