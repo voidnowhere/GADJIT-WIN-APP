@@ -239,8 +239,9 @@ namespace GADJIT_WIN_ASW
                 }
                 dataReader.Close();
                 //
-                sqlCommand.CommandText = 
-                    "select WorLastName + ' ' + WorFirstName as WorName, (select COUNT(tw.WorID) from Ticket as tw where tw.WorID = w.WorID) as TicketCount " +
+                sqlCommand.CommandText =
+                    "select WorLastName + ' ' + WorFirstName as WorName, " +
+                        "(select COUNT(WorID) from Ticket as tc where tc.TicSta in('en cours de diagnostic', 'en cours de reparation') and tc.WorID = w.WorID)  as TicketCount " +
                     "from WorkerSpecialty as ws, Worker as w, Ticket as t, GadgetReference as gr " +
                     "where ws.WorID = w.WorID " +
                     "and t.GadRefID = gr.GadRefID " +
@@ -272,12 +273,14 @@ namespace GADJIT_WIN_ASW
             {
                 SqlCommand sqlCommand = new SqlCommand(
                     "select COUNT(t.WorID) from Ticket as t, Worker as w " +
-                    "where t.WorID = w.WorID and w.WorLastName = @lastName and w.WorFirstName = @firstName",
+                    "where t.WorID = w.WorID " +
+                        "and w.WorLastName = @lastName and w.WorFirstName = @firstName " +
+                        "and TicSta in('en cours de diagnostic', 'en cours de reparation')",
                     GADJIT.sqlConnection);
                 sqlCommand.Parameters.Add("@lastName", SqlDbType.VarChar).Value = ComboBoxWorker.Text.Split(' ')[0];
                 sqlCommand.Parameters.Add("@firstName", SqlDbType.VarChar).Value = ComboBoxWorker.Text.Split(' ')[1];
                 GADJIT.sqlConnection.Open();
-                LabelWorkerTicketsCount.Text = sqlCommand.ExecuteScalar().ToString() + " Ticket";
+                LabelWorkerTicketsCount.Text = sqlCommand.ExecuteScalar().ToString() + " Ticket en cours";
             }
             catch (Exception ex)
             {
