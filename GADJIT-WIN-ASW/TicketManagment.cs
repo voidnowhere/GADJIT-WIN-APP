@@ -78,7 +78,7 @@ namespace GADJIT_WIN_ASW
             }
         }
 
-        private void DGVTicket_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DGVTicket_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
             {
@@ -152,13 +152,13 @@ namespace GADJIT_WIN_ASW
             }
         }
 
-        private void DGVTicketMonitoring_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DGVTicketMonitoring_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 String sqlQuery = "";
-                switch(DGVTicketMonitoring[2, e.RowIndex].Value.ToString())
+                switch (DGVTicketMonitoring[2, e.RowIndex].Value.ToString())
                 {
                     case "Personnel":
                         sqlQuery = "select TicMonWhoID, StafLastName + ' ' + StafFirstName as Name, TicMonDes " +

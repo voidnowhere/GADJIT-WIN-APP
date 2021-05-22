@@ -86,7 +86,7 @@ namespace GADJIT_WIN_ASW
             }
             else
             {
-                DGVCategory[0, DGVCategory.CurrentRow.Index].Value = GADJIT.IDGenerator("GC0");
+                DGVCategory[0, DGVCategory.CurrentRow.Index].Value = GADJIT.IDGenerator("GC");
             }
         }
 
@@ -138,8 +138,11 @@ namespace GADJIT_WIN_ASW
             int d = 0;
             for (int i = 0; i < c; i++)
             {
-                if (DGVCategory[2, i].Value.ToString() == "Activer") a++;
-                else if (DGVCategory[2, i].Value.ToString() == "Désactiver") d++;
+                if (DGVCategory[2, i].Value != null)
+                {
+                    if (DGVCategory[2, i].Value.ToString() == "Activer") a++;
+                    else if (DGVCategory[2, i].Value.ToString() == "Désactiver") d++;
+                }   
             }
             TextBoxActivedCategory.Text = a.ToString();
             TextBoxDeactivatedCategory.Text = d.ToString();
@@ -321,7 +324,7 @@ namespace GADJIT_WIN_ASW
             }
             else
             {
-                DGVBrand[0, DGVBrand.CurrentRow.Index].Value = GADJIT.IDGenerator("GB0");
+                DGVBrand[0, DGVBrand.CurrentRow.Index].Value = GADJIT.IDGenerator("GB");
             }
         }
 
@@ -373,8 +376,11 @@ namespace GADJIT_WIN_ASW
             int d = 0;
             for (int i = 0; i < c; i++)
             {
-                if (DGVBrand[2, i].Value.ToString() == "Activer") a++;
-                else if (DGVBrand[2, i].Value.ToString() == "Désactiver") d++;
+                if(DGVBrand[2, i].Value != null)
+                {
+                    if (DGVBrand[2, i].Value.ToString() == "Activer") a++;
+                    else if (DGVBrand[2, i].Value.ToString() == "Désactiver") d++;
+                }
             }
             TextBoxActivedBrand.Text = a.ToString();
             TextBoxDeactivatedBrand.Text = d.ToString();
