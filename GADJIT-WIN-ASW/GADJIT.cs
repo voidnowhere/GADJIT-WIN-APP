@@ -52,7 +52,7 @@ namespace GADJIT_WIN_ASW
             return false;
         }
 
-        private static void SendEmail(string toEmail, string msg)
+        public static void SendEmail(string toEmail, string msg)
         {
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
             smtp.EnableSsl = true;
