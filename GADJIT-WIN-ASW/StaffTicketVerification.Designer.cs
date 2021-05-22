@@ -43,6 +43,8 @@ namespace GADJIT_WIN_ASW
             this.TextBoxClientID = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TextBoxClientAddress = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.LabelWorkerTicketsCount = new System.Windows.Forms.Label();
             this.ButtonVerify = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -69,8 +71,6 @@ namespace GADJIT_WIN_ASW
             this.TextBoxTotalTickets = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.TextBoxClientAddress = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVTicket)).BeginInit();
@@ -192,6 +192,7 @@ namespace GADJIT_WIN_ASW
             this.RichTextBoxProblem.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.RichTextBoxProblem.BackColor = System.Drawing.Color.White;
             this.RichTextBoxProblem.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.RichTextBoxProblem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RichTextBoxProblem.Location = new System.Drawing.Point(142, 173);
@@ -267,6 +268,29 @@ namespace GADJIT_WIN_ASW
             this.groupBox1.TabIndex = 51;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ticket détail";
+            // 
+            // TextBoxClientAddress
+            // 
+            this.TextBoxClientAddress.BackColor = System.Drawing.Color.White;
+            this.TextBoxClientAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxClientAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxClientAddress.Location = new System.Drawing.Point(141, 144);
+            this.TextBoxClientAddress.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.TextBoxClientAddress.Name = "TextBoxClientAddress";
+            this.TextBoxClientAddress.ReadOnly = true;
+            this.TextBoxClientAddress.Size = new System.Drawing.Size(198, 15);
+            this.TextBoxClientAddress.TabIndex = 36;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(7, 144);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 16);
+            this.label2.TabIndex = 35;
+            this.label2.Text = "Client Adresse";
             // 
             // LabelWorkerTicketsCount
             // 
@@ -587,29 +611,6 @@ namespace GADJIT_WIN_ASW
             this.label1.Size = new System.Drawing.Size(99, 16);
             this.label1.TabIndex = 44;
             this.label1.Text = "Total Tickets";
-            // 
-            // TextBoxClientAddress
-            // 
-            this.TextBoxClientAddress.BackColor = System.Drawing.Color.White;
-            this.TextBoxClientAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBoxClientAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxClientAddress.Location = new System.Drawing.Point(141, 144);
-            this.TextBoxClientAddress.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.TextBoxClientAddress.Name = "TextBoxClientAddress";
-            this.TextBoxClientAddress.ReadOnly = true;
-            this.TextBoxClientAddress.Size = new System.Drawing.Size(198, 15);
-            this.TextBoxClientAddress.TabIndex = 36;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(7, 144);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 16);
-            this.label2.TabIndex = 35;
-            this.label2.Text = "Client Adresse";
             // 
             // StaffTicketVerification
             // 
