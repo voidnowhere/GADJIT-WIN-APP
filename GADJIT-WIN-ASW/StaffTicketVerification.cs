@@ -313,6 +313,7 @@ namespace GADJIT_WIN_ASW
             TextBoxClientName.Clear();
             TextBoxClientEmail.Clear();
             TextBoxClientPhoneNumber.Clear();
+            TextBoxClientAddress.Clear();
             RichTextBoxProblem.Clear();
             ComboBoxWorker.Items.Clear();
             LabelWorkerTicketsCount.Text = "";
