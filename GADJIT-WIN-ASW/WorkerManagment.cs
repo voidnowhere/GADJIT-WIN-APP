@@ -358,6 +358,12 @@ namespace GADJIT_WIN_ASW
 
                             MessageBox.Show(sqlCommandInsert.ExecuteNonQuery() + " réussi", "Ajout", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                            GADJIT.SendEmail(
+                                DGVWorker["ColumnTextBoxEmail", rowIndex].Value.ToString(),
+                                "Votre compte de type employé a été créé.\nVoici votre mot de passe: " +
+                                DGVWorker["ColumnTextBoxPassword", rowIndex].Value.ToString() +
+                                "\nVeuillez supprimé cet email.");
+
                             WorkersStats();
                         }
                         catch (Exception ex)
