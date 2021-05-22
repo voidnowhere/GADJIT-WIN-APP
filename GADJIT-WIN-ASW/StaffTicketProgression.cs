@@ -285,7 +285,8 @@ namespace GADJIT_WIN_ASW
 
                         GADJIT.SendEmail(
                             TextBoxClientEmail.Text,
-                            "Votre ticket sous le code [" + DGVTicket[0, DGVTicket.CurrentRow.Index].Value.ToString() + "] a éré vérifié");
+                            "Votre ticket sous le code [" + DGVTicket[0, DGVTicket.CurrentRow.Index].Value.ToString() + "] " +
+                            "a changer de progression vers " + ComboBoxProgression.Text);
 
                         MessageBox.Show(" Modifier", "Progression", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
