@@ -44,7 +44,7 @@ namespace GADJIT_WIN_ASW
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error PictureBoxLogOut_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Error ButtonLogin_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {

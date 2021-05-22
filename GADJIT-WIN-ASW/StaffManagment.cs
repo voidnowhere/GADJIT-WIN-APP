@@ -89,7 +89,7 @@ namespace GADJIT_WIN_ASW
             }
             else
             {
-                DGVStaff[0, DGVStaff.CurrentRow.Index].Value = GADJIT.IDGenerator("S0");
+                DGVStaff[0, DGVStaff.CurrentRow.Index].Value = GADJIT.IDGenerator("S");
             }
         }
 
@@ -207,8 +207,11 @@ namespace GADJIT_WIN_ASW
             int d = 0;
             for (int i = 0; i < c; i++)
             {
-                if (DGVStaff[12, i].Value.ToString() == "Activer") a++;
-                else if (DGVStaff[12, i].Value.ToString() == "Désactiver") d++;
+                if (DGVStaff[12, i].Value != null)
+                {
+                    if (DGVStaff[12, i].Value.ToString() == "Activer") a++;
+                    else if (DGVStaff[12, i].Value.ToString() == "Désactiver") d++;
+                }
             }
             TextBoxActivedStaffs.Text = a.ToString();
             TextBoxDeactivatedStaffs.Text = d.ToString();
@@ -258,6 +261,7 @@ namespace GADJIT_WIN_ASW
                 if(DGVStaff[0, rowIndex].Value == null) // ID
                 {
                     InsertNewIDInDGV();
+                    DGVStaff[6, rowIndex].Value = GADJIT.PasswordGenerator(); //Password
                     DGVStaff[11, rowIndex].Value = "Hors Ligne"; //Disponibility
                     DGVStaff[12, rowIndex].Value = "Désactiver"; //Status
                 }
@@ -328,7 +332,7 @@ namespace GADJIT_WIN_ASW
                             sqlCommandInsert.Parameters.Add("@lastName", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxLastName", rowIndex].Value.ToString();
 
                             sqlCommandInsert.Parameters.Add("@firstName", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxFirstName", rowIndex].Value.ToString();
-
+                            
                             sqlCommandInsert.Parameters.Add("@email", SqlDbType.NVarChar).Value = DGVStaff["ColumnTextBoxEmail", rowIndex].Value.ToString();
 
                             sqlCommandInsert.Parameters.Add("@password", SqlDbType.NVarChar).Value = DGVStaff["ColumnTextBoxPassword", rowIndex].Value.ToString();
@@ -348,6 +352,12 @@ namespace GADJIT_WIN_ASW
                             GADJIT.sqlConnection.Open();
 
                             MessageBox.Show(sqlCommandInsert.ExecuteNonQuery() + " réussi", "Ajout", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            GADJIT.SendEmail(
+                                DGVStaff["ColumnTextBoxEmail", rowIndex].Value.ToString(),
+                                "Votre compte de type personnel a été créé.\nVoici votre mot de passe: "+ 
+                                DGVStaff["ColumnTextBoxPassword", rowIndex].Value.ToString() +
+                                "\nVeuillez supprimé cet email.");
 
                             StaffsStats();
                         }

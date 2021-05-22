@@ -89,7 +89,7 @@ namespace GADJIT_WIN_ASW
             }
             else
             {
-                DGVWorker[0, DGVWorker.CurrentRow.Index].Value = GADJIT.IDGenerator("W0");
+                DGVWorker[0, DGVWorker.CurrentRow.Index].Value = GADJIT.IDGenerator("W");
             }
         }
 
@@ -207,8 +207,11 @@ namespace GADJIT_WIN_ASW
             int d = 0;
             for (int i = 0; i < c; i++)
             {
-                if (DGVWorker[13, i].Value.ToString() == "Activer") a++;
-                else if (DGVWorker[13, i].Value.ToString() == "Désactiver") d++;
+                if (DGVWorker[13, i].Value != null)
+                {
+                    if (DGVWorker[13, i].Value.ToString() == "Activer") a++;
+                    else if (DGVWorker[13, i].Value.ToString() == "Désactiver") d++;
+                }
             }
             TextBoxActivedStaffs.Text = a.ToString();
             TextBoxDeactivatedStaffs.Text = d.ToString();
@@ -264,6 +267,7 @@ namespace GADJIT_WIN_ASW
                 if (DGVWorker[0, rowIndex].Value == null) // ID
                 {
                     InsertNewIDInDGV();
+                    DGVWorker[6, rowIndex].Value = GADJIT.PasswordGenerator(); //Password
                     DGVWorker[12, rowIndex].Value = "Hors Ligne"; //Disponibility
                     DGVWorker[13, rowIndex].Value = "Désactiver"; //Status
                 }
@@ -354,6 +358,12 @@ namespace GADJIT_WIN_ASW
                             GADJIT.sqlConnection.Open();
 
                             MessageBox.Show(sqlCommandInsert.ExecuteNonQuery() + " réussi", "Ajout", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            GADJIT.SendEmail(
+                                DGVWorker["ColumnTextBoxEmail", rowIndex].Value.ToString(),
+                                "Votre compte de type employé a été créé.\nVoici votre mot de passe: " +
+                                DGVWorker["ColumnTextBoxPassword", rowIndex].Value.ToString() +
+                                "\nVeuillez supprimé cet email.");
 
                             WorkersStats();
                         }
