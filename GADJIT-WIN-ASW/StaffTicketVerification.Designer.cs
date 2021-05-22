@@ -462,7 +462,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxWorkerLastNameSearch.Location = new System.Drawing.Point(391, 52);
             this.TextBoxWorkerLastNameSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TextBoxWorkerLastNameSearch.Name = "TextBoxWorkerLastNameSearch";
-            this.TextBoxWorkerLastNameSearch.Size = new System.Drawing.Size(111, 15);
+            this.TextBoxWorkerLastNameSearch.Size = new System.Drawing.Size(144, 15);
             this.TextBoxWorkerLastNameSearch.TabIndex = 10;
             // 
             // label12
@@ -495,7 +495,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxClientLastNameSearch.Location = new System.Drawing.Point(391, 24);
             this.TextBoxClientLastNameSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TextBoxClientLastNameSearch.Name = "TextBoxClientLastNameSearch";
-            this.TextBoxClientLastNameSearch.Size = new System.Drawing.Size(111, 15);
+            this.TextBoxClientLastNameSearch.Size = new System.Drawing.Size(144, 15);
             this.TextBoxClientLastNameSearch.TabIndex = 6;
             // 
             // label9
