@@ -357,6 +357,10 @@ namespace GADJIT_WIN_ASW
                     sqlCommand.CommandText = "insert into TicketMonitoring values(@tid, GETDATE(), 'ticket vérifié', 'S', @sid, 0, 1)";
                     sqlCommand.ExecuteNonQuery();
 
+                    GADJIT.SendEmail(
+                        TextBoxClientEmail.Text,
+                        "Votre ticket sous le code [" + DGVTicket[0, DGVTicket.CurrentRow.Index].Value.ToString() + "] a éré vérifié");
+
                     MessageBox.Show("réussi", "Verification", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ButtonVerify.Enabled = false;
                     ButtonAssign.Enabled = true;
