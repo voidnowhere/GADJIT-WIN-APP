@@ -422,6 +422,13 @@ namespace GADJIT_WIN_ASW
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
             //
+            GADJIT.sqlConnection.Open();
+            cmd.CommandText = "insert into TicketMonitoring values(@TID, GETDATE(), @statut, 'W', @WID, 0, 0)";
+            cmd.Parameters.AddWithValue("@TID", TID);
+            cmd.Parameters.AddWithValue("@statut", ComboBoxPorg.Text);
+            cmd.ExecuteNonQuery();
+            GADJIT.sqlConnection.Close();
+            //
             cmd = new SqlCommand("update Ticket set TicSta=@statut where TicID=@TID", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@statut", ComboBoxPorg.Text);
             cmd.Parameters.AddWithValue("@TID", TID);
