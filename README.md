@@ -3,7 +3,7 @@ This a windows application that facilitates the repair of electronic gadgets wit
 ## Progression :
   1. Login *...Version BETA*
   1. Admin *...Version BETA*
-  1. Staff *...in progress*
+  1. Staff *...Version Alpha*
   1. Worker *...Version Alpha*
   
 # GADJIT-CLIENT
