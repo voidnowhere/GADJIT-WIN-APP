@@ -32,17 +32,17 @@ namespace GADJIT_WIN_ASW
         string CID = "";
         string emailtemp = "";
         string DID = "D";
-        string Statut = "";
         private void TicketConsultationWorker_Load(object sender, EventArgs e)
         {
             FillComboBoxsCategoryBrand();           
             //
             FillDGV();
-            ClientsStats();
+            TicketsStats();
             clearTxtBox();
             //
             DTPTicketFromSearch.MaxDate = DateTime.Now;
             DTPTicketToSearch.MaxDate = DateTime.Now;
+            GroupeBoxDiag.Visible = false;
         }
         private void FillComboBoxsCategoryBrand()
         {
@@ -59,6 +59,7 @@ namespace GADJIT_WIN_ASW
                     ComboBoxCategorySearch.Items.Add(dataReader.GetString(0));
                 }
                 ComboBoxCategorySearch.Items.Insert(0, "--tous--");
+                ComboBoxCategorySearch.SelectedIndex = 0;
                 dataReader.Close();
                 //
                 sqlCommand.CommandText = "select GadBraDesig from GadgetBrand";
@@ -68,6 +69,17 @@ namespace GADJIT_WIN_ASW
                     ComboBoxBrandSearch.Items.Add(dataReader.GetString(0));
                 }
                 ComboBoxBrandSearch.Items.Insert(0, "--tous--");
+                ComboBoxBrandSearch.SelectedIndex = 0;
+                dataReader.Close();
+                sqlCommand.CommandText = "select TicID from Ticket where WorID=@WID";
+                sqlCommand.Parameters.AddWithValue("@WID", WID);
+                dataReader = sqlCommand.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    ComboBoxCode.Items.Add(dataReader.GetString(0));
+                }
+                ComboBoxCode.Items.Insert(0, "--tous--");
+                ComboBoxCode.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -85,12 +97,10 @@ namespace GADJIT_WIN_ASW
             {
                 DGVTicket.Rows.Clear();
                 //
-                String sqlQuery = "select distinct TicID, TicDT, GadRefDesig " +
+                String sqlQuery = "select distinct TicID, TicDT, GadRefDesig,TicSta " +
                     "from Ticket as t, GadgetReference as gr, GadgetCategory as gc, GadgetBrand as gb, Worker as w " +
-                    "where (t.WorID is null or t.WorID = @id)  and t.GadRefID = gr.GadRefID and TicDT between @dateF and @dateT";
-
+                    "where t.WorID = @id and t.GadRefID = gr.GadRefID and TicDT between @dateF and @dateT";
                 SqlCommand sqlCommand = new SqlCommand();
-
                 sqlCommand.Parameters.Add("@id", SqlDbType.VarChar).Value = WID;
                 sqlCommand.Parameters.Add("@dateF", SqlDbType.DateTime).Value = DTPTicketFromSearch.Value;
                 sqlCommand.Parameters.Add("@dateT", SqlDbType.DateTime).Value = DTPTicketToSearch.Value;
@@ -121,7 +131,7 @@ namespace GADJIT_WIN_ASW
                 {
                     while (dataReader.Read())
                     {
-                        DGVTicket.Rows.Add(dataReader.GetString(0), dataReader.GetDateTime(1), dataReader.GetString(2));
+                        DGVTicket.Rows.Add(dataReader.GetString(0), dataReader.GetDateTime(1), dataReader.GetString(2),dataReader.GetString(3));
                     }
                     TextBoxTotalTickets.Text = DGVTicket.Rows.Count.ToString();
                 }
@@ -154,7 +164,7 @@ namespace GADJIT_WIN_ASW
                 {
                     DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
                     TID = row.Cells["CODE"].Value.ToString();
-                    SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicSta from Ticket where TicID=@TID", GADJIT.sqlConnection);
+                    SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicSta,CliID from Ticket where TicID=@TID", GADJIT.sqlConnection);
                     cmd.Parameters.AddWithValue("@TID", TID);
                     GADJIT.sqlConnection.Open();
                     dataReader = cmd.ExecuteReader();
@@ -169,23 +179,31 @@ namespace GADJIT_WIN_ASW
                         {
                             case "en cours de diagnostic":
                                 ComboBoxPorg.Items.AddRange(new string[] { "en cours de diagnostic", "confirmation diagnostic" });
-                                richTextBoxDiag.ReadOnly = false;
-                                TextBoxPrice.ReadOnly = false;
+                                if (GroupeBoxDiag.Visible == false)
+                                {
+                                    GroupeBoxDiag.Visible = true;
+                                }
                                 break;
                             case "confirmation diagnostic":
                                 ComboBoxPorg.Items.AddRange(new string[] { "confirmation diagnostic", "en cours de reparation" });
-                                richTextBoxDiag.ReadOnly = true;
-                                TextBoxPrice.ReadOnly = true;
+                                if (GroupeBoxDiag.Visible == true)
+                                {
+                                    GroupeBoxDiag.Visible = false;
+                                }
                                 break;
                             case "en cours de reparation":
                                 ComboBoxPorg.Items.AddRange(new string[] { "en cours de reparation", "repare" });
-                                richTextBoxDiag.ReadOnly = true;
-                                TextBoxPrice.ReadOnly = true;
+                                if (GroupeBoxDiag.Visible == true)
+                                {
+                                    GroupeBoxDiag.Visible = false;
+                                }
                                 break;
                             case "reparé":
                                 ComboBoxPorg.Items.Add("reparé");
-                                richTextBoxDiag.ReadOnly = true;
-                                TextBoxPrice.ReadOnly = true;
+                                if (GroupeBoxDiag.Visible == true)
+                                {
+                                    GroupeBoxDiag.Visible = false;
+                                }
                                 break;
                         }
                         ComboBoxPorg.SelectedIndex = 0;
@@ -209,7 +227,7 @@ namespace GADJIT_WIN_ASW
                 {
                     DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
                     TID = row.Cells["CODE"].Value.ToString();
-                    SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicSta from Ticket where TicID=@TID", GADJIT.sqlConnection);
+                    SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicSta,CliID from Ticket where TicID=@TID", GADJIT.sqlConnection);
                     cmd.Parameters.AddWithValue("@TID", TID);
                     GADJIT.sqlConnection.Open();
                     dataReader = cmd.ExecuteReader();
@@ -224,23 +242,31 @@ namespace GADJIT_WIN_ASW
                         {
                             case "en cours de diagnostic":
                                 ComboBoxPorg.Items.AddRange(new string[] { "en cours de diagnostic", "confirmation diagnostic" });
-                                richTextBoxDiag.ReadOnly = false;
-                                TextBoxPrice.ReadOnly = false;
+                                if (GroupeBoxDiag.Visible == false)
+                                {
+                                    GroupeBoxDiag.Visible = true;
+                                }
                                 break;
                             case "confirmation diagnostic":
                                 ComboBoxPorg.Items.AddRange(new string[] { "confirmation diagnostic", "en cours de reparation" });
-                                richTextBoxDiag.ReadOnly = true;
-                                TextBoxPrice.ReadOnly = true;
+                                if (GroupeBoxDiag.Visible == true)
+                                {
+                                    GroupeBoxDiag.Visible = false;
+                                }
                                 break;
                             case "en cours de reparation":
                                 ComboBoxPorg.Items.AddRange(new string[] { "en cours de reparation", "repare" });
-                                richTextBoxDiag.ReadOnly = true;
-                                TextBoxPrice.ReadOnly = true;
+                                if (GroupeBoxDiag.Visible == true)
+                                {
+                                    GroupeBoxDiag.Visible = false;
+                                }
                                 break;
                             case "reparé":
                                 ComboBoxPorg.Items.Add("reparé");
-                                richTextBoxDiag.ReadOnly = true;
-                                TextBoxPrice.ReadOnly = true;
+                                if (GroupeBoxDiag.Visible == true)
+                                {
+                                    GroupeBoxDiag.Visible = false;
+                                }
                                 break;
                         }
                         ComboBoxPorg.SelectedIndex = 0;
@@ -279,23 +305,31 @@ namespace GADJIT_WIN_ASW
                         {
                             case "en cours de diagnostic":
                                 ComboBoxPorg.Items.AddRange(new string[] { "en cours de diagnostic", "confirmation diagnostic" });
-                                richTextBoxDiag.ReadOnly = false;
-                                TextBoxPrice.ReadOnly = false;
+                                if (GroupeBoxDiag.Visible == false)
+                                {
+                                    GroupeBoxDiag.Visible = true;
+                                }                               
                                 break;
                             case "confirmation diagnostic":
                                 ComboBoxPorg.Items.AddRange(new string[] { "confirmation diagnostic", "en cours de reparation" });
-                                richTextBoxDiag.ReadOnly = true;
-                                TextBoxPrice.ReadOnly = true;
+                                if (GroupeBoxDiag.Visible == true)
+                                {
+                                    GroupeBoxDiag.Visible = false;
+                                }
                                 break;
                             case "en cours de reparation":
                                 ComboBoxPorg.Items.AddRange(new string[] { "en cours de reparation", "repare" });
-                                richTextBoxDiag.ReadOnly = true;
-                                TextBoxPrice.ReadOnly = true;
+                                if (GroupeBoxDiag.Visible == true)
+                                {
+                                    GroupeBoxDiag.Visible = false;
+                                }
                                 break;
                             case "reparé":
                                 ComboBoxPorg.Items.Add("reparé");
-                                richTextBoxDiag.ReadOnly = true;
-                                TextBoxPrice.ReadOnly = true;
+                                if (GroupeBoxDiag.Visible == true)
+                                {
+                                    GroupeBoxDiag.Visible = false;
+                                }
                                 break;
                         }
                         ComboBoxPorg.SelectedIndex = 0;
@@ -346,7 +380,7 @@ namespace GADJIT_WIN_ASW
             }
             GADJIT.sqlConnection.Close();
         }
-        private void ClientsStats()
+        private void TicketsStats()
         {
             int c = DGVTicket.Rows.Count;
             int a = 0;
@@ -489,6 +523,16 @@ namespace GADJIT_WIN_ASW
             {
                 ComboBoxReferenceSearch.Items.Clear();
             }
+        }
+
+        private void ComboBoxCategorySearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetGadgetReferences();
+        }
+
+        private void ComboBoxBrandSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GetGadgetReferences();
         }
     }
 }

@@ -30,10 +30,6 @@ namespace GADJIT_WIN_ASW
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.label4 = new System.Windows.Forms.Label();
-            this.richTextBoxDiag = new System.Windows.Forms.RichTextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.TextBoxPrice = new System.Windows.Forms.TextBox();
             this.ButtonRecherche = new System.Windows.Forms.Button();
             this.TextBoxGadget = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -44,20 +40,9 @@ namespace GADJIT_WIN_ASW
             this.TextBoxTicketRepare = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.DGVTicket = new System.Windows.Forms.DataGridView();
-            this.CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.STATUT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBoxWorkTime = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.ComboBoxPorg = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.ButtonEnregistrer = new System.Windows.Forms.Button();
-            this.RichTextBoxProblem = new System.Windows.Forms.RichTextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.ButtonReset = new System.Windows.Forms.Button();
+            this.ComboBoxCode = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.ComboBoxReferenceSearch = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
             this.ComboBoxCategorySearch = new System.Windows.Forms.ComboBox();
@@ -68,67 +53,32 @@ namespace GADJIT_WIN_ASW
             this.DTPTicketToSearch = new System.Windows.Forms.DateTimePicker();
             this.DTPTicketFromSearch = new System.Windows.Forms.DateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
-            this.ComboBoxCode = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.ButtonReset = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.DGVTicket = new System.Windows.Forms.DataGridView();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.ComboBoxPorg = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.ButtonEnregistrer = new System.Windows.Forms.Button();
+            this.RichTextBoxProblem = new System.Windows.Forms.RichTextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Refrence = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GroupeBoxDiag = new System.Windows.Forms.GroupBox();
+            this.textBoxWorkTime = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.TextBoxPrice = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.richTextBoxDiag = new System.Windows.Forms.RichTextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVTicket)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.GroupeBoxDiag.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(69, 347);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 17);
-            this.label4.TabIndex = 36;
-            this.label4.Text = "Reparation Prix";
-            // 
-            // richTextBoxDiag
-            // 
-            this.richTextBoxDiag.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBoxDiag.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBoxDiag.Location = new System.Drawing.Point(183, 198);
-            this.richTextBoxDiag.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.richTextBoxDiag.Name = "richTextBoxDiag";
-            this.richTextBoxDiag.Size = new System.Drawing.Size(420, 136);
-            this.richTextBoxDiag.TabIndex = 35;
-            this.richTextBoxDiag.Text = "";
-            // 
-            // label14
-            // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label14.Location = new System.Drawing.Point(97, 200);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(69, 17);
-            this.label14.TabIndex = 34;
-            this.label14.Text = "Diagnostic";
-            // 
-            // TextBoxPrice
-            // 
-            this.TextBoxPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBoxPrice.BackColor = System.Drawing.Color.White;
-            this.TextBoxPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxPrice.Location = new System.Drawing.Point(183, 340);
-            this.TextBoxPrice.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.TextBoxPrice.Multiline = true;
-            this.TextBoxPrice.Name = "TextBoxPrice";
-            this.TextBoxPrice.Size = new System.Drawing.Size(295, 24);
-            this.TextBoxPrice.TabIndex = 37;
             // 
             // ButtonRecherche
             // 
@@ -280,6 +230,153 @@ namespace GADJIT_WIN_ASW
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Recherche :";
             // 
+            // ButtonReset
+            // 
+            this.ButtonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonReset.BackColor = System.Drawing.Color.Teal;
+            this.ButtonReset.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.ButtonReset.FlatAppearance.BorderSize = 0;
+            this.ButtonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonReset.ForeColor = System.Drawing.Color.White;
+            this.ButtonReset.Location = new System.Drawing.Point(945, 65);
+            this.ButtonReset.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.ButtonReset.Name = "ButtonReset";
+            this.ButtonReset.Size = new System.Drawing.Size(105, 29);
+            this.ButtonReset.TabIndex = 53;
+            this.ButtonReset.Text = "Annuler";
+            this.ButtonReset.UseVisualStyleBackColor = false;
+            // 
+            // ComboBoxCode
+            // 
+            this.ComboBoxCode.BackColor = System.Drawing.Color.White;
+            this.ComboBoxCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxCode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboBoxCode.FormattingEnabled = true;
+            this.ComboBoxCode.Location = new System.Drawing.Point(614, 64);
+            this.ComboBoxCode.Name = "ComboBoxCode";
+            this.ComboBoxCode.Size = new System.Drawing.Size(187, 29);
+            this.ComboBoxCode.TabIndex = 52;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(536, 71);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(46, 16);
+            this.label5.TabIndex = 51;
+            this.label5.Text = "CODE";
+            // 
+            // ComboBoxReferenceSearch
+            // 
+            this.ComboBoxReferenceSearch.BackColor = System.Drawing.Color.White;
+            this.ComboBoxReferenceSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxReferenceSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboBoxReferenceSearch.FormattingEnabled = true;
+            this.ComboBoxReferenceSearch.Location = new System.Drawing.Point(614, 28);
+            this.ComboBoxReferenceSearch.Name = "ComboBoxReferenceSearch";
+            this.ComboBoxReferenceSearch.Size = new System.Drawing.Size(187, 29);
+            this.ComboBoxReferenceSearch.TabIndex = 50;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(536, 35);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(71, 16);
+            this.label23.TabIndex = 49;
+            this.label23.Text = "Référence";
+            // 
+            // ComboBoxCategorySearch
+            // 
+            this.ComboBoxCategorySearch.BackColor = System.Drawing.Color.White;
+            this.ComboBoxCategorySearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxCategorySearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboBoxCategorySearch.FormattingEnabled = true;
+            this.ComboBoxCategorySearch.Location = new System.Drawing.Point(87, 28);
+            this.ComboBoxCategorySearch.Name = "ComboBoxCategorySearch";
+            this.ComboBoxCategorySearch.Size = new System.Drawing.Size(187, 29);
+            this.ComboBoxCategorySearch.TabIndex = 48;
+            this.ComboBoxCategorySearch.SelectedIndexChanged += new System.EventHandler(this.ComboBoxCategorySearch_SelectedIndexChanged);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(9, 29);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(67, 16);
+            this.label22.TabIndex = 47;
+            this.label22.Text = "Catégorie";
+            // 
+            // ComboBoxBrandSearch
+            // 
+            this.ComboBoxBrandSearch.BackColor = System.Drawing.Color.White;
+            this.ComboBoxBrandSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxBrandSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboBoxBrandSearch.FormattingEnabled = true;
+            this.ComboBoxBrandSearch.Location = new System.Drawing.Point(342, 28);
+            this.ComboBoxBrandSearch.Name = "ComboBoxBrandSearch";
+            this.ComboBoxBrandSearch.Size = new System.Drawing.Size(187, 29);
+            this.ComboBoxBrandSearch.TabIndex = 46;
+            this.ComboBoxBrandSearch.SelectedIndexChanged += new System.EventHandler(this.ComboBoxBrandSearch_SelectedIndexChanged);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(51, 64);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(25, 16);
+            this.label21.TabIndex = 45;
+            this.label21.Text = "Du";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(311, 72);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(24, 16);
+            this.label20.TabIndex = 44;
+            this.label20.Text = "Au";
+            // 
+            // DTPTicketToSearch
+            // 
+            this.DTPTicketToSearch.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.DTPTicketToSearch.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DTPTicketToSearch.Location = new System.Drawing.Point(342, 62);
+            this.DTPTicketToSearch.Name = "DTPTicketToSearch";
+            this.DTPTicketToSearch.Size = new System.Drawing.Size(187, 29);
+            this.DTPTicketToSearch.TabIndex = 43;
+            // 
+            // DTPTicketFromSearch
+            // 
+            this.DTPTicketFromSearch.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DTPTicketFromSearch.Location = new System.Drawing.Point(87, 62);
+            this.DTPTicketFromSearch.Name = "DTPTicketFromSearch";
+            this.DTPTicketFromSearch.Size = new System.Drawing.Size(187, 29);
+            this.DTPTicketFromSearch.TabIndex = 42;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(281, 35);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(54, 16);
+            this.label11.TabIndex = 39;
+            this.label11.Text = "Marque";
+            // 
             // label10
             // 
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -302,7 +399,8 @@ namespace GADJIT_WIN_ASW
             this.DGVTicket.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CODE,
             this.DATE,
-            this.STATUT});
+            this.Refrence,
+            this.Sta});
             this.DGVTicket.Location = new System.Drawing.Point(24, 170);
             this.DGVTicket.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.DGVTicket.Name = "DGVTicket";
@@ -313,39 +411,10 @@ namespace GADJIT_WIN_ASW
             this.DGVTicket.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentClick);
             this.DGVTicket.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentDoubleClick);
             // 
-            // CODE
-            // 
-            this.CODE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CODE.HeaderText = "CODE";
-            this.CODE.Name = "CODE";
-            this.CODE.ReadOnly = true;
-            // 
-            // DATE
-            // 
-            this.DATE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.DATE.DefaultCellStyle = dataGridViewCellStyle1;
-            this.DATE.HeaderText = "DATE";
-            this.DATE.Name = "DATE";
-            this.DATE.ReadOnly = true;
-            // 
-            // STATUT
-            // 
-            this.STATUT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.STATUT.HeaderText = "STATUT";
-            this.STATUT.Name = "STATUT";
-            this.STATUT.ReadOnly = true;
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.groupBox1.Controls.Add(this.textBoxWorkTime);
-            this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.TextBoxPrice);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.richTextBoxDiag);
-            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.GroupeBoxDiag);
             this.groupBox1.Controls.Add(this.TextBoxGadget);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.ComboBoxPorg);
@@ -363,33 +432,6 @@ namespace GADJIT_WIN_ASW
             this.groupBox1.TabIndex = 70;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ticket détail";
-            // 
-            // textBoxWorkTime
-            // 
-            this.textBoxWorkTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxWorkTime.BackColor = System.Drawing.Color.White;
-            this.textBoxWorkTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxWorkTime.Location = new System.Drawing.Point(183, 380);
-            this.textBoxWorkTime.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBoxWorkTime.Multiline = true;
-            this.textBoxWorkTime.Name = "textBoxWorkTime";
-            this.textBoxWorkTime.Size = new System.Drawing.Size(295, 24);
-            this.textBoxWorkTime.TabIndex = 39;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(8, 387);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(158, 17);
-            this.label6.TabIndex = 38;
-            this.label6.Text = "Reparation Temp en Heur";
             // 
             // label17
             // 
@@ -474,150 +516,129 @@ namespace GADJIT_WIN_ASW
             this.label7.TabIndex = 8;
             this.label7.Text = "Probleme";
             // 
-            // ComboBoxReferenceSearch
+            // CODE
             // 
-            this.ComboBoxReferenceSearch.BackColor = System.Drawing.Color.White;
-            this.ComboBoxReferenceSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBoxReferenceSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ComboBoxReferenceSearch.FormattingEnabled = true;
-            this.ComboBoxReferenceSearch.Location = new System.Drawing.Point(614, 28);
-            this.ComboBoxReferenceSearch.Name = "ComboBoxReferenceSearch";
-            this.ComboBoxReferenceSearch.Size = new System.Drawing.Size(187, 29);
-            this.ComboBoxReferenceSearch.TabIndex = 50;
+            this.CODE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CODE.HeaderText = "CODE";
+            this.CODE.Name = "CODE";
+            this.CODE.ReadOnly = true;
             // 
-            // label23
+            // DATE
             // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(536, 35);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(71, 16);
-            this.label23.TabIndex = 49;
-            this.label23.Text = "Référence";
+            this.DATE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.DATE.DefaultCellStyle = dataGridViewCellStyle1;
+            this.DATE.HeaderText = "DATE";
+            this.DATE.Name = "DATE";
+            this.DATE.ReadOnly = true;
             // 
-            // ComboBoxCategorySearch
+            // Refrence
             // 
-            this.ComboBoxCategorySearch.BackColor = System.Drawing.Color.White;
-            this.ComboBoxCategorySearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBoxCategorySearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ComboBoxCategorySearch.FormattingEnabled = true;
-            this.ComboBoxCategorySearch.Location = new System.Drawing.Point(87, 28);
-            this.ComboBoxCategorySearch.Name = "ComboBoxCategorySearch";
-            this.ComboBoxCategorySearch.Size = new System.Drawing.Size(187, 29);
-            this.ComboBoxCategorySearch.TabIndex = 48;
+            this.Refrence.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Refrence.HeaderText = "GADGET";
+            this.Refrence.Name = "Refrence";
+            this.Refrence.ReadOnly = true;
             // 
-            // label22
+            // Sta
             // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(9, 29);
-            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(67, 16);
-            this.label22.TabIndex = 47;
-            this.label22.Text = "Catégorie";
+            this.Sta.HeaderText = "STATUT";
+            this.Sta.Name = "Sta";
+            this.Sta.ReadOnly = true;
             // 
-            // ComboBoxBrandSearch
+            // GroupeBoxDiag
             // 
-            this.ComboBoxBrandSearch.BackColor = System.Drawing.Color.White;
-            this.ComboBoxBrandSearch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBoxBrandSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ComboBoxBrandSearch.FormattingEnabled = true;
-            this.ComboBoxBrandSearch.Location = new System.Drawing.Point(342, 28);
-            this.ComboBoxBrandSearch.Name = "ComboBoxBrandSearch";
-            this.ComboBoxBrandSearch.Size = new System.Drawing.Size(187, 29);
-            this.ComboBoxBrandSearch.TabIndex = 46;
+            this.GroupeBoxDiag.Controls.Add(this.textBoxWorkTime);
+            this.GroupeBoxDiag.Controls.Add(this.label6);
+            this.GroupeBoxDiag.Controls.Add(this.TextBoxPrice);
+            this.GroupeBoxDiag.Controls.Add(this.label4);
+            this.GroupeBoxDiag.Controls.Add(this.richTextBoxDiag);
+            this.GroupeBoxDiag.Controls.Add(this.label14);
+            this.GroupeBoxDiag.Location = new System.Drawing.Point(7, 197);
+            this.GroupeBoxDiag.Name = "GroupeBoxDiag";
+            this.GroupeBoxDiag.Size = new System.Drawing.Size(608, 203);
+            this.GroupeBoxDiag.TabIndex = 34;
+            this.GroupeBoxDiag.TabStop = false;
             // 
-            // label21
+            // textBoxWorkTime
             // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(51, 64);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(25, 16);
-            this.label21.TabIndex = 45;
-            this.label21.Text = "Du";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(311, 72);
-            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(24, 16);
-            this.label20.TabIndex = 44;
-            this.label20.Text = "Au";
-            // 
-            // DTPTicketToSearch
-            // 
-            this.DTPTicketToSearch.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.DTPTicketToSearch.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTPTicketToSearch.Location = new System.Drawing.Point(342, 62);
-            this.DTPTicketToSearch.Name = "DTPTicketToSearch";
-            this.DTPTicketToSearch.Size = new System.Drawing.Size(187, 29);
-            this.DTPTicketToSearch.TabIndex = 43;
-            // 
-            // DTPTicketFromSearch
-            // 
-            this.DTPTicketFromSearch.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTPTicketFromSearch.Location = new System.Drawing.Point(87, 62);
-            this.DTPTicketFromSearch.Name = "DTPTicketFromSearch";
-            this.DTPTicketFromSearch.Size = new System.Drawing.Size(187, 29);
-            this.DTPTicketFromSearch.TabIndex = 42;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(281, 35);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(54, 16);
-            this.label11.TabIndex = 39;
-            this.label11.Text = "Marque";
-            // 
-            // ComboBoxCode
-            // 
-            this.ComboBoxCode.BackColor = System.Drawing.Color.White;
-            this.ComboBoxCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBoxCode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ComboBoxCode.FormattingEnabled = true;
-            this.ComboBoxCode.Location = new System.Drawing.Point(614, 64);
-            this.ComboBoxCode.Name = "ComboBoxCode";
-            this.ComboBoxCode.Size = new System.Drawing.Size(187, 29);
-            this.ComboBoxCode.TabIndex = 52;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(536, 71);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 16);
-            this.label5.TabIndex = 51;
-            this.label5.Text = "CODE";
-            // 
-            // ButtonReset
-            // 
-            this.ButtonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxWorkTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ButtonReset.BackColor = System.Drawing.Color.Teal;
-            this.ButtonReset.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-            this.ButtonReset.FlatAppearance.BorderSize = 0;
-            this.ButtonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonReset.ForeColor = System.Drawing.Color.White;
-            this.ButtonReset.Location = new System.Drawing.Point(945, 65);
-            this.ButtonReset.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.ButtonReset.Name = "ButtonReset";
-            this.ButtonReset.Size = new System.Drawing.Size(105, 29);
-            this.ButtonReset.TabIndex = 53;
-            this.ButtonReset.Text = "Annuler";
-            this.ButtonReset.UseVisualStyleBackColor = false;
+            this.textBoxWorkTime.BackColor = System.Drawing.Color.White;
+            this.textBoxWorkTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxWorkTime.Location = new System.Drawing.Point(176, 157);
+            this.textBoxWorkTime.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBoxWorkTime.Multiline = true;
+            this.textBoxWorkTime.Name = "textBoxWorkTime";
+            this.textBoxWorkTime.Size = new System.Drawing.Size(295, 24);
+            this.textBoxWorkTime.TabIndex = 45;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label6.Location = new System.Drawing.Point(10, 164);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(158, 17);
+            this.label6.TabIndex = 44;
+            this.label6.Text = "Reparation Temp en Heur";
+            // 
+            // TextBoxPrice
+            // 
+            this.TextBoxPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBoxPrice.BackColor = System.Drawing.Color.White;
+            this.TextBoxPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxPrice.Location = new System.Drawing.Point(176, 127);
+            this.TextBoxPrice.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.TextBoxPrice.Multiline = true;
+            this.TextBoxPrice.Name = "TextBoxPrice";
+            this.TextBoxPrice.Size = new System.Drawing.Size(295, 24);
+            this.TextBoxPrice.TabIndex = 43;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label4.Location = new System.Drawing.Point(62, 129);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 17);
+            this.label4.TabIndex = 42;
+            this.label4.Text = "Reparation Prix";
+            // 
+            // richTextBoxDiag
+            // 
+            this.richTextBoxDiag.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBoxDiag.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBoxDiag.Location = new System.Drawing.Point(176, 15);
+            this.richTextBoxDiag.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.richTextBoxDiag.Name = "richTextBoxDiag";
+            this.richTextBoxDiag.Size = new System.Drawing.Size(420, 106);
+            this.richTextBoxDiag.TabIndex = 41;
+            this.richTextBoxDiag.Text = "";
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label14.Location = new System.Drawing.Point(90, 17);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(69, 17);
+            this.label14.TabIndex = 40;
+            this.label14.Text = "Diagnostic";
             // 
             // TicketConsultationWorker
             // 
@@ -644,17 +665,14 @@ namespace GADJIT_WIN_ASW
             ((System.ComponentModel.ISupportInitialize)(this.DGVTicket)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.GroupeBoxDiag.ResumeLayout(false);
+            this.GroupeBoxDiag.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RichTextBox richTextBoxDiag;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox TextBoxPrice;
         private System.Windows.Forms.Button ButtonRecherche;
         private System.Windows.Forms.TextBox TextBoxGadget;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -674,11 +692,6 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.Button ButtonEnregistrer;
         private System.Windows.Forms.RichTextBox RichTextBoxProblem;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CODE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DATE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STATUT;
-        private System.Windows.Forms.TextBox textBoxWorkTime;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox ComboBoxCode;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox ComboBoxReferenceSearch;
@@ -692,5 +705,16 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.DateTimePicker DTPTicketFromSearch;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button ButtonReset;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CODE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DATE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Refrence;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sta;
+        private System.Windows.Forms.GroupBox GroupeBoxDiag;
+        private System.Windows.Forms.TextBox textBoxWorkTime;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox TextBoxPrice;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.RichTextBox richTextBoxDiag;
+        private System.Windows.Forms.Label label14;
     }
 }
