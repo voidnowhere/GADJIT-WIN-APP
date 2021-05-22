@@ -19,31 +19,39 @@ namespace GADJIT_WIN_ASW
             InitializeComponent();
         }
         public static string WID;
+        public Login login;
         private void PannelButtonsLock(bool tf)
         {
             ShowSubMenuButton.Enabled = tf;
         }
         private void cirucularButton_Click(object sender, EventArgs e)
         {
-            GADJIT.sqlConnection.Open();
             if (cirucularButton.BackColor == Color.Lime)
             {
                 cirucularButton.BackColor = Color.Orange;
+                GADJIT.sqlConnection.Open();
                 SqlCommand cmd = new SqlCommand("UPDATE Worker SET WorDispo='Break' where WorEmail=@Email", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@Email", LabelEmail.Text);
                 cmd.ExecuteNonQuery();
-                PannelButtonsLock(true);
+                GADJIT.sqlConnection.Close();
+                PannelButtonsLock(false);
             }
             else
             {
                 cirucularButton.BackColor = Color.Lime;
                 cirucularButton.BackColor = Color.Orange;
+                UnlockWorkerPanel unlockWorkerPanel = new UnlockWorkerPanel();
+                unlockWorkerPanel.login = login;
+                unlockWorkerPanel.WorkerPanel = this;
+                unlockWorkerPanel.email = LabelEmail.Text;
+                unlockWorkerPanel.ShowDialog();
+                GADJIT.sqlConnection.Open();
                 SqlCommand cmd = new SqlCommand("UPDATE Worker SET WorDispo='En Ligne' where WorEmail=@Email", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@Email", LabelEmail.Text);
                 cmd.ExecuteNonQuery();
-                PannelButtonsLock(false);
-            }
-            GADJIT.sqlConnection.Close();
+                GADJIT.sqlConnection.Close();
+                PannelButtonsLock(true);
+            }     
         }
 
         private void WorkerPanel_Load(object sender, EventArgs e)
@@ -72,7 +80,7 @@ namespace GADJIT_WIN_ASW
 
         private void WorkerPanel_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("UPDATE Worker SET WorDispo='Hors Ligne' where WorEmail=@Email", GADJIT.sqlConnection);
+            SqlCommand cmd = new SqlCommand("UPDATE Worker SET WorDispo = 'Hors Ligne' where WorEmail = @Email", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@Email", LabelEmail.Text);
             GADJIT.sqlConnection.Open();
             cmd.ExecuteNonQuery();

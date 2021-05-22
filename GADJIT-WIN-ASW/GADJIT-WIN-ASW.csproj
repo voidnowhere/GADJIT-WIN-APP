@@ -116,6 +116,12 @@
     <Compile Include="UnlockAdminPanel.Designer.cs">
       <DependentUpon>UnlockAdminPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UnlockWorkerPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UnlockWorkerPanel.Designer.cs">
+      <DependentUpon>UnlockWorkerPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="WorkerSpeciality.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UnlockAdminPanel.resx">
       <DependentUpon>UnlockAdminPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UnlockWorkerPanel.resx">
+      <DependentUpon>UnlockWorkerPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WorkerManagment.resx">
       <DependentUpon>WorkerManagment.cs</DependentUpon>
