@@ -240,6 +240,7 @@ namespace GADJIT_WIN_ASW
             TextBoxClientPhoneNumber.Clear();
             RichTextBoxProblem.Clear();
             TextBoxWorker.Clear();
+            ComboBoxProgression.SelectedIndex = -1;
         }
 
         private void ButtonSearch_Click(object sender, EventArgs e)
@@ -258,6 +259,46 @@ namespace GADJIT_WIN_ASW
             TextBoxClientLastNameSearch.Clear();
             TextBoxWorkerLastNameSearch.Clear();
             FillDGVTicket();
+        }
+
+        private void ButtonSave_Click(object sender, EventArgs e)
+        {
+            if(ComboBoxProgression.SelectedIndex > -1)
+            {
+                if (MessageBox.Show("Voulez vous confirmer la progression", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                {
+                    try
+                    {
+                        SqlCommand sqlCommand = new SqlCommand();
+                        sqlCommand.CommandText = "update Ticket set TicSta = @status where TicID = @tid";
+                        sqlCommand.Parameters.Add("@status", SqlDbType.VarChar).Value = ComboBoxProgression.Text;
+                        sqlCommand.Parameters.Add("@tid", SqlDbType.VarChar).Value = ticID;
+
+                        sqlCommand.Connection = GADJIT.sqlConnection;
+                        GADJIT.sqlConnection.Open();
+
+                        sqlCommand.ExecuteNonQuery();
+
+                        sqlCommand.CommandText = "insert into TicketMonitoring values(@tid, GETDATE(), @status, 'S', @sid, 0, 1)";
+                        sqlCommand.Parameters.Add("@sid", SqlDbType.VarChar).Value = stafID;
+                        sqlCommand.ExecuteNonQuery();
+
+                        GADJIT.SendEmail(
+                            TextBoxClientEmail.Text,
+                            "Votre ticket sous le code [" + DGVTicket[0, DGVTicket.CurrentRow.Index].Value.ToString() + "] a éré vérifié");
+
+                        MessageBox.Show(" Modifier", "Progression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error ButtonVerify_Click()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        GADJIT.sqlConnection.Close();
+                    }
+                }
+            }
         }
     }
 }
