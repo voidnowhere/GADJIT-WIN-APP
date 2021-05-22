@@ -211,9 +211,10 @@ namespace GADJIT_WIN_ASW
                 ticID = DGVTicket[0, e.RowIndex].Value.ToString();
                 SqlCommand sqlCommand = new SqlCommand();
 
-                sqlCommand.CommandText = "select t.CliID, CliLastName + ' ' + CliFirstName as CliName, CliEmail, CliPhoneNumber, TicProb, TicSta " +
-                                            "from Ticket as t, Client as c " +
-                                            "where TicID = @id and t.CliID = c.CliID";
+                sqlCommand.CommandText =
+                    "select t.CliID, CliLastName + ' ' + CliFirstName as CliName, CliEmail, CliPhoneNumber, CliAdress, CitDesig, TicProb, TicSta " +
+                        "from Ticket as t, Client as c " +
+                            "where TicID = @id and t.CliID = c.CliID";
                 sqlCommand.Parameters.Add("@id", SqlDbType.VarChar).Value = ticID;
                 sqlCommand.Connection = GADJIT.sqlConnection;
                 GADJIT.sqlConnection.Open();
@@ -225,6 +226,7 @@ namespace GADJIT_WIN_ASW
                     TextBoxClientName.Text = dataReader["CliName"].ToString();
                     TextBoxClientEmail.Text = dataReader["CliEmail"].ToString();
                     TextBoxClientPhoneNumber.Text = dataReader["CliPhoneNumber"].ToString();
+                    TextBoxClientAddress.Text = dataReader["CliAdress"].ToString() + " " + dataReader["CitDesig"].ToString();
                     RichTextBoxProblem.Text = dataReader["TicProb"].ToString();
                     if(dataReader["TicSta"].ToString() == "vérifié")
                     {
