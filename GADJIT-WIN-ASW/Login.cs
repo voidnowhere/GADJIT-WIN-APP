@@ -57,12 +57,14 @@ namespace GADJIT_WIN_ASW
                         break;
                     case "S":
                         StaffPanel Staff = new StaffPanel();
+                        Staff.login = this;
                         Staff.LabelLastName.Text = dr.GetString(0);
                         Staff.LabelFirstName.Text = dr.GetString(1);
                         Staff.LabelEmail.Text = dr.GetString(2);
                         Staff.CircularProfilPicture.Image = Image.FromStream(new MemoryStream((byte[])dr.GetValue(3)));
                         dr.Close();
                         GADJIT.sqlConnection.Close();
+                        this.Hide();
                         Staff.ShowDialog();                       
                         break;
                     case "W":

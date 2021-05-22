@@ -19,48 +19,95 @@ namespace GADJIT_WIN_ASW
             InitializeComponent();
         }
 
+        public Login login;
+
+        private void CloseMdiChildIdExists()
+        {
+            if (this.ActiveMdiChild != null) this.ActiveMdiChild.Close();
+        }
+
+        private void StaffDispoChanger(string dispo)
+        {
+            try
+            {
+                SqlCommand sqlCommandDispo = new SqlCommand("update Staff set StafDispo = @dispo where StafEmail = @email", GADJIT.sqlConnection);
+                sqlCommandDispo.Parameters.Add("@dispo", SqlDbType.VarChar).Value = dispo;
+                sqlCommandDispo.Parameters.Add("@email", SqlDbType.NVarChar).Value = LabelEmail.Text;
+                GADJIT.sqlConnection.Open();
+                sqlCommandDispo.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error AdminDispo(string dispo)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                GADJIT.sqlConnection.Close();
+            }
+        }
+
         private void StaffPanel_Load(object sender, EventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("UPDATE Staff SET StafDispo='En Ligne' where StafEmail=@Email", GADJIT.sqlConnection);
-            cmd.Parameters.AddWithValue("@Email", LabelEmail.Text);
-            GADJIT.sqlConnection.Open();
-            cmd.ExecuteNonQuery();
-            GADJIT.sqlConnection.Close();
+            StaffDispoChanger("En Ligne");
+            this.Size = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
+            this.CenterToScreen();
+        }
+
+        private void PannelButtonsLock(bool tf)
+        {
+            ShowSubMenuButton.Enabled = tf;
+            ButtonTicketVerification.Enabled = tf;
+            ButtonTicketProgression.Enabled = tf;
         }
 
         private void cirucularButton_Click(object sender, EventArgs e)
         {
-            GADJIT.sqlConnection.Open();
-            if (cirucularButton.BackColor == Color.Lime)
+            if (ButtonDisponibility.BackColor == Color.Lime)
             {
-                cirucularButton.BackColor = Color.Orange;
-                SqlCommand cmd = new SqlCommand("UPDATE Staff SET StafDispo='Break' where StafEmail=@Email", GADJIT.sqlConnection);
-                cmd.Parameters.AddWithValue("@Email", LabelEmail.Text);
-                cmd.ExecuteNonQuery();        
+                StaffDispoChanger("Break");
+                ButtonDisponibility.BackColor = Color.Orange;
+                CloseMdiChildIdExists();
+                PannelButtonsLock(false);
             }
-            else
+            else if (ButtonDisponibility.BackColor == Color.Orange)
             {
-                cirucularButton.BackColor = Color.Lime;
-                SqlCommand cmd = new SqlCommand("UPDATE Staff SET StafDispo='En Ligne' where StafEmail=@Email", GADJIT.sqlConnection);
-                cmd.Parameters.AddWithValue("@Email", LabelEmail.Text);
-                cmd.ExecuteNonQuery();
+                UnlockStaffPanel unlockStaffPanel = new UnlockStaffPanel();
+                unlockStaffPanel.login = login;
+                unlockStaffPanel.staffPanel = this;
+                unlockStaffPanel.email = LabelEmail.Text;
+                unlockStaffPanel.ShowDialog();
+                PannelButtonsLock(true);
+                //
+                StaffDispoChanger("En Ligne");
+                ButtonDisponibility.BackColor = Color.Lime;
             }
-            GADJIT.sqlConnection.Close();
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)
         {
+            StaffDispoChanger("Hors Ligne");
             this.Close();
+            login.Show();
         }
 
-        private void StaffPanel_FormClosing(object sender, FormClosingEventArgs e)
+        private void ButtonTicketVerification_Click(object sender, EventArgs e)
         {
-            GADJIT.sqlConnection.Open();
-            SqlCommand cmd = new SqlCommand("UPDATE Staff SET StafDispo='Hors Ligne' where StafEmail=@Email", GADJIT.sqlConnection);
-            cmd.Parameters.AddWithValue("@Email", LabelEmail.Text);
-            GADJIT.sqlConnection.Open();
-            cmd.ExecuteNonQuery();
-            GADJIT.sqlConnection.Close();
+            CloseMdiChildIdExists();
+            StaffTicketVerification staffTicketVerification = new StaffTicketVerification();
+            staffTicketVerification.email = LabelEmail.Text;
+            staffTicketVerification.MdiParent = this;
+            staffTicketVerification.Dock = DockStyle.Fill;
+            staffTicketVerification.Show();
+        }
+
+        private void ButtonTicketProgression_Click(object sender, EventArgs e)
+        {
+            CloseMdiChildIdExists();
+            StaffTicketProgression staffTicketProgression = new StaffTicketProgression();
+            staffTicketProgression.email = LabelEmail.Text;
+            staffTicketProgression.MdiParent = this;
+            staffTicketProgression.Dock = DockStyle.Fill;
+            staffTicketProgression.Show();
         }
     }
 }
