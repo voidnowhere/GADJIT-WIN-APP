@@ -29,24 +29,20 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label4 = new System.Windows.Forms.Label();
             this.richTextBoxDiag = new System.Windows.Forms.RichTextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.ComboBoxStatut = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.ComboBoxCategory = new System.Windows.Forms.ComboBox();
             this.TextBoxPrice = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.DTPTicketToSearch = new System.Windows.Forms.DateTimePicker();
+            this.DTPTicketFromSearch = new System.Windows.Forms.DateTimePicker();
             this.ComboBoxRef = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.ButtonRecherche = new System.Windows.Forms.Button();
-            this.comboBoxMarque = new System.Windows.Forms.ComboBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.TextBoxGadget = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.TextBoxTicketsNoRepare = new System.Windows.Forms.TextBox();
@@ -56,6 +52,8 @@ namespace GADJIT_WIN_ASW
             this.TextBoxTicketRepare = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.ComboBoxCODE = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.DGVTicket = new System.Windows.Forms.DataGridView();
             this.CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -131,7 +129,7 @@ namespace GADJIT_WIN_ASW
             "confirmation diagnostic",
             "en cours de reparation ",
             "reparé"});
-            this.ComboBoxStatut.Location = new System.Drawing.Point(647, 61);
+            this.ComboBoxStatut.Location = new System.Drawing.Point(382, 28);
             this.ComboBoxStatut.Name = "ComboBoxStatut";
             this.ComboBoxStatut.Size = new System.Drawing.Size(187, 23);
             this.ComboBoxStatut.TabIndex = 45;
@@ -144,26 +142,12 @@ namespace GADJIT_WIN_ASW
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(595, 62);
+            this.label5.Location = new System.Drawing.Point(330, 29);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(45, 17);
             this.label5.TabIndex = 44;
             this.label5.Text = "Statut";
-            // 
-            // ComboBoxCategory
-            // 
-            this.ComboBoxCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ComboBoxCategory.BackColor = System.Drawing.Color.White;
-            this.ComboBoxCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ComboBoxCategory.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ComboBoxCategory.FormattingEnabled = true;
-            this.ComboBoxCategory.Location = new System.Drawing.Point(101, 20);
-            this.ComboBoxCategory.Name = "ComboBoxCategory";
-            this.ComboBoxCategory.Size = new System.Drawing.Size(187, 23);
-            this.ComboBoxCategory.TabIndex = 43;
             // 
             // TextBoxPrice
             // 
@@ -208,28 +192,29 @@ namespace GADJIT_WIN_ASW
             this.label20.TabIndex = 41;
             this.label20.Text = "Au";
             // 
-            // dateTimePicker2
+            // DTPTicketToSearch
             // 
-            this.dateTimePicker2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.DTPTicketToSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker2.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(382, 55);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(187, 29);
-            this.dateTimePicker2.TabIndex = 40;
+            this.DTPTicketToSearch.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
+            this.DTPTicketToSearch.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DTPTicketToSearch.Location = new System.Drawing.Point(382, 55);
+            this.DTPTicketToSearch.MaxDate = new System.DateTime(2021, 12, 25, 23, 59, 59, 0);
+            this.DTPTicketToSearch.Name = "DTPTicketToSearch";
+            this.DTPTicketToSearch.Size = new System.Drawing.Size(187, 29);
+            this.DTPTicketToSearch.TabIndex = 40;
             // 
-            // dateTimePicker1
+            // DTPTicketFromSearch
             // 
-            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.DTPTicketFromSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(101, 54);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(187, 29);
-            this.dateTimePicker1.TabIndex = 39;
+            this.DTPTicketFromSearch.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DTPTicketFromSearch.Location = new System.Drawing.Point(101, 54);
+            this.DTPTicketFromSearch.Name = "DTPTicketFromSearch";
+            this.DTPTicketFromSearch.Size = new System.Drawing.Size(187, 29);
+            this.DTPTicketFromSearch.TabIndex = 39;
             // 
             // ComboBoxRef
             // 
@@ -240,7 +225,7 @@ namespace GADJIT_WIN_ASW
             this.ComboBoxRef.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComboBoxRef.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ComboBoxRef.FormattingEnabled = true;
-            this.ComboBoxRef.Location = new System.Drawing.Point(382, 17);
+            this.ComboBoxRef.Location = new System.Drawing.Point(101, 25);
             this.ComboBoxRef.Name = "ComboBoxRef";
             this.ComboBoxRef.Size = new System.Drawing.Size(187, 23);
             this.ComboBoxRef.TabIndex = 38;
@@ -253,7 +238,7 @@ namespace GADJIT_WIN_ASW
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label12.Location = new System.Drawing.Point(307, 26);
+            this.label12.Location = new System.Drawing.Point(26, 34);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(68, 17);
@@ -270,57 +255,14 @@ namespace GADJIT_WIN_ASW
             this.ButtonRecherche.FlatAppearance.BorderSize = 0;
             this.ButtonRecherche.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonRecherche.ForeColor = System.Drawing.Color.White;
-            this.ButtonRecherche.Location = new System.Drawing.Point(945, 53);
+            this.ButtonRecherche.Location = new System.Drawing.Point(945, 64);
             this.ButtonRecherche.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonRecherche.Name = "ButtonRecherche";
-            this.ButtonRecherche.Size = new System.Drawing.Size(105, 30);
+            this.ButtonRecherche.Size = new System.Drawing.Size(105, 29);
             this.ButtonRecherche.TabIndex = 36;
             this.ButtonRecherche.Text = "Rechercher";
             this.ButtonRecherche.UseVisualStyleBackColor = false;
-            // 
-            // comboBoxMarque
-            // 
-            this.comboBoxMarque.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxMarque.BackColor = System.Drawing.Color.White;
-            this.comboBoxMarque.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBoxMarque.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxMarque.FormattingEnabled = true;
-            this.comboBoxMarque.Location = new System.Drawing.Point(647, 20);
-            this.comboBoxMarque.Name = "comboBoxMarque";
-            this.comboBoxMarque.Size = new System.Drawing.Size(187, 23);
-            this.comboBoxMarque.TabIndex = 35;
-            // 
-            // label13
-            // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label13.Location = new System.Drawing.Point(585, 21);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(55, 17);
-            this.label13.TabIndex = 34;
-            this.label13.Text = "Marque";
-            // 
-            // label11
-            // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label11.Location = new System.Drawing.Point(27, 26);
-            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(67, 17);
-            this.label11.TabIndex = 33;
-            this.label11.Text = "Categorie";
+            this.ButtonRecherche.Click += new System.EventHandler(this.ButtonRecherche_Click);
             // 
             // TextBoxGadget
             // 
@@ -430,19 +372,17 @@ namespace GADJIT_WIN_ASW
             // groupBox2
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox2.Controls.Add(this.ComboBoxCODE);
+            this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.ComboBoxStatut);
             this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.ComboBoxCategory);
             this.groupBox2.Controls.Add(this.label21);
             this.groupBox2.Controls.Add(this.label20);
-            this.groupBox2.Controls.Add(this.dateTimePicker2);
-            this.groupBox2.Controls.Add(this.dateTimePicker1);
+            this.groupBox2.Controls.Add(this.DTPTicketToSearch);
+            this.groupBox2.Controls.Add(this.DTPTicketFromSearch);
             this.groupBox2.Controls.Add(this.ComboBoxRef);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.ButtonRecherche);
-            this.groupBox2.Controls.Add(this.comboBoxMarque);
-            this.groupBox2.Controls.Add(this.label13);
-            this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.Teal;
             this.groupBox2.Location = new System.Drawing.Point(24, 64);
@@ -452,13 +392,48 @@ namespace GADJIT_WIN_ASW
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Recherche :";
             // 
+            // ComboBoxCODE
+            // 
+            this.ComboBoxCODE.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ComboBoxCODE.BackColor = System.Drawing.Color.White;
+            this.ComboBoxCODE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ComboBoxCODE.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ComboBoxCODE.FormattingEnabled = true;
+            this.ComboBoxCODE.Items.AddRange(new object[] {
+            "TOUT",
+            "en cours de diagnostic ",
+            "confirmation diagnostic",
+            "en cours de reparation ",
+            "reparé"});
+            this.ComboBoxCODE.Location = new System.Drawing.Point(657, 28);
+            this.ComboBoxCODE.Name = "ComboBoxCODE";
+            this.ComboBoxCODE.Size = new System.Drawing.Size(187, 23);
+            this.ComboBoxCODE.TabIndex = 47;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label9.Location = new System.Drawing.Point(605, 29);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(43, 17);
+            this.label9.TabIndex = 46;
+            this.label9.Text = "CODE";
+            // 
             // label10
             // 
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Nirmala UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Teal;
-            this.label10.Location = new System.Drawing.Point(427, 14);
+            this.label10.Location = new System.Drawing.Point(406, 9);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(266, 37);
@@ -495,9 +470,9 @@ namespace GADJIT_WIN_ASW
             // DATE
             // 
             this.DATE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.DATE.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.DATE.DefaultCellStyle = dataGridViewCellStyle2;
             this.DATE.HeaderText = "DATE";
             this.DATE.Name = "DATE";
             this.DATE.ReadOnly = true;
@@ -683,18 +658,14 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox ComboBoxStatut;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox ComboBoxCategory;
         private System.Windows.Forms.TextBox TextBoxPrice;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker DTPTicketToSearch;
+        private System.Windows.Forms.DateTimePicker DTPTicketFromSearch;
         private System.Windows.Forms.ComboBox ComboBoxRef;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button ButtonRecherche;
-        private System.Windows.Forms.ComboBox comboBoxMarque;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox TextBoxGadget;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox TextBoxTicketsNoRepare;
@@ -718,5 +689,7 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.DataGridViewTextBoxColumn STATUT;
         private System.Windows.Forms.TextBox textBoxWorkTime;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox ComboBoxCODE;
+        private System.Windows.Forms.Label label9;
     }
 }

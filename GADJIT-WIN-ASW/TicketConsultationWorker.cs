@@ -32,6 +32,7 @@ namespace GADJIT_WIN_ASW
         string CID = "";
         string emailtemp = "";
         string DID = "D";
+        string Statut = "";
         private void TicketConsultationWorker_Load(object sender, EventArgs e)
         {
             FillComboBoxGadgetBrand_Category_ref_sta();
@@ -40,31 +41,15 @@ namespace GADJIT_WIN_ASW
             FillDGV();
             ClientsStats();
             clearTxtBox();
+            //
+            DTPTicketFromSearch.MaxDate = DateTime.Now;
+            DTPTicketToSearch.MaxDate = DateTime.Now;
         }
         private void FillComboBoxGadgetBrand_Category_ref_sta()
         {
             GADJIT.sqlConnection.Open();
-            SqlCommand cmd = new SqlCommand("select GadCatDesig from GadgetCategory", GADJIT.sqlConnection);
-            dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                ComboBoxCategory.Items.Add(dr["GadCatDesig"].ToString());
-            }
-            dr.Close();
-            ComboBoxCategory.Items.Insert(0, "TOUT");
-            ComboBoxCategory.SelectedIndex = 0;
             //
-            cmd = new SqlCommand("select GadBraDesig from GadgetBrand", GADJIT.sqlConnection);
-            dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                comboBoxMarque.Items.Add(dr["GadBraDesig"].ToString());
-            }
-            dr.Close();
-            comboBoxMarque.Items.Insert(0, "TOUT");
-            comboBoxMarque.SelectedIndex = 0;
-            //
-            cmd = new SqlCommand("select GadRefDesig from GadgetReference", GADJIT.sqlConnection);
+            SqlCommand cmd = new SqlCommand("select GadRefDesig from GadgetReference", GADJIT.sqlConnection);
             dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -73,6 +58,19 @@ namespace GADJIT_WIN_ASW
             dr.Close();
             ComboBoxRef.Items.Insert(0, "TOUT");
             ComboBoxRef.SelectedIndex = 0;
+            cmd = new SqlCommand("select DISTINCT TicSta , TicID from Ticket where WorID = @WID", GADJIT.sqlConnection);
+            cmd.Parameters.AddWithValue("@WID", WID);
+            dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                ComboBoxCODE.Items.Add(dr["TicID"].ToString());
+                ComboBoxStatut.Items.Add(dr["TicSta"].ToString());
+            }
+            dr.Close();
+            ComboBoxCODE.Items.Insert(0, "TOUT");
+            ComboBoxCODE.SelectedIndex = 0;
+            ComboBoxStatut.Items.Insert(0, "TOUT");
+            ComboBoxStatut.SelectedIndex = 0;
             GADJIT.sqlConnection.Close();
         }
         private void FillDGV()
@@ -411,6 +409,46 @@ namespace GADJIT_WIN_ASW
             cmd.Parameters.AddWithValue("@WID", WID);
             GADJIT.sqlConnection.Open();
             cmd.ExecuteNonQuery();
+            GADJIT.sqlConnection.Close();
+        }
+
+        private void ButtonRecherche_Click(object sender, EventArgs e)
+        {
+            DGVTicket.Rows.Clear();
+            if (ComboBoxCODE.SelectedIndex != 0)
+            {
+                TID = ComboBoxCODE.Text;
+            }
+            if (ComboBoxRef.SelectedIndex != 0)
+            {
+                SqlCommand cmd = new SqlCommand("select GadRefID from GadgetReference where GadRefDesig=@RefDes", GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("@RefDes", ComboBoxRef.Text);
+                GADJIT.sqlConnection.Open();
+                dr.Read();
+                RefID = dr["GadRefID"].ToString();
+                dr.Close();
+                GADJIT.sqlConnection.Close();
+            }
+            if (ComboBoxStatut.SelectedIndex != 0)
+            {
+                Statut = ComboBoxStatut.Text;
+            }
+            SqlCommand cm = new SqlCommand("Select TicID,TicDT,TicSta from ticket where WorID=@WID and GadRefID=@Ref and TicSta=@Sta and TicID=@TID and TicDT between @dateF and @dateT", GADJIT.sqlConnection);
+            cm.Parameters.Add("@dateF", SqlDbType.DateTime).Value = DTPTicketFromSearch.Value;
+            cm.Parameters.Add("@dateT", SqlDbType.DateTime).Value = DTPTicketToSearch.Value;
+            cm.Parameters.AddWithValue("@WID", WID);
+            cm.Parameters.AddWithValue("@Ref", RefID);
+            cm.Parameters.AddWithValue("@Sta", Statut);
+            cm.Parameters.AddWithValue("@TID", TID);
+            GADJIT.sqlConnection.Open();
+            if (dr.HasRows)
+            {
+                while (dr.Read())
+                {
+                    DGVTicket.Rows.Add(dr["TicID"], dr["TicDT"], dr["TicSta"]);
+                }
+            }
+            dr.Close();
             GADJIT.sqlConnection.Close();
         }
     }
