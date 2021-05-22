@@ -19,6 +19,10 @@ namespace GADJIT_WIN_ASW
             InitializeComponent();
         }
         public static string WID;
+        private void PannelButtonsLock(bool tf)
+        {
+            ShowSubMenuButton.Enabled = tf;
+        }
         private void cirucularButton_Click(object sender, EventArgs e)
         {
             GADJIT.sqlConnection.Open();
@@ -28,6 +32,7 @@ namespace GADJIT_WIN_ASW
                 SqlCommand cmd = new SqlCommand("UPDATE Worker SET WorDispo='Break' where WorEmail=@Email", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@Email", LabelEmail.Text);
                 cmd.ExecuteNonQuery();
+                PannelButtonsLock(true);
             }
             else
             {
@@ -36,6 +41,7 @@ namespace GADJIT_WIN_ASW
                 SqlCommand cmd = new SqlCommand("UPDATE Worker SET WorDispo='En Ligne' where WorEmail=@Email", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@Email", LabelEmail.Text);
                 cmd.ExecuteNonQuery();
+                PannelButtonsLock(false);
             }
             GADJIT.sqlConnection.Close();
         }
