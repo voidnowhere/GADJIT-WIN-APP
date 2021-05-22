@@ -515,7 +515,7 @@ namespace GADJIT_WIN_ASW
             this.DGVTicket.ReadOnly = true;
             this.DGVTicket.Size = new System.Drawing.Size(471, 197);
             this.DGVTicket.TabIndex = 24;
-            this.DGVTicket.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellClick);
+            this.DGVTicket.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVTicket_CellMouseDoubleClick);
             // 
             // ColumnTicketID
             // 
@@ -621,7 +621,7 @@ namespace GADJIT_WIN_ASW
             this.DGVTicketMonitoring.ReadOnly = true;
             this.DGVTicketMonitoring.Size = new System.Drawing.Size(399, 197);
             this.DGVTicketMonitoring.TabIndex = 27;
-            this.DGVTicketMonitoring.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicketMonitoring_CellClick);
+            this.DGVTicketMonitoring.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVTicketMonitoring_CellMouseDoubleClick);
             // 
             // ColumnTicketMonitoringID
             // 
