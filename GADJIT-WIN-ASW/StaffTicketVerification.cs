@@ -336,70 +336,79 @@ namespace GADJIT_WIN_ASW
 
         private void ButtonVerify_Click(object sender, EventArgs e)
         {
-            try
+            if (MessageBox.Show("Voulez vous confirmer la verification", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
-                SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand.CommandText = "update Ticket set StafID = @sid, TicSta = @status where TicID = @tid";
-                sqlCommand.Parameters.Add("@sid", SqlDbType.VarChar).Value = stafID;
-                sqlCommand.Parameters.Add("@status", SqlDbType.VarChar).Value = "vérifié";
-                sqlCommand.Parameters.Add("@tid", SqlDbType.VarChar).Value = ticID;
+                try
+                {
+                    SqlCommand sqlCommand = new SqlCommand();
+                    sqlCommand.CommandText = "update Ticket set StafID = @sid, TicSta = @status where TicID = @tid";
+                    sqlCommand.Parameters.Add("@sid", SqlDbType.VarChar).Value = stafID;
+                    sqlCommand.Parameters.Add("@status", SqlDbType.VarChar).Value = "vérifié";
+                    sqlCommand.Parameters.Add("@tid", SqlDbType.VarChar).Value = ticID;
 
-                sqlCommand.Connection = GADJIT.sqlConnection;
-                GADJIT.sqlConnection.Open();
+                    sqlCommand.Connection = GADJIT.sqlConnection;
+                    GADJIT.sqlConnection.Open();
 
-                sqlCommand.ExecuteNonQuery();
+                    sqlCommand.ExecuteNonQuery();
 
-                sqlCommand.CommandText = "insert into TicketMonitoring values(@tid, GETDATE(), 'ticket vérifié', 'S', @sid, 0, 1)";
-                sqlCommand.ExecuteNonQuery();
+                    sqlCommand.CommandText = "insert into TicketMonitoring values(@tid, GETDATE(), 'ticket vérifié', 'S', @sid, 0, 1)";
+                    sqlCommand.ExecuteNonQuery();
 
-                MessageBox.Show("réussi", "Verification", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ButtonVerify.Enabled = false;
-                ButtonAssign.Enabled = true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error ButtonVerify_Click()", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                GADJIT.sqlConnection.Close();
+                    MessageBox.Show("réussi", "Verification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ButtonVerify.Enabled = false;
+                    ButtonAssign.Enabled = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error ButtonVerify_Click()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    GADJIT.sqlConnection.Close();
+                }
             }
         }
 
         private void ButtonAssign_Click(object sender, EventArgs e)
         {
-            try
+            if(ComboBoxWorker.SelectedIndex > -1)
             {
-                SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand.CommandText = "update Ticket set WorID = @wid where TicID = @tid";
-                sqlCommand.Connection = GADJIT.sqlConnection;
-                GADJIT.sqlConnection.Open();
-                //
-                SqlCommand sqlCommandWorkerID = new SqlCommand(
-                    "select WorID from Worker where WorLastName = @lastName and WorFirstName = @firstName",
-                    GADJIT.sqlConnection);
-                sqlCommandWorkerID.Parameters.Add("@lastName", SqlDbType.VarChar).Value = ComboBoxWorker.Text.Split(' ')[0];
-                sqlCommandWorkerID.Parameters.Add("@firstName", SqlDbType.VarChar).Value = ComboBoxWorker.Text.Split(' ')[1];
-                string worID = sqlCommandWorkerID.ExecuteScalar().ToString();
-                //
-                sqlCommand.Parameters.Add("@wid", SqlDbType.VarChar).Value = worID;
-                sqlCommand.Parameters.Add("@tid", SqlDbType.VarChar).Value = ticID;
-                sqlCommand.ExecuteNonQuery();
+                if(MessageBox.Show("Voulez vous confirmer l'affectation", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                {
+                    try
+                    {
+                        SqlCommand sqlCommand = new SqlCommand();
+                        sqlCommand.CommandText = "update Ticket set WorID = @wid where TicID = @tid";
+                        sqlCommand.Connection = GADJIT.sqlConnection;
+                        GADJIT.sqlConnection.Open();
+                        //
+                        SqlCommand sqlCommandWorkerID = new SqlCommand(
+                            "select WorID from Worker where WorLastName = @lastName and WorFirstName = @firstName",
+                            GADJIT.sqlConnection);
+                        sqlCommandWorkerID.Parameters.Add("@lastName", SqlDbType.VarChar).Value = ComboBoxWorker.Text.Split(' ')[0];
+                        sqlCommandWorkerID.Parameters.Add("@firstName", SqlDbType.VarChar).Value = ComboBoxWorker.Text.Split(' ')[1];
+                        string worID = sqlCommandWorkerID.ExecuteScalar().ToString();
+                        //
+                        sqlCommand.Parameters.Add("@wid", SqlDbType.VarChar).Value = worID;
+                        sqlCommand.Parameters.Add("@tid", SqlDbType.VarChar).Value = ticID;
+                        sqlCommand.ExecuteNonQuery();
 
-                sqlCommand.CommandText = "insert into TicketMonitoring values(@tid, GETDATE(), 'ticket affecter', 'W', @wid, 0, 0)";
-                sqlCommand.ExecuteNonQuery();
+                        sqlCommand.CommandText = "insert into TicketMonitoring values(@tid, GETDATE(), 'ticket affecter', 'W', @wid, 0, 0)";
+                        sqlCommand.ExecuteNonQuery();
 
-                MessageBox.Show("réussi", "Affectation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ButtonAssign.Enabled = false;
-                ButtonSearch_Click(sender, e);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error ButtonAssign_Click()", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                GADJIT.sqlConnection.Close();
+                        MessageBox.Show("réussi", "Affectation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ButtonAssign.Enabled = false;
+                        ButtonSearch_Click(sender, e);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Error ButtonAssign_Click()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        GADJIT.sqlConnection.Close();
+                    }
+                }
             }
         }
     }
