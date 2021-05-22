@@ -50,23 +50,23 @@ namespace GADJIT_WIN_ASW
             GADJIT.sqlConnection.Open();
             //
             SqlCommand cmd = new SqlCommand("select GadRefDesig from GadgetReference", GADJIT.sqlConnection);
-            dr = cmd.ExecuteReader();
-            while (dr.Read())
+            dataReader = cmd.ExecuteReader();
+            while (dataReader.Read())
             {
-                ComboBoxRef.Items.Add(dr["GadRefDesig"].ToString());
+                ComboBoxRef.Items.Add(dataReader["GadRefDesig"].ToString());
             }
-            dr.Close();
+            dataReader.Close();
             ComboBoxRef.Items.Insert(0, "TOUT");
             ComboBoxRef.SelectedIndex = 0;
             cmd = new SqlCommand("select DISTINCT TicSta , TicID from Ticket where WorID = @WID", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@WID", WID);
-            dr = cmd.ExecuteReader();
-            while (dr.Read())
+            dataReader = cmd.ExecuteReader();
+            while (dataReader.Read())
             {
-                ComboBoxCODE.Items.Add(dr["TicID"].ToString());
-                ComboBoxStatut.Items.Add(dr["TicSta"].ToString());
+                ComboBoxCODE.Items.Add(dataReader["TicID"].ToString());
+                ComboBoxStatut.Items.Add(dataReader["TicSta"].ToString());
             }
-            dr.Close();
+            dataReader.Close();
             ComboBoxCODE.Items.Insert(0, "TOUT");
             ComboBoxCODE.SelectedIndex = 0;
             ComboBoxStatut.Items.Insert(0, "TOUT");
