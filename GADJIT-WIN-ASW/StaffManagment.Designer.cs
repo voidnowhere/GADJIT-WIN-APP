@@ -29,7 +29,8 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.TextBoxDeactivatedStaffs = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.TextBoxActivedStaffs = new System.Windows.Forms.TextBox();
@@ -362,6 +363,9 @@ namespace GADJIT_WIN_ASW
             // 
             // ColumnTextBoxPassword
             // 
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            this.ColumnTextBoxPassword.DefaultCellStyle = dataGridViewCellStyle1;
             this.ColumnTextBoxPassword.HeaderText = "Mot de passe";
             this.ColumnTextBoxPassword.MinimumWidth = 100;
             this.ColumnTextBoxPassword.Name = "ColumnTextBoxPassword";
@@ -388,10 +392,10 @@ namespace GADJIT_WIN_ASW
             // 
             // ColumnTextBoxSalary
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "0.00";
-            dataGridViewCellStyle3.NullValue = null;
-            this.ColumnTextBoxSalary.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "0.00";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ColumnTextBoxSalary.DefaultCellStyle = dataGridViewCellStyle2;
             this.ColumnTextBoxSalary.HeaderText = "Salaire";
             this.ColumnTextBoxSalary.MinimumWidth = 100;
             this.ColumnTextBoxSalary.Name = "ColumnTextBoxSalary";

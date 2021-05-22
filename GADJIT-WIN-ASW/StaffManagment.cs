@@ -261,6 +261,7 @@ namespace GADJIT_WIN_ASW
                 if(DGVStaff[0, rowIndex].Value == null) // ID
                 {
                     InsertNewIDInDGV();
+                    DGVStaff[6, rowIndex].Value = GADJIT.PasswordGenerator(); //Password
                     DGVStaff[11, rowIndex].Value = "Hors Ligne"; //Disponibility
                     DGVStaff[12, rowIndex].Value = "Désactiver"; //Status
                 }

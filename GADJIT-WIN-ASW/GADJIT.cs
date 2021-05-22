@@ -52,6 +52,19 @@ namespace GADJIT_WIN_ASW
             return false;
         }
 
+        public static string PasswordGenerator()
+        {
+            int length = 10;
+            Random random = new Random();
+            string passChar = "abcdefghijklmnopqursuvwxyz" + "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789";
+            StringBuilder pass = new StringBuilder();
+            while(0 < length--)
+            {
+                pass.Append(passChar[random.Next(passChar.Length)]);
+            }
+            return pass.ToString();
+        }
+
         public static void SendEmail(string toEmail, string msg)
         {
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
