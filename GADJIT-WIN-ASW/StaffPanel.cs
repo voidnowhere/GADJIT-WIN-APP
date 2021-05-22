@@ -53,6 +53,13 @@ namespace GADJIT_WIN_ASW
             this.CenterToScreen();
         }
 
+        private void PannelButtonsLock(bool tf)
+        {
+            ShowSubMenuButton.Enabled = tf;
+            ButtonTicketVerification.Enabled = tf;
+            ButtonTicketProgression.Enabled = tf;
+        }
+
         private void cirucularButton_Click(object sender, EventArgs e)
         {
             if (ButtonDisponibility.BackColor == Color.Lime)
@@ -60,9 +67,17 @@ namespace GADJIT_WIN_ASW
                 StaffDispoChanger("Break");
                 ButtonDisponibility.BackColor = Color.Orange;
                 CloseMdiChildIdExists();
+                PannelButtonsLock(false);
             }
             else if (ButtonDisponibility.BackColor == Color.Orange)
             {
+                UnlockStaffPanel unlockStaffPanel = new UnlockStaffPanel();
+                unlockStaffPanel.login = login;
+                unlockStaffPanel.staffPanel = this;
+                unlockStaffPanel.email = LabelEmail.Text;
+                unlockStaffPanel.ShowDialog();
+                PannelButtonsLock(true);
+                //
                 StaffDispoChanger("En Ligne");
                 ButtonDisponibility.BackColor = Color.Lime;
             }
