@@ -84,5 +84,15 @@ namespace GADJIT_WIN_ASW
             staffTicketVerification.Dock = DockStyle.Fill;
             staffTicketVerification.Show();
         }
+
+        private void ButtonTicketProgression_Click(object sender, EventArgs e)
+        {
+            CloseMdiChildIdExists();
+            StaffTicketProgression staffTicketProgression = new StaffTicketProgression();
+            staffTicketProgression.email = LabelEmail.Text;
+            staffTicketProgression.MdiParent = this;
+            staffTicketProgression.Dock = DockStyle.Fill;
+            staffTicketProgression.Show();
+        }
     }
 }

@@ -97,6 +97,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonTicketProgression.TabIndex = 1;
             this.ButtonTicketProgression.Text = "Ticket Progression";
             this.ButtonTicketProgression.UseVisualStyleBackColor = true;
+            this.ButtonTicketProgression.Click += new System.EventHandler(this.ButtonTicketProgression_Click);
             // 
             // ButtonTicketVerification
             // 
