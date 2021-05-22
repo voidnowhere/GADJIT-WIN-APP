@@ -81,6 +81,7 @@ namespace GADJIT_WIN_ASW
                 unlockAdminPanel.adminPanel = this;
                 unlockAdminPanel.email = LabelEmail.Text;
                 unlockAdminPanel.ShowDialog();
+                PannelButtonsLock(true);
                 //
                 AdminDispoChanger("En Ligne");
                 ButtonDisponibility.BackColor = Color.Lime;
