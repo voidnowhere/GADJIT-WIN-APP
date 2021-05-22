@@ -86,7 +86,7 @@ namespace GADJIT_WIN_ASW
             }
             else
             {
-                DGVCategory[0, DGVCategory.CurrentRow.Index].Value = GADJIT.IDGenerator("GC0");
+                DGVCategory[0, DGVCategory.CurrentRow.Index].Value = GADJIT.IDGenerator("GC");
             }
         }
 
@@ -324,7 +324,7 @@ namespace GADJIT_WIN_ASW
             }
             else
             {
-                DGVBrand[0, DGVBrand.CurrentRow.Index].Value = GADJIT.IDGenerator("GB0");
+                DGVBrand[0, DGVBrand.CurrentRow.Index].Value = GADJIT.IDGenerator("GB");
             }
         }
 

@@ -19,8 +19,8 @@ namespace GADJIT_WIN_ASW
         {
             String code = Regex.Match(id, @"^\D+").ToString();
             String num = Regex.Match(id, @"\d+$").ToString();
-
-            return code + (int.Parse(num) + 1).ToString();
+            
+            return code + ((num == "") ? 0 : int.Parse(num) + 1).ToString();
         }
 
         public static bool IsCINValid(string cin)

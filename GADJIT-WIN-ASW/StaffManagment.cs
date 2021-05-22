@@ -89,7 +89,7 @@ namespace GADJIT_WIN_ASW
             }
             else
             {
-                DGVStaff[0, DGVStaff.CurrentRow.Index].Value = GADJIT.IDGenerator("S0");
+                DGVStaff[0, DGVStaff.CurrentRow.Index].Value = GADJIT.IDGenerator("S");
             }
         }
 

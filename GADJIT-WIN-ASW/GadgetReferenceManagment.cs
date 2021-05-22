@@ -71,7 +71,7 @@ namespace GADJIT_WIN_ASW
             }
             else
             {
-                DGVReference[0, DGVReference.CurrentRow.Index].Value = GADJIT.IDGenerator("GR0");
+                DGVReference[0, DGVReference.CurrentRow.Index].Value = GADJIT.IDGenerator("GR");
             }
         }
 
