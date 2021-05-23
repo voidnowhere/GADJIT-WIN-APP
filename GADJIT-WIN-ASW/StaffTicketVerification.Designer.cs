@@ -83,7 +83,7 @@ namespace GADJIT_WIN_ASW
             this.ComboBoxWorker.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxWorker.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComboBoxWorker.FormattingEnabled = true;
-            this.ComboBoxWorker.Location = new System.Drawing.Point(141, 262);
+            this.ComboBoxWorker.Location = new System.Drawing.Point(141, 246);
             this.ComboBoxWorker.Name = "ComboBoxWorker";
             this.ComboBoxWorker.Size = new System.Drawing.Size(198, 24);
             this.ComboBoxWorker.TabIndex = 32;
@@ -166,7 +166,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonAssign.FlatAppearance.BorderSize = 0;
             this.ButtonAssign.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonAssign.ForeColor = System.Drawing.Color.White;
-            this.ButtonAssign.Location = new System.Drawing.Point(248, 304);
+            this.ButtonAssign.Location = new System.Drawing.Point(248, 288);
             this.ButtonAssign.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonAssign.Name = "ButtonAssign";
             this.ButtonAssign.Size = new System.Drawing.Size(89, 30);
@@ -180,7 +180,7 @@ namespace GADJIT_WIN_ASW
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(7, 267);
+            this.label4.Location = new System.Drawing.Point(7, 251);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 16);
@@ -199,7 +199,7 @@ namespace GADJIT_WIN_ASW
             this.RichTextBoxProblem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.RichTextBoxProblem.Name = "RichTextBoxProblem";
             this.RichTextBoxProblem.ReadOnly = true;
-            this.RichTextBoxProblem.Size = new System.Drawing.Size(198, 73);
+            this.RichTextBoxProblem.Size = new System.Drawing.Size(198, 57);
             this.RichTextBoxProblem.TabIndex = 9;
             this.RichTextBoxProblem.Text = "";
             // 
@@ -239,8 +239,7 @@ namespace GADJIT_WIN_ASW
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.TextBoxClientAddress);
             this.groupBox1.Controls.Add(this.label2);
@@ -260,11 +259,11 @@ namespace GADJIT_WIN_ASW
             this.groupBox1.Controls.Add(this.ButtonAssign);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(510, 160);
+            this.groupBox1.Location = new System.Drawing.Point(431, 160);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Size = new System.Drawing.Size(348, 340);
+            this.groupBox1.Size = new System.Drawing.Size(348, 324);
             this.groupBox1.TabIndex = 51;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ticket détail";
@@ -297,7 +296,7 @@ namespace GADJIT_WIN_ASW
             this.LabelWorkerTicketsCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.LabelWorkerTicketsCount.AutoSize = true;
             this.LabelWorkerTicketsCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelWorkerTicketsCount.Location = new System.Drawing.Point(382, 267);
+            this.LabelWorkerTicketsCount.Location = new System.Drawing.Point(382, 251);
             this.LabelWorkerTicketsCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelWorkerTicketsCount.Name = "LabelWorkerTicketsCount";
             this.LabelWorkerTicketsCount.Size = new System.Drawing.Size(0, 16);
@@ -311,7 +310,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonVerify.FlatAppearance.BorderSize = 0;
             this.ButtonVerify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonVerify.ForeColor = System.Drawing.Color.White;
-            this.ButtonVerify.Location = new System.Drawing.Point(151, 304);
+            this.ButtonVerify.Location = new System.Drawing.Point(151, 288);
             this.ButtonVerify.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonVerify.Name = "ButtonVerify";
             this.ButtonVerify.Size = new System.Drawing.Size(89, 30);
@@ -343,7 +342,7 @@ namespace GADJIT_WIN_ASW
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(12, 46);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(846, 108);
+            this.groupBox2.Size = new System.Drawing.Size(767, 108);
             this.groupBox2.TabIndex = 43;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Recherche :";
@@ -413,7 +412,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonReset.FlatAppearance.BorderSize = 0;
             this.ButtonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonReset.ForeColor = System.Drawing.Color.White;
-            this.ButtonReset.Location = new System.Drawing.Point(751, 64);
+            this.ButtonReset.Location = new System.Drawing.Point(672, 64);
             this.ButtonReset.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonReset.Name = "ButtonReset";
             this.ButtonReset.Size = new System.Drawing.Size(88, 30);
@@ -469,7 +468,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonSearch.FlatAppearance.BorderSize = 0;
             this.ButtonSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonSearch.ForeColor = System.Drawing.Color.White;
-            this.ButtonSearch.Location = new System.Drawing.Point(751, 24);
+            this.ButtonSearch.Location = new System.Drawing.Point(672, 24);
             this.ButtonSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonSearch.Name = "ButtonSearch";
             this.ButtonSearch.Size = new System.Drawing.Size(88, 30);
@@ -537,8 +536,9 @@ namespace GADJIT_WIN_ASW
             // 
             this.DGVTicket.AllowUserToAddRows = false;
             this.DGVTicket.AllowUserToDeleteRows = false;
-            this.DGVTicket.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.DGVTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVTicket.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVTicket.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -548,7 +548,7 @@ namespace GADJIT_WIN_ASW
             this.DGVTicket.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.DGVTicket.Name = "DGVTicket";
             this.DGVTicket.ReadOnly = true;
-            this.DGVTicket.Size = new System.Drawing.Size(489, 319);
+            this.DGVTicket.Size = new System.Drawing.Size(410, 303);
             this.DGVTicket.TabIndex = 50;
             this.DGVTicket.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVTicket_CellMouseClick);
             // 
@@ -577,11 +577,11 @@ namespace GADJIT_WIN_ASW
             // 
             // TextBoxTotalTickets
             // 
-            this.TextBoxTotalTickets.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.TextBoxTotalTickets.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxTotalTickets.BackColor = System.Drawing.Color.White;
             this.TextBoxTotalTickets.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxTotalTickets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxTotalTickets.Location = new System.Drawing.Point(457, 485);
+            this.TextBoxTotalTickets.Location = new System.Drawing.Point(378, 469);
             this.TextBoxTotalTickets.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TextBoxTotalTickets.Name = "TextBoxTotalTickets";
             this.TextBoxTotalTickets.ReadOnly = true;
@@ -593,7 +593,7 @@ namespace GADJIT_WIN_ASW
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(329, 9);
+            this.label10.Location = new System.Drawing.Point(290, 9);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(214, 25);
@@ -602,10 +602,10 @@ namespace GADJIT_WIN_ASW
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(350, 485);
+            this.label1.Location = new System.Drawing.Point(271, 469);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 16);
@@ -616,7 +616,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(871, 512);
+            this.ClientSize = new System.Drawing.Size(792, 496);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.DGVTicket);
