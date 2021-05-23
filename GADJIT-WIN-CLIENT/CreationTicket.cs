@@ -64,12 +64,13 @@ namespace GADJIT_WIN_CLIENT
         private void ButtonConfirmer_Click(object sender, EventArgs e)
         {
             GADJIT.sqlConnection.Open();
-            SqlCommand cmd = new SqlCommand("insert into Ticket values(@ID,@date,@prob,'en attente de validation',@CID,null,null,@ref,null)", GADJIT.sqlConnection);
+            SqlCommand cmd = new SqlCommand("insert into Ticket values(@ID,@date,@prob,'en attente de validation',@CID,null,null,@ref,null,@Adres)", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@ID", ID);
             cmd.Parameters.AddWithValue("@date", DateTime.Now);
             cmd.Parameters.AddWithValue("@prob", RichTextBoxProbTicket.Text);
             cmd.Parameters.AddWithValue("@CID", CID);
             cmd.Parameters.AddWithValue("@Ref", RefID);
+            cmd.Parameters.AddWithValue("@Adres", RichTextBoxAdress.Text);
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
             SmtpClient client = new SmtpClient("smtp.gmail.com", 587);

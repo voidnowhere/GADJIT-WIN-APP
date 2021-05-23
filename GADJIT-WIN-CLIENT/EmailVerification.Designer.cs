@@ -43,7 +43,7 @@ namespace GADJIT_WIN_CLIENT
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(305, 48);
             this.label1.TabIndex = 28;
-            this.label1.Text = "Un code de verification a ete envoyer a votre email:";
+            this.label1.Text = "Un code de verification a été envoyer a votre email:";
             // 
             // label2
             // 
@@ -57,7 +57,7 @@ namespace GADJIT_WIN_CLIENT
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(210, 86);
+            this.textBox1.Location = new System.Drawing.Point(204, 86);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(122, 25);
             this.textBox1.TabIndex = 30;

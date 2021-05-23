@@ -18,7 +18,7 @@ namespace GADJIT_WIN_CLIENT
         {
             InitializeComponent();
         }
-        string passCont = "";
+        public static string passCont = "";
         string emailtemp = "";
         private void ClientInformation_Load(object sender, EventArgs e)
         {
@@ -52,8 +52,6 @@ namespace GADJIT_WIN_CLIENT
         {
             try
             {
-                if (textBoxPassord.Text==passCont)
-                {
                     GADJIT.sqlConnection.Open();
                     SqlCommand cmd = new SqlCommand("update Client set" +
                                                    "CliEmail=@email" +
@@ -73,11 +71,6 @@ namespace GADJIT_WIN_CLIENT
                     cmd.ExecuteNonQuery();
                     GADJIT.sqlConnection.Close();
                     MessageBox.Show("Modification reussite");
-                }
-                else
-                {
-                    errorProviderPass.SetError(textBoxPassord, "Mot de passe Incorrect ");
-                }
             }
             catch(Exception ex)
             {
@@ -110,18 +103,9 @@ namespace GADJIT_WIN_CLIENT
 
         private void labelshowGroupBox_Click(object sender, EventArgs e)
         {
-            if(textBoxPassord.Text == passCont)
-            {
                 UpdatePassword passupd = new UpdatePassword();
                 passupd.ShowDialog();
-                errorProviderPass.SetError(textBoxPassord, null);
-                ClientInformation_Load(sender,e);
-            }
-            else
-            {
-                errorProviderPass.SetError(textBoxPassord, "Pour votre sécurité entrez votre ancien mot de passe");
-            }
-           
+                ClientInformation_Load(sender, e);
         }
     }
 }

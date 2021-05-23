@@ -131,9 +131,9 @@ namespace GADJIT_WIN_CLIENT
                             msg.To.Add(TextBoxEmail.Text);
                             msg.From = new MailAddress("GADJITMA@gmail.com");
                             msg.Subject = "Inscription chez GADJIT";
-                            msg.Body = "Bonjour " + TextBoxNom.Text + " :\n votre inscription a bien été traitée bienvenue chez GADJIT. \nGADJIT MAROC.";
+                            msg.Body = "Bonjour " + TextBoxNom.Text + " :\nvotre inscription a bien été traitée bienvenue chez GADJIT. \nGADJIT MAROC.";
                             client.Send(msg);
-                            MessageBox.Show("Inscription Reussit", "Inscriptio");
+                            MessageBox.Show("Inscription réussite", "Inscription");
                         }
                         catch(Exception ex)
                         {
@@ -151,7 +151,7 @@ namespace GADJIT_WIN_CLIENT
                 }
                 catch(Exception ex)
                 {
-                    MessageBox.Show( ex.Message, "veuillez vérifier vos informations", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show( ex.Message, "Veuillez vérifier vos informations", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         
                 }             
                                        

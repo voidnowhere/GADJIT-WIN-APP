@@ -49,7 +49,7 @@ namespace GADJIT_WIN_CLIENT
             msg.Subject = "Inscription chez GADJIT";
             msg.Body = "Bonjour " + Register.NomC + ":\nVotre CODE de verification est : "+check+" \nGADJIT MAROC.";
             client.Send(msg);
-            MessageBox.Show("un mail de verification d'inscription a été envoyer a votre boite mail", "mail envoyez");
+            MessageBox.Show("un email de verification d'inscription a été envoyer a votre boite mail", "mail envoyez");
         }
 
         private void ButtonRegister_Click(object sender, EventArgs e)
