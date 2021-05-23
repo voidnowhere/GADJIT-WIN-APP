@@ -173,6 +173,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxPhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxPhone.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPhone.Location = new System.Drawing.Point(79, 341);
+            this.TextBoxPhone.MaxLength = 10;
             this.TextBoxPhone.Multiline = true;
             this.TextBoxPhone.Name = "TextBoxPhone";
             this.TextBoxPhone.Size = new System.Drawing.Size(216, 28);
@@ -196,6 +197,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxConfPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxConfPassword.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxConfPassword.Location = new System.Drawing.Point(79, 290);
+            this.TextBoxConfPassword.MaxLength = 16;
             this.TextBoxConfPassword.Multiline = true;
             this.TextBoxConfPassword.Name = "TextBoxConfPassword";
             this.TextBoxConfPassword.PasswordChar = '*';
@@ -218,6 +220,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxPassword.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPassword.Location = new System.Drawing.Point(79, 239);
+            this.TextBoxPassword.MaxLength = 16;
             this.TextBoxPassword.Multiline = true;
             this.TextBoxPassword.Name = "TextBoxPassword";
             this.TextBoxPassword.PasswordChar = '*';
@@ -239,10 +242,12 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxEmail.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxEmail.Location = new System.Drawing.Point(79, 188);
+            this.TextBoxEmail.Margin = new System.Windows.Forms.Padding(10);
             this.TextBoxEmail.Multiline = true;
             this.TextBoxEmail.Name = "TextBoxEmail";
             this.TextBoxEmail.Size = new System.Drawing.Size(216, 28);
             this.TextBoxEmail.TabIndex = 3;
+            this.TextBoxEmail.TextChanged += new System.EventHandler(this.TextBoxEmail_TextChanged);
             // 
             // label4
             // 

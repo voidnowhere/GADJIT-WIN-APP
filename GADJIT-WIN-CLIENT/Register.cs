@@ -23,6 +23,8 @@ namespace GADJIT_WIN_CLIENT
         }
 
         String ID = "C";
+        public static string emailC;
+        public static string NomC;
 
         private void Register_Load(object sender, EventArgs e)
         {
@@ -100,6 +102,10 @@ namespace GADJIT_WIN_CLIENT
                 {
                     if (ComboxBoxCity.SelectedIndex != 0)
                     {
+                        emailC = TextBoxEmail.Text;
+                        NomC = TextBoxNom.Text;
+                        EmailVerification v = new EmailVerification();
+                        v.ShowDialog();
                         try
                         {
                             errorProviderCity.SetError(ComboxBoxCity, null);
@@ -125,9 +131,9 @@ namespace GADJIT_WIN_CLIENT
                             msg.To.Add(TextBoxEmail.Text);
                             msg.From = new MailAddress("GADJITMA@gmail.com");
                             msg.Subject = "Inscription chez GADJIT";
-                            msg.Body = "Bonjour " + TextBoxNom.Text + " :\n votre inscription a bien été traitée bienvenue chez GADJIT. \n GADJIT MAROC.";
+                            msg.Body = "Bonjour " + TextBoxNom.Text + " :\n votre inscription a bien été traitée bienvenue chez GADJIT. \nGADJIT MAROC.";
                             client.Send(msg);
-                            MessageBox.Show("mail envoyez", "un mail de confirmation d'inscription a été envoyer a votre boite mail");
+                            MessageBox.Show("Inscription Reussit", "Inscriptio");
                         }
                         catch(Exception ex)
                         {
@@ -191,6 +197,11 @@ namespace GADJIT_WIN_CLIENT
             {
                 e.Handled = true;
             }
+        }
+
+        private void TextBoxEmail_TextChanged(object sender, EventArgs e)
+        {
+            TextBoxEmail.Text = TextBoxEmail.Text.Trim();
         }
     }
 }
