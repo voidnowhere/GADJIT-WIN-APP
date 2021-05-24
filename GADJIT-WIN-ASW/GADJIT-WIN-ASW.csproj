@@ -98,6 +98,18 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaffTicketProgression.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StaffTicketProgression.Designer.cs">
+      <DependentUpon>StaffTicketProgression.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StaffTicketVerification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StaffTicketVerification.Designer.cs">
+      <DependentUpon>StaffTicketVerification.cs</DependentUpon>
+    </Compile>
     <Compile Include="TicketManagment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +127,12 @@
     </Compile>
     <Compile Include="UpdateAdminPassword.Designer.cs">
       <DependentUpon>UpdateAdminPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UnlockStaffPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UnlockStaffPanel.Designer.cs">
+      <DependentUpon>UnlockStaffPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="WorkerSpeciality.cs">
       <SubType>Form</SubType>
@@ -175,6 +193,12 @@
     <EmbeddedResource Include="StaffPanel.resx">
       <DependentUpon>StaffPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="StaffTicketProgression.resx">
+      <DependentUpon>StaffTicketProgression.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StaffTicketVerification.resx">
+      <DependentUpon>StaffTicketVerification.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TicketManagment.resx">
       <DependentUpon>TicketManagment.cs</DependentUpon>
     </EmbeddedResource>
@@ -183,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateAdminPassword.resx">
       <DependentUpon>UpdateAdminPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UnlockStaffPanel.resx">
+      <DependentUpon>UnlockStaffPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WorkerManagment.resx">
       <DependentUpon>WorkerManagment.cs</DependentUpon>

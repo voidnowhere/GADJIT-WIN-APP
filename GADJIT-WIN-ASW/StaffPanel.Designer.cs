@@ -30,21 +30,21 @@ namespace GADJIT_WIN_ASW
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.LogoutButton = new GADJIT_WIN_ASW.CircularPicture();
             this.panel3 = new System.Windows.Forms.Panel();
             this.ButtonTicketProgression = new System.Windows.Forms.Button();
             this.ButtonTicketVerification = new System.Windows.Forms.Button();
             this.ShowSubMenuButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.CircularProfilPicture = new GADJIT_WIN_ASW.CircularPicture();
+            this.ButtonDisponibility = new GADJIT_WIN_ASW.CirucularButton();
             this.LabelEmail = new System.Windows.Forms.Label();
             this.LabelFirstName = new System.Windows.Forms.Label();
             this.LabelLastName = new System.Windows.Forms.Label();
-            this.LogoutButton = new GADJIT_WIN_ASW.CircularPicture();
-            this.CircularProfilPicture = new GADJIT_WIN_ASW.CircularPicture();
-            this.cirucularButton = new GADJIT_WIN_ASW.CirucularButton();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LogoutButton)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.LogoutButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CircularProfilPicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,8 +59,20 @@ namespace GADJIT_WIN_ASW
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(250, 708);
+            this.panel1.Size = new System.Drawing.Size(250, 487);
             this.panel1.TabIndex = 0;
+            // 
+            // LogoutButton
+            // 
+            this.LogoutButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.LogoutButton.Image = global::GADJIT_WIN_ASW.Properties.Resources.logout_rounded_left_48pxblue;
+            this.LogoutButton.Location = new System.Drawing.Point(0, 437);
+            this.LogoutButton.Name = "LogoutButton";
+            this.LogoutButton.Size = new System.Drawing.Size(50, 50);
+            this.LogoutButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.LogoutButton.TabIndex = 3;
+            this.LogoutButton.TabStop = false;
+            this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
             // panel3
             // 
@@ -85,6 +97,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonTicketProgression.TabIndex = 1;
             this.ButtonTicketProgression.Text = "Ticket Progression";
             this.ButtonTicketProgression.UseVisualStyleBackColor = true;
+            this.ButtonTicketProgression.Click += new System.EventHandler(this.ButtonTicketProgression_Click);
             // 
             // ButtonTicketVerification
             // 
@@ -98,6 +111,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonTicketVerification.TabIndex = 0;
             this.ButtonTicketVerification.Text = "Ticket Verification";
             this.ButtonTicketVerification.UseVisualStyleBackColor = true;
+            this.ButtonTicketVerification.Click += new System.EventHandler(this.ButtonTicketVerification_Click);
             // 
             // ShowSubMenuButton
             // 
@@ -118,7 +132,7 @@ namespace GADJIT_WIN_ASW
             // panel2
             // 
             this.panel2.Controls.Add(this.CircularProfilPicture);
-            this.panel2.Controls.Add(this.cirucularButton);
+            this.panel2.Controls.Add(this.ButtonDisponibility);
             this.panel2.Controls.Add(this.LabelEmail);
             this.panel2.Controls.Add(this.LabelFirstName);
             this.panel2.Controls.Add(this.LabelLastName);
@@ -127,6 +141,27 @@ namespace GADJIT_WIN_ASW
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(250, 93);
             this.panel2.TabIndex = 0;
+            // 
+            // CircularProfilPicture
+            // 
+            this.CircularProfilPicture.Image = global::GADJIT_WIN_ASW.Properties.Resources.user_60px;
+            this.CircularProfilPicture.Location = new System.Drawing.Point(187, 3);
+            this.CircularProfilPicture.Name = "CircularProfilPicture";
+            this.CircularProfilPicture.Size = new System.Drawing.Size(60, 60);
+            this.CircularProfilPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.CircularProfilPicture.TabIndex = 8;
+            this.CircularProfilPicture.TabStop = false;
+            // 
+            // ButtonDisponibility
+            // 
+            this.ButtonDisponibility.BackColor = System.Drawing.Color.Lime;
+            this.ButtonDisponibility.FlatAppearance.BorderSize = 2;
+            this.ButtonDisponibility.Location = new System.Drawing.Point(223, 67);
+            this.ButtonDisponibility.Name = "ButtonDisponibility";
+            this.ButtonDisponibility.Size = new System.Drawing.Size(24, 23);
+            this.ButtonDisponibility.TabIndex = 7;
+            this.ButtonDisponibility.UseVisualStyleBackColor = false;
+            this.ButtonDisponibility.Click += new System.EventHandler(this.cirucularButton_Click);
             // 
             // LabelEmail
             // 
@@ -158,57 +193,25 @@ namespace GADJIT_WIN_ASW
             this.LabelLastName.TabIndex = 4;
             this.LabelLastName.Text = "Staff Last Name";
             // 
-            // LogoutButton
-            // 
-            this.LogoutButton.Image = global::GADJIT_WIN_ASW.Properties.Resources.logout_rounded_left_48pxblue;
-            this.LogoutButton.Location = new System.Drawing.Point(0, 658);
-            this.LogoutButton.Name = "LogoutButton";
-            this.LogoutButton.Size = new System.Drawing.Size(50, 50);
-            this.LogoutButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.LogoutButton.TabIndex = 3;
-            this.LogoutButton.TabStop = false;
-            this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
-            // 
-            // CircularProfilPicture
-            // 
-            this.CircularProfilPicture.Image = global::GADJIT_WIN_ASW.Properties.Resources.user_60px;
-            this.CircularProfilPicture.Location = new System.Drawing.Point(187, 3);
-            this.CircularProfilPicture.Name = "CircularProfilPicture";
-            this.CircularProfilPicture.Size = new System.Drawing.Size(60, 60);
-            this.CircularProfilPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.CircularProfilPicture.TabIndex = 8;
-            this.CircularProfilPicture.TabStop = false;
-            // 
-            // cirucularButton
-            // 
-            this.cirucularButton.BackColor = System.Drawing.Color.Lime;
-            this.cirucularButton.FlatAppearance.BorderSize = 2;
-            this.cirucularButton.Location = new System.Drawing.Point(223, 67);
-            this.cirucularButton.Name = "cirucularButton";
-            this.cirucularButton.Size = new System.Drawing.Size(24, 23);
-            this.cirucularButton.TabIndex = 7;
-            this.cirucularButton.UseVisualStyleBackColor = false;
-            this.cirucularButton.Click += new System.EventHandler(this.cirucularButton_Click);
-            // 
             // StaffPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1377, 708);
+            this.ClientSize = new System.Drawing.Size(839, 487);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "StaffPanel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StaffPanel";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StaffPanel_FormClosing);
             this.Load += new System.EventHandler(this.StaffPanel_Load);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.LogoutButton)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.LogoutButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CircularProfilPicture)).EndInit();
             this.ResumeLayout(false);
 
@@ -222,7 +225,7 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.Button ButtonTicketVerification;
         private System.Windows.Forms.Button ShowSubMenuButton;
         private System.Windows.Forms.Panel panel2;
-        private CirucularButton cirucularButton;
+        private CirucularButton ButtonDisponibility;
         private CircularPicture LogoutButton;
         public System.Windows.Forms.Label LabelEmail;
         public System.Windows.Forms.Label LabelFirstName;
