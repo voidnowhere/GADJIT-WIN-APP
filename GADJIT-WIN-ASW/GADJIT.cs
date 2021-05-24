@@ -17,14 +17,6 @@ namespace GADJIT_WIN_ASW
         //local
         //public static SqlConnection sqlConnection = new SqlConnection(@".\SQLEXPRESS; Database=GADJIT; Integrated Security=true");
 
-        public static string IDGenerator(string id)
-        {
-            String code = Regex.Match(id, @"^\D+").ToString();
-            String num = Regex.Match(id, @"\d+$").ToString();
-            
-            return code + ((num == "") ? 0 : int.Parse(num) + 1).ToString();
-        }
-
         public static bool IsCINValid(string cin)
         {
             if (Regex.IsMatch(cin, @"^[A-Z]{1,2}\d{6}$"))
@@ -52,9 +44,8 @@ namespace GADJIT_WIN_ASW
             return false;
         }
 
-        public static string PasswordGenerator()
+        public static string PasswordGenerator(int length)
         {
-            int length = 10;
             Random random = new Random();
             string passChar = "abcdefghijklmnopqursuvwxyz" + "ABCDEFGHIJKLMNOPQRSTUVWXYZ" + "0123456789";
             StringBuilder pass = new StringBuilder();
