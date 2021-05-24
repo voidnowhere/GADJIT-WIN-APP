@@ -47,13 +47,9 @@ namespace GADJIT_WIN_CLIENT
             this.ComboxBoxCity = new System.Windows.Forms.ComboBox();
             this.errorProviderConfPass = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderTelephone = new System.Windows.Forms.ErrorProvider(this.components);
-            this.textBoxPassord = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
             this.labelshowGroupBox = new System.Windows.Forms.Label();
-            this.errorProviderPass = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderConfPass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderTelephone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProviderPass)).BeginInit();
             this.SuspendLayout();
             // 
             // ButtonAnnuler
@@ -63,7 +59,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonAnnuler.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonAnnuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonAnnuler.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.ButtonAnnuler.Location = new System.Drawing.Point(40, 625);
+            this.ButtonAnnuler.Location = new System.Drawing.Point(62, 537);
             this.ButtonAnnuler.Name = "ButtonAnnuler";
             this.ButtonAnnuler.Size = new System.Drawing.Size(216, 37);
             this.ButtonAnnuler.TabIndex = 8;
@@ -79,7 +75,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonUpdate.FlatAppearance.BorderSize = 0;
             this.ButtonUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonUpdate.ForeColor = System.Drawing.Color.White;
-            this.ButtonUpdate.Location = new System.Drawing.Point(325, 625);
+            this.ButtonUpdate.Location = new System.Drawing.Point(300, 537);
             this.ButtonUpdate.Name = "ButtonUpdate";
             this.ButtonUpdate.Size = new System.Drawing.Size(216, 37);
             this.ButtonUpdate.TabIndex = 7;
@@ -286,33 +282,6 @@ namespace GADJIT_WIN_CLIENT
             // 
             this.errorProviderTelephone.ContainerControl = this;
             // 
-            // textBoxPassord
-            // 
-            this.textBoxPassord.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxPassord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.textBoxPassord.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxPassord.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPassord.Location = new System.Drawing.Point(152, 521);
-            this.textBoxPassord.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxPassord.Multiline = true;
-            this.textBoxPassord.Name = "textBoxPassord";
-            this.textBoxPassord.PasswordChar = '*';
-            this.textBoxPassord.Size = new System.Drawing.Size(288, 37);
-            this.textBoxPassord.TabIndex = 6;
-            // 
-            // label10
-            // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(148, 495);
-            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(90, 17);
-            this.label10.TabIndex = 57;
-            this.label10.Text = "mot de passe";
-            // 
             // labelshowGroupBox
             // 
             this.labelshowGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -320,26 +289,20 @@ namespace GADJIT_WIN_CLIENT
             this.labelshowGroupBox.AutoSize = true;
             this.labelshowGroupBox.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelshowGroupBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.labelshowGroupBox.Location = new System.Drawing.Point(153, 566);
+            this.labelshowGroupBox.Location = new System.Drawing.Point(149, 509);
             this.labelshowGroupBox.Name = "labelshowGroupBox";
             this.labelshowGroupBox.Size = new System.Drawing.Size(163, 13);
             this.labelshowGroupBox.TabIndex = 60;
             this.labelshowGroupBox.Text = "Changez votre Mot de passe ?";
             this.labelshowGroupBox.Click += new System.EventHandler(this.labelshowGroupBox_Click);
             // 
-            // errorProviderPass
-            // 
-            this.errorProviderPass.ContainerControl = this;
-            // 
             // ClientInformation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(581, 765);
+            this.ClientSize = new System.Drawing.Size(581, 596);
             this.Controls.Add(this.labelshowGroupBox);
-            this.Controls.Add(this.textBoxPassord);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.ComboxBoxCity);
             this.Controls.Add(this.ButtonAnnuler);
             this.Controls.Add(this.ButtonUpdate);
@@ -365,7 +328,6 @@ namespace GADJIT_WIN_CLIENT
             this.Load += new System.EventHandler(this.ClientInformation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderConfPass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderTelephone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProviderPass)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -390,9 +352,6 @@ namespace GADJIT_WIN_CLIENT
         private System.Windows.Forms.ComboBox ComboxBoxCity;
         private System.Windows.Forms.ErrorProvider errorProviderConfPass;
         private System.Windows.Forms.ErrorProvider errorProviderTelephone;
-        private System.Windows.Forms.TextBox textBoxPassord;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label labelshowGroupBox;
-        private System.Windows.Forms.ErrorProvider errorProviderPass;
     }
 }

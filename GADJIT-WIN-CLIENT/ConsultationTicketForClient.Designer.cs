@@ -79,7 +79,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonDiagnostic.ForeColor = System.Drawing.Color.White;
             this.ButtonDiagnostic.Location = new System.Drawing.Point(322, 257);
             this.ButtonDiagnostic.Name = "ButtonDiagnostic";
-            this.ButtonDiagnostic.Size = new System.Drawing.Size(132, 33);
+            this.ButtonDiagnostic.Size = new System.Drawing.Size(132, 28);
             this.ButtonDiagnostic.TabIndex = 39;
             this.ButtonDiagnostic.Text = "Diagnostic";
             this.ButtonDiagnostic.UseVisualStyleBackColor = false;

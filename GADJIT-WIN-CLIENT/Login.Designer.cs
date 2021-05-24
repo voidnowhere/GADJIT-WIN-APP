@@ -143,6 +143,7 @@ namespace GADJIT_WIN_CLIENT
             this.TexrBoxEmail.Name = "TexrBoxEmail";
             this.TexrBoxEmail.Size = new System.Drawing.Size(216, 28);
             this.TexrBoxEmail.TabIndex = 0;
+            this.TexrBoxEmail.TextChanged += new System.EventHandler(this.TexrBoxEmail_TextChanged);
             // 
             // PictureBoxExit
             // 
