@@ -20,8 +20,8 @@ namespace GADJIT_WIN_ASW
         }
 
         SqlDataReader dataReader;
-        Dictionary<string, string> category = new Dictionary<string, string>();
-        Dictionary<string, string> brand = new Dictionary<string, string>();
+        Dictionary<int, string> category = new Dictionary<int, string>();
+        Dictionary<int, string> brand = new Dictionary<int, string>();
         //
         bool filledDGV = false;
         bool where = false;
@@ -40,12 +40,12 @@ namespace GADJIT_WIN_ASW
             return true;
         }
 
-        private bool CheckIDIfExists(string id)
+        private bool CheckIDIfExists(int id)
         {
             try
             {
                 SqlCommand sqlCommand = new SqlCommand("select COUNT(GadRefID) from GadgetReference where GadRefID = @id", GADJIT.sqlConnection);
-                sqlCommand.Parameters.AddWithValue("@id", id);
+                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 GADJIT.sqlConnection.Open();
                 if ((int)sqlCommand.ExecuteScalar() == 1)
                 {
@@ -54,7 +54,7 @@ namespace GADJIT_WIN_ASW
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error CheckIDIfExists(string id)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error CheckIDIfExists(int id)", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -67,11 +67,11 @@ namespace GADJIT_WIN_ASW
         {
             if (DGVReference.Rows.Count > 2)
             {
-                DGVReference[0, DGVReference.CurrentRow.Index].Value = GADJIT.IDGenerator((string)DGVReference[0, DGVReference.CurrentRow.Index - 1].Value);
+                DGVReference[0, DGVReference.CurrentRow.Index].Value = (int)DGVReference[0, DGVReference.CurrentRow.Index - 1].Value + 1;
             }
             else
             {
-                DGVReference[0, DGVReference.CurrentRow.Index].Value = GADJIT.IDGenerator("GR");
+                DGVReference[0, DGVReference.CurrentRow.Index].Value = 0;
             }
         }
 
@@ -92,9 +92,9 @@ namespace GADJIT_WIN_ASW
 
                 while (dataReader.Read())
                 {
-                    ColumnComboBoxCategory.Items.Add(new { id = dataReader.GetString(0), desig = dataReader.GetString(1) });
+                    ColumnComboBoxCategory.Items.Add(new { id = dataReader.GetInt32(0), desig = dataReader.GetString(1) });
                     ComboBoxCategory.Items.Add(dataReader.GetString(1));
-                    category.Add(dataReader.GetString(0), dataReader.GetString(1));
+                    category.Add(dataReader.GetInt32(0), dataReader.GetString(1));
                 }
                 dataReader.Close();
                 //
@@ -106,9 +106,9 @@ namespace GADJIT_WIN_ASW
                 ComboBoxBrand.Items.Add("--tous--");
                 while (dataReader.Read())
                 {
-                    ColumnComboBoxBrand.Items.Add(new { id = dataReader.GetString(0), desig = dataReader.GetString(1) });
+                    ColumnComboBoxBrand.Items.Add(new { id = dataReader.GetInt32(0), desig = dataReader.GetString(1) });
                     ComboBoxBrand.Items.Add(dataReader.GetString(1));
-                    brand.Add(dataReader.GetString(0), dataReader.GetString(1));
+                    brand.Add(dataReader.GetInt32(0), dataReader.GetString(1));
                 }
             }
             catch (Exception ex)
@@ -138,14 +138,14 @@ namespace GADJIT_WIN_ASW
                     if (ComboBoxCategory.SelectedIndex > 0)
                     {
                         sqlQuery += " GadCatID = @cat";
-                        sqlCommand.Parameters.Add("@cat", SqlDbType.VarChar).Value = category.Keys.First(k => category[k].ToString() == ComboBoxCategory.Text);
+                        sqlCommand.Parameters.Add("@cat", SqlDbType.Int).Value = category.Keys.First(k => category[k].ToString() == ComboBoxCategory.Text);
                         where = true;
                     }
                     if (ComboBoxBrand.SelectedIndex > 0)
                     {
                         if (where) sqlQuery += " and";
                         sqlQuery += " GadBraID = @bra";
-                        sqlCommand.Parameters.Add("@bra", SqlDbType.VarChar).Value = brand.Keys.First(k => brand[k].ToString() == ComboBoxBrand.Text);
+                        sqlCommand.Parameters.Add("@bra", SqlDbType.Int).Value = brand.Keys.First(k => brand[k].ToString() == ComboBoxBrand.Text);
                         where = true;
                     }
                     if (TextBoxDesignation.Text != "")
@@ -159,7 +159,7 @@ namespace GADJIT_WIN_ASW
                     {
                         if (where) sqlQuery += " and";
                         sqlQuery += " GadRefSta = @sta";
-                        sqlCommand.Parameters.Add("@sta", SqlDbType.Bit).Value = (ComboBoxStatus.SelectedIndex == 1) ? 1 : 0;
+                        sqlCommand.Parameters.Add("@sta", SqlDbType.Bit).Value = (ComboBoxStatus.SelectedIndex == 1) ? true : false;
                         where = true;
                     }
                 }
@@ -228,33 +228,34 @@ namespace GADJIT_WIN_ASW
 
         private void DGVReference_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            int rowIndex = e.RowIndex;
             if (filledDGV)
             {
+                int rowIndex = e.RowIndex;
+                DGVReference.Rows[e.RowIndex].ErrorText = "";
                 if (DGVReference[0, rowIndex].Value == null) // ID
                 {
                     InsertNewIDInDGV();
                 }
                 if (!CheckDGVCellsIfEmpty())
                 {
-                    if (CheckIDIfExists(DGVReference[0, rowIndex].Value.ToString())) // update
+                    if (CheckIDIfExists((int)DGVReference[0, rowIndex].Value)) //update
                     {
                         try
                         {
                             string sqlQuery = "update GadgetReference set GadCatID = @catID, GadBraID = @braID, GadRefDesig = @desig, GadRefDescr = @descr, GadRefSta = @sta where GadRefID = @id";
                             SqlCommand sqlCommandUpdate = new SqlCommand(sqlQuery, GADJIT.sqlConnection);
 
-                            sqlCommandUpdate.Parameters.Add("@id", SqlDbType.VarChar).Value = DGVReference["ColumnTextBoxID", rowIndex].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@id", SqlDbType.Int).Value = (int)DGVReference["ColumnTextBoxID", rowIndex].Value;
 
-                            sqlCommandUpdate.Parameters.Add("@catID", SqlDbType.VarChar).Value = DGVReference["ColumnComboBoxCategory", rowIndex].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@catID", SqlDbType.Int).Value = (int)DGVReference["ColumnComboBoxCategory", rowIndex].Value;
 
-                            sqlCommandUpdate.Parameters.Add("@braID", SqlDbType.VarChar).Value = DGVReference["ColumnComboBoxBrand", rowIndex].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@braID", SqlDbType.Int).Value = (int)DGVReference["ColumnComboBoxBrand", rowIndex].Value;
 
                             sqlCommandUpdate.Parameters.Add("@desig", SqlDbType.VarChar).Value = DGVReference["ColumnTextBoxDesignation", rowIndex].Value.ToString();
 
-                            sqlCommandUpdate.Parameters.Add("@descr", SqlDbType.NVarChar).Value = DGVReference["ColumnTextBoxDescription", rowIndex].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@descr", SqlDbType.VarChar).Value = DGVReference["ColumnTextBoxDescription", rowIndex].Value.ToString();
 
-                            sqlCommandUpdate.Parameters.Add("@sta", SqlDbType.Bit).Value = (DGVReference["ColumnComboBoxStatus", rowIndex].Value.ToString() == "Activer") ? 1 : 0;
+                            sqlCommandUpdate.Parameters.Add("@sta", SqlDbType.Bit).Value = (DGVReference["ColumnComboBoxStatus", rowIndex].Value.ToString() == "Activer") ? true : false;
 
                             GADJIT.sqlConnection.Open();
 
@@ -275,25 +276,32 @@ namespace GADJIT_WIN_ASW
                     {
                         try
                         {
-                            SqlCommand sqlCommandInsert = new SqlCommand("insert into GadgetReference values(@id, @catID, @braID, @desig, @descr, @sta)", GADJIT.sqlConnection);
+                            if(!CheckIfReferenceDesigExists((int)DGVReference[0, e.RowIndex].Value, DGVReference[3, e.RowIndex].Value.ToString()))
+                            {
+                                SqlCommand sqlCommandInsert = new SqlCommand("insert into GadgetReference values(@id, @catID, @braID, @desig, @descr, @sta)", GADJIT.sqlConnection);
 
-                            sqlCommandInsert.Parameters.Add("@id", SqlDbType.VarChar).Value = DGVReference["ColumnTextBoxID", rowIndex].Value.ToString();
+                                sqlCommandInsert.Parameters.Add("@id", SqlDbType.Int).Value = (int)DGVReference["ColumnTextBoxID", rowIndex].Value;
 
-                            sqlCommandInsert.Parameters.Add("@catID", SqlDbType.VarChar).Value = DGVReference["ColumnComboBoxCategory", rowIndex].Value.ToString();
+                                sqlCommandInsert.Parameters.Add("@catID", SqlDbType.Int).Value = (int)DGVReference["ColumnComboBoxCategory", rowIndex].Value;
 
-                            sqlCommandInsert.Parameters.Add("@braID", SqlDbType.VarChar).Value = DGVReference["ColumnComboBoxBrand", rowIndex].Value.ToString();
+                                sqlCommandInsert.Parameters.Add("@braID", SqlDbType.Int).Value = (int)DGVReference["ColumnComboBoxBrand", rowIndex].Value;
 
-                            sqlCommandInsert.Parameters.Add("@desig", SqlDbType.VarChar).Value = DGVReference["ColumnTextBoxDesignation", rowIndex].Value.ToString();
+                                sqlCommandInsert.Parameters.Add("@desig", SqlDbType.VarChar).Value = DGVReference["ColumnTextBoxDesignation", rowIndex].Value.ToString();
 
-                            sqlCommandInsert.Parameters.Add("@descr", SqlDbType.NVarChar).Value = DGVReference["ColumnTextBoxDescription", rowIndex].Value.ToString();
+                                sqlCommandInsert.Parameters.Add("@descr", SqlDbType.VarChar).Value = DGVReference["ColumnTextBoxDescription", rowIndex].Value.ToString();
 
-                            sqlCommandInsert.Parameters.Add("@sta", SqlDbType.Bit).Value = (DGVReference["ColumnComboBoxStatus", rowIndex].Value.ToString() == "Activer") ? 1 : 0;
+                                sqlCommandInsert.Parameters.Add("@sta", SqlDbType.Bit).Value = (DGVReference["ColumnComboBoxStatus", rowIndex].Value.ToString() == "Activer") ? true : false;
 
-                            GADJIT.sqlConnection.Open();
+                                GADJIT.sqlConnection.Open();
 
-                            MessageBox.Show(sqlCommandInsert.ExecuteNonQuery() + " réussi", "Ajout", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show(sqlCommandInsert.ExecuteNonQuery() + " réussi", "Ajout", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            ReferencesStats();
+                                ReferencesStats();
+                            }
+                            else
+                            {
+                                DGVReference.Rows[e.RowIndex].ErrorText = "cet désignation existe déjà pour une référence";
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -308,7 +316,7 @@ namespace GADJIT_WIN_ASW
             }
         }
 
-        private bool CheckIfReferenceDesigExists(string id, string desig)
+        private bool CheckIfReferenceDesigExists(int id, string desig)
         {
             try
             {
@@ -320,7 +328,7 @@ namespace GADJIT_WIN_ASW
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error CheckIfReferenceDesigExists(string id, string desig)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error CheckIfReferenceDesigExists(int id, string desig)", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -333,20 +341,24 @@ namespace GADJIT_WIN_ASW
         {
             if (e.ColumnIndex == 3 && e.FormattedValue != null && DGVReference[0, e.RowIndex].Value != null)
             {
-                if (CheckIfReferenceDesigExists(DGVReference[0, e.RowIndex].Value.ToString(), e.FormattedValue.ToString()))
+                if (CheckIfReferenceDesigExists((int)DGVReference[0, e.RowIndex].Value, e.FormattedValue.ToString()))
                 {
                     e.Cancel = true;
-                    MessageBox.Show("cet désignation existe déjà pour une référence", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DGVReference.Rows[e.RowIndex].ErrorText = "cet désignation existe déjà pour une référence";
+                }
+                else
+                {
+                    DGVReference.Rows[e.RowIndex].ErrorText = "";
                 }
             }
         }
 
-        private bool CheckIfReferenceCanBeDeleted(string id)
+        private bool CheckIfReferenceCanBeDeleted(int id)
         {
             try
             {
                 SqlCommand sqlCommand = new SqlCommand("select COUNT(GadRefID) from Ticket where GadRefID = @id", GADJIT.sqlConnection);
-                sqlCommand.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 GADJIT.sqlConnection.Open();
                 if((int)sqlCommand.ExecuteScalar() >= 1)
                 {
@@ -355,7 +367,7 @@ namespace GADJIT_WIN_ASW
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error CheckIfReferenceCanBeDeleted(string id)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error CheckIfReferenceCanBeDeleted(int id)", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -370,12 +382,12 @@ namespace GADJIT_WIN_ASW
             {
                 try
                 {
-                    if (CheckIDIfExists(e.Row.Cells[0].Value.ToString()))
+                    if (CheckIDIfExists((int)e.Row.Cells[0].Value))
                     {
-                        if (CheckIfReferenceCanBeDeleted(e.Row.Cells[0].Value.ToString()))
+                        if (CheckIfReferenceCanBeDeleted((int)e.Row.Cells[0].Value))
                         {
                             SqlCommand sqlCommandDelete = new SqlCommand("delete from GadgetReference where GadRefID = @id", GADJIT.sqlConnection);
-                            sqlCommandDelete.Parameters.Add("@id", SqlDbType.VarChar).Value = e.Row.Cells[0].Value;
+                            sqlCommandDelete.Parameters.Add("@id", SqlDbType.Int).Value = (int)e.Row.Cells[0].Value;
 
                             if (MessageBox.Show("Voulez vous supprimer cet référence", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                             {

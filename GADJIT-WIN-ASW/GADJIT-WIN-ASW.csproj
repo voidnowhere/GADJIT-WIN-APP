@@ -122,6 +122,12 @@
     <Compile Include="UnlockAdminPanel.Designer.cs">
       <DependentUpon>UnlockAdminPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdateAdminPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateAdminPassword.Designer.cs">
+      <DependentUpon>UpdateAdminPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="UnlockStaffPanel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,6 +205,9 @@
     <EmbeddedResource Include="UnlockAdminPanel.resx">
       <DependentUpon>UnlockAdminPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UpdateAdminPassword.resx">
+      <DependentUpon>UpdateAdminPassword.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UnlockStaffPanel.resx">
       <DependentUpon>UnlockStaffPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -253,6 +262,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\logout_rounded_left_48pxblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\passwordChange.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

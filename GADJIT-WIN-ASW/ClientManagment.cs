@@ -57,7 +57,7 @@ namespace GADJIT_WIN_ASW
                 DGVClient.Rows.Clear();
                 where = false;
                 //
-                String sqlQuery = "select CliID, CliLastName, CliFirstName, CliEmail, CliPhoneNumber, CliAdress, CitDesig, CliSta from Client";
+                String sqlQuery = "select CliID, CliLastName, CliFirstName, CliEmail, CliPhoneNumber, CliAddress, CitDesig, CliSta from Client";
                 SqlCommand sqlCommand = new SqlCommand();
                 if (TextBoxEmailSearch.Text != "" || TextBoxLastNameSearch.Text != "" || 
                     ComboBoxCitySearch.SelectedIndex > 0 || ComboBoxStatusSearch.SelectedIndex > 0)
@@ -88,7 +88,7 @@ namespace GADJIT_WIN_ASW
                     {
                         if (where) sqlQuery += " and";
                         sqlQuery += " CliSta = @sta";
-                        sqlCommand.Parameters.Add("@sta", SqlDbType.Bit).Value = (ComboBoxStatusSearch.SelectedIndex == 1) ? 1 : 0;
+                        sqlCommand.Parameters.Add("@sta", SqlDbType.Bit).Value = (ComboBoxStatusSearch.SelectedIndex == 1) ? true : false;
                     }
                 }
 
@@ -101,7 +101,7 @@ namespace GADJIT_WIN_ASW
                     while (dataReader.Read())
                     {
                         DGVClient.Rows.Add(dataReader["CliID"], dataReader["CliLastName"], dataReader["CliFirstName"], dataReader["CliEmail"],
-                            dataReader["CliPhoneNumber"], dataReader["CliAdress"], dataReader["CitDesig"],
+                            dataReader["CliPhoneNumber"], dataReader["CliAddress"], dataReader["CitDesig"],
                             (dataReader.GetBoolean(7)) ? "Activer" : "Désactiver");
                     }
                     ClientsStats();
@@ -125,8 +125,8 @@ namespace GADJIT_WIN_ASW
                 try
                 {
                     SqlCommand sqlCommand = new SqlCommand("update Client set CliSta = @sta where CliID = @id ", GADJIT.sqlConnection);
-                    sqlCommand.Parameters.Add("@id", SqlDbType.VarChar).Value = DGVClient[0, e.RowIndex].Value;
-                    sqlCommand.Parameters.Add("@sta", SqlDbType.Bit).Value = (DGVClient[7, e.RowIndex].Value.ToString() == "Activer") ? 1 : 0;
+                    sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = (int)DGVClient[0, e.RowIndex].Value;
+                    sqlCommand.Parameters.Add("@sta", SqlDbType.Bit).Value = (DGVClient[7, e.RowIndex].Value.ToString() == "Activer") ? true : false;
                     GADJIT.sqlConnection.Open();
 
                     MessageBox.Show(sqlCommand.ExecuteNonQuery() + " réussi", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
