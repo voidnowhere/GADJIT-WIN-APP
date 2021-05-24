@@ -79,7 +79,7 @@ namespace GADJIT_WIN_CLIENT
             {
                 TID = 0;
             }
-            cmd = new SqlCommand("insert into TicketMonitoring values(@id,@Date,'Ticket Cree','C',@CID,@CID,1)", GADJIT.sqlConnection);
+            cmd = new SqlCommand("insert into TicketMonitoring values(@id,@Date,'Ticket Cree','C',@CID,1,1)", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@id", TID);
             cmd.Parameters.AddWithValue("@Date", DateTime.Now);
             cmd.Parameters.AddWithValue("@CID", CID);
