@@ -22,7 +22,7 @@ namespace GADJIT_WIN_CLIENT
             InitializeComponent();
         }
 
-        String ID = "C";
+        int ID;
         public static string emailC;
         public static string NomC;
 
@@ -58,11 +58,11 @@ namespace GADJIT_WIN_CLIENT
             dr.Read();
             try
             {
-                ID += (Convert.ToInt32(Regex.Match(dr.GetString(0), @"[0-9]").ToString()) + 1).ToString();
+                ID += Convert.ToInt32(dr["CliID"]) + 1;
             }
             catch
             {
-                ID = "C0";
+                ID = 0;
             } 
             GADJIT.sqlConnection.Close();
             dr.Close();

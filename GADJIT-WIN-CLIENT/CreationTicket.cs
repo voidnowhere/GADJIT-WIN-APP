@@ -21,11 +21,11 @@ namespace GADJIT_WIN_CLIENT
             InitializeComponent();
         }
         string emailtemp = "";
-        string CID = "";
-        string ID = "T";
-        string CatID = "";
-        string BrandID = "";
-        string RefID = "";
+        int CID;
+        int ID;
+        int CatID;
+        int BrandID;
+        int RefID;
         private void CreationTicket_Load(object sender, EventArgs e)
         {
             emailtemp = Login.Cemail;
@@ -34,8 +34,8 @@ namespace GADJIT_WIN_CLIENT
             SqlCommand cmd = new SqlCommand("select CliID from Client where CliEmail = '" + emailtemp + "'", GADJIT.sqlConnection);
             SqlDataReader dr = cmd.ExecuteReader();
             dr.Read();
-            CID = dr["CliID"].ToString();
-            dr.Close();//check this
+            CID = Convert.ToInt32(dr["CliID"]);
+            dr.Close();
             //
             cmd = new SqlCommand("select GadCatDesig from GadgetCategory where GadCatSta = 1 ", GADJIT.sqlConnection);
             dr =  cmd.ExecuteReader();
@@ -51,11 +51,11 @@ namespace GADJIT_WIN_CLIENT
             dr.Read();
             try
             {
-                ID += (Convert.ToInt32(Regex.Match(dr.GetString(0), @"[0-9]").ToString()) + 1).ToString();
+                ID += Convert.ToInt32(dr["TicID"]) + 1;
             }
             catch
             {
-                ID = "T0";
+                ID = 0;
             }       
             GADJIT.sqlConnection.Close();
             dr.Close();
@@ -94,7 +94,8 @@ namespace GADJIT_WIN_CLIENT
             {
                 ComboBoxMarque.Items.Clear();
                 GADJIT.sqlConnection.Open();
-                SqlCommand cmd = new SqlCommand("select GadBraDesig from GadgetBrand where GadBraSta = 1", GADJIT.sqlConnection);
+                SqlCommand cmd = new SqlCommand("SELECT DISTINCT GadBraDesig FROM GadgetReference, GadgetBrand WHERE GadgetReference.GadBraID = GadgetBrand.GadBraID AND(GadCatID = @CatID) AND GadBraSta = 1 ", GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("@CatID", CatID);
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -107,7 +108,7 @@ namespace GADJIT_WIN_CLIENT
                 cmd.Parameters.AddWithValue("CatDes", ComboBoxCatGadjit.Text);
                 dr = cmd.ExecuteReader();
                 dr.Read();
-                CatID = dr["GadCatID"].ToString();
+                CatID = Convert.ToInt32(dr["GadCatID"]);
                 dr.Close();
                 ComboBoxMarque.SelectedIndex = 0;
                 GADJIT.sqlConnection.Close();
@@ -123,7 +124,7 @@ namespace GADJIT_WIN_CLIENT
                 cmd.Parameters.AddWithValue("@bradDes", ComboBoxMarque.Text);
                 SqlDataReader dr = cmd.ExecuteReader();
                 dr.Read();
-                BrandID = dr["GadBraID"].ToString();
+                BrandID = Convert.ToInt32(dr["GadBraID"]);
                 dr.Close();
                 //
                 ComboBoxRefGadjit.Items.Clear();
@@ -156,7 +157,7 @@ namespace GADJIT_WIN_CLIENT
                 cmd.Parameters.AddWithValue("@RefDes", ComboBoxRefGadjit.Text);
                 SqlDataReader dr = cmd.ExecuteReader();
                 dr.Read();
-                RefID = dr["GadRefID"].ToString();
+                RefID = Convert.ToInt32(dr["GadRefID"]);
                 dr.Close();
                 GADJIT.sqlConnection.Close();
             }   
