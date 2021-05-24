@@ -65,7 +65,7 @@ namespace GADJIT_WIN_ASW
 
         private void InsertNewIDInDGV()
         {
-            if (DGVReference.Rows.Count > 1)
+            if (DGVReference.Rows.Count > 2)
             {
                 DGVReference[0, DGVReference.CurrentRow.Index].Value = (int)DGVReference[0, DGVReference.CurrentRow.Index - 1].Value + 1;
             }

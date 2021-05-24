@@ -78,7 +78,7 @@ namespace GADJIT_WIN_ASW
 
         private void InsertNewIDInDGVCategory()
         {
-            if (DGVCategory.Rows.Count > 1)
+            if (DGVCategory.Rows.Count > 2)
             {
                 DGVCategory[0, DGVCategory.CurrentRow.Index].Value = (int)DGVCategory[0, DGVCategory.CurrentRow.Index - 1].Value + 1;
             }
