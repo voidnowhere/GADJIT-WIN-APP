@@ -355,7 +355,7 @@ namespace GADJIT_WIN_ASW
 
                             GADJIT.SendEmail(
                                 DGVStaff["ColumnTextBoxEmail", rowIndex].Value.ToString(),
-                                "Votre compte de type personnel a été créé.\nVoici votre mot de passe: "+ 
+                                "Votre compte de personnel a été créé.\nVoici votre mot de passe: "+ 
                                 DGVStaff["ColumnTextBoxPassword", rowIndex].Value.ToString() +
                                 "\nVeuillez supprimé cet email.");
 
