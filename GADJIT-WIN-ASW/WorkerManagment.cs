@@ -61,18 +61,18 @@ namespace GADJIT_WIN_ASW
             return true;
         }
 
-        private bool CheckIDIfExists(string id)
+        private bool CheckIDIfExists(int id)
         {
             try
             {
                 SqlCommand sqlCommand = new SqlCommand("select COUNT(WorID) from Worker where WorID = @id", GADJIT.sqlConnection);
-                sqlCommand.Parameters.AddWithValue("@id", id);
+                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 GADJIT.sqlConnection.Open();
                 if ((int)sqlCommand.ExecuteScalar() == 1) return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error CheckIDIfExists(string id)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error CheckIDIfExists(int id)", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -85,11 +85,11 @@ namespace GADJIT_WIN_ASW
         {
             if (DGVWorker.Rows.Count > 2)
             {
-                DGVWorker[0, DGVWorker.CurrentRow.Index].Value = GADJIT.IDGenerator((string)DGVWorker[0, DGVWorker.CurrentRow.Index - 1].Value);
+                DGVWorker[0, DGVWorker.CurrentRow.Index].Value = (int)DGVWorker[0, DGVWorker.CurrentRow.Index - 1].Value + 1;
             }
             else
             {
-                DGVWorker[0, DGVWorker.CurrentRow.Index].Value = GADJIT.IDGenerator("W");
+                DGVWorker[0, DGVWorker.CurrentRow.Index].Value = 0;
             }
         }
 
@@ -166,7 +166,7 @@ namespace GADJIT_WIN_ASW
                     {
                         if (where) sqlQuery += " and";
                         sqlQuery += " WorSta = @sta";
-                        sqlCommand.Parameters.Add("@sta", SqlDbType.Bit).Value = (ComboBoxStatusSearch.SelectedIndex == 1) ? 1 : 0;
+                        sqlCommand.Parameters.Add("@sta", SqlDbType.Bit).Value = (ComboBoxStatusSearch.SelectedIndex == 1) ? true : false;
                     }
                 }
                 else
@@ -183,7 +183,7 @@ namespace GADJIT_WIN_ASW
                     {
                         DGVWorker.Rows.Add(dataReader["WorID"], dataReader["WorCIN"], new Bitmap(new MemoryStream((byte[])dataReader["WorPicture"])),
                             dataReader["WorLastName"], dataReader["WorFirstName"], dataReader["WorEmail"], dataReader["WorPassWord"], 
-                            dataReader["WorPhoneNumber"], dataReader["WorAdress"], dataReader["CitDesig"], dataReader["WorSalary"], null,
+                            dataReader["WorPhoneNumber"], dataReader["WorAddress"], dataReader["CitDesig"], dataReader["WorSalary"], null,
                             dataReader["WorDispo"], (dataReader.GetBoolean(12)) ? "Activer" : "Désactiver");
                     }
                     WorkersStats();
@@ -240,9 +240,12 @@ namespace GADJIT_WIN_ASW
             }
             else if(e.ColumnIndex == 11) // Speciality
             {
-                WorkerSpeciality workerSpeciality = new WorkerSpeciality();
-                workerSpeciality.workerID = DGVWorker[0, e.RowIndex].Value.ToString();
-                workerSpeciality.ShowDialog();
+                if (DGVWorker[0, e.RowIndex].Value != null && CheckIDIfExists((int)DGVWorker[0, e.RowIndex].Value))
+                {
+                    WorkerSpeciality workerSpeciality = new WorkerSpeciality();
+                    workerSpeciality.workerID = (int)DGVWorker[0, e.RowIndex].Value;
+                    workerSpeciality.ShowDialog();
+                }
             }
         }
 
@@ -267,22 +270,22 @@ namespace GADJIT_WIN_ASW
                 if (DGVWorker[0, rowIndex].Value == null) // ID
                 {
                     InsertNewIDInDGV();
-                    DGVWorker[6, rowIndex].Value = GADJIT.PasswordGenerator(); //Password
+                    DGVWorker[6, rowIndex].Value = GADJIT.PasswordGenerator(8); //Password
                     DGVWorker[12, rowIndex].Value = "Hors Ligne"; //Disponibility
-                    DGVWorker[13, rowIndex].Value = "Désactiver"; //Status
+                    DGVWorker[13, rowIndex].Value = "Activer"; //Status
                 }
                 if (!CheckDGVCellsIfEmpty())
                 {
-                    if (CheckIDIfExists(DGVWorker[0, rowIndex].Value.ToString())) // update
+                    if (CheckIDIfExists((int)DGVWorker[0, rowIndex].Value)) //update
                     {
                         try
                         {
                             string sqlQuery = "update Worker set WorCIN = @cin, WorPicture = @img, WorLastName = @lastName, WorFirstName = @firstName, WorEmail = @email, " +
-                                "WorPassWord = @password, WorPhoneNumber = @phoneNumber, WorAdress = @adress, CitDesig = @city, WorSalary = @salary, " +
+                                "WorPassWord = @password, WorPhoneNumber = @phoneNumber, WorAddress = @address, CitDesig = @city, WorSalary = @salary, " +
                                 "WorSta = @status where WorID = @id";
                             SqlCommand sqlCommandUpdate = new SqlCommand(sqlQuery, GADJIT.sqlConnection);
 
-                            sqlCommandUpdate.Parameters.Add("@id", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxID", rowIndex].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@id", SqlDbType.Int).Value = (int)DGVWorker["ColumnTextBoxID", rowIndex].Value;
 
                             sqlCommandUpdate.Parameters.Add("@cin", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxCIN", rowIndex].Value.ToString().ToUpper();
 
@@ -298,7 +301,7 @@ namespace GADJIT_WIN_ASW
 
                             sqlCommandUpdate.Parameters.Add("@phoneNumber", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxPhoneNumber", rowIndex].Value.ToString();
 
-                            sqlCommandUpdate.Parameters.Add("@adress", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxAdress", rowIndex].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@address", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxAdress", rowIndex].Value.ToString();
 
                             sqlCommandUpdate.Parameters.Add("@city", SqlDbType.VarChar).Value = DGVWorker["ColumnComboBoxCity", rowIndex].Value.ToString();
 
@@ -321,15 +324,15 @@ namespace GADJIT_WIN_ASW
                             GADJIT.sqlConnection.Close();
                         }
                     }
-                    else // insert
+                    else //insert
                     {
                         try
                         {
                             string sqlQuery = "insert into Worker " +
-                            "values(@id, @cin, @img, @lastName, @firstName, @email, @password, @phoneNumber, @adress, @city, @salary, @dispo, @status)";
+                            "values(@id, @cin, @img, @lastName, @firstName, @email, @password, @phoneNumber, @address, @city, @salary, @dispo, @status)";
                             SqlCommand sqlCommandInsert = new SqlCommand(sqlQuery, GADJIT.sqlConnection);
 
-                            sqlCommandInsert.Parameters.Add("@id", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxID", rowIndex].Value.ToString();
+                            sqlCommandInsert.Parameters.Add("@id", SqlDbType.Int).Value = (int)DGVWorker["ColumnTextBoxID", rowIndex].Value;
 
                             sqlCommandInsert.Parameters.Add("@cin", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxCIN", rowIndex].Value.ToString().ToUpper();
 
@@ -345,7 +348,7 @@ namespace GADJIT_WIN_ASW
 
                             sqlCommandInsert.Parameters.Add("@phoneNumber", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxPhoneNumber", rowIndex].Value.ToString();
 
-                            sqlCommandInsert.Parameters.Add("@adress", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxAdress", rowIndex].Value.ToString();
+                            sqlCommandInsert.Parameters.Add("@address", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxAdress", rowIndex].Value.ToString();
 
                             sqlCommandInsert.Parameters.Add("@city", SqlDbType.VarChar).Value = DGVWorker["ColumnComboBoxCity", rowIndex].Value.ToString();
 
@@ -389,7 +392,11 @@ namespace GADJIT_WIN_ASW
                     if (!GADJIT.IsCINValid(e.FormattedValue.ToString()))
                     {
                         e.Cancel = true;
-                        MessageBox.Show("format CIN incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        DGVWorker.Rows[e.RowIndex].ErrorText = "format CIN incorrect";
+                    }
+                    else
+                    {
+                        DGVWorker.Rows[e.RowIndex].ErrorText = "";
                     }
                 }
                 else if (e.ColumnIndex == 5) //Email
@@ -397,7 +404,11 @@ namespace GADJIT_WIN_ASW
                     if (!GADJIT.IsEmailValid(e.FormattedValue.ToString()))
                     {
                         e.Cancel = true;
-                        MessageBox.Show("format d'email incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        DGVWorker.Rows[e.RowIndex].ErrorText = "format d'email incorrect";
+                    }
+                    else
+                    {
+                        DGVWorker.Rows[e.RowIndex].ErrorText = "";
                     }
                 }
                 else if (e.ColumnIndex == 10) //Salary
@@ -405,18 +416,22 @@ namespace GADJIT_WIN_ASW
                     if (!GADJIT.IsSalaryValid(e.FormattedValue.ToString()))
                     {
                         e.Cancel = true;
-                        MessageBox.Show("format du salaire incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        DGVWorker.Rows[e.RowIndex].ErrorText = "format du salaire incorrect";
+                    }
+                    else
+                    {
+                        DGVWorker.Rows[e.RowIndex].ErrorText = "";
                     }
                 }
             }
         }
 
-        private bool CheckIfWorkerCanBeDeleted(string id)
+        private bool CheckIfWorkerCanBeDeleted(int id)
         {
             try
             {
                 SqlCommand sqlCommand = new SqlCommand("select COUNT(WorID) from Ticket where WorID = @id", GADJIT.sqlConnection);
-                sqlCommand.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 GADJIT.sqlConnection.Open();
                 if ((int)sqlCommand.ExecuteScalar() >= 1)
                 {
@@ -425,7 +440,7 @@ namespace GADJIT_WIN_ASW
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error CheckIfWorkerCanBeDeleted(string id)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error CheckIfWorkerCanBeDeleted(int id)", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -438,17 +453,17 @@ namespace GADJIT_WIN_ASW
         {
             try
             {
-                if (CheckIDIfExists(e.Row.Cells[0].Value.ToString()))
+                if (CheckIDIfExists((int)e.Row.Cells[0].Value))
                 {
-                    if (CheckIfWorkerCanBeDeleted(e.Row.Cells[0].Value.ToString()))
+                    if (CheckIfWorkerCanBeDeleted((int)e.Row.Cells[0].Value))
                     {
-                        string id = e.Row.Cells[0].Value.ToString();
+                        int id = (int)e.Row.Cells[0].Value;
 
                         SqlCommand WorkerSpecialty = new SqlCommand("delete from WorkerSpecialty where WorID = @id", GADJIT.sqlConnection);
-                        WorkerSpecialty.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                        WorkerSpecialty.Parameters.Add("@id", SqlDbType.Int).Value = id;
 
                         SqlCommand sqlCommandDeleteWorker = new SqlCommand("delete from Worker where WorID = @id", GADJIT.sqlConnection);
-                        sqlCommandDeleteWorker.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                        sqlCommandDeleteWorker.Parameters.Add("@id", SqlDbType.Int).Value = id;
 
                         if (MessageBox.Show("Voulez vous supprimer cet employé", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                         {
