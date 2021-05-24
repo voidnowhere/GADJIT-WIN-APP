@@ -95,20 +95,54 @@ namespace GADJIT_WIN_ASW
             login.Show();
         }
 
+        private void ResetButtonsColor()
+        {
+            ButtonTicketManagment.BackColor = Color.FromArgb(247, 181, 46);
+            ButtonClientManagment.BackColor = Color.FromArgb(247, 181, 46);
+            ButtonStaffManagment.BackColor = Color.FromArgb(247, 181, 46);
+            ButtonWorkerManagment.BackColor = Color.FromArgb(247, 181, 46);
+        }
+
         private void ButtonStatisticsMenu_Click(object sender, EventArgs e)
         {
+            ResetButtonsColor();
             PanelStatistics.Visible = true;
             PanelGadgetManagment.Visible = false;
         }
 
-        private void ButtonGadgetMenu_Click(object sender, EventArgs e)
+        private void ButtonTicketManagment_Click(object sender, EventArgs e)
         {
+            ResetButtonsColor();
+            ButtonTicketManagment.BackColor = Color.FromArgb(218, 165, 33);
+            //
+            CloseMdiChildIdExists();
             PanelStatistics.Visible = false;
-            PanelGadgetManagment.Visible = true;
+            PanelGadgetManagment.Visible = false;
+            TicketManagment ticketManagment = new TicketManagment();
+            ticketManagment.MdiParent = this;
+            ticketManagment.Dock = DockStyle.Fill;
+            ticketManagment.Show();
+        }
+
+        private void ButtonClientManagment_Click(object sender, EventArgs e)
+        {
+            ResetButtonsColor();
+            ButtonClientManagment.BackColor = Color.FromArgb(218, 165, 33);
+            //
+            CloseMdiChildIdExists();
+            PanelStatistics.Visible = false;
+            PanelGadgetManagment.Visible = false;
+            ClientManagment clientManagment = new ClientManagment();
+            clientManagment.MdiParent = this;
+            clientManagment.Dock = DockStyle.Fill;
+            clientManagment.Show();
         }
 
         private void ButtonStaffManagment_Click(object sender, EventArgs e)
         {
+            ResetButtonsColor();
+            ButtonStaffManagment.BackColor = Color.FromArgb(218, 165, 33);
+            //
             CloseMdiChildIdExists();
             PanelStatistics.Visible = false;
             PanelGadgetManagment.Visible = false;
@@ -120,6 +154,9 @@ namespace GADJIT_WIN_ASW
 
         private void ButtonWorkerManagment_Click(object sender, EventArgs e)
         {
+            ResetButtonsColor();
+            ButtonWorkerManagment.BackColor = Color.FromArgb(218, 165, 33);
+            //
             CloseMdiChildIdExists();
             PanelStatistics.Visible = false;
             PanelGadgetManagment.Visible = false;
@@ -131,6 +168,9 @@ namespace GADJIT_WIN_ASW
 
         private void ButtonGadgetCategoryBrandManagment_Click(object sender, EventArgs e)
         {
+            ResetButtonsColor();
+            ButtonGadgetCategoryBrandManagment.BackColor = Color.FromArgb(218, 165, 33);
+            //
             CloseMdiChildIdExists();
             GadgetCategoryBrandManagment categoryBrandManagment = new GadgetCategoryBrandManagment();
             categoryBrandManagment.MdiParent = this;
@@ -140,6 +180,9 @@ namespace GADJIT_WIN_ASW
 
         private void ButtonGadgetReferenceManagment_Click(object sender, EventArgs e)
         {
+            ResetButtonsColor();
+            ButtonGadgetReferenceManagment.BackColor = Color.FromArgb(218, 165, 33);
+            //
             CloseMdiChildIdExists();
             GadgetReferenceManagment referenceManagment = new GadgetReferenceManagment();
             referenceManagment.MdiParent = this;
@@ -147,26 +190,11 @@ namespace GADJIT_WIN_ASW
             referenceManagment.Show();
         }
 
-        private void ButtonClientManagment_Click(object sender, EventArgs e)
+        private void ButtonGadgetMenu_Click(object sender, EventArgs e)
         {
-            CloseMdiChildIdExists();
+            ResetButtonsColor();
             PanelStatistics.Visible = false;
-            PanelGadgetManagment.Visible = false;
-            ClientManagment clientManagment = new ClientManagment();
-            clientManagment.MdiParent = this;
-            clientManagment.Dock = DockStyle.Fill;
-            clientManagment.Show();
-        }
-
-        private void ButtonTicketManagment_Click(object sender, EventArgs e)
-        {
-            CloseMdiChildIdExists();
-            PanelStatistics.Visible = false;
-            PanelGadgetManagment.Visible = false;
-            TicketManagment ticketManagment = new TicketManagment();
-            ticketManagment.MdiParent = this;
-            ticketManagment.Dock = DockStyle.Fill;
-            ticketManagment.Show();
+            PanelGadgetManagment.Visible = true;
         }
     }
 }

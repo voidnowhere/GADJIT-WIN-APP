@@ -73,6 +73,16 @@ namespace GADJIT_WIN_ASW.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap logout {
+            get {
+                object obj = ResourceManager.GetObject("logout", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap logout_rounded_left_48px {
             get {
                 object obj = ResourceManager.GetObject("logout_rounded_left_48px", resourceCulture);
@@ -116,6 +126,16 @@ namespace GADJIT_WIN_ASW.Properties {
         internal static System.Drawing.Bitmap namewithstyle {
             get {
                 object obj = ResourceManager.GetObject("namewithstyle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap passwordChange {
+            get {
+                object obj = ResourceManager.GetObject("passwordChange", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
