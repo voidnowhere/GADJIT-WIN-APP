@@ -91,5 +91,11 @@ namespace GADJIT_WIN_ASW
             ticketworker.Dock = DockStyle.Fill;
             ticketworker.Show();
         }
+
+        private void Resetmdp_Click(object sender, EventArgs e)
+        {
+            UpdatePassWordWorker updatepass = new UpdatePassWordWorker();
+            updatepass.ShowDialog();
+        }
     }
 }
