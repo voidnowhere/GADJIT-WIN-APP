@@ -40,12 +40,12 @@ namespace GADJIT_WIN_ASW
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(29, 55);
+            this.label2.Location = new System.Drawing.Point(13, 53);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 23);
+            this.label2.Size = new System.Drawing.Size(132, 23);
             this.label2.TabIndex = 27;
-            this.label2.Text = "PassWord :";
+            this.label2.Text = "Mot de Passe";
             // 
             // ButtonLogin
             // 
@@ -60,7 +60,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonLogin.Name = "ButtonLogin";
             this.ButtonLogin.Size = new System.Drawing.Size(104, 34);
             this.ButtonLogin.TabIndex = 26;
-            this.ButtonLogin.Text = "LOGIN";
+            this.ButtonLogin.Text = "Reconnecter";
             this.ButtonLogin.UseVisualStyleBackColor = false;
             this.ButtonLogin.Click += new System.EventHandler(this.ButtonLogin_Click);
             // 
@@ -76,7 +76,7 @@ namespace GADJIT_WIN_ASW
             // LogoutButton
             // 
             this.LogoutButton.Image = global::GADJIT_WIN_ASW.Properties.Resources.logout_rounded_left_48px;
-            this.LogoutButton.Location = new System.Drawing.Point(128, 5);
+            this.LogoutButton.Location = new System.Drawing.Point(141, 0);
             this.LogoutButton.Name = "LogoutButton";
             this.LogoutButton.Size = new System.Drawing.Size(36, 37);
             this.LogoutButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

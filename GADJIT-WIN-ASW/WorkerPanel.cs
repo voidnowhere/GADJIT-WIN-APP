@@ -18,7 +18,7 @@ namespace GADJIT_WIN_ASW
         {
             InitializeComponent();
         }
-        public static string WID;
+        public static int WID;
         public Login login;
         private void PannelButtonsLock(bool tf)
         {
@@ -64,10 +64,7 @@ namespace GADJIT_WIN_ASW
             cmd = new SqlCommand("select WorID from Worker where WorEmail=@Email", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@Email", LabelEmail.Text);
             GADJIT.sqlConnection.Open();
-            SqlDataReader dr = cmd.ExecuteReader();
-            dr.Read();
-            WID = dr["WorID"].ToString();
-            dr.Close();
+            WID = (int)cmd.ExecuteScalar();
             GADJIT.sqlConnection.Close();
             this.Size = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
             this.CenterToScreen();

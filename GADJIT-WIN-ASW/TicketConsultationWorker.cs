@@ -21,17 +21,17 @@ namespace GADJIT_WIN_ASW
             InitializeComponent();
         }
         SqlDataReader dataReader;
-        string WID = WorkerPanel.WID;
-        string TID = "";
-        string RefID = "";
-        string CatID = "";
-        string BrandID = "";
+        int WID = WorkerPanel.WID;
+        int TID ;
+        int RefID ;
+        int CatID ;
+        int BrandID ;
         string Ref = "";
         string Cat = "";
         string Brand = "";
-        string CID = "";
+        int CID ;
         string emailtemp = "";
-        string DID = "D";
+        int DID ;
         private void TicketConsultationWorker_Load(object sender, EventArgs e)
         {
             FillComboBoxsCategoryBrand();           
@@ -163,7 +163,7 @@ namespace GADJIT_WIN_ASW
                 try
                 {
                     DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
-                    TID = row.Cells["CODE"].Value.ToString();
+                    TID = (int)row.Cells["CODE"].Value;
                     SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicSta,CliID from Ticket where TicID=@TID", GADJIT.sqlConnection);
                     cmd.Parameters.AddWithValue("@TID", TID);
                     GADJIT.sqlConnection.Open();
@@ -172,8 +172,8 @@ namespace GADJIT_WIN_ASW
                     {
                         dataReader.Read();
                         RichTextBoxProblem.Text = dataReader["TicProb"].ToString();
-                        RefID = dataReader["GadRefID"].ToString();
-                        CID = dataReader["CliID"].ToString();
+                        RefID = (int)dataReader["GadRefID"];
+                        CID = (int)dataReader["CliID"];
                         ComboBoxPorg.Items.Clear();
                         switch (dataReader["TicSta"].ToString())
                         {
@@ -226,7 +226,7 @@ namespace GADJIT_WIN_ASW
                 try
                 {
                     DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
-                    TID = row.Cells["CODE"].Value.ToString();
+                    TID = (int)row.Cells["CODE"].Value;
                     SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicSta,CliID from Ticket where TicID=@TID", GADJIT.sqlConnection);
                     cmd.Parameters.AddWithValue("@TID", TID);
                     GADJIT.sqlConnection.Open();
@@ -235,8 +235,8 @@ namespace GADJIT_WIN_ASW
                     {
                         dataReader.Read();
                         RichTextBoxProblem.Text = dataReader["TicProb"].ToString();
-                        RefID = dataReader["GadRefID"].ToString();
-                        CID = dataReader["CliID"].ToString();
+                        RefID = (int)dataReader["GadRefID"];
+                        CID = (int)dataReader["CliID"];
                         ComboBoxPorg.Items.Clear();
                         switch (dataReader["TicSta"].ToString())
                         {
@@ -289,7 +289,7 @@ namespace GADJIT_WIN_ASW
                 try
                 {
                     DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
-                    TID = row.Cells["CODE"].Value.ToString();
+                    TID = (int)row.Cells["CODE"].Value;
                     SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicSta,CliID from Ticket where TicID=@TID", GADJIT.sqlConnection);
                     cmd.Parameters.AddWithValue("@TID", TID);
                     GADJIT.sqlConnection.Open();
@@ -298,8 +298,8 @@ namespace GADJIT_WIN_ASW
                     {
                         dataReader.Read();
                         RichTextBoxProblem.Text = dataReader["TicProb"].ToString();
-                        RefID = dataReader["GadRefID"].ToString();
-                        CID = dataReader["CliID"].ToString();
+                        RefID = (int)dataReader["GadRefID"];
+                        CID = (int)dataReader["CliID"];
                         ComboBoxPorg.Items.Clear();
                         switch (dataReader["TicSta"].ToString())
                         {
@@ -354,8 +354,8 @@ namespace GADJIT_WIN_ASW
             {
                 dataReader.Read();
                 Ref  = dataReader["GadRefDesig"].ToString();
-                CatID = dataReader["GadCatID"].ToString();
-                BrandID = dataReader["GadBraID"].ToString();
+                CatID = (int)dataReader["GadCatID"];
+                BrandID = (int)dataReader["GadBraID"];
                 dataReader.Close();
                 cmd = new SqlCommand("select GadCatDesig from GadgetCategory where GadCatID=@CatID", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@CatID", CatID);
@@ -399,15 +399,14 @@ namespace GADJIT_WIN_ASW
         {
             SqlCommand cmd = new SqlCommand("select max(DiagID) from Diagnostic ", GADJIT.sqlConnection);
             GADJIT.sqlConnection.Open();
-            dataReader = cmd.ExecuteReader();
-            dataReader.Read();
-            try
+            DID = (int)cmd.ExecuteScalar();
+            if (cmd.ExecuteScalar() != DBNull.Value)
             {
-                DID += (Convert.ToInt32(Regex.Match(dataReader.GetString(0), @"[0-9]").ToString()) + 1).ToString();
+                DID++;
             }
-            catch
+            else
             {
-                DID = "D0";
+                DID = '0';
             }
             GADJIT.sqlConnection.Close();
             dataReader.Close();
