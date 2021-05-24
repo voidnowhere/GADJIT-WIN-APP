@@ -46,31 +46,43 @@ namespace GADJIT_WIN_CLIENT
             dr.Close();
             ComboBoxCatGadjit.SelectedIndex = 0;
             //
-            cmd = new SqlCommand("select max(TicID) from Ticket ", GADJIT.sqlConnection);
-            dr = cmd.ExecuteReader();
-            dr.Read();
-            try
-            {
-                ID += Convert.ToInt32(dr["TicID"]) + 1;
-            }
-            catch
-            {
-                ID = 0;
-            }       
             GADJIT.sqlConnection.Close();
-            dr.Close();
         }
 
         private void ButtonConfirmer_Click(object sender, EventArgs e)
         {
             GADJIT.sqlConnection.Open();
-            SqlCommand cmd = new SqlCommand("insert into Ticket values(@ID,@date,@prob,'en attente de validation',@CID,null,null,@ref,null,@Adres)", GADJIT.sqlConnection);
-            cmd.Parameters.AddWithValue("@ID", ID);
+            SqlCommand cmd = new SqlCommand("select max(TicID) from Ticket ", GADJIT.sqlConnection);
+            if (cmd.ExecuteScalar() != DBNull.Value)
+            {
+                ID = (int)cmd.ExecuteScalar() + 1;
+            }
+            else
+            {
+                ID = 0;
+            }
+            cmd = new SqlCommand("insert into Ticket(TicID, TicDT, TicProb, TicAddress, TicSta, CliID, GadRefID) values(@ID, @date, @prob, @Adres, 'PV', @CID, @ref)", GADJIT.sqlConnection);
+            cmd.Parameters.AddWithValue("@ID", ID); 
             cmd.Parameters.AddWithValue("@date", DateTime.Now);
             cmd.Parameters.AddWithValue("@prob", RichTextBoxProbTicket.Text);
             cmd.Parameters.AddWithValue("@CID", CID);
             cmd.Parameters.AddWithValue("@Ref", RefID);
             cmd.Parameters.AddWithValue("@Adres", RichTextBoxAdress.Text);
+            cmd.ExecuteNonQuery();
+            cmd = new SqlCommand("select max(TicID) from TicketMonitoring ", GADJIT.sqlConnection);
+            int TID;
+            if (cmd.ExecuteScalar() != DBNull.Value)
+            {
+                TID = (int)cmd.ExecuteScalar() + 1;
+            }
+            else
+            {
+                TID = 0;
+            }
+            cmd = new SqlCommand("insert into TicketMonitoring values(@id,@Date,'Ticket Cree','C',@CID,@CID,1)", GADJIT.sqlConnection);
+            cmd.Parameters.AddWithValue("@id", TID);
+            cmd.Parameters.AddWithValue("@Date", DateTime.Now);
+            cmd.Parameters.AddWithValue("@CID", CID);
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
             SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
@@ -82,7 +94,7 @@ namespace GADJIT_WIN_CLIENT
             msg.To.Add(emailtemp);
             msg.From = new MailAddress("GADJITMA@gmail.com");
             msg.Subject = "Création d'une nouvelle ticket";
-            msg.Body = "Bonjour:\n\nVotre Ticket a été Crée.\nVoici votre code de ticket :[ " + ID + " ]. \n\n -Pour consulter votre ticket veuillez rejoindre le panel consultez votre ticket.\n Merci \n \nGADJIT MAROC.";
+            msg.Body = "Bonjour:\n\nVotre Ticket a été Crée.\nVoici votre code de ticket :[ " + ID + " ]. \n\n-Pour consulter votre ticket veuillez rejoindre le panel consultez votre ticket.\n Merci \n \nGADJIT MAROC.";
             client.Send(msg);
             MessageBox.Show("Ticket a été Crée", "Nouvelle Ticket",MessageBoxButtons.OK,MessageBoxIcon.Information);
             this.Close();
@@ -92,11 +104,18 @@ namespace GADJIT_WIN_CLIENT
         {
             if(ComboBoxCatGadjit.SelectedIndex > 0)
             {
-                ComboBoxMarque.Items.Clear();
                 GADJIT.sqlConnection.Open();
-                SqlCommand cmd = new SqlCommand("SELECT DISTINCT GadBraDesig FROM GadgetReference, GadgetBrand WHERE GadgetReference.GadBraID = GadgetBrand.GadBraID AND(GadCatID = @CatID) AND GadBraSta = 1 ", GADJIT.sqlConnection);
-                cmd.Parameters.AddWithValue("@CatID", CatID);
+                SqlCommand cmd = new SqlCommand("select GadCatID from GadgetCategory where GadCatDesig = @CatDes", GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("CatDes", ComboBoxCatGadjit.Text);
                 SqlDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                CatID = Convert.ToInt32(dr["GadCatID"]);
+                dr.Close();
+                //
+                ComboBoxMarque.Items.Clear();
+                cmd = new SqlCommand("SELECT DISTINCT GadBraDesig FROM GadgetReference, GadgetBrand WHERE GadgetReference.GadBraID = GadgetBrand.GadBraID AND(GadCatID = @CatID) AND GadBraSta = 1 ", GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("@CatID", CatID);
+                dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
                     ComboBoxMarque.Items.Add(dr["GadBraDesig"].ToString());
@@ -104,12 +123,6 @@ namespace GADJIT_WIN_CLIENT
                 dr.Close();
                 ComboBoxMarque.Items.Insert(0, "Choisissez une marque");
                 //
-                cmd = new SqlCommand("select GadCatID from GadgetCategory where GadCatDesig = @CatDes", GADJIT.sqlConnection);
-                cmd.Parameters.AddWithValue("CatDes", ComboBoxCatGadjit.Text);
-                dr = cmd.ExecuteReader();
-                dr.Read();
-                CatID = Convert.ToInt32(dr["GadCatID"]);
-                dr.Close();
                 ComboBoxMarque.SelectedIndex = 0;
                 GADJIT.sqlConnection.Close();
             }

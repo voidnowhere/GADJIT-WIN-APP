@@ -90,6 +90,7 @@ namespace GADJIT_WIN_CLIENT
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EmailVerification";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EmailVerification";
             this.Load += new System.EventHandler(this.EmailVerification_Load);
             this.ResumeLayout(false);
