@@ -51,7 +51,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonUpdate.Location = new System.Drawing.Point(76, 217);
             this.ButtonUpdate.Name = "ButtonUpdate";
             this.ButtonUpdate.Size = new System.Drawing.Size(147, 37);
-            this.ButtonUpdate.TabIndex = 64;
+            this.ButtonUpdate.TabIndex = 3;
             this.ButtonUpdate.Text = "Sauvegarder";
             this.ButtonUpdate.UseVisualStyleBackColor = false;
             this.ButtonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
@@ -77,7 +77,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxNewPassword.Name = "TextBoxNewPassword";
             this.TextBoxNewPassword.PasswordChar = '*';
             this.TextBoxNewPassword.Size = new System.Drawing.Size(147, 18);
-            this.TextBoxNewPassword.TabIndex = 59;
+            this.TextBoxNewPassword.TabIndex = 1;
             // 
             // label4
             // 
@@ -102,7 +102,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxConfirmNewPassword.Name = "TextBoxConfirmNewPassword";
             this.TextBoxConfirmNewPassword.PasswordChar = '*';
             this.TextBoxConfirmNewPassword.Size = new System.Drawing.Size(147, 18);
-            this.TextBoxConfirmNewPassword.TabIndex = 60;
+            this.TextBoxConfirmNewPassword.TabIndex = 2;
             // 
             // label2
             // 
@@ -127,7 +127,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxOldPassword.Name = "TextBoxOldPassword";
             this.TextBoxOldPassword.PasswordChar = '*';
             this.TextBoxOldPassword.Size = new System.Drawing.Size(147, 18);
-            this.TextBoxOldPassword.TabIndex = 66;
+            this.TextBoxOldPassword.TabIndex = 0;
             // 
             // label3
             // 
@@ -153,7 +153,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonCancel.Location = new System.Drawing.Point(76, 276);
             this.ButtonCancel.Name = "ButtonCancel";
             this.ButtonCancel.Size = new System.Drawing.Size(147, 37);
-            this.ButtonCancel.TabIndex = 68;
+            this.ButtonCancel.TabIndex = 4;
             this.ButtonCancel.Text = "Annuler";
             this.ButtonCancel.UseVisualStyleBackColor = false;
             this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);

@@ -36,7 +36,7 @@ namespace GADJIT_WIN_ASW
             }
             finally
             {
-                GADJIT.sqlConnection.Open();
+                GADJIT.sqlConnection.Close();
             }
             return false;
         }
@@ -56,6 +56,7 @@ namespace GADJIT_WIN_ASW
                             sqlCommand.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
                             GADJIT.sqlConnection.Open();
                             MessageBox.Show(sqlCommand.ExecuteNonQuery() + " réussi", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
                         }
                         catch (Exception ex)
                         {
@@ -63,7 +64,7 @@ namespace GADJIT_WIN_ASW
                         }
                         finally
                         {
-                            GADJIT.sqlConnection.Open();
+                            GADJIT.sqlConnection.Close();
                         }
                     }
                 }
