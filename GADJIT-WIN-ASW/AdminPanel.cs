@@ -196,5 +196,12 @@ namespace GADJIT_WIN_ASW
             PanelStatistics.Visible = false;
             PanelGadgetManagment.Visible = true;
         }
+
+        private void CircularPicturePasswordChange_Click(object sender, EventArgs e)
+        {
+            UpdateAdminPassword updateAdminPassword = new UpdateAdminPassword();
+            updateAdminPassword.email = LabelEmail.Text;
+            updateAdminPassword.ShowDialog();
+        }
     }
 }

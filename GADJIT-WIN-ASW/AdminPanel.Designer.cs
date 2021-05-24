@@ -44,13 +44,13 @@ namespace GADJIT_WIN_ASW
             this.PanelStatistics = new System.Windows.Forms.Panel();
             this.ButtonStatisticsMenu = new System.Windows.Forms.Button();
             this.PanelTop = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.LabelTop = new System.Windows.Forms.Label();
             this.PanelBottom = new System.Windows.Forms.Panel();
             this.PictureBoxLogOut = new System.Windows.Forms.PictureBox();
             this.SideMenuPanel = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.CircularPicturePasswordChange = new GADJIT_WIN_ASW.CircularPicture();
             this.ButtonDisponibility = new GADJIT_WIN_ASW.CirucularButton();
             this.PanelGadgetManagment.SuspendLayout();
@@ -59,9 +59,9 @@ namespace GADJIT_WIN_ASW
             this.PanelBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogOut)).BeginInit();
             this.SideMenuPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CircularPicturePasswordChange)).BeginInit();
             this.SuspendLayout();
             // 
@@ -279,7 +279,7 @@ namespace GADJIT_WIN_ASW
             // 
             // PanelTop
             // 
-            this.PanelTop.Controls.Add(this.label1);
+            this.PanelTop.Controls.Add(this.LabelTop);
             this.PanelTop.Controls.Add(this.CircularPicturePasswordChange);
             this.PanelTop.Controls.Add(this.ButtonDisponibility);
             this.PanelTop.Controls.Add(this.LabelFirstName);
@@ -291,15 +291,15 @@ namespace GADJIT_WIN_ASW
             this.PanelTop.Size = new System.Drawing.Size(209, 127);
             this.PanelTop.TabIndex = 0;
             // 
-            // label1
+            // LabelTop
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(124, 20);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Espace Admin";
+            this.LabelTop.AutoSize = true;
+            this.LabelTop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelTop.Location = new System.Drawing.Point(3, 9);
+            this.LabelTop.Name = "LabelTop";
+            this.LabelTop.Size = new System.Drawing.Size(124, 20);
+            this.LabelTop.TabIndex = 7;
+            this.LabelTop.Text = "Espace Admin";
             // 
             // PanelBottom
             // 
@@ -342,14 +342,14 @@ namespace GADJIT_WIN_ASW
             this.SideMenuPanel.Size = new System.Drawing.Size(209, 626);
             this.SideMenuPanel.TabIndex = 1;
             // 
-            // panel1
+            // panel3
             // 
-            this.panel1.Controls.Add(this.ButtonTicketManagment);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 209);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(209, 37);
-            this.panel1.TabIndex = 11;
+            this.panel3.Controls.Add(this.ButtonGadgetMenu);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 364);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(209, 41);
+            this.panel3.TabIndex = 4;
             // 
             // panel2
             // 
@@ -360,14 +360,14 @@ namespace GADJIT_WIN_ASW
             this.panel2.Size = new System.Drawing.Size(209, 38);
             this.panel2.TabIndex = 10;
             // 
-            // panel3
+            // panel1
             // 
-            this.panel3.Controls.Add(this.ButtonGadgetMenu);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 364);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(209, 41);
-            this.panel3.TabIndex = 4;
+            this.panel1.Controls.Add(this.ButtonTicketManagment);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 209);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(209, 37);
+            this.panel1.TabIndex = 11;
             // 
             // CircularPicturePasswordChange
             // 
@@ -378,6 +378,7 @@ namespace GADJIT_WIN_ASW
             this.CircularPicturePasswordChange.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.CircularPicturePasswordChange.TabIndex = 3;
             this.CircularPicturePasswordChange.TabStop = false;
+            this.CircularPicturePasswordChange.Click += new System.EventHandler(this.CircularPicturePasswordChange_Click);
             // 
             // ButtonDisponibility
             // 
@@ -408,9 +409,9 @@ namespace GADJIT_WIN_ASW
             this.PanelBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogOut)).EndInit();
             this.SideMenuPanel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.CircularPicturePasswordChange)).EndInit();
             this.ResumeLayout(false);
 
@@ -437,7 +438,7 @@ namespace GADJIT_WIN_ASW
         public System.Windows.Forms.Label LabelEmail;
         public System.Windows.Forms.Label LabelLastName;
         private CircularPicture CircularPicturePasswordChange;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label LabelTop;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
