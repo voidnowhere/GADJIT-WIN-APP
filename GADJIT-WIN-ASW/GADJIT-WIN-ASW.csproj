@@ -65,11 +65,11 @@
     <Compile Include="ClientManagment.Designer.cs">
       <DependentUpon>ClientManagment.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsultationTicketWorker.cs">
+    <Compile Include="TicketConsultationWorker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsultationTicketWorker.Designer.cs">
-      <DependentUpon>ConsultationTicketWorker.cs</DependentUpon>
+    <Compile Include="TicketConsultationWorker.Designer.cs">
+      <DependentUpon>TicketConsultationWorker.cs</DependentUpon>
     </Compile>
     <Compile Include="GadgetCategoryBrandManagment.cs">
       <SubType>Form</SubType>
@@ -164,8 +164,8 @@
     <EmbeddedResource Include="ClientManagment.resx">
       <DependentUpon>ClientManagment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsultationTicketWorker.resx">
-      <DependentUpon>ConsultationTicketWorker.cs</DependentUpon>
+    <EmbeddedResource Include="TicketConsultationWorker.resx">
+      <DependentUpon>TicketConsultationWorker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GadgetCategoryBrandManagment.resx">
       <DependentUpon>GadgetCategoryBrandManagment.cs</DependentUpon>

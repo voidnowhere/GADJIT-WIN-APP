@@ -1,7 +1,7 @@
 ﻿
 namespace GADJIT_WIN_ASW
 {
-    partial class ConsultationTicketWorker
+    partial class TicketConsultationWorker
     {
         /// <summary>
         /// Required designer variable.

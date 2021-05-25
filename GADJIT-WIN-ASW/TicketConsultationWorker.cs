@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace GADJIT_WIN_ASW
 {
-    public partial class ConsultationTicketWorker : Form
+    public partial class TicketConsultationWorker : Form
     {
-        public ConsultationTicketWorker()
+        public TicketConsultationWorker()
         {
             InitializeComponent();
         }
