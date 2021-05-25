@@ -21,23 +21,28 @@ namespace GADJIT_WIN_ASW
 
         private void cirucularButton_Click(object sender, EventArgs e)
         {
-            GADJIT.sqlConnection.Open();
             if (cirucularButton.BackColor == Color.Lime)
             {
                 cirucularButton.BackColor = Color.Orange;
                 SqlCommand cmd = new SqlCommand("UPDATE Worker SET WorDispo='Break' where WorEmail=@Email", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@Email", LabelEmail.Text);
+                GADJIT.sqlConnection.Open();
                 cmd.ExecuteNonQuery();
+                GADJIT.sqlConnection.Close();
             }
             else
             {
+                UnlockWorkerPanel unlockWorkerPanel = new UnlockWorkerPanel();
+                unlockWorkerPanel.email = LabelEmail.Text;
+                unlockWorkerPanel.workerPanel = this;
+                unlockWorkerPanel.ShowDialog();
                 cirucularButton.BackColor = Color.Lime;
-                cirucularButton.BackColor = Color.Orange;
                 SqlCommand cmd = new SqlCommand("UPDATE Worker SET WorDispo='En Ligne' where WorEmail=@Email", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@Email", LabelEmail.Text);
+                GADJIT.sqlConnection.Open();
                 cmd.ExecuteNonQuery();
+                GADJIT.sqlConnection.Close();
             }
-            GADJIT.sqlConnection.Close();
         }
 
         private void WorkerPanel_Load(object sender, EventArgs e)
@@ -61,6 +66,11 @@ namespace GADJIT_WIN_ASW
             GADJIT.sqlConnection.Open();
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
