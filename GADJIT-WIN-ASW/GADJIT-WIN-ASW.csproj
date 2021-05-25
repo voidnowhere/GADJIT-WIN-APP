@@ -65,6 +65,12 @@
     <Compile Include="ClientManagment.Designer.cs">
       <DependentUpon>ClientManagment.cs</DependentUpon>
     </Compile>
+    <Compile Include="TicketConsultationWorker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TicketConsultationWorker.Designer.cs">
+      <DependentUpon>TicketConsultationWorker.cs</DependentUpon>
+    </Compile>
     <Compile Include="GadgetCategoryBrandManagment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +128,12 @@
     <Compile Include="UnlockAdminPanel.Designer.cs">
       <DependentUpon>UnlockAdminPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UnlockWorkerPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UnlockWorkerPanel.Designer.cs">
+      <DependentUpon>UnlockWorkerPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpdateAdminPassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +146,12 @@
     <Compile Include="UnlockStaffPanel.Designer.cs">
       <DependentUpon>UnlockStaffPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdateWorkerPassWord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateWorkerPassWord.Designer.cs">
+      <DependentUpon>UpdateWorkerPassWord.cs</DependentUpon>
+    </Compile>
     <Compile Include="WorkerSpeciality.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -145,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ClientManagment.resx">
       <DependentUpon>ClientManagment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TicketConsultationWorker.resx">
+      <DependentUpon>TicketConsultationWorker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GadgetCategoryBrandManagment.resx">
       <DependentUpon>GadgetCategoryBrandManagment.cs</DependentUpon>
@@ -205,11 +226,17 @@
     <EmbeddedResource Include="UnlockAdminPanel.resx">
       <DependentUpon>UnlockAdminPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UnlockWorkerPanel.resx">
+      <DependentUpon>UnlockWorkerPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateAdminPassword.resx">
       <DependentUpon>UpdateAdminPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UnlockStaffPanel.resx">
       <DependentUpon>UnlockStaffPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UpdateWorkerPassWord.resx">
+      <DependentUpon>UpdateWorkerPassWord.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WorkerManagment.resx">
       <DependentUpon>WorkerManagment.cs</DependentUpon>
@@ -268,6 +295,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\passwordChange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lock_64px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
