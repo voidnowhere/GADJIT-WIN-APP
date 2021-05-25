@@ -61,18 +61,18 @@ namespace GADJIT_WIN_ASW
             return true;
         }
 
-        private bool CheckIDIfExists(string id)
+        private bool CheckIDIfExists(int id)
         {
             try
             {
                 SqlCommand sqlCommand = new SqlCommand("select COUNT(StafID) from Staff where StafID = @id", GADJIT.sqlConnection);
-                sqlCommand.Parameters.AddWithValue("@id", id);
+                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 GADJIT.sqlConnection.Open();
                 if ((int)sqlCommand.ExecuteScalar() == 1) return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error CheckIDIfExists(string id)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error CheckIDIfExists(int id)", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -85,11 +85,11 @@ namespace GADJIT_WIN_ASW
         {
             if (DGVStaff.Rows.Count > 2)
             {
-                DGVStaff[0, DGVStaff.CurrentRow.Index].Value = GADJIT.IDGenerator((string)DGVStaff[0, DGVStaff.CurrentRow.Index - 1].Value);
+                DGVStaff[0, DGVStaff.CurrentRow.Index].Value = (int)DGVStaff[0, DGVStaff.CurrentRow.Index - 1].Value + 1;
             }
             else
             {
-                DGVStaff[0, DGVStaff.CurrentRow.Index].Value = GADJIT.IDGenerator("S0");
+                DGVStaff[0, DGVStaff.CurrentRow.Index].Value = 0;
             }
         }
 
@@ -166,7 +166,7 @@ namespace GADJIT_WIN_ASW
                     {
                         if (where) sqlQuery += " and";
                         sqlQuery += " StafSta = @sta";
-                        sqlCommand.Parameters.Add("@sta", SqlDbType.Bit).Value = (ComboBoxStatusSearch.SelectedIndex == 1) ? 1 : 0;
+                        sqlCommand.Parameters.Add("@sta", SqlDbType.Bit).Value = (ComboBoxStatusSearch.SelectedIndex == 1) ? true : false;
                     }
                 }
                 else
@@ -183,7 +183,7 @@ namespace GADJIT_WIN_ASW
                     {
                         DGVStaff.Rows.Add(dataReader["StafID"], dataReader["StafCIN"], new Bitmap(new MemoryStream((byte[])dataReader["StafPicture"])), dataReader["StafLastName"],
                             dataReader["StafFirstName"], dataReader["StafEmail"], dataReader["StafPassWord"], dataReader["StafPhoneNumber"], 
-                            dataReader["StafAdress"], dataReader["CitDesig"], dataReader["StafSalary"], dataReader["StafDispo"],
+                            dataReader["StafAddress"], dataReader["CitDesig"], dataReader["StafSalary"], dataReader["StafDispo"],
                             (dataReader.GetBoolean(12)) ? "Activer" : "Désactiver");
                     }
                     StaffsStats();
@@ -207,8 +207,11 @@ namespace GADJIT_WIN_ASW
             int d = 0;
             for (int i = 0; i < c; i++)
             {
-                if (DGVStaff[12, i].Value.ToString() == "Activer") a++;
-                else if (DGVStaff[12, i].Value.ToString() == "Désactiver") d++;
+                if (DGVStaff[12, i].Value != null)
+                {
+                    if (DGVStaff[12, i].Value.ToString() == "Activer") a++;
+                    else if (DGVStaff[12, i].Value.ToString() == "Désactiver") d++;
+                }
             }
             TextBoxActivedStaffs.Text = a.ToString();
             TextBoxDeactivatedStaffs.Text = d.ToString();
@@ -252,27 +255,28 @@ namespace GADJIT_WIN_ASW
 
         private void DGVStaff_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            int rowIndex = e.RowIndex;
             if (filledDGV)
             {
-                if(DGVStaff[0, rowIndex].Value == null) // ID
+                int rowIndex = e.RowIndex;
+                if (DGVStaff[0, rowIndex].Value == null) // ID
                 {
                     InsertNewIDInDGV();
+                    DGVStaff[6, rowIndex].Value = GADJIT.PasswordGenerator(8); //Password
                     DGVStaff[11, rowIndex].Value = "Hors Ligne"; //Disponibility
-                    DGVStaff[12, rowIndex].Value = "Désactiver"; //Status
+                    DGVStaff[12, rowIndex].Value = "Activer"; //Status
                 }
                 if (!CheckDGVCellsIfEmpty())
                 {
-                    if (CheckIDIfExists(DGVStaff[0, rowIndex].Value.ToString())) // update
+                    if (CheckIDIfExists((int)DGVStaff[0, rowIndex].Value)) //update
                     {
                         try
                         {
                             string sqlQuery = "update Staff set StafCIN = @cin, StafPicture = @img, StafLastName = @lastName, StafFirstName = @firstName, StafEmail = @email, " +
-                                "StafPassWord = @password, StafPhoneNumber = @phoneNumber, StafAdress = @adress, CitDesig = @city, StafSalary = @salary, " +
+                                "StafPassWord = @password, StafPhoneNumber = @phoneNumber, StafAddress = @address, CitDesig = @city, StafSalary = @salary, " +
                                 "StafSta = @status where StafID = @id";
                             SqlCommand sqlCommandUpdate = new SqlCommand(sqlQuery, GADJIT.sqlConnection);
 
-                            sqlCommandUpdate.Parameters.Add("@id", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxID", rowIndex].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@id", SqlDbType.Int).Value = (int)DGVStaff["ColumnTextBoxID", rowIndex].Value;
 
                             sqlCommandUpdate.Parameters.Add("@cin", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxCIN", rowIndex].Value.ToString().ToUpper();
 
@@ -288,7 +292,7 @@ namespace GADJIT_WIN_ASW
 
                             sqlCommandUpdate.Parameters.Add("@phoneNumber", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxPhoneNumber", rowIndex].Value.ToString();
 
-                            sqlCommandUpdate.Parameters.Add("@adress", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxAdress", rowIndex].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@address", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxAdress", rowIndex].Value.ToString();
 
                             sqlCommandUpdate.Parameters.Add("@city", SqlDbType.VarChar).Value = DGVStaff["ColumnComboBoxCity", rowIndex].Value.ToString();
 
@@ -316,10 +320,10 @@ namespace GADJIT_WIN_ASW
                         try
                         {
                             string sqlQuery = "insert into Staff " +
-                            "values(@id, @cin, @img, @lastName, @firstName, @email, @password, @phoneNumber, @adress, @city, @salary, @dispo, @status)";
+                            "values(@id, @cin, @img, @lastName, @firstName, @email, @password, @phoneNumber, @address, @city, @salary, @dispo, @status)";
                             SqlCommand sqlCommandInsert = new SqlCommand(sqlQuery, GADJIT.sqlConnection);
 
-                            sqlCommandInsert.Parameters.Add("@id", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxID", rowIndex].Value.ToString();
+                            sqlCommandInsert.Parameters.Add("@id", SqlDbType.Int).Value = (int)DGVStaff["ColumnTextBoxID", rowIndex].Value;
 
                             sqlCommandInsert.Parameters.Add("@cin", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxCIN", rowIndex].Value.ToString().ToUpper();
 
@@ -328,14 +332,14 @@ namespace GADJIT_WIN_ASW
                             sqlCommandInsert.Parameters.Add("@lastName", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxLastName", rowIndex].Value.ToString();
 
                             sqlCommandInsert.Parameters.Add("@firstName", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxFirstName", rowIndex].Value.ToString();
-
+                            
                             sqlCommandInsert.Parameters.Add("@email", SqlDbType.NVarChar).Value = DGVStaff["ColumnTextBoxEmail", rowIndex].Value.ToString();
 
                             sqlCommandInsert.Parameters.Add("@password", SqlDbType.NVarChar).Value = DGVStaff["ColumnTextBoxPassword", rowIndex].Value.ToString();
 
                             sqlCommandInsert.Parameters.Add("@phoneNumber", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxPhoneNumber", rowIndex].Value.ToString();
 
-                            sqlCommandInsert.Parameters.Add("@adress", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxAdress", rowIndex].Value.ToString();
+                            sqlCommandInsert.Parameters.Add("@address", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxAdress", rowIndex].Value.ToString();
 
                             sqlCommandInsert.Parameters.Add("@city", SqlDbType.VarChar).Value = DGVStaff["ColumnComboBoxCity", rowIndex].Value.ToString();
 
@@ -348,6 +352,12 @@ namespace GADJIT_WIN_ASW
                             GADJIT.sqlConnection.Open();
 
                             MessageBox.Show(sqlCommandInsert.ExecuteNonQuery() + " réussi", "Ajout", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            GADJIT.SendEmail(
+                                DGVStaff["ColumnTextBoxEmail", rowIndex].Value.ToString(),
+                                "Votre compte de personnel a été créé.\nVoici votre mot de passe: "+ 
+                                DGVStaff["ColumnTextBoxPassword", rowIndex].Value.ToString() +
+                                "\nVeuillez supprimé cet email.");
 
                             StaffsStats();
                         }
@@ -373,7 +383,11 @@ namespace GADJIT_WIN_ASW
                     if (!GADJIT.IsCINValid(e.FormattedValue.ToString()))
                     {
                         e.Cancel = true;
-                        MessageBox.Show("format CIN incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        DGVStaff.Rows[e.RowIndex].ErrorText = "format CIN incorrect";
+                    }
+                    else
+                    {
+                        DGVStaff.Rows[e.RowIndex].ErrorText = "";
                     }
                 }
                 else if (e.ColumnIndex == 5) //Email
@@ -381,7 +395,11 @@ namespace GADJIT_WIN_ASW
                     if (!GADJIT.IsEmailValid(e.FormattedValue.ToString()))
                     {
                         e.Cancel = true;
-                        MessageBox.Show("format d'email incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        DGVStaff.Rows[e.RowIndex].ErrorText = "format d'email incorrect";
+                    }
+                    else
+                    {
+                        DGVStaff.Rows[e.RowIndex].ErrorText = "";
                     }
                 }
                 else if(e.ColumnIndex == 10) //Salary
@@ -389,18 +407,22 @@ namespace GADJIT_WIN_ASW
                     if (!GADJIT.IsSalaryValid(e.FormattedValue.ToString()))
                     {
                         e.Cancel = true;
-                        MessageBox.Show("format du salaire incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        DGVStaff.Rows[e.RowIndex].ErrorText = "format du salaire incorrect";
+                    }
+                    else
+                    {
+                        DGVStaff.Rows[e.RowIndex].ErrorText = "";
                     }
                 }
             }
         }
 
-        private bool CheckIfStaffCanBeDeleted(string id)
+        private bool CheckIfStaffCanBeDeleted(int id)
         {
             try
             {
                 SqlCommand sqlCommand = new SqlCommand("select COUNT(StafID) from Ticket where StafID = @id", GADJIT.sqlConnection);
-                sqlCommand.Parameters.Add("@id", SqlDbType.VarChar).Value = id;
+                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 GADJIT.sqlConnection.Open();
                 if ((int)sqlCommand.ExecuteScalar() >= 1)
                 {
@@ -409,7 +431,7 @@ namespace GADJIT_WIN_ASW
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error CheckIfStaffCanBeDeleted(string id)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error CheckIfStaffCanBeDeleted(int id)", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -424,12 +446,12 @@ namespace GADJIT_WIN_ASW
             {
                 try
                 {
-                    if (CheckIDIfExists(e.Row.Cells[0].Value.ToString()))
+                    if (CheckIDIfExists((int)e.Row.Cells[0].Value))
                     {
-                        if (CheckIfStaffCanBeDeleted(e.Row.Cells[0].Value.ToString()))
+                        if (CheckIfStaffCanBeDeleted((int)e.Row.Cells[0].Value))
                         {
                             SqlCommand sqlCommandDelete = new SqlCommand("delete from Staff where StafID = @id", GADJIT.sqlConnection);
-                            sqlCommandDelete.Parameters.Add("@id", SqlDbType.VarChar).Value = e.Row.Cells[0].Value;
+                            sqlCommandDelete.Parameters.Add("@id", SqlDbType.Int).Value = (int)e.Row.Cells[0].Value;
 
                             if (MessageBox.Show("Voulez vous supprimer ce personnel", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                             {

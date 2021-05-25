@@ -18,11 +18,11 @@ namespace GADJIT_WIN_CLIENT
             InitializeComponent();
         }
         string emailtemp = "";
-        string CID = "";
-        public static string TID = "";
-        string RefID = "";
-        string CatID = "";
-        string BrandID = "";
+        int CID ;
+        public static int TID ;
+        int RefID;
+        int CatID ;
+        int BrandID ;
         public static string price = "";
         public static string Ref = "";
         public static string Cat = "";
@@ -38,7 +38,7 @@ namespace GADJIT_WIN_CLIENT
             SqlCommand cmd = new SqlCommand("select CliID from Client where CliEmail = '" + emailtemp + "'", GADJIT.sqlConnection);
             SqlDataReader dr = cmd.ExecuteReader();
             dr.Read();
-            CID = dr["CliID"].ToString();
+            CID = Convert.ToInt32(dr["CliID"]);
             dr.Close();
             //
             cmd = new SqlCommand("select TicID from Ticket where CliID = @CID", GADJIT.sqlConnection);
@@ -126,8 +126,8 @@ namespace GADJIT_WIN_CLIENT
             {
                 dr.Read();
                 Ref= TextBoxRef.Text = dr["GadRefDesig"].ToString();
-                CatID = dr["GadCatID"].ToString();
-                BrandID = dr["GadBraID"].ToString();
+                CatID = Convert.ToInt32(dr["GadCatID"]);
+                BrandID = Convert.ToInt32(dr["GadBraID"]);
                 dr.Close();
                 cmd = new SqlCommand("select GadCatDesig from GadgetCategory where GadCatID=@CatID", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@CatID", CatID);
@@ -158,7 +158,7 @@ namespace GADJIT_WIN_CLIENT
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
-                TID = row.Cells["TicketID"].Value.ToString();
+                TID = Convert.ToInt32(row.Cells["TicketID"].Value);
                 SqlCommand cmd = new SqlCommand("select TicRepPri,TicProb,GadRefID,TicSta from Ticket where TicID=@TID", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@TID", TID);
                 GADJIT.sqlConnection.Open();
@@ -172,7 +172,7 @@ namespace GADJIT_WIN_CLIENT
                         labelDiag.Visible =TextBoxDiag.Visible=ButtonDiagnostic.Visible =true;
                         TextBoxDiag.Text = "Diagnostic Disponible";
                     }
-                    RefID = dr["GadRefID"].ToString();
+                    RefID = Convert.ToInt32(dr["GadRefID"]);
                     price = dr["TicRepPri"].ToString();
                     dr.Close();
                     GADJIT.sqlConnection.Close();
@@ -196,7 +196,7 @@ namespace GADJIT_WIN_CLIENT
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
-                TID = row.Cells["TicketID"].Value.ToString();
+                TID = Convert.ToInt32(row.Cells["TicketID"].Value);
                 SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicSta,TicRepPri from Ticket where TicID=@TID", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@TID", TID);
                 GADJIT.sqlConnection.Open();
@@ -210,7 +210,7 @@ namespace GADJIT_WIN_CLIENT
                         labelDiag.Visible = TextBoxDiag.Visible = ButtonDiagnostic.Visible = true;
                         TextBoxDiag.Text = "Diagnostic Disponible";
                     }
-                    RefID = dr["GadRefID"].ToString();
+                    RefID = Convert.ToInt32(dr["GadRefID"]);
                     price = dr["TicRepPri"].ToString();
                     dr.Close();
                     GADJIT.sqlConnection.Close();
@@ -225,7 +225,7 @@ namespace GADJIT_WIN_CLIENT
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
-                TID = row.Cells["TicketID"].Value.ToString();
+                TID = Convert.ToInt32(row.Cells["TicketID"].Value);
                 SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicSta from Ticket where TicID=@TID", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@TID", TID);
                 GADJIT.sqlConnection.Open();
@@ -239,7 +239,7 @@ namespace GADJIT_WIN_CLIENT
                         labelDiag.Visible = TextBoxDiag.Visible = ButtonDiagnostic.Visible = true;
                         TextBoxDiag.Text = "Diagnostic Disponible";
                     }
-                    RefID = dr["GadRefID"].ToString();
+                    RefID = Convert.ToInt32(dr["GadRefID"]);
                     price = dr["TicRepPri"].ToString();
                     dr.Close();
                     GADJIT.sqlConnection.Close();

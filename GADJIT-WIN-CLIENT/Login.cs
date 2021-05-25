@@ -67,5 +67,9 @@ namespace GADJIT_WIN_CLIENT
             Environment.Exit(1);
         }
 
+        private void TexrBoxEmail_TextChanged(object sender, EventArgs e)
+        {
+            TexrBoxEmail.Text = TexrBoxEmail.Text.Trim();
+        }
     }
 }

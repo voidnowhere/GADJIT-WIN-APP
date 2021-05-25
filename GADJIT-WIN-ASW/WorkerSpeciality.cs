@@ -21,7 +21,7 @@ namespace GADJIT_WIN_ASW
 
         SqlDataReader dataReader;
         //
-        public string workerID = "";
+        public int workerID;
         bool dgvFilled = false;
 
         private void FillColumnComboBoxGadgetBrand_Category()
@@ -38,7 +38,7 @@ namespace GADJIT_WIN_ASW
                 ColumnComboBoxCategory.ValueMember = "id";
                 while (dataReader.Read())
                 {
-                    ColumnComboBoxCategory.Items.Add(new { id = dataReader.GetString(0), desig = dataReader.GetString(1) });
+                    ColumnComboBoxCategory.Items.Add(new { id = dataReader.GetInt32(0), desig = dataReader.GetString(1) });
                 }
                 dataReader.Close();
                 //
@@ -48,7 +48,7 @@ namespace GADJIT_WIN_ASW
                 ColumnComboBoxBrand.ValueMember = "id";
                 while (dataReader.Read())
                 {
-                    ColumnComboBoxBrand.Items.Add(new { id = dataReader.GetString(0), desig = dataReader.GetString(1) });
+                    ColumnComboBoxBrand.Items.Add(new { id = dataReader.GetInt32(0), desig = dataReader.GetString(1) });
                 }
             }
             catch (Exception ex)
@@ -67,12 +67,12 @@ namespace GADJIT_WIN_ASW
             try
             {
                 SqlCommand sqlCommand = new SqlCommand("select GadCatID, GadBraID from WorkerSpecialty where WorID = @id", GADJIT.sqlConnection);
-                sqlCommand.Parameters.Add("@id", SqlDbType.VarChar).Value = workerID;
+                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = workerID;
                 GADJIT.sqlConnection.Open();
                 dataReader = sqlCommand.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    DGVWorkerSpecialistes.Rows.Add(dataReader.GetString(0), dataReader.GetString(1));
+                    DGVWorkerSpecialistes.Rows.Add(dataReader.GetInt32(0), dataReader.GetInt32(1));
                 }
             }
             catch (Exception ex)
@@ -86,14 +86,14 @@ namespace GADJIT_WIN_ASW
             }
         }
 
-        private bool CheckSpecialtyIfExists(string workerID, string GadCatID, string GadBraID)
+        private bool CheckSpecialtyIfExists(int workerID, int GadCatID, int GadBraID)
         {
             try
             {
                 SqlCommand sqlCommand = new SqlCommand("select COUNT(*) from WorkerSpecialty where WorID = @worID and GadCatID = @catID and GadBraID = @braID", GADJIT.sqlConnection);
-                sqlCommand.Parameters.Add("@worID", SqlDbType.VarChar).Value = workerID;
-                sqlCommand.Parameters.Add("@catID", SqlDbType.VarChar).Value = DGVWorkerSpecialistes[0, DGVWorkerSpecialistes.CurrentRow.Index].Value;
-                sqlCommand.Parameters.Add("@braID", SqlDbType.VarChar).Value = DGVWorkerSpecialistes[1, DGVWorkerSpecialistes.CurrentRow.Index].Value;
+                sqlCommand.Parameters.Add("@worID", SqlDbType.Int).Value = workerID;
+                sqlCommand.Parameters.Add("@catID", SqlDbType.Int).Value = (int)DGVWorkerSpecialistes[0, DGVWorkerSpecialistes.CurrentRow.Index].Value;
+                sqlCommand.Parameters.Add("@braID", SqlDbType.Int).Value = (int)DGVWorkerSpecialistes[1, DGVWorkerSpecialistes.CurrentRow.Index].Value;
                 GADJIT.sqlConnection.Open();
                 if((int)sqlCommand.ExecuteScalar() == 1)
                 {
@@ -102,7 +102,7 @@ namespace GADJIT_WIN_ASW
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error CheckSpecialtyIfExists(string workerID, string GadCatID, string GadBraID)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error CheckSpecialtyIfExists(int workerID, int GadCatID, int GadBraID)", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -134,14 +134,14 @@ namespace GADJIT_WIN_ASW
             {
                 if (DGVWorkerSpecialistes[0, e.RowIndex].Value != null && DGVWorkerSpecialistes[1, e.RowIndex].Value != null)
                 {
-                    if (!CheckSpecialtyIfExists(workerID, DGVWorkerSpecialistes[0, e.RowIndex].Value.ToString(), DGVWorkerSpecialistes[1, e.RowIndex].Value.ToString())) //Update
+                    if (!CheckSpecialtyIfExists(workerID, (int)DGVWorkerSpecialistes[0, e.RowIndex].Value, (int)DGVWorkerSpecialistes[1, e.RowIndex].Value)) //update
                     {
                         try
                         {
                             SqlCommand sqlCommandInsert = new SqlCommand("insert into WorkerSpecialty values(@worID, @catID, @braID)", GADJIT.sqlConnection);
-                            sqlCommandInsert.Parameters.Add("@worID", SqlDbType.VarChar).Value = workerID;
-                            sqlCommandInsert.Parameters.Add("@catID", SqlDbType.VarChar).Value = DGVWorkerSpecialistes[0, e.RowIndex].Value;
-                            sqlCommandInsert.Parameters.Add("@braID", SqlDbType.VarChar).Value = DGVWorkerSpecialistes[1, e.RowIndex].Value;
+                            sqlCommandInsert.Parameters.Add("@worID", SqlDbType.Int).Value = workerID;
+                            sqlCommandInsert.Parameters.Add("@catID", SqlDbType.Int).Value = (int)DGVWorkerSpecialistes[0, e.RowIndex].Value;
+                            sqlCommandInsert.Parameters.Add("@braID", SqlDbType.Int).Value = (int)DGVWorkerSpecialistes[1, e.RowIndex].Value;
 
                             GADJIT.sqlConnection.Open();
 
@@ -171,14 +171,14 @@ namespace GADJIT_WIN_ASW
         {
             if(e.Row.Cells[0].Value != null && e.Row.Cells[1].Value != null)
             {
-                if (CheckSpecialtyIfExists(workerID, e.Row.Cells[0].Value.ToString(), e.Row.Cells[1].Value.ToString()))
+                if (CheckSpecialtyIfExists(workerID, (int)e.Row.Cells[0].Value, (int)e.Row.Cells[1].Value))
                 {
                     try
                     {
                         SqlCommand sqlCommandDelete = new SqlCommand("delete from WorkerSpecialty where WorID = @worID and GadCatID = @catID and GadBraID = @braID", GADJIT.sqlConnection);
-                        sqlCommandDelete.Parameters.Add("@worID", SqlDbType.VarChar).Value = workerID;
-                        sqlCommandDelete.Parameters.Add("@catID", SqlDbType.VarChar).Value = e.Row.Cells[0].Value;
-                        sqlCommandDelete.Parameters.Add("@braID", SqlDbType.VarChar).Value = e.Row.Cells[1].Value;
+                        sqlCommandDelete.Parameters.Add("@worID", SqlDbType.Int).Value = workerID;
+                        sqlCommandDelete.Parameters.Add("@catID", SqlDbType.Int).Value = (int)e.Row.Cells[0].Value;
+                        sqlCommandDelete.Parameters.Add("@braID", SqlDbType.Int).Value = (int)e.Row.Cells[1].Value;
 
                         GADJIT.sqlConnection.Open();
 

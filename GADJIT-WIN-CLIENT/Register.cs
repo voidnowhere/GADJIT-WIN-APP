@@ -22,7 +22,9 @@ namespace GADJIT_WIN_CLIENT
             InitializeComponent();
         }
 
-        String ID = "C";
+        int ID;
+        public static string emailC;
+        public static string NomC;
 
         private void Register_Load(object sender, EventArgs e)
         {
@@ -50,21 +52,6 @@ namespace GADJIT_WIN_CLIENT
             } while (true);
             LabelCaptcha.Text = captcha;
             //
-            SqlCommand cmd = new SqlCommand("select max(CliID) from client ", GADJIT.sqlConnection);
-            GADJIT.sqlConnection.Open();
-            SqlDataReader dr = cmd.ExecuteReader();
-            dr.Read();
-            try
-            {
-                ID += (Convert.ToInt32(Regex.Match(dr.GetString(0), @"[0-9]").ToString()) + 1).ToString();
-            }
-            catch
-            {
-                ID = "C0";
-            } 
-            GADJIT.sqlConnection.Close();
-            dr.Close();
-
         }
 
         private void ButtonClear_Click(object sender, EventArgs e)
@@ -100,12 +87,27 @@ namespace GADJIT_WIN_CLIENT
                 {
                     if (ComboxBoxCity.SelectedIndex != 0)
                     {
+                        emailC = TextBoxEmail.Text;
+                        NomC = TextBoxNom.Text;
+                        EmailVerification v = new EmailVerification();
+                        v.ShowDialog();
                         try
                         {
+                            SqlCommand cmd = new SqlCommand("select max(CliID) from Client ", GADJIT.sqlConnection);
+                            GADJIT.sqlConnection.Open();
+                            if(cmd.ExecuteScalar() != DBNull.Value)
+                            {
+                                ID = (int)cmd.ExecuteScalar() + 1;
+                            }
+                            else
+                            {
+                                ID = 0;
+                            }
+                            //
                             errorProviderCity.SetError(ComboxBoxCity, null);
                             errorProviderCaptcha.SetError(TextBoxCaptcha, null);
                             errorProviderEmail.SetError(TextBoxEmail, null);
-                            SqlCommand cmd = new SqlCommand("insert into client values(@ClientID,@LastName,@FirstName,@Email,@PassWord,@PhoneNumber,@Adress,@City,1)", GADJIT.sqlConnection);
+                            cmd = new SqlCommand("insert into client values(@ClientID,@LastName,@FirstName,@Email,@PassWord,@PhoneNumber,@Adress,@City,1)", GADJIT.sqlConnection);
                             cmd.Parameters.AddWithValue("@ClientID", ID);
                             cmd.Parameters.AddWithValue("@LastName", TextBoxNom.Text.Trim());
                             cmd.Parameters.AddWithValue("@FirstName", TextBoxPrenom.Text.Trim());
@@ -114,7 +116,6 @@ namespace GADJIT_WIN_CLIENT
                             cmd.Parameters.AddWithValue("@PhoneNumber", TextBoxPhone.Text.Trim());
                             cmd.Parameters.AddWithValue("@Adress", RichTextBoxAdress.Text);
                             cmd.Parameters.AddWithValue("@City", ComboxBoxCity.GetItemText(ComboxBoxCity.SelectedItem));
-                            GADJIT.sqlConnection.Open();
                             cmd.ExecuteNonQuery();
                             SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
                             client.EnableSsl = true;
@@ -125,13 +126,17 @@ namespace GADJIT_WIN_CLIENT
                             msg.To.Add(TextBoxEmail.Text);
                             msg.From = new MailAddress("GADJITMA@gmail.com");
                             msg.Subject = "Inscription chez GADJIT";
-                            msg.Body = "Bonjour " + TextBoxNom.Text + " :\n votre inscription a bien été traitée bienvenue chez GADJIT. \n GADJIT MAROC.";
+                            msg.Body = "Bonjour " + TextBoxNom.Text + " :\nvotre inscription a bien été traitée bienvenue chez GADJIT. \nGADJIT MAROC.";
                             client.Send(msg);
-                            MessageBox.Show("mail envoyez", "un mail de confirmation d'inscription a été envoyer a votre boite mail");
+                            MessageBox.Show("Inscription réussite", "Inscription",MessageBoxButtons.OK,MessageBoxIcon.Information);
                         }
                         catch(Exception ex)
                         {
                             MessageBox.Show(ex.Message,"Email non valider");
+                        }
+                        finally
+                        {
+                            GADJIT.sqlConnection.Close();
                         }
                         Login login = new Login();
                         login.Show();
@@ -145,7 +150,7 @@ namespace GADJIT_WIN_CLIENT
                 }
                 catch(Exception ex)
                 {
-                    MessageBox.Show( ex.Message, "veuillez vérifier vos informations", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show( ex.Message, "Veuillez vérifier vos informations", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         
                 }             
                                        
@@ -191,6 +196,11 @@ namespace GADJIT_WIN_CLIENT
             {
                 e.Handled = true;
             }
+        }
+
+        private void TextBoxEmail_TextChanged(object sender, EventArgs e)
+        {
+            TextBoxEmail.Text = TextBoxEmail.Text.Trim();
         }
     }
 }

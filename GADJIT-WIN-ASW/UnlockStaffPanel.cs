@@ -11,24 +11,29 @@ using System.Windows.Forms;
 
 namespace GADJIT_WIN_ASW
 {
-    public partial class UnlockAdminPanel : Form
+    public partial class UnlockStaffPanel : Form
     {
-        public UnlockAdminPanel()
+        public UnlockStaffPanel()
         {
             InitializeComponent();
         }
 
         public Login login;
-        public AdminPanel adminPanel;
+        public StaffPanel staffPanel;
         public string email;
+
+        private void UnlockStaffPanel_Load(object sender, EventArgs e)
+        {
+            this.CenterToScreen();
+        }
 
         private void ButtonLogin_Click(object sender, EventArgs e)
         {
-            if(TextBoxPassWord.Text != "")
+            if (TextBoxPassWord.Text != "")
             {
                 try
                 {
-                    SqlCommand sqlCommandDispo = new SqlCommand("select COUNT(AdmEmail) from Admin where AdmEmail = @email and AdmPassWord = @pass", GADJIT.sqlConnection);
+                    SqlCommand sqlCommandDispo = new SqlCommand("select COUNT(StafEmail) from Staff where StafEmail = @email and StafPassWord = @pass", GADJIT.sqlConnection);
                     sqlCommandDispo.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
                     sqlCommandDispo.Parameters.Add("@pass", SqlDbType.NVarChar).Value = TextBoxPassWord.Text;
                     GADJIT.sqlConnection.Open();
@@ -53,31 +58,26 @@ namespace GADJIT_WIN_ASW
             }
         }
 
-        private void PictureBoxLogOut_Click(object sender, EventArgs e)
+        private void LogoutButton_Click(object sender, EventArgs e)
         {
             try
             {
-                SqlCommand sqlCommandDispo = new SqlCommand("update Admin set AdmDispo = 'Hors Ligne' where AdmEmail = @email", GADJIT.sqlConnection);
+                SqlCommand sqlCommandDispo = new SqlCommand("update Staff set StafDispo = 'Hors Ligne' where StafEmail = @email", GADJIT.sqlConnection);
                 sqlCommandDispo.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
                 GADJIT.sqlConnection.Open();
                 sqlCommandDispo.ExecuteNonQuery();
                 this.Close();
-                adminPanel.Close();
+                staffPanel.Close();
                 login.Show();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error PictureBoxLogOut_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error LogoutButton_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 GADJIT.sqlConnection.Close();
             }
-        }
-
-        private void UnlockAdminPanel_Load(object sender, EventArgs e)
-        {
-            this.CenterToScreen();
         }
     }
 }

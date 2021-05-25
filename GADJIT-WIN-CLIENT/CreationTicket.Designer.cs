@@ -40,6 +40,8 @@ namespace GADJIT_WIN_CLIENT
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.RichTextBoxAdress = new System.Windows.Forms.RichTextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ButtonAnnuler
@@ -48,7 +50,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonAnnuler.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonAnnuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonAnnuler.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.ButtonAnnuler.Location = new System.Drawing.Point(189, 510);
+            this.ButtonAnnuler.Location = new System.Drawing.Point(163, 447);
             this.ButtonAnnuler.Name = "ButtonAnnuler";
             this.ButtonAnnuler.Size = new System.Drawing.Size(216, 35);
             this.ButtonAnnuler.TabIndex = 32;
@@ -64,7 +66,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonConfirmer.FlatAppearance.BorderSize = 0;
             this.ButtonConfirmer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonConfirmer.ForeColor = System.Drawing.Color.White;
-            this.ButtonConfirmer.Location = new System.Drawing.Point(474, 510);
+            this.ButtonConfirmer.Location = new System.Drawing.Point(474, 447);
             this.ButtonConfirmer.Name = "ButtonConfirmer";
             this.ButtonConfirmer.Size = new System.Drawing.Size(216, 35);
             this.ButtonConfirmer.TabIndex = 31;
@@ -81,9 +83,9 @@ namespace GADJIT_WIN_CLIENT
             this.RichTextBoxProbTicket.ForeColor = System.Drawing.Color.Black;
             this.RichTextBoxProbTicket.Location = new System.Drawing.Point(163, 208);
             this.RichTextBoxProbTicket.Name = "RichTextBoxProbTicket";
-            this.RichTextBoxProbTicket.Size = new System.Drawing.Size(527, 262);
+            this.RichTextBoxProbTicket.Size = new System.Drawing.Size(527, 99);
             this.RichTextBoxProbTicket.TabIndex = 30;
-            this.RichTextBoxProbTicket.Text = "-Exprimer vous avec le plus de détail possible";
+            this.RichTextBoxProbTicket.Text = "";
             // 
             // ComboBoxRefGadjit
             // 
@@ -180,12 +182,38 @@ namespace GADJIT_WIN_CLIENT
             this.label1.TabIndex = 22;
             this.label1.Text = "NOUVELLE TICKET";
             // 
+            // RichTextBoxAdress
+            // 
+            this.RichTextBoxAdress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RichTextBoxAdress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.RichTextBoxAdress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.RichTextBoxAdress.ForeColor = System.Drawing.Color.Black;
+            this.RichTextBoxAdress.Location = new System.Drawing.Point(163, 325);
+            this.RichTextBoxAdress.Name = "RichTextBoxAdress";
+            this.RichTextBoxAdress.Size = new System.Drawing.Size(527, 99);
+            this.RichTextBoxAdress.TabIndex = 34;
+            this.RichTextBoxAdress.Text = "";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(47, 325);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(64, 17);
+            this.label6.TabIndex = 33;
+            this.label6.Text = "Adresse :";
+            // 
             // CreationTicket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(818, 588);
+            this.ClientSize = new System.Drawing.Size(818, 523);
+            this.Controls.Add(this.RichTextBoxAdress);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.ButtonAnnuler);
             this.Controls.Add(this.ButtonConfirmer);
             this.Controls.Add(this.RichTextBoxProbTicket);
@@ -223,5 +251,7 @@ namespace GADJIT_WIN_CLIENT
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RichTextBox RichTextBoxAdress;
+        private System.Windows.Forms.Label label6;
     }
 }

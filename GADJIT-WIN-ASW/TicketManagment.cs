@@ -19,6 +19,8 @@ namespace GADJIT_WIN_ASW
         }
 
         SqlDataReader dataReader;
+        //
+        int ticID;
 
         private void FillDGVTicket()
         {
@@ -26,9 +28,10 @@ namespace GADJIT_WIN_ASW
             {
                 DGVTicket.Rows.Clear();
                 //
-                String sqlQuery = "select TicID, TicDT, TicSta, GadRefDesig, TicRepPri" +
-                    " from Ticket as t, GadgetReference as gr" +
-                    " where t.GadRefID = gr.GadRefID";
+                String sqlQuery = 
+                    "select TicID, TicDT, TicSta, gc.GadCatDesig + ' ' + gb.GadBraDesig + ' ' + gr.GadRefDesig as Gadget, TicRepPri " +
+                    "from Ticket as t, GadgetReference as gr, GadgetCategory as gc, GadgetBrand as gb " +
+                    "where t.GadRefID = gr.GadRefID and gr.GadCatID = gc.GadCatID and gr.GadBraID = gb.GadBraID";
 
                 SqlCommand sqlCommand = new SqlCommand();
 
@@ -48,9 +51,49 @@ namespace GADJIT_WIN_ASW
                     }
                     if (ComboBoxStatusSearch.SelectedIndex > 0)
                     {
+                        String status = "";
+                        switch (ComboBoxStatusSearch.Text)
+                        {
+                            case "pas encore vérifié":
+                                status = "PV";
+                                break;
+                            case "vérifié":
+                                status = "V";
+                                break;
+                            case "annulé":
+                                status = "A";
+                                break;
+                            case "en cours de diagnostic":
+                                status = "ED";
+                                break;
+                            case "confirmation diagnostic":
+                                status = "CD";
+                                break;
+                            case "en cours de reparation":
+                                status = "ER";
+                                break;
+                            case "reparé":
+                                status = "R";
+                                break;
+                            case "diagnostic validé":
+                                status = "DV";
+                                break;
+                            case "diagnostic rejeté":
+                                status = "DR";
+                                break;
+                            case "retour au client":
+                                status = "RC";
+                                break;
+                            case "En cours de livraison":
+                                status = "EL";
+                                break;
+                            case "livré":
+                                status = "L";
+                                break;
+                        }
                         sqlQuery += " and";
                         sqlQuery += " TicSta = @sta";
-                        sqlCommand.Parameters.Add("@sta", SqlDbType.VarChar).Value = ComboBoxStatusSearch.Text;
+                        sqlCommand.Parameters.Add("@sta", SqlDbType.VarChar).Value = status;
                     }
                 }
                 sqlCommand.CommandText = sqlQuery;
@@ -61,8 +104,48 @@ namespace GADJIT_WIN_ASW
                 {
                     while (dataReader.Read())
                     {
-                        DGVTicket.Rows.Add(dataReader.GetString(0), dataReader.GetDateTime(1), dataReader.GetString(2),
-                            dataReader.GetString(3), dataReader.GetSqlMoney(4));
+                        String status = "";
+                        switch (dataReader.GetString(2))
+                        {
+                            case "PV":
+                                status = "pas encore vérifié";
+                                break;
+                            case "V":
+                                status = "vérifié";
+                                break;
+                            case "A":
+                                status = "annulé";
+                                break;
+                            case "ED":
+                                status = "en cours de diagnostic";
+                                break;
+                            case "CD":
+                                status = "confirmation diagnostic";
+                                break;
+                            case "ER":
+                                status = "en cours de reparation";
+                                break;
+                            case "R":
+                                status = "reparé";
+                                break;
+                            case "DV":
+                                status = "diagnostic validé";
+                                break;
+                            case "DR":
+                                status = "diagnostic rejeté";
+                                break;
+                            case "RC":
+                                status = "retour au client";
+                                break;
+                            case "EL":
+                                status = "En cours de livraison";
+                                break;
+                            case "L":
+                                status = "livré";
+                                break;
+                        }
+                        DGVTicket.Rows.Add(dataReader["TicID"], dataReader["TicDT"], status,
+                            dataReader["Gadget"], (dataReader["TicRepPri"] != null) ? dataReader["TicRepPri"] : "");
                     }
                     TextBoxTotalTickets.Text = DGVTicket.Rows.Count.ToString();
                 }
@@ -78,42 +161,65 @@ namespace GADJIT_WIN_ASW
             }
         }
 
-        private void DGVTicket_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DGVTicket_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
             {
-                SqlCommand sqlCommandTicketDetail = new SqlCommand(
-                    "select t.CliID, (CliLastName + ' ' + CliFirstName) as CliName, TicProb, t.StafID, StafLastName, t.WorID, WorLastName " +
-                    "from Ticket as t, Client as c, Staff as s, Worker as w " +
-                    "where TicID = @id and t.CliID = c.CliID and t.StafID = s.StafID and t.WorID = w.WorID",
-                    GADJIT.sqlConnection);
-                sqlCommandTicketDetail.Parameters.Add("@id", SqlDbType.VarChar).Value = DGVTicket[0, e.RowIndex].Value.ToString();
+                ticID = (int)DGVTicket[0, e.RowIndex].Value;
+                String sqlQuery = "";
+                SqlCommand sqlCommandTicketDetail = new SqlCommand();
+                sqlCommandTicketDetail.Connection = GADJIT.sqlConnection;
+                //GetClient
+                sqlQuery =
+                    "select CONVERT(varchar, t.CliID) + ' - ' + CliLastName + ' ' + CliFirstName as Client, TicAddress, TicProb " +
+                    "from Ticket as t, Client as c " +
+                    "where TicID = @id and t.CliID = c.CliID";
+                sqlCommandTicketDetail.CommandText = sqlQuery;
+                sqlCommandTicketDetail.Parameters.Add("@id", SqlDbType.Int).Value = ticID;
                 GADJIT.sqlConnection.Open();
                 dataReader = sqlCommandTicketDetail.ExecuteReader();
                 if (dataReader.HasRows)
                 {
                     dataReader.Read();
-                    TextBoxClientID.Text = dataReader["CliID"].ToString();
-                    TextBoxClientName.Text = dataReader["CliName"].ToString();
-                    //
+                    TextBoxClient.Text = dataReader["Client"].ToString();
+                    TextBoxAddress.Text = dataReader["TicAddress"].ToString();
                     RichTextBoxProblem.Text = dataReader["TicProb"].ToString();
-                    //
-                    TextBoxStaffID.Text = dataReader["StafID"].ToString();
-                    TextBoxStaffLastName.Text = dataReader["StafLastName"].ToString();
-                    //
-                    TextBoxWorkerID.Text = dataReader["WorID"].ToString();
-                    TextBoxWorkerLastName.Text = dataReader["WorLastName"].ToString();
                 }
                 dataReader.Close();
-                //
-                TextBoxWhoID.Clear();
-                TextBoxWhoName.Clear();
+                //GetStaff
+                sqlQuery =
+                    "select CONVERT(varchar, t.StafID) + ' - ' + StafLastName + ' ' + StafFirstName as Satff " +
+                    "from Ticket as t, Staff as s " +
+                    "where TicID = @id and t.StafID = s.StafID";
+                sqlCommandTicketDetail.CommandText = sqlQuery;
+                dataReader = sqlCommandTicketDetail.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    dataReader.Read();
+                    TextBoxStaff.Text = dataReader["Satff"].ToString();
+                }
+                dataReader.Close();
+                //GetWorker
+                sqlQuery =
+                    "select CONVERT(varchar, t.WorID) + ' - ' + WorLastName + ' ' + WorFirstName as Worker " +
+                    "from Ticket as t, Worker as w " +
+                    "where TicID = @id and t.WorID = w.WorID";
+                sqlCommandTicketDetail.CommandText = sqlQuery;
+                dataReader = sqlCommandTicketDetail.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    dataReader.Read();
+                    TextBoxStaff.Text = dataReader["Satff"].ToString();
+                }
+                dataReader.Close();
+                //DGVTicketMonitoring//
+                TextBoxWho.Clear();
                 RichTextBoxDiscription.Clear();
                 DGVTicketMonitoring.Rows.Clear();
                 SqlCommand sqlCommandTicketMonitoring = new SqlCommand(
-                    "select TicID, TicMonDT, TicMonWho, TicMonSta from TicketMonitoring where TicID = @id",
+                    "select TicMonDT, TicMonDes, TicMonWho, TicMonWhoID, TicMonSta from TicketMonitoring where TicID = @id",
                     GADJIT.sqlConnection);
-                sqlCommandTicketMonitoring.Parameters.Add("@id", SqlDbType.VarChar).Value = DGVTicket[0, e.RowIndex].Value.ToString();
+                sqlCommandTicketMonitoring.Parameters.Add("@id", SqlDbType.Int).Value = ticID;
                 dataReader = sqlCommandTicketMonitoring.ExecuteReader();
                 if (dataReader.HasRows)
                 {
@@ -133,10 +239,11 @@ namespace GADJIT_WIN_ASW
                                 break;
                         }
                         DGVTicketMonitoring.Rows.Add(
-                            dataReader["TicID"],
                             dataReader["TicMonDT"],
+                            dataReader["TicMonDes"],
                             who,
-                            (dataReader.GetBoolean(3) ? "traiter" : "non traiter"));
+                            dataReader["TicMonWhoID"],
+                            (dataReader.GetBoolean(4) ? "traiter" : "non traiter"));
                     }
                     TextBoxTotalTicketMonitoring.Text = DGVTicketMonitoring.Rows.Count.ToString();
                 }
@@ -152,45 +259,48 @@ namespace GADJIT_WIN_ASW
             }
         }
 
-        private void DGVTicketMonitoring_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DGVTicketMonitoring_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
             {
                 SqlCommand sqlCommand = new SqlCommand();
                 String sqlQuery = "";
-                switch(DGVTicketMonitoring[2, e.RowIndex].Value.ToString())
+                switch (DGVTicketMonitoring[2, e.RowIndex].Value.ToString())
                 {
                     case "Personnel":
-                        sqlQuery = "select TicMonWhoID, StafLastName + ' ' + StafFirstName as Name, TicMonDes " +
-                            "from TicketMonitoring, Staff " +
-                            "where TicMonWhoID = StafID";
+                        sqlQuery = 
+                            "select StafLastName + ' ' + StafFirstName as Name " +
+                            "from Staff " +
+                            "where StafID = @whoID";
                         break;
                     case "Employé":
-                        sqlQuery = "select TicMonWhoID, WorLastName + ' ' + WorFirstName as Name, TicMonDes " +
-                            "from TicketMonitoring, Worker " +
-                            "where TicMonWhoID = WorID";
+                        sqlQuery = 
+                            "select WorLastName + ' ' + WorFirstName as Name " +
+                            "from Worker " +
+                            "where WorID = @whoID";
                         break;
                     case "Client":
-                        sqlQuery = "select TicMonWhoID, CliLastName + ' ' + CliFirstName as Name, TicMonDes " +
-                            "from TicketMonitoring, Client " +
-                            "where TicMonWhoID = CliID";
+                        sqlQuery = 
+                            "select CliLastName + ' ' + CliFirstName as Name " +
+                            "from Client " +
+                            "where CliID = @whoID";
                         break;
                 }
                 sqlCommand.CommandText = sqlQuery;
                 sqlCommand.Connection = GADJIT.sqlConnection;
+                sqlCommand.Parameters.Add("@whoID", SqlDbType.Int).Value = (int)DGVTicketMonitoring[3, e.RowIndex].Value;
                 GADJIT.sqlConnection.Open();
                 dataReader = sqlCommand.ExecuteReader();
                 if (dataReader.HasRows)
                 {
                     dataReader.Read();
-                    TextBoxWhoID.Text = dataReader["TicMonWhoID"].ToString();
-                    TextBoxWhoName.Text = dataReader["Name"].ToString();
-                    RichTextBoxDiscription.Text = dataReader["TicMonDes"].ToString();
+                    TextBoxWho.Text = DGVTicketMonitoring[3, e.RowIndex].Value.ToString() + " - " + dataReader["Name"].ToString();
                 }
+                RichTextBoxDiscription.Text = DGVTicketMonitoring[1, e.RowIndex].Value.ToString();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error DGVTicketMonitoring_CellClick()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error DGVTicketMonitoring_CellMouseDoubleClick()", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -201,7 +311,7 @@ namespace GADJIT_WIN_ASW
 
         private void TicketManagment_Load(object sender, EventArgs e)
         {
-            DTPTicketFromSearch.MaxDate = DateTime.Now;
+            DTPTicketFromSearch.MaxDate = DateTime.Now.AddDays(-1);
             DTPTicketToSearch.MaxDate = DateTime.Now;
             ComboBoxStatusSearch.SelectedIndex = 0;
             FillDGVTicket();
