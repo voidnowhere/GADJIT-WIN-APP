@@ -18,7 +18,8 @@ namespace GADJIT_WIN_ASW
         {
             InitializeComponent();
         }
-
+        public static int WID;
+        public Login login;
         private void cirucularButton_Click(object sender, EventArgs e)
         {
             if (cirucularButton.BackColor == Color.Lime)
@@ -49,14 +50,18 @@ namespace GADJIT_WIN_ASW
 
         private void WorkerPanel_Load(object sender, EventArgs e)
         {
-            this.Size = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
-            this.CenterToScreen();
-            //
             SqlCommand cmd = new SqlCommand("UPDATE Worker SET WorDispo='En Ligne' where WorEmail=@Email", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@Email", LabelEmail.Text);
             GADJIT.sqlConnection.Open();
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
+            cmd = new SqlCommand("select WorID from Worker where WorEmail=@Email", GADJIT.sqlConnection);
+            cmd.Parameters.AddWithValue("@Email", LabelEmail.Text);
+            GADJIT.sqlConnection.Open();
+            WID = (int)cmd.ExecuteScalar();
+            GADJIT.sqlConnection.Close();
+            this.Size = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
+            this.CenterToScreen();  
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)
@@ -82,7 +87,10 @@ namespace GADJIT_WIN_ASW
 
         private void ShowSubMenuButton_Click(object sender, EventArgs e)
         {
-
+            TicketConsultationWorker ticketworker = new TicketConsultationWorker();
+            ticketworker.MdiParent = this;
+            ticketworker.Dock = DockStyle.Fill;
+            ticketworker.Show();
         }
     }
 }

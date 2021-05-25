@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Net;
+using System.Net.Mail;
 
 namespace GADJIT_WIN_ASW
 {
