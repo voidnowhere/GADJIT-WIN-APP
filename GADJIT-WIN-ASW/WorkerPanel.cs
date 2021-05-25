@@ -29,6 +29,7 @@ namespace GADJIT_WIN_ASW
                 GADJIT.sqlConnection.Open();
                 cmd.ExecuteNonQuery();
                 GADJIT.sqlConnection.Close();
+                ButtomGestionTicket.Enabled = false;
             }
             else
             {
@@ -42,11 +43,15 @@ namespace GADJIT_WIN_ASW
                 GADJIT.sqlConnection.Open();
                 cmd.ExecuteNonQuery();
                 GADJIT.sqlConnection.Close();
+                ButtomGestionTicket.Enabled = true;
             }
         }
 
         private void WorkerPanel_Load(object sender, EventArgs e)
         {
+            this.Size = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
+            this.CenterToScreen();
+            //
             SqlCommand cmd = new SqlCommand("UPDATE Worker SET WorDispo='En Ligne' where WorEmail=@Email", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@Email", LabelEmail.Text);
             GADJIT.sqlConnection.Open();
@@ -69,6 +74,13 @@ namespace GADJIT_WIN_ASW
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            UpdateWorkerPassWord updateWorkerPassword = new UpdateWorkerPassWord();
+            updateWorkerPassword.email = LabelEmail.Text;
+            updateWorkerPassword.ShowDialog();
+        }
+
+        private void ShowSubMenuButton_Click(object sender, EventArgs e)
         {
 
         }
