@@ -30,26 +30,18 @@ namespace GADJIT_WIN_ASW
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.LogoutButton = new GADJIT_WIN_ASW.CircularPicture();
             this.ShowSubMenuButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.Resetmdp = new System.Windows.Forms.PictureBox();
-            this.CircularProfilPicture = new GADJIT_WIN_ASW.CircularPicture();
-            this.cirucularButton = new GADJIT_WIN_ASW.CirucularButton();
             this.LabelEmail = new System.Windows.Forms.Label();
             this.LabelFirstName = new System.Windows.Forms.Label();
             this.LabelLastName = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.LogoutButton)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Resetmdp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CircularProfilPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Teal;
-            this.panel1.Controls.Add(this.LogoutButton);
             this.panel1.Controls.Add(this.ShowSubMenuButton);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -58,18 +50,6 @@ namespace GADJIT_WIN_ASW
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(197, 626);
             this.panel1.TabIndex = 1;
-            // 
-            // LogoutButton
-            // 
-            this.LogoutButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.LogoutButton.Image = global::GADJIT_WIN_ASW.Properties.Resources.logout_rounded_left_48px;
-            this.LogoutButton.Location = new System.Drawing.Point(0, 576);
-            this.LogoutButton.Name = "LogoutButton";
-            this.LogoutButton.Size = new System.Drawing.Size(50, 50);
-            this.LogoutButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.LogoutButton.TabIndex = 3;
-            this.LogoutButton.TabStop = false;
-            this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
             // ShowSubMenuButton
             // 
@@ -90,9 +70,6 @@ namespace GADJIT_WIN_ASW
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.Resetmdp);
-            this.panel2.Controls.Add(this.CircularProfilPicture);
-            this.panel2.Controls.Add(this.cirucularButton);
             this.panel2.Controls.Add(this.LabelEmail);
             this.panel2.Controls.Add(this.LabelFirstName);
             this.panel2.Controls.Add(this.LabelLastName);
@@ -101,37 +78,6 @@ namespace GADJIT_WIN_ASW
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(197, 93);
             this.panel2.TabIndex = 0;
-            // 
-            // Resetmdp
-            // 
-            this.Resetmdp.Location = new System.Drawing.Point(137, 70);
-            this.Resetmdp.Name = "Resetmdp";
-            this.Resetmdp.Size = new System.Drawing.Size(29, 20);
-            this.Resetmdp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Resetmdp.TabIndex = 9;
-            this.Resetmdp.TabStop = false;
-            this.Resetmdp.Click += new System.EventHandler(this.Resetmdp_Click);
-            // 
-            // CircularProfilPicture
-            // 
-            this.CircularProfilPicture.Image = global::GADJIT_WIN_ASW.Properties.Resources.user_60px;
-            this.CircularProfilPicture.Location = new System.Drawing.Point(137, 0);
-            this.CircularProfilPicture.Name = "CircularProfilPicture";
-            this.CircularProfilPicture.Size = new System.Drawing.Size(60, 60);
-            this.CircularProfilPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.CircularProfilPicture.TabIndex = 8;
-            this.CircularProfilPicture.TabStop = false;
-            // 
-            // cirucularButton
-            // 
-            this.cirucularButton.BackColor = System.Drawing.Color.Lime;
-            this.cirucularButton.FlatAppearance.BorderSize = 2;
-            this.cirucularButton.Location = new System.Drawing.Point(170, 70);
-            this.cirucularButton.Name = "cirucularButton";
-            this.cirucularButton.Size = new System.Drawing.Size(24, 23);
-            this.cirucularButton.TabIndex = 7;
-            this.cirucularButton.UseVisualStyleBackColor = false;
-            this.cirucularButton.Click += new System.EventHandler(this.cirucularButton_Click);
             // 
             // LabelEmail
             // 
@@ -179,11 +125,8 @@ namespace GADJIT_WIN_ASW
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WorkerPanel_FormClosing);
             this.Load += new System.EventHandler(this.WorkerPanel_Load);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.LogoutButton)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Resetmdp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CircularProfilPicture)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -199,6 +142,5 @@ namespace GADJIT_WIN_ASW
         public System.Windows.Forms.Label LabelEmail;
         public System.Windows.Forms.Label LabelFirstName;
         public System.Windows.Forms.Label LabelLastName;
-        private System.Windows.Forms.PictureBox Resetmdp;
     }
 }
