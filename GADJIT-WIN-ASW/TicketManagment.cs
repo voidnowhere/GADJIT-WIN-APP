@@ -173,9 +173,9 @@ namespace GADJIT_WIN_ASW
                 sqlQuery =
                     "select CONVERT(varchar, t.CliID) + ' - ' + CliLastName + ' ' + CliFirstName as Client, TicAddress, TicProb " +
                     "from Ticket as t, Client as c " +
-                    "where TicID = @id and t.CliID = c.CliID";
+                    "where TicID = @ticID and t.CliID = c.CliID";
                 sqlCommandTicketDetail.CommandText = sqlQuery;
-                sqlCommandTicketDetail.Parameters.Add("@id", SqlDbType.Int).Value = ticID;
+                sqlCommandTicketDetail.Parameters.Add("@ticID", SqlDbType.Int).Value = ticID;
                 GADJIT.sqlConnection.Open();
                 dataReader = sqlCommandTicketDetail.ExecuteReader();
                 if (dataReader.HasRows)
@@ -190,7 +190,7 @@ namespace GADJIT_WIN_ASW
                 sqlQuery =
                     "select CONVERT(varchar, t.StafID) + ' - ' + StafLastName + ' ' + StafFirstName as Satff " +
                     "from Ticket as t, Staff as s " +
-                    "where TicID = @id and t.StafID = s.StafID";
+                    "where TicID = @ticID and t.StafID = s.StafID";
                 sqlCommandTicketDetail.CommandText = sqlQuery;
                 dataReader = sqlCommandTicketDetail.ExecuteReader();
                 if (dataReader.HasRows)
@@ -203,13 +203,13 @@ namespace GADJIT_WIN_ASW
                 sqlQuery =
                     "select CONVERT(varchar, t.WorID) + ' - ' + WorLastName + ' ' + WorFirstName as Worker " +
                     "from Ticket as t, Worker as w " +
-                    "where TicID = @id and t.WorID = w.WorID";
+                    "where TicID = @ticID and t.WorID = w.WorID";
                 sqlCommandTicketDetail.CommandText = sqlQuery;
                 dataReader = sqlCommandTicketDetail.ExecuteReader();
                 if (dataReader.HasRows)
                 {
                     dataReader.Read();
-                    TextBoxStaff.Text = dataReader["Satff"].ToString();
+                    TextBoxWorker.Text = dataReader["Worker"].ToString();
                 }
                 dataReader.Close();
                 //DGVTicketMonitoring//
@@ -217,9 +217,9 @@ namespace GADJIT_WIN_ASW
                 RichTextBoxDiscription.Clear();
                 DGVTicketMonitoring.Rows.Clear();
                 SqlCommand sqlCommandTicketMonitoring = new SqlCommand(
-                    "select TicMonDT, TicMonDes, TicMonWho, TicMonWhoID, TicMonSta from TicketMonitoring where TicID = @id",
+                    "select TicMonDT, TicMonDes, TicMonWho, TicMonWhoID from TicketMonitoring where TicID = @ticID",
                     GADJIT.sqlConnection);
-                sqlCommandTicketMonitoring.Parameters.Add("@id", SqlDbType.Int).Value = ticID;
+                sqlCommandTicketMonitoring.Parameters.Add("@ticID", SqlDbType.Int).Value = ticID;
                 dataReader = sqlCommandTicketMonitoring.ExecuteReader();
                 if (dataReader.HasRows)
                 {
@@ -242,15 +242,14 @@ namespace GADJIT_WIN_ASW
                             dataReader["TicMonDT"],
                             dataReader["TicMonDes"],
                             who,
-                            dataReader["TicMonWhoID"],
-                            (dataReader.GetBoolean(4) ? "traiter" : "non traiter"));
+                            dataReader["TicMonWhoID"]);
                     }
                     TextBoxTotalTicketMonitoring.Text = DGVTicketMonitoring.Rows.Count.ToString();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error DGVTicket_CellClick()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error DGVTicket_CellMouseDoubleClick()", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
