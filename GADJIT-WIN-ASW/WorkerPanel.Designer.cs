@@ -104,7 +104,6 @@ namespace GADJIT_WIN_ASW
             // 
             // Resetmdp
             // 
-            this.Resetmdp.Image = global::GADJIT_WIN_ASW.Properties.Resources.lock_64px1;
             this.Resetmdp.Location = new System.Drawing.Point(137, 70);
             this.Resetmdp.Name = "Resetmdp";
             this.Resetmdp.Size = new System.Drawing.Size(29, 20);
