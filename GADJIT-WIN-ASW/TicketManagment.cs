@@ -145,8 +145,12 @@ namespace GADJIT_WIN_ASW
                                 status = "livré";
                                 break;
                         }
-                        DGVTicket.Rows.Add(dataReader["TicID"], dataReader["TicDT"], status,
-                            dataReader["Gadget"], (dataReader["TicRepPri"] != null) ? dataReader["TicRepPri"] : "");
+                        DGVTicket.Rows.Add(
+                            dataReader["TicID"],
+                            dataReader["TicDT"],
+                            status,
+                            dataReader["Gadget"],
+                            (dataReader["TicRepPri"] != null) ? dataReader.GetSqlMoney(4).ToString() : "");
                     }
                     TextBoxTotalTickets.Text = DGVTicket.Rows.Count.ToString();
                 }
