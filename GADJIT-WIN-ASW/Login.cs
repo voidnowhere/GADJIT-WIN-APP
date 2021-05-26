@@ -60,7 +60,7 @@ namespace GADJIT_WIN_ASW
                         Staff.LabelLastName.Text = dr.GetString(0);
                         Staff.LabelFirstName.Text = dr.GetString(1);
                         Staff.LabelEmail.Text = dr.GetString(2);
-                        Staff.CircularProfilPicture.Image = Image.FromStream(new MemoryStream((byte[])dr.GetValue(3)));
+                        Staff.CircularProfilPicture.Image = (dr.GetValue(3) == null) ? null : Image.FromStream(new MemoryStream((byte[])dr.GetValue(3)));
                         dr.Close();
                         GADJIT.sqlConnection.Close();
                         this.Hide();
@@ -71,7 +71,7 @@ namespace GADJIT_WIN_ASW
                         Worker.LabelLastName.Text = dr.GetString(0);
                         Worker.LabelFirstName.Text = dr.GetString(1);
                         Worker.LabelEmail.Text = dr.GetString(2);
-                        Worker.CircularProfilPicture.Image = Image.FromStream(new MemoryStream((byte[])dr.GetValue(3)));
+                        Worker.CircularProfilPicture.Image = (dr.GetValue(3) == null) ? null : Image.FromStream(new MemoryStream((byte[])dr.GetValue(3)));
                         dr.Close();
                         GADJIT.sqlConnection.Close();
                         Worker.ShowDialog();
