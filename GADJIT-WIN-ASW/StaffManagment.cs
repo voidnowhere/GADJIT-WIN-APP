@@ -181,9 +181,18 @@ namespace GADJIT_WIN_ASW
                 {
                     while (dataReader.Read())
                     {
-                        DGVStaff.Rows.Add(dataReader["StafID"], dataReader["StafCIN"], new Bitmap(new MemoryStream((byte[])dataReader["StafPicture"])), dataReader["StafLastName"],
-                            dataReader["StafFirstName"], dataReader["StafEmail"], dataReader["StafPassWord"], dataReader["StafPhoneNumber"], 
-                            dataReader["StafAddress"], dataReader["CitDesig"], dataReader["StafSalary"], dataReader["StafDispo"],
+                        DGVStaff.Rows.Add(dataReader["StafID"],
+                            dataReader["StafCIN"],
+                            (dataReader["StafPicture"] == DBNull.Value) ? null : new Bitmap(new MemoryStream((byte[])dataReader["StafPicture"])),
+                            dataReader["StafLastName"],
+                            dataReader["StafFirstName"],
+                            dataReader["StafEmail"],
+                            dataReader["StafPassWord"],
+                            dataReader["StafPhoneNumber"], 
+                            dataReader["StafAddress"],
+                            dataReader["CitDesig"],
+                            dataReader["StafSalary"],
+                            dataReader["StafDispo"],
                             (dataReader.GetBoolean(12)) ? "Activer" : "Désactiver");
                     }
                     StaffsStats();
@@ -374,6 +383,29 @@ namespace GADJIT_WIN_ASW
             }
         }
 
+        private bool CheckIfEmailExists(string email, string stafID)
+        {
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(
+                    "select COUNT(StafEmail) from Staff where StafID != @stafID and StafEmail = @email",
+                    GADJIT.sqlConnection);
+                sqlCommand.Parameters.Add("@stafID", SqlDbType.NVarChar).Value = stafID;
+                sqlCommand.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
+                GADJIT.sqlConnection.Open();
+                if ((int)sqlCommand.ExecuteScalar() == 1) return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error CheckIfEmailExists(string email, string stafID)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                GADJIT.sqlConnection.Close();
+            }
+            return false;
+        }
+
         private void DGVStaff_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             if(e.FormattedValue != null && (e.RowIndex < ((DGVStaff.AllowUserToAddRows) ? DGVStaff.Rows.Count - 1 : DGVStaff.Rows.Count)))
@@ -399,7 +431,15 @@ namespace GADJIT_WIN_ASW
                     }
                     else
                     {
-                        DGVStaff.Rows[e.RowIndex].ErrorText = "";
+                        if (CheckIfEmailExists(e.FormattedValue.ToString(), DGVStaff[0, e.RowIndex].Value.ToString()))
+                        {
+                            e.Cancel = true;
+                            DGVStaff.Rows[e.RowIndex].ErrorText = "email existe déjà";
+                        }
+                        else
+                        {
+                            DGVStaff.Rows[e.RowIndex].ErrorText = "";
+                        }
                     }
                 }
                 else if(e.ColumnIndex == 10) //Salary
