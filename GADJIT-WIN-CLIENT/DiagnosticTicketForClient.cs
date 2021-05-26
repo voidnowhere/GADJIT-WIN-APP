@@ -49,7 +49,7 @@ namespace GADJIT_WIN_CLIENT
 
         private void ButtonAccepter_Click(object sender, EventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("update Ticket set TicSta = 'validé' where TicID=@TID", GADJIT.sqlConnection);
+            SqlCommand cmd = new SqlCommand("update Ticket set TicSta = 'DV' where TicID=@TID", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@TID", ConsultationTicketForClient.TID);
             GADJIT.sqlConnection.Open();
             cmd.ExecuteNonQuery();
@@ -66,7 +66,7 @@ namespace GADJIT_WIN_CLIENT
             msg.Subject = "Acceptation Ticket chez GADJIT";
             msg.Body = "Bonjour:\n \n Votre Ticket a été Accepté.\n Merci pour votre confiance. \n reparation en cours.\n \nGADJIT MAROC.";
             client.Send(msg);
-            cmd = new SqlCommand("insert into TicketMonitoring values (@TID,GETDATE(),'Ticket Accepter','C',@CID,1)", GADJIT.sqlConnection);
+            cmd = new SqlCommand("insert into TicketMonitoring values (@TID,GETDATE(),'Diagnostic Accepter','C',@CID,1)", GADJIT.sqlConnection);
             TicketMonitoringID();
             cmd.Parameters.AddWithValue("@TID", TMID);
             cmd.Parameters.AddWithValue("@CID", ConsultationTicketForClient.CID);
@@ -78,7 +78,7 @@ namespace GADJIT_WIN_CLIENT
 
         private void ButtonRejeter_Click(object sender, EventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("update Ticket set TicSta = 'Annulé' where TicID=@TID", GADJIT.sqlConnection);
+            SqlCommand cmd = new SqlCommand("update Ticket set TicSta = 'DR' where TicID=@TID", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@TID", ConsultationTicketForClient.TID);
             GADJIT.sqlConnection.Open();
             cmd.ExecuteNonQuery();
@@ -95,7 +95,7 @@ namespace GADJIT_WIN_CLIENT
             msg.Subject = "Annulation ticket chez GADJIT";
             msg.Body = "Bonjour:\n \n Votre Ticket a été Annuler.\n Merci de nous envoyer votre feedback sur la cause d'annulation de ticket pour améliorer notre service.\n \nGADJIT MAROC.";
             client.Send(msg);
-            cmd = new SqlCommand("insert into TicketMonitoring values (@TID,GETDATE(),'Ticket Annuler','C',@CID,1)", GADJIT.sqlConnection);
+            cmd = new SqlCommand("insert into TicketMonitoring values (@TID,GETDATE(),'Diagnostic Annuler','C',@CID,1)", GADJIT.sqlConnection);
             TicketMonitoringID();
             cmd.Parameters.AddWithValue("@TID", TMID);
             cmd.Parameters.AddWithValue("@CID", ConsultationTicketForClient.CID);
