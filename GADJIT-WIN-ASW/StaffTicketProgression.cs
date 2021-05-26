@@ -407,11 +407,14 @@ namespace GADJIT_WIN_ASW
         private void ButtonReset_Click(object sender, EventArgs e)
         {
             ClearTicketDetails();
-            //
             ComboBoxCategorySearch.SelectedIndex = 0;
-            ComboBoxBrandSearch.SelectedIndex = 0;
             TextBoxClientLastNameSearch.Clear();
             TextBoxWorkerLastNameSearch.Clear();
+            DTPTicketFromSearch.Value = DateTime.Now.AddDays(-1);
+            DTPTicketToSearch.Value = DateTime.Now;
+            //
+            ButtonSave.Enabled = false;
+            //
             FillDGVTicket();
         }
 
