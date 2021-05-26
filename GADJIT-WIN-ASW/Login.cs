@@ -28,18 +28,18 @@ namespace GADJIT_WIN_ASW
         private void ButtonLogin_Click(object sender, EventArgs e)
         {
             GADJIT.sqlConnection.Open();
-            SqlCommand cmd = new SqlCommand("select AdmLastName, AdmFirstName, AdmEmail, null, AdmID, 'A' as Who from Admin where AdmEmail = @Email and AdmPassWord = @Pass " +
+            SqlCommand cmd = new SqlCommand("select AdmLastName, AdmFirstName, AdmEmail, null, AdmID, null, 'A' as Who from Admin where AdmEmail = @Email and AdmPassWord = @Pass " +
                 "UNION ALL " +
-                "SELECT StafLastName, StafFirstName, StafEmail, StafPicture, StafID, 'S' as Who FROM Staff where StafEmail = @Email and StafPassWord = @Pass " +
+                "SELECT StafLastName, StafFirstName, StafEmail, StafPicture, StafID, StafSta, 'S' as Who FROM Staff where StafEmail = @Email and StafPassWord = @Pass " +
                 "UNION ALL " +
-                "SELECT WorLastName, WorFirstName, WorEmail, WorPicture, WorID, 'W' as Who FROM Worker where WorEmail = @Email and WorPassWord = @Pass", GADJIT.sqlConnection);
+                "SELECT WorLastName, WorFirstName, WorEmail, WorPicture, WorID, WorSta, 'W' as Who FROM Worker where WorEmail = @Email and WorPassWord = @Pass", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@Email", TextBoxEMail.Text);
             cmd.Parameters.AddWithValue("@Pass", TextBoxPassWord.Text);
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.HasRows)
             {
                 dr.Read();              
-                switch(dr.GetString(5))
+                switch(dr.GetString(6))
                 {
                     case "A":
                         AdminPanel Admin = new AdminPanel();
@@ -55,12 +55,7 @@ namespace GADJIT_WIN_ASW
                         Admin.ShowDialog();
                         break;
                     case "S":
-                        dr.Close();
-                        cmd = new SqlCommand("select StafSta from Staff where StafEmail = @Email", GADJIT.sqlConnection);
-                        cmd.Parameters.AddWithValue("@Email", TextBoxEMail.Text);
-                        dr = cmd.ExecuteReader();
-                        dr.Read();
-                        if (dr.GetBoolean(0) == true)
+                        if (dr.GetBoolean(5) == true)
                         {
                             StaffPanel Staff = new StaffPanel();
                             Staff.login = this;
@@ -81,12 +76,7 @@ namespace GADJIT_WIN_ASW
                         }
                         break;
                     case "W":
-                        dr.Close();
-                        cmd = new SqlCommand("select WorSta from Worker where WorEmail = @Email", GADJIT.sqlConnection);
-                        cmd.Parameters.AddWithValue("@Email", TextBoxEMail.Text);
-                        dr = cmd.ExecuteReader();
-                        dr.Read();
-                        if (dr.GetBoolean(0) == true)
+                        if (dr.GetBoolean(5) == true)
                         {
                             WorkerPanel Worker = new WorkerPanel();
                             Worker.LabelLastName.Text = dr.GetString(0);
