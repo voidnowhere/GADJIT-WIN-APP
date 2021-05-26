@@ -61,9 +61,8 @@ namespace GADJIT_WIN_CLIENT
             {
                 ID = 0;
             }
-            cmd = new SqlCommand("insert into Ticket(TicID, TicDT, TicProb, TicAddress, TicSta, CliID, GadRefID) values(@ID, @date, @prob, @Adres, 'PV', @CID, @ref)", GADJIT.sqlConnection);
+            cmd = new SqlCommand("insert into Ticket(TicID, TicDT, TicProb, TicAddress, TicSta, CliID, GadRefID) values(@ID, GETDATE(), @prob, @Adres, 'PV', @CID, @ref)", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@ID", ID); 
-            cmd.Parameters.AddWithValue("@date", DateTime.Now);
             cmd.Parameters.AddWithValue("@prob", RichTextBoxProbTicket.Text);
             cmd.Parameters.AddWithValue("@CID", CID);
             cmd.Parameters.AddWithValue("@Ref", RefID);
@@ -79,9 +78,8 @@ namespace GADJIT_WIN_CLIENT
             {
                 TID = 0;
             }
-            cmd = new SqlCommand("insert into TicketMonitoring values(@id,@Date,'Ticket Cree','C',@CID,1)", GADJIT.sqlConnection);
+            cmd = new SqlCommand("insert into TicketMonitoring values(@id,GETDATE(),'Ticket Cree','C',@CID,1)", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@id", TID);
-            cmd.Parameters.AddWithValue("@Date", DateTime.Now);
             cmd.Parameters.AddWithValue("@CID", CID);
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
