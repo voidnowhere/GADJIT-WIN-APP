@@ -48,11 +48,11 @@ namespace GADJIT_WIN_CLIENT
             this.PictureBoxSearch = new System.Windows.Forms.PictureBox();
             this.Information = new System.Windows.Forms.GroupBox();
             this.DGVTicket = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             this.TicketID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DTTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrixTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StatutTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxSearch)).BeginInit();
             this.Information.SuspendLayout();
@@ -274,6 +274,18 @@ namespace GADJIT_WIN_CLIENT
             this.DGVTicket.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentDoubleClick);
             this.DGVTicket.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellDoubleClick);
             // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.label1.Location = new System.Drawing.Point(337, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(253, 27);
+            this.label1.TabIndex = 35;
+            this.label1.Text = "Consultation Ticket";
+            // 
             // TicketID
             // 
             this.TicketID.HeaderText = "Code Ticket";
@@ -310,22 +322,10 @@ namespace GADJIT_WIN_CLIENT
             // 
             this.StatutTicket.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.StatutTicket.FillWeight = 10.20409F;
-            this.StatutTicket.HeaderText = "Statut Ticket";
+            this.StatutTicket.HeaderText = "Etat Ticket";
             this.StatutTicket.MinimumWidth = 171;
             this.StatutTicket.Name = "StatutTicket";
             this.StatutTicket.ReadOnly = true;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.label1.Location = new System.Drawing.Point(337, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(253, 27);
-            this.label1.TabIndex = 35;
-            this.label1.Text = "Consultation Ticket";
             // 
             // ConsultationTicketForClient
             // 
@@ -371,13 +371,13 @@ namespace GADJIT_WIN_CLIENT
         private System.Windows.Forms.DataGridView DGVTicket;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox PictureBoxSearch;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TicketID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DTTicket;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PrixTicket;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StatutTicket;
         public System.Windows.Forms.RichTextBox RichTextBoxProb;
         public System.Windows.Forms.TextBox TextBoxRef;
         public System.Windows.Forms.TextBox TextBoxMarque;
         public System.Windows.Forms.TextBox TextBoxCat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TicketID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DTTicket;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PrixTicket;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StatutTicket;
     }
 }
