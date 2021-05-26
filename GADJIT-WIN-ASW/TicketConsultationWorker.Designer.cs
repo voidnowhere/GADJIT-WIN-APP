@@ -29,7 +29,7 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Refrence = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.GroupeBoxDiag = new System.Windows.Forms.GroupBox();
@@ -274,6 +274,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonEnregistrer.TabIndex = 14;
             this.ButtonEnregistrer.Text = "Enregistrer";
             this.ButtonEnregistrer.UseVisualStyleBackColor = false;
+            this.ButtonEnregistrer.Click += new System.EventHandler(this.ButtonEnregistrer_Click);
             // 
             // RichTextBoxProblem
             // 
@@ -323,6 +324,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonReset.TabIndex = 53;
             this.ButtonReset.Text = "Annuler";
             this.ButtonReset.UseVisualStyleBackColor = false;
+            this.ButtonReset.Click += new System.EventHandler(this.ButtonReset_Click);
             // 
             // ComboBoxCode
             // 
@@ -477,13 +479,16 @@ namespace GADJIT_WIN_ASW
             this.DGVTicket.ReadOnly = true;
             this.DGVTicket.Size = new System.Drawing.Size(439, 217);
             this.DGVTicket.TabIndex = 74;
+            this.DGVTicket.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellClick);
+            this.DGVTicket.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentClick);
+            this.DGVTicket.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentDoubleClick);
             // 
             // DATE
             // 
             this.DATE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.DATE.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.DATE.DefaultCellStyle = dataGridViewCellStyle3;
             this.DATE.HeaderText = "DATE";
             this.DATE.Name = "DATE";
             this.DATE.ReadOnly = true;
@@ -542,6 +547,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonRecherche.TabIndex = 36;
             this.ButtonRecherche.Text = "Rechercher";
             this.ButtonRecherche.UseVisualStyleBackColor = false;
+            this.ButtonRecherche.Click += new System.EventHandler(this.ButtonRecherche_Click);
             // 
             // TextBoxTicketsNoRepare
             // 
