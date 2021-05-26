@@ -29,7 +29,7 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ComboBoxWorker = new System.Windows.Forms.ComboBox();
             this.TextBoxClientPhoneNumber = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -439,7 +439,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.DTPTicketToSearch.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.DTPTicketToSearch.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTPTicketToSearch.Location = new System.Drawing.Point(445, 76);
+            this.DTPTicketToSearch.Location = new System.Drawing.Point(445, 77);
             this.DTPTicketToSearch.Name = "DTPTicketToSearch";
             this.DTPTicketToSearch.Size = new System.Drawing.Size(90, 22);
             this.DTPTicketToSearch.TabIndex = 23;
@@ -555,9 +555,9 @@ namespace GADJIT_WIN_ASW
             // 
             // Column2
             // 
-            dataGridViewCellStyle2.Format = "g";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Format = "g";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle1;
             this.Column2.HeaderText = "Date";
             this.Column2.MinimumWidth = 125;
             this.Column2.Name = "Column2";
