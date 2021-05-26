@@ -91,7 +91,7 @@ namespace GADJIT_WIN_CLIENT
             MailMessage msg = new MailMessage();
             msg.To.Add(emailtemp);
             msg.From = new MailAddress("GADJITMA@gmail.com");
-            msg.Subject = "Création d'une nouvelle ticket";
+            msg.Subject = "Création d'un Ticket";
             msg.Body = "Bonjour:\n\nVotre Ticket a été Crée.\nVoici votre code de ticket :[ " + ID + " ]. \n\n-Pour consulter votre ticket veuillez rejoindre le panel consultez votre ticket.\n Merci \n \nGADJIT MAROC.";
             client.Send(msg);
             MessageBox.Show("Ticket a été Crée", "Nouvelle Ticket",MessageBoxButtons.OK,MessageBoxIcon.Information);
