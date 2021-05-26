@@ -130,6 +130,10 @@ namespace GADJIT_WIN_ASW
                     GADJIT.sqlConnection.Open();
 
                     MessageBox.Show(sqlCommand.ExecuteNonQuery() + " réussi", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    GADJIT.SendEmail(
+                        DGVClient[3, e.RowIndex].Value.ToString(),
+                        "Votre compte est " + DGVClient[7, e.RowIndex].Value.ToString());
                 }
                 catch (Exception ex)
                 {

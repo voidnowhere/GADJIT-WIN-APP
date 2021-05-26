@@ -27,6 +27,7 @@ namespace GADJIT_WIN_ASW
             try
             {
                 DGVTicket.Rows.Clear();
+                DGVTicketMonitoring.Rows.Clear();
                 //
                 String sqlQuery = 
                     "select TicID, TicDT, TicSta, gc.GadCatDesig + ' ' + gb.GadBraDesig + ' ' + gr.GadRefDesig as Gadget, TicRepPri " +
@@ -316,13 +317,26 @@ namespace GADJIT_WIN_ASW
             FillDGVTicket();
         }
 
+        private void ClearTextBooxDetails()
+        {
+            TextBoxClient.Clear();
+            TextBoxAddress.Clear();
+            RichTextBoxProblem.Clear();
+            TextBoxWorker.Clear();
+            TextBoxStaff.Clear();
+            TextBoxWho.Clear();
+            RichTextBoxDiscription.Clear();
+        }
+
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
+            ClearTextBooxDetails();
             FillDGVTicket();
         }
 
         private void ButtonReset_Click(object sender, EventArgs e)
         {
+            ClearTextBooxDetails();
             TextBoxRepairePriceFromSearch.Clear();
             TextBoxRepairePriceToSearch.Clear();
             ComboBoxStatusSearch.SelectedIndex = 0;
