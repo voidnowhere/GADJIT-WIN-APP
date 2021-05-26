@@ -239,7 +239,7 @@ namespace GADJIT_WIN_CLIENT
                         TextBoxDiag.Text = "Diagnostic Disponible";
                     }
                     RefID = Convert.ToInt32(dr["GadRefID"]);
-                    price = dr["TicRepPri"].ToString();
+                    price = (dr.GetSqlMoney(3)).ToString();
                     dr.Close();
                     GADJIT.sqlConnection.Close();
                     BringBrandCatRef();
