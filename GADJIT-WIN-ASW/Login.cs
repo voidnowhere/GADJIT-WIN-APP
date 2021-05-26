@@ -55,26 +55,54 @@ namespace GADJIT_WIN_ASW
                         Admin.ShowDialog();
                         break;
                     case "S":
-                        StaffPanel Staff = new StaffPanel();
-                        Staff.login = this;
-                        Staff.LabelLastName.Text = dr.GetString(0);
-                        Staff.LabelFirstName.Text = dr.GetString(1);
-                        Staff.LabelEmail.Text = dr.GetString(2);
-                        Staff.CircularProfilPicture.Image = (dr.GetValue(3) == DBNull.Value) ? null : Image.FromStream(new MemoryStream((byte[])dr.GetValue(3)));
                         dr.Close();
-                        GADJIT.sqlConnection.Close();
-                        this.Hide();
-                        Staff.ShowDialog();                       
+                        cmd = new SqlCommand("select StafSta from Staff where StafEmail = @Email", GADJIT.sqlConnection);
+                        cmd.Parameters.AddWithValue("@Email", TextBoxEMail.Text);
+                        dr = cmd.ExecuteReader();
+                        dr.Read();
+                        if (dr.GetBoolean(0) == true)
+                        {
+                            StaffPanel Staff = new StaffPanel();
+                            Staff.login = this;
+                            Staff.LabelLastName.Text = dr.GetString(0);
+                            Staff.LabelFirstName.Text = dr.GetString(1);
+                            Staff.LabelEmail.Text = dr.GetString(2);
+                            Staff.CircularProfilPicture.Image = (dr.GetValue(3) == DBNull.Value) ? null : Image.FromStream(new MemoryStream((byte[])dr.GetValue(3)));
+                            dr.Close();
+                            GADJIT.sqlConnection.Close();
+                            this.Hide();
+                            Staff.ShowDialog();
+                        }
+                        else
+                        {
+                            dr.Close();
+                            GADJIT.sqlConnection.Close();
+                            MessageBox.Show("votre compte est desactive", "compte desactive", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                         break;
                     case "W":
-                        WorkerPanel Worker = new WorkerPanel();
-                        Worker.LabelLastName.Text = dr.GetString(0);
-                        Worker.LabelFirstName.Text = dr.GetString(1);
-                        Worker.LabelEmail.Text = dr.GetString(2);
-                        Worker.CircularProfilPicture.Image = (dr.GetValue(3) == DBNull.Value) ? null : Image.FromStream(new MemoryStream((byte[])dr.GetValue(3)));
                         dr.Close();
-                        GADJIT.sqlConnection.Close();
-                        Worker.ShowDialog();
+                        cmd = new SqlCommand("select WorSta from Worker where WorEmail = @Email", GADJIT.sqlConnection);
+                        cmd.Parameters.AddWithValue("@Email", TextBoxEMail.Text);
+                        dr = cmd.ExecuteReader();
+                        dr.Read();
+                        if (dr.GetBoolean(0) == true)
+                        {
+                            WorkerPanel Worker = new WorkerPanel();
+                            Worker.LabelLastName.Text = dr.GetString(0);
+                            Worker.LabelFirstName.Text = dr.GetString(1);
+                            Worker.LabelEmail.Text = dr.GetString(2);
+                            Worker.CircularProfilPicture.Image = (dr.GetValue(3) == DBNull.Value) ? null : Image.FromStream(new MemoryStream((byte[])dr.GetValue(3)));
+                            dr.Close();
+                            GADJIT.sqlConnection.Close();
+                            Worker.ShowDialog();
+                        }
+                        else
+                        {
+                            dr.Close();
+                            GADJIT.sqlConnection.Close();
+                            MessageBox.Show("votre compte est desactive", "compte desactive", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                         break;
                 }
                 TextBoxEMail.Clear();
