@@ -256,8 +256,9 @@ namespace GADJIT_WIN_ASW
                         }
                         DGVTicket.Rows.Add(
                             dataReader["TicID"],
-                            dataReader["TicDT"], status,
-                            (dataReader["TicRepPri"].ToString() == "") ? "" : dataReader.GetSqlMoney(4).ToString(),
+                            dataReader["TicDT"], 
+                            status,
+                            (dataReader["TicRepPri"].ToString() == "") ? "" : dataReader.GetSqlMoney(3).ToString(),
                             dataReader["Gadget"],
                             dataReader["GadRefDescr"]);
                     }
@@ -410,8 +411,6 @@ namespace GADJIT_WIN_ASW
             ComboBoxCategorySearch.SelectedIndex = 0;
             TextBoxClientLastNameSearch.Clear();
             TextBoxWorkerLastNameSearch.Clear();
-            DTPTicketFromSearch.Value = DateTime.Now.AddDays(-1);
-            DTPTicketToSearch.Value = DateTime.Now;
             //
             ButtonSave.Enabled = false;
             //

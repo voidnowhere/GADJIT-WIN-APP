@@ -335,8 +335,6 @@ namespace GADJIT_WIN_ASW
             ComboBoxCategorySearch.SelectedIndex = 0;
             TextBoxClientLastNameSearch.Clear();
             TextBoxWorkerLastNameSearch.Clear();
-            DTPTicketFromSearch.Value = DateTime.Now.AddDays(-1);
-            DTPTicketToSearch.Value = DateTime.Now;
             //
             ButtonVerify.Enabled = false;
             ButtonCancel.Enabled = false;

@@ -29,9 +29,9 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.TextBoxTicketAddress = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -74,11 +74,11 @@ namespace GADJIT_WIN_ASW
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DGVTicketMonitoring = new System.Windows.Forms.DataGridView();
-            this.TextBoxTotalTickets = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TextBoxTotalTickets = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVTicket)).BeginInit();
@@ -557,9 +557,9 @@ namespace GADJIT_WIN_ASW
             // 
             // Column2
             // 
-            dataGridViewCellStyle13.Format = "g";
-            dataGridViewCellStyle13.NullValue = null;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Format = "g";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle1;
             this.Column2.HeaderText = "Date";
             this.Column2.MinimumWidth = 125;
             this.Column2.Name = "Column2";
@@ -576,9 +576,9 @@ namespace GADJIT_WIN_ASW
             // 
             // Column5
             // 
-            dataGridViewCellStyle14.Format = "0:00";
-            dataGridViewCellStyle14.NullValue = null;
-            this.Column5.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Format = "0:00";
+            dataGridViewCellStyle2.NullValue = null;
+            this.Column5.DefaultCellStyle = dataGridViewCellStyle2;
             this.Column5.HeaderText = "Prix Réparation";
             this.Column5.MinimumWidth = 100;
             this.Column5.Name = "Column5";
@@ -615,6 +615,31 @@ namespace GADJIT_WIN_ASW
             this.DGVTicketMonitoring.Size = new System.Drawing.Size(475, 182);
             this.DGVTicketMonitoring.TabIndex = 51;
             // 
+            // Column6
+            // 
+            dataGridViewCellStyle3.Format = "g";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Column6.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Column6.HeaderText = "Date";
+            this.Column6.MinimumWidth = 125;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 125;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Qui";
+            this.Column7.MinimumWidth = 100;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column8.HeaderText = "Déscription";
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
             // TextBoxTotalTickets
             // 
             this.TextBoxTotalTickets.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -639,31 +664,6 @@ namespace GADJIT_WIN_ASW
             this.label1.Size = new System.Drawing.Size(99, 16);
             this.label1.TabIndex = 52;
             this.label1.Text = "Total Tickets";
-            // 
-            // Column6
-            // 
-            dataGridViewCellStyle15.Format = "g";
-            dataGridViewCellStyle15.NullValue = null;
-            this.Column6.DefaultCellStyle = dataGridViewCellStyle15;
-            this.Column6.HeaderText = "Date";
-            this.Column6.MinimumWidth = 125;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 125;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Qui";
-            this.Column7.MinimumWidth = 100;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column8.HeaderText = "Déscription";
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
             // 
             // StaffTicketProgression
             // 
