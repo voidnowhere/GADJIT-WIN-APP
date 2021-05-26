@@ -432,8 +432,8 @@ namespace GADJIT_WIN_ASW
             //
             GADJIT.sqlConnection.Open();
             cmd.CommandText = "insert into TicketMonitoring values(@TID, GETDATE(), @statut, 'W', @WID, 1)";
-            cmd.Parameters.AddWithValue("@TID", TID);
             cmd.Parameters.AddWithValue("@statut", ComboBoxPorg.Text);
+            cmd.Parameters.AddWithValue("@WID", WID);
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
             //
@@ -454,8 +454,10 @@ namespace GADJIT_WIN_ASW
                     case "Repare":
                         cmd.Parameters.AddWithValue("@statut", "R");
                         break;
+                    default:
+                        cmd.Parameters.AddWithValue("@statut", ComboBoxPorg.Text);
+                        break;
                 }
-                cmd.Parameters.AddWithValue("@statut", ComboBoxPorg.Text);
                 cmd.Parameters.AddWithValue("@TID", TID);
                 GADJIT.sqlConnection.Open();
                 cmd.ExecuteNonQuery();
