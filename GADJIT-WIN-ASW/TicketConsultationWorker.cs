@@ -409,14 +409,13 @@ namespace GADJIT_WIN_ASW
         {
             SqlCommand cmd = new SqlCommand("select max(DiagID) from Diagnostic ", GADJIT.sqlConnection);
             GADJIT.sqlConnection.Open();
-            DID = (int)cmd.ExecuteScalar();
             if (cmd.ExecuteScalar() != DBNull.Value)
             {
-                DID++;
+                DID += (int)cmd.ExecuteScalar();
             }
             else
             {
-                DID = '0';
+                DID = 0;
             }
             GADJIT.sqlConnection.Close();
             dataReader.Close();
