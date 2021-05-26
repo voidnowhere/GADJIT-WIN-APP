@@ -72,11 +72,11 @@ namespace GADJIT_WIN_ASW
             this.TextBoxAddress = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.DGVTicketMonitoring = new System.Windows.Forms.DataGridView();
-            this.label10 = new System.Windows.Forms.Label();
             this.ColumnTicketMonitoringDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTicketMonitoringWho = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVTicket)).BeginInit();
@@ -233,7 +233,7 @@ namespace GADJIT_WIN_ASW
             "diagnostic validé",
             "diagnostic rejeté",
             "retour au client",
-            "En cours de livraison",
+            "en cours de livraison",
             "livré"});
             this.ComboBoxStatusSearch.Location = new System.Drawing.Point(106, 76);
             this.ComboBoxStatusSearch.Name = "ComboBoxStatusSearch";
@@ -391,9 +391,9 @@ namespace GADJIT_WIN_ASW
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(6, 79);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(45, 16);
+            this.label17.Size = new System.Drawing.Size(31, 16);
             this.label17.TabIndex = 3;
-            this.label17.Text = "Status";
+            this.label17.Text = "Etat";
             // 
             // label5
             // 
@@ -552,17 +552,6 @@ namespace GADJIT_WIN_ASW
             this.DGVTicketMonitoring.TabIndex = 27;
             this.DGVTicketMonitoring.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVTicketMonitoring_CellMouseDoubleClick);
             // 
-            // label10
-            // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(593, 53);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(164, 25);
-            this.label10.TabIndex = 26;
-            this.label10.Text = "Gestion Ticket";
-            // 
             // ColumnTicketMonitoringDateTime
             // 
             this.ColumnTicketMonitoringDateTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -595,6 +584,17 @@ namespace GADJIT_WIN_ASW
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Visible = false;
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(593, 53);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(164, 25);
+            this.label10.TabIndex = 26;
+            this.label10.Text = "Gestion Ticket";
             // 
             // TicketManagment
             // 

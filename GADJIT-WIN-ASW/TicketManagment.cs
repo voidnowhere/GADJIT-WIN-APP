@@ -138,7 +138,7 @@ namespace GADJIT_WIN_ASW
                                 status = "retour au client";
                                 break;
                             case "EL":
-                                status = "En cours de livraison";
+                                status = "en cours de livraison";
                                 break;
                             case "L":
                                 status = "livré";
