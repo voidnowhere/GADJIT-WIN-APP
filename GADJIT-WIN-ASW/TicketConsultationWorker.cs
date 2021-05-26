@@ -179,35 +179,35 @@ namespace GADJIT_WIN_ASW
                         switch (dataReader["TicSta"].ToString())
                         {
                             case "ED":
-                                ComboBoxPorg.Items.AddRange(new string[] { "ED", "CD" });
+                                ComboBoxPorg.Items.AddRange(new string[] { "En Cours de Diagnostique", "Confirmation de Diagnostic" });
                                 if (GroupeBoxDiag.Visible == false)
                                 {
                                     GroupeBoxDiag.Visible = true;
                                 }
                                 break;
                             case "CD":
-                                ComboBoxPorg.Items.AddRange(new string[] { "CD", "ER" });
+                                ComboBoxPorg.Items.AddRange(new string[] { "Confirmation de Diagnostic", "En cours de Reparation" });
                                 if (GroupeBoxDiag.Visible == true)
                                 {
                                     GroupeBoxDiag.Visible = false;
                                 }
                                 break;
                             case "en cours de reparation":
-                                ComboBoxPorg.Items.AddRange(new string[] { "ER", "R" });
+                                ComboBoxPorg.Items.AddRange(new string[] { "En cours de Reparation", "Repare" });
                                 if (GroupeBoxDiag.Visible == true)
                                 {
                                     GroupeBoxDiag.Visible = false;
                                 }
                                 break;
                             case "R":
-                                ComboBoxPorg.Items.Add("R");
+                                ComboBoxPorg.Items.Add("Repare");
                                 if (GroupeBoxDiag.Visible == true)
                                 {
                                     GroupeBoxDiag.Visible = false;
                                 }
                                 break;
                             default :
-                                ComboBoxPorg.Items.Add(dataReader["TicSta"].ToString());
+                                ComboBoxPorg.Items.Add("non disponible");
                                 break;
                         }
                         ComboBoxPorg.SelectedIndex = 0;
@@ -245,35 +245,35 @@ namespace GADJIT_WIN_ASW
                         switch (dataReader["TicSta"].ToString())
                         {
                             case "ED":
-                                ComboBoxPorg.Items.AddRange(new string[] { "ED", "CD" });
+                                ComboBoxPorg.Items.AddRange(new string[] { "En Cours de Diagnostique", "Confirmation de Diagnostic" });
                                 if (GroupeBoxDiag.Visible == false)
                                 {
                                     GroupeBoxDiag.Visible = true;
                                 }
                                 break;
                             case "CD":
-                                ComboBoxPorg.Items.AddRange(new string[] { "CD", "ER" });
+                                ComboBoxPorg.Items.AddRange(new string[] { "Confirmation de Diagnostic", "En cours de Reparation" });
                                 if (GroupeBoxDiag.Visible == true)
                                 {
                                     GroupeBoxDiag.Visible = false;
                                 }
                                 break;
                             case "en cours de reparation":
-                                ComboBoxPorg.Items.AddRange(new string[] { "ER", "R" });
+                                ComboBoxPorg.Items.AddRange(new string[] { "En cours de Reparation", "Repare" });
                                 if (GroupeBoxDiag.Visible == true)
                                 {
                                     GroupeBoxDiag.Visible = false;
                                 }
                                 break;
                             case "R":
-                                ComboBoxPorg.Items.Add("R");
+                                ComboBoxPorg.Items.Add("Repare");
                                 if (GroupeBoxDiag.Visible == true)
                                 {
                                     GroupeBoxDiag.Visible = false;
                                 }
                                 break;
                             default:
-                                ComboBoxPorg.Items.Add(dataReader["TicSta"].ToString());
+                                ComboBoxPorg.Items.Add("non disponible");
                                 break;
                         }
                         ComboBoxPorg.SelectedIndex = 0;
@@ -311,35 +311,35 @@ namespace GADJIT_WIN_ASW
                         switch (dataReader["TicSta"].ToString())
                         {
                             case "ED":
-                                ComboBoxPorg.Items.AddRange(new string[] { "ED", "CD" });
+                                ComboBoxPorg.Items.AddRange(new string[] { "En Cours de Diagnostique", "Confirmation de Diagnostic" });
                                 if (GroupeBoxDiag.Visible == false)
                                 {
                                     GroupeBoxDiag.Visible = true;
                                 }
                                 break;
                             case "CD":
-                                ComboBoxPorg.Items.AddRange(new string[] { "CD", "ER" });
+                                ComboBoxPorg.Items.AddRange(new string[] { "Confirmation de Diagnostic", "En cours de Reparation" });
                                 if (GroupeBoxDiag.Visible == true)
                                 {
                                     GroupeBoxDiag.Visible = false;
                                 }
                                 break;
                             case "en cours de reparation":
-                                ComboBoxPorg.Items.AddRange(new string[] { "ER", "R" });
+                                ComboBoxPorg.Items.AddRange(new string[] { "En cours de Reparation", "Repare" });
                                 if (GroupeBoxDiag.Visible == true)
                                 {
                                     GroupeBoxDiag.Visible = false;
                                 }
                                 break;
                             case "R":
-                                ComboBoxPorg.Items.Add("R");
+                                ComboBoxPorg.Items.Add("Repare");
                                 if (GroupeBoxDiag.Visible == true)
                                 {
                                     GroupeBoxDiag.Visible = false;
                                 }
                                 break;
                             default:
-                                ComboBoxPorg.Items.Add(dataReader["TicSta"].ToString());
+                                ComboBoxPorg.Items.Add("non disponible");
                                 break;
                         }
                         ComboBoxPorg.SelectedIndex = 0;
@@ -437,12 +437,30 @@ namespace GADJIT_WIN_ASW
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
             //
-            cmd = new SqlCommand("update Ticket set TicSta=@statut where TicID=@TID", GADJIT.sqlConnection);
-            cmd.Parameters.AddWithValue("@statut", ComboBoxPorg.Text);
-            cmd.Parameters.AddWithValue("@TID", TID);
-            GADJIT.sqlConnection.Open();
-            cmd.ExecuteNonQuery();
-            GADJIT.sqlConnection.Close();
+            if (ComboBoxPorg.Text != "")
+            {
+                cmd = new SqlCommand("update Ticket set TicSta=@statut where TicID=@TID", GADJIT.sqlConnection);
+                switch (ComboBoxPorg.Text)
+                {
+                    case "Confirmation de Diagnostic":
+                        cmd.Parameters.AddWithValue("@statut", "CD");
+                        break;
+                    case "En cours de Reparation":
+                        cmd.Parameters.AddWithValue("@statut", "ER");
+                        break;
+                    case "En Cours de Diagnostique":
+                        cmd.Parameters.AddWithValue("@statut", "ED");
+                        break;
+                    case "Repare":
+                        cmd.Parameters.AddWithValue("@statut", "R");
+                        break;
+                }
+                cmd.Parameters.AddWithValue("@statut", ComboBoxPorg.Text);
+                cmd.Parameters.AddWithValue("@TID", TID);
+                GADJIT.sqlConnection.Open();
+                cmd.ExecuteNonQuery();
+                GADJIT.sqlConnection.Close();
+            }
             GetClientEmail();
             if (ComboBoxPorg.Text == "CD")
             {
