@@ -439,7 +439,7 @@ namespace GADJIT_WIN_ASW
             //
             if (ComboBoxPorg.Text != "")
             {
-                cmd = new SqlCommand("update Ticket set TicSta=@statut where TicID=@TID", GADJIT.sqlConnection);
+                cmd = new SqlCommand("update Ticket set TicSta=@statut,TicRePri=@prix where TicID=@TID", GADJIT.sqlConnection);
                 switch (ComboBoxPorg.Text)
                 {
                     case "Confirmation de Diagnostic":
@@ -459,6 +459,7 @@ namespace GADJIT_WIN_ASW
                         break;
                 }
                 cmd.Parameters.AddWithValue("@TID", TID);
+                cmd.Parameters.AddWithValue("@prix", int.Parse(TextBoxPrice.Text) + 100);
                 GADJIT.sqlConnection.Open();
                 cmd.ExecuteNonQuery();
                 GADJIT.sqlConnection.Close();
