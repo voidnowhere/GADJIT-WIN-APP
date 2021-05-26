@@ -371,7 +371,7 @@ namespace GADJIT_WIN_ASW
                     sqlCommand.CommandText = "insert into TicketMonitoring values(@ticID, GETDATE(), 'ticket vérifié', 'S', @stafID, 1)";
                     sqlCommand.ExecuteNonQuery();
 
-                    GADJIT.SendEmail(TextBoxClientEmail.Text, "Votre ticket sous le code [" + ticID + "] a éré vérifié");
+                    GADJIT.SendEmail(TextBoxClientEmail.Text, "Votre ticket sous le code [" + ticID + "] a été vérifié");
 
                     MessageBox.Show("réussi", "Verification", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ButtonVerify.Enabled = false;
@@ -449,7 +449,7 @@ namespace GADJIT_WIN_ASW
                     sqlCommand.CommandText = "insert into TicketMonitoring values(@ticID, GETDATE(), 'ticket annulé', 'S', @stafID, 1)";
                     sqlCommand.ExecuteNonQuery();
 
-                    GADJIT.SendEmail(TextBoxClientEmail.Text, "Votre ticket sous le code [" + ticID + "] a éré annulé");
+                    GADJIT.SendEmail(TextBoxClientEmail.Text, "Votre ticket sous le code [" + ticID + "] a été annulé");
 
                     MessageBox.Show("réussi", "Annulation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ButtonAssign.Enabled = false;
