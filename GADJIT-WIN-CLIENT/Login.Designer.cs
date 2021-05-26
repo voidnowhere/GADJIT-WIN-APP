@@ -163,9 +163,9 @@ namespace GADJIT_WIN_CLIENT
             this.LabelErreur.ForeColor = System.Drawing.Color.Red;
             this.LabelErreur.Location = new System.Drawing.Point(83, 296);
             this.LabelErreur.Name = "LabelErreur";
-            this.LabelErreur.Size = new System.Drawing.Size(165, 17);
+            this.LabelErreur.Size = new System.Drawing.Size(140, 17);
             this.LabelErreur.TabIndex = 33;
-            this.LabelErreur.Text = "Verifiez vos information !";
+            this.LabelErreur.Text = "Information incorrect";
             // 
             // Login
             // 

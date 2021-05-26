@@ -29,7 +29,7 @@ namespace GADJIT_WIN_CLIENT
 
         private void ButtonLogin_Click(object sender, EventArgs e)
         {          
-            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Client WHERE CliEmail=@Email and CliPassWord=@pass ", GADJIT.sqlConnection);
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Client WHERE CliEmail=@Email and CliPassWord=@pass and CliSta=1", GADJIT.sqlConnection);
             GADJIT.sqlConnection.Open();
             cmd.Parameters.AddWithValue("@pass", TextBoxPassWord.Text);
             cmd.Parameters.AddWithValue("@Email", TexrBoxEmail.Text);
