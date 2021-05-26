@@ -18,7 +18,7 @@ namespace GADJIT_WIN_CLIENT
             InitializeComponent();
         }
         string emailtemp = "";
-        int CID ;
+        public static int CID ;
         public static int TID ;
         int RefID;
         int CatID ;

@@ -20,6 +20,7 @@ namespace GADJIT_WIN_CLIENT
             InitializeComponent();
         }
         string emailtemp = "";
+        int TMID ;
         private void PictureBoxExit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -65,6 +66,13 @@ namespace GADJIT_WIN_CLIENT
             msg.Subject = "Acceptation Ticket chez GADJIT";
             msg.Body = "Bonjour:\n \n Votre Ticket a été Accepté.\n Merci pour votre confiance. \n reparation en cours.\n \nGADJIT MAROC.";
             client.Send(msg);
+            cmd = new SqlCommand("insert into TicketMonitoring values (@TID,GETDATE(),'Ticket Accepter','C',@CID,1)", GADJIT.sqlConnection);
+            TicketMonitoringID();
+            cmd.Parameters.AddWithValue("@TID", TMID);
+            cmd.Parameters.AddWithValue("@CID", ConsultationTicketForClient.CID);
+            GADJIT.sqlConnection.Open();
+            cmd.ExecuteNonQuery();
+            GADJIT.sqlConnection.Close();
             this.Close();
         }
 
@@ -87,7 +95,21 @@ namespace GADJIT_WIN_CLIENT
             msg.Subject = "Annulation ticket chez GADJIT";
             msg.Body = "Bonjour:\n \n Votre Ticket a été Annuler.\n Merci de nous envoyer votre feedback sur la cause d'annulation de ticket pour améliorer notre service.\n \nGADJIT MAROC.";
             client.Send(msg);
+            cmd = new SqlCommand("insert into TicketMonitoring values (@TID,GETDATE(),'Ticket Annuler','C',@CID,1)", GADJIT.sqlConnection);
+            TicketMonitoringID();
+            cmd.Parameters.AddWithValue("@TID", TMID);
+            cmd.Parameters.AddWithValue("@CID", ConsultationTicketForClient.CID);
+            GADJIT.sqlConnection.Open();
+            cmd.ExecuteNonQuery();
+            GADJIT.sqlConnection.Close();
             this.Close();
+        }
+        private void TicketMonitoringID()
+        {
+            SqlCommand cmd = new SqlCommand("select max(TicID) from TicketMonitoring", GADJIT.sqlConnection);
+            GADJIT.sqlConnection.Open();
+            TMID = (int)cmd.ExecuteScalar();
+            GADJIT.sqlConnection.Close();
         }
     }
 }
