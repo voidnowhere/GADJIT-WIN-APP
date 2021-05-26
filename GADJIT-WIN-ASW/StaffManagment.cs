@@ -42,6 +42,7 @@ namespace GADJIT_WIN_ASW
         //
         bool filledDGV = false;
         bool where = false;
+        String status = "";
 
         private bool CheckDGVCellsIfEmpty()
         {
@@ -262,6 +263,14 @@ namespace GADJIT_WIN_ASW
             }
         }
 
+        private void DGVStaff_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex > -1 && e.RowIndex < ((DGVStaff.AllowUserToAddRows) ? DGVStaff.Rows.Count - 1 : DGVStaff.Rows.Count))
+            {
+                status = (DGVStaff[12, e.RowIndex].Value != null) ? DGVStaff[12, e.RowIndex].Value.ToString() : "";
+            }
+        }
+
         private void DGVStaff_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (filledDGV)
@@ -307,11 +316,19 @@ namespace GADJIT_WIN_ASW
 
                             sqlCommandUpdate.Parameters.Add("@salary", SqlDbType.Money).Value = Convert.ToDecimal(DGVStaff["ColumnTextBoxSalary", rowIndex].Value.ToString());
 
-                            sqlCommandUpdate.Parameters.Add("@status", SqlDbType.Bit).Value = (DGVStaff["ColumnComboBoxStatus", rowIndex].Value.ToString() == "Activer") ? 1 : 0;
+                            String statusDGV = DGVStaff["ColumnComboBoxStatus", rowIndex].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@status", SqlDbType.Bit).Value = (statusDGV == "Activer") ? 1 : 0;
 
                             GADJIT.sqlConnection.Open();
 
                             MessageBox.Show(sqlCommandUpdate.ExecuteNonQuery() + " réussi", "Mise à jour", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            if (status != statusDGV)
+                            {
+                                GADJIT.SendEmail(
+                                    DGVStaff["ColumnTextBoxEmail", rowIndex].Value.ToString(), 
+                                    "Votre compte est " + statusDGV);
+                            }
 
                             StaffsStats();
                         }
