@@ -29,8 +29,7 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.Refrence = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.GroupeBoxDiag = new System.Windows.Forms.GroupBox();
             this.textBoxWorkTime = new System.Windows.Forms.TextBox();
@@ -46,7 +45,6 @@ namespace GADJIT_WIN_ASW
             this.ButtonEnregistrer = new System.Windows.Forms.Button();
             this.RichTextBoxProblem = new System.Windows.Forms.RichTextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.Sta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ButtonReset = new System.Windows.Forms.Button();
             this.ComboBoxCode = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -59,10 +57,8 @@ namespace GADJIT_WIN_ASW
             this.label20 = new System.Windows.Forms.Label();
             this.DTPTicketToSearch = new System.Windows.Forms.DateTimePicker();
             this.DTPTicketFromSearch = new System.Windows.Forms.DateTimePicker();
-            this.CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label10 = new System.Windows.Forms.Label();
             this.DGVTicket = new System.Windows.Forms.DataGridView();
-            this.DATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ButtonRecherche = new System.Windows.Forms.Button();
@@ -73,19 +69,16 @@ namespace GADJIT_WIN_ASW
             this.TextBoxTicketRepare = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Refrence = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.GroupeBoxDiag.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVTicket)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // Refrence
-            // 
-            this.Refrence.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Refrence.HeaderText = "GADGET";
-            this.Refrence.Name = "Refrence";
-            this.Refrence.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -301,12 +294,6 @@ namespace GADJIT_WIN_ASW
             this.label7.TabIndex = 8;
             this.label7.Text = "Probleme";
             // 
-            // Sta
-            // 
-            this.Sta.HeaderText = "STATUT";
-            this.Sta.Name = "Sta";
-            this.Sta.ReadOnly = true;
-            // 
             // ButtonReset
             // 
             this.ButtonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -442,13 +429,6 @@ namespace GADJIT_WIN_ASW
             this.DTPTicketFromSearch.Size = new System.Drawing.Size(187, 29);
             this.DTPTicketFromSearch.TabIndex = 42;
             // 
-            // CODE
-            // 
-            this.CODE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CODE.HeaderText = "CODE";
-            this.CODE.Name = "CODE";
-            this.CODE.ReadOnly = true;
-            // 
             // label10
             // 
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -482,16 +462,6 @@ namespace GADJIT_WIN_ASW
             this.DGVTicket.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellClick);
             this.DGVTicket.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentClick);
             this.DGVTicket.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentDoubleClick);
-            // 
-            // DATE
-            // 
-            this.DATE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.DATE.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DATE.HeaderText = "DATE";
-            this.DATE.Name = "DATE";
-            this.DATE.ReadOnly = true;
             // 
             // label11
             // 
@@ -639,6 +609,36 @@ namespace GADJIT_WIN_ASW
             this.groupBox3.TabIndex = 77;
             this.groupBox3.TabStop = false;
             // 
+            // CODE
+            // 
+            this.CODE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CODE.HeaderText = "Code";
+            this.CODE.Name = "CODE";
+            this.CODE.ReadOnly = true;
+            // 
+            // DATE
+            // 
+            this.DATE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.DATE.DefaultCellStyle = dataGridViewCellStyle1;
+            this.DATE.HeaderText = "Date";
+            this.DATE.Name = "DATE";
+            this.DATE.ReadOnly = true;
+            // 
+            // Refrence
+            // 
+            this.Refrence.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Refrence.HeaderText = "Gadget";
+            this.Refrence.Name = "Refrence";
+            this.Refrence.ReadOnly = true;
+            // 
+            // Sta
+            // 
+            this.Sta.HeaderText = "Etat";
+            this.Sta.Name = "Sta";
+            this.Sta.ReadOnly = true;
+            // 
             // TicketConsultationWorker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -670,8 +670,6 @@ namespace GADJIT_WIN_ASW
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridViewTextBoxColumn Refrence;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox GroupeBoxDiag;
         private System.Windows.Forms.TextBox textBoxWorkTime;
@@ -687,7 +685,6 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.Button ButtonEnregistrer;
         private System.Windows.Forms.RichTextBox RichTextBoxProblem;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sta;
         private System.Windows.Forms.Button ButtonReset;
         private System.Windows.Forms.ComboBox ComboBoxCode;
         private System.Windows.Forms.Label label5;
@@ -700,10 +697,8 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.DateTimePicker DTPTicketToSearch;
         private System.Windows.Forms.DateTimePicker DTPTicketFromSearch;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CODE;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridView DGVTicket;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DATE;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button ButtonRecherche;
@@ -714,5 +709,9 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.TextBox TextBoxTicketRepare;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CODE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DATE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Refrence;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Sta;
     }
 }
