@@ -56,6 +56,7 @@ namespace GADJIT_WIN_ASW
                             sqlCommand.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
                             GADJIT.sqlConnection.Open();
                             MessageBox.Show(sqlCommand.ExecuteNonQuery() + " réussi", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            GADJIT.SendEmail(email, "Votre mot de passe a été changé");
                             this.Close();
                         }
                         catch (Exception ex)
