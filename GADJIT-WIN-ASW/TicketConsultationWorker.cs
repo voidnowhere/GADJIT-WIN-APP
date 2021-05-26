@@ -397,8 +397,8 @@ namespace GADJIT_WIN_ASW
             int d = 0;
             for (int i = 0; i < c; i++)
             {
-                if (DGVTicket[2, i].Value.ToString() == "reparé") a++;
-                else if (DGVTicket[2, i].Value.ToString() != "reparé") d++;
+                if (DGVTicket[2, i].Value.ToString() == "R") a++;
+                else if (DGVTicket[2, i].Value.ToString() != "R") d++;
             }
             TextBoxTicketRepare.Text = a.ToString();
             TextBoxTicketsNoRepare.Text = d.ToString();
@@ -445,7 +445,7 @@ namespace GADJIT_WIN_ASW
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
             GetClientEmail();
-            if (ComboBoxPorg.Text == "confirmation diagnostic")
+            if (ComboBoxPorg.Text == "CD")
             {
                 SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
                 client.EnableSsl = true;
@@ -459,7 +459,7 @@ namespace GADJIT_WIN_ASW
                 msg.Body = "Bonjour:\n\n le diagnostic de votre ticket code : [" + TID + "] est disponible consultez votre ticket sur notre Application Gadjit! \n\nGADJIT MAROC.";
                 client.Send(msg);
             }
-            else if (ComboBoxPorg.Text == "reparé")
+            else if (ComboBoxPorg.Text == "R")
             {
                 SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
                 client.EnableSsl = true;
