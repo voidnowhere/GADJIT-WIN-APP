@@ -18,19 +18,19 @@ namespace GADJIT_WIN_CLIENT
         {
             InitializeComponent();
         }
-        public static string passCont = "";
-        string emailtemp = "";
+        string passCont = "";
+        public int CID;
         private void ClientInformation_Load(object sender, EventArgs e)
         {
-            TextBoxEmail.Text= emailtemp= Login.Cemail;
             ComboxBoxCity.SelectedIndex = 0;
             //
             GADJIT.sqlConnection.Open();
-            SqlCommand cmd = new SqlCommand("select CliLastName,CliFirstName,CliPassWord,CliPhoneNumber,CliAddress,CitDesig from Client where CliEmail=@email ", GADJIT.sqlConnection);
-            cmd.Parameters.AddWithValue("@email", emailtemp);
+            SqlCommand cmd = new SqlCommand("select CliLastName,CliFirstName,CliPassWord,CliPhoneNumber,CliAddress,CitDesig,CliEmail from Client where CliID=@CID ", GADJIT.sqlConnection);
+            cmd.Parameters.AddWithValue("@CID", CID);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
+                TextBoxEmail.Text = dr["CliEmail"].ToString();
                 TextBoxNom.Text = dr["CliLastName"].ToString();
                 TextBoxPrenom.Text = dr["CliFirstName"].ToString();
                 TextBoxTelephone.Text = dr["CliPhoneNumber"].ToString();
@@ -60,14 +60,15 @@ namespace GADJIT_WIN_CLIENT
                                                    "CliPhoneNumber=@phone," +
                                                    "CliAddress=@adress," +
                                                    "CitDesig=@city " +
-                                                   "where CliEmail = @emailtemp", GADJIT.sqlConnection);                 
+                                                   "where CliID = @CID", GADJIT.sqlConnection);                 
                     cmd.Parameters.AddWithValue("@name", TextBoxNom.Text.Trim());
                     cmd.Parameters.AddWithValue("@prenom", TextBoxPrenom.Text.Trim());
                     cmd.Parameters.AddWithValue("@email", TextBoxEmail.Text.Trim());
                     cmd.Parameters.AddWithValue("@phone", TextBoxTelephone.Text.Trim());
                     cmd.Parameters.AddWithValue("@adress", RichTextBoxAdress.Text);
                     cmd.Parameters.AddWithValue("@city", ComboxBoxCity.GetItemText(ComboxBoxCity.SelectedItem));
-                    cmd.Parameters.AddWithValue("@emailtemp", emailtemp);
+                    cmd.Parameters.AddWithValue("@email", TextBoxEmail.Text.Trim());
+                cmd.Parameters.AddWithValue("@CID", CID);
                     cmd.ExecuteNonQuery();
                     GADJIT.sqlConnection.Close();
                     MessageBox.Show("Modification reussite");
@@ -103,9 +104,11 @@ namespace GADJIT_WIN_CLIENT
 
         private void labelshowGroupBox_Click(object sender, EventArgs e)
         {
-                UpdatePassword passupd = new UpdatePassword();
-                passupd.ShowDialog();
-                ClientInformation_Load(sender, e);
+            UpdatePassword passupd = new UpdatePassword();
+            passupd.CID = CID;
+            passupd.mdp = passCont;
+            passupd.ShowDialog();
+            ClientInformation_Load(sender, e);
         }
     }
 }

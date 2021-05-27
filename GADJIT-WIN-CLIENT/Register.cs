@@ -202,5 +202,10 @@ namespace GADJIT_WIN_CLIENT
         {
             TextBoxEmail.Text = TextBoxEmail.Text.Trim();
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

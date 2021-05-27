@@ -16,6 +16,7 @@ namespace GADJIT_WIN_CLIENT
         {
             InitializeComponent();
         }
+        public int CID;
 
         private void CloseMdiChildIdExists()
         {
@@ -39,6 +40,7 @@ namespace GADJIT_WIN_CLIENT
             CreationTicket creationTicket = new CreationTicket();
             creationTicket.MdiParent = this;
             creationTicket.Dock = DockStyle.Fill;
+            creationTicket.CID = CID;
             creationTicket.Show();
         }
 
@@ -60,6 +62,7 @@ namespace GADJIT_WIN_CLIENT
             ConsultationTicketForClient consultationTicket = new ConsultationTicketForClient();
             consultationTicket.MdiParent = this;
             consultationTicket.Dock = DockStyle.Fill;
+            consultationTicket.CID = CID;
             consultationTicket.Show();
         }
 
@@ -70,6 +73,7 @@ namespace GADJIT_WIN_CLIENT
             ClientInformation clientinfo = new ClientInformation();
             clientinfo.MdiParent = this;
             clientinfo.Dock = DockStyle.Fill;
+            clientinfo.CID = CID;
             clientinfo.Show();
         }
          private void hidemessage()

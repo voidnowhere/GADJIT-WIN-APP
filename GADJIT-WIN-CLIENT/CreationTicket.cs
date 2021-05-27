@@ -20,82 +20,83 @@ namespace GADJIT_WIN_CLIENT
         {
             InitializeComponent();
         }
-        string emailtemp = "";
-        int CID;
+        public int CID;
         int ID;
         int CatID;
         int BrandID;
         int RefID;
+        string email = "";
         private void CreationTicket_Load(object sender, EventArgs e)
         {
-            emailtemp = Login.Cemail;
-            //
             GADJIT.sqlConnection.Open();
-            SqlCommand cmd = new SqlCommand("select CliID from Client where CliEmail = '" + emailtemp + "'", GADJIT.sqlConnection);
-            SqlDataReader dr = cmd.ExecuteReader();
-            dr.Read();
-            CID = Convert.ToInt32(dr["CliID"]);
-            dr.Close();
-            //
-            cmd = new SqlCommand("select GadCatDesig from GadgetCategory where GadCatSta = 1 ", GADJIT.sqlConnection);
-            dr =  cmd.ExecuteReader();
+            SqlCommand cmd = new SqlCommand("select GadCatDesig from GadgetCategory where GadCatSta = 1 ", GADJIT.sqlConnection);
+            SqlDataReader dr =  cmd.ExecuteReader();
             while (dr.Read())
             {
                 ComboBoxCatGadjit.Items.Add(dr["GadCatDesig"].ToString());
             }              
             dr.Close();
             ComboBoxCatGadjit.SelectedIndex = 0;
+            ComboBoxville.SelectedIndex = 0;
             //
             GADJIT.sqlConnection.Close();
+            getclientemail();
         }
 
         private void ButtonConfirmer_Click(object sender, EventArgs e)
         {
-            GADJIT.sqlConnection.Open();
-            SqlCommand cmd = new SqlCommand("select max(TicID) from Ticket ", GADJIT.sqlConnection);
-            if (cmd.ExecuteScalar() != DBNull.Value)
+            if(RichTextBoxAdress.Text !="" && RichTextBoxProbTicket.Text != "" && ComboBoxCatGadjit.SelectedIndex >0 && ComboBoxMarque.SelectedIndex>0 && ComboBoxRefGadjit.SelectedIndex>0 && ComboBoxville.SelectedIndex>0)
             {
-                ID = (int)cmd.ExecuteScalar() + 1;
+                GADJIT.sqlConnection.Open();
+                SqlCommand cmd = new SqlCommand("select max(TicID) from Ticket ", GADJIT.sqlConnection);
+                if (cmd.ExecuteScalar() != DBNull.Value)
+                {
+                    ID = (int)cmd.ExecuteScalar() + 1;
+                }
+                else
+                {
+                    ID = 0;
+                }
+                cmd = new SqlCommand("insert into Ticket(TicID, TicDT, TicProb, TicAddress, TicSta, CliID, GadRefID) values(@ID, GETDATE(), @prob, @Adres, 'PV', @CID, @ref)", GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("@ID", ID);
+                cmd.Parameters.AddWithValue("@prob", RichTextBoxProbTicket.Text);
+                cmd.Parameters.AddWithValue("@CID", CID);
+                cmd.Parameters.AddWithValue("@Ref", RefID);
+                cmd.Parameters.AddWithValue("@Adres", RichTextBoxAdress.Text + " " + ComboBoxville.Text);
+                cmd.ExecuteNonQuery();
+                cmd = new SqlCommand("select max(TicID) from TicketMonitoring ", GADJIT.sqlConnection);
+                int TID;
+                if (cmd.ExecuteScalar() != DBNull.Value)
+                {
+                    TID = (int)cmd.ExecuteScalar() + 1;
+                }
+                else
+                {
+                    TID = 0;
+                }
+                cmd = new SqlCommand("insert into TicketMonitoring values(@id,GETDATE(),'Ticket Cree','C',@CID,1)", GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("@id", TID);
+                cmd.Parameters.AddWithValue("@CID", CID);
+                cmd.ExecuteNonQuery();
+                GADJIT.sqlConnection.Close();
+                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+                client.EnableSsl = true;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential("GADJITMA@gmail.com", "GADJIT2021");
+                MailMessage msg = new MailMessage();
+                msg.To.Add(email);
+                msg.From = new MailAddress("GADJITMA@gmail.com");
+                msg.Subject = "Création d'un Ticket";
+                msg.Body = "Bonjour:\n\nVotre Ticket a été Crée.\nVoici votre code de ticket :[ " + ID + " ]. \n\n-Pour consulter votre ticket veuillez rejoindre le panel consultez votre ticket.\n Merci \n \nGADJIT MAROC.";
+                client.Send(msg);
+                MessageBox.Show("Ticket a été Crée", "Nouvelle Ticket", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
             }
             else
             {
-                ID = 0;
+                MessageBox.Show("champ vide", "Veuillez remplicer tout les champs", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            cmd = new SqlCommand("insert into Ticket(TicID, TicDT, TicProb, TicAddress, TicSta, CliID, GadRefID) values(@ID, GETDATE(), @prob, @Adres, 'PV', @CID, @ref)", GADJIT.sqlConnection);
-            cmd.Parameters.AddWithValue("@ID", ID); 
-            cmd.Parameters.AddWithValue("@prob", RichTextBoxProbTicket.Text);
-            cmd.Parameters.AddWithValue("@CID", CID);
-            cmd.Parameters.AddWithValue("@Ref", RefID);
-            cmd.Parameters.AddWithValue("@Adres", RichTextBoxAdress.Text);
-            cmd.ExecuteNonQuery();
-            cmd = new SqlCommand("select max(TicID) from TicketMonitoring ", GADJIT.sqlConnection);
-            int TID;
-            if (cmd.ExecuteScalar() != DBNull.Value)
-            {
-                TID = (int)cmd.ExecuteScalar() + 1;
-            }
-            else
-            {
-                TID = 0;
-            }
-            cmd = new SqlCommand("insert into TicketMonitoring values(@id,GETDATE(),'Ticket Cree','C',@CID,1)", GADJIT.sqlConnection);
-            cmd.Parameters.AddWithValue("@id", TID);
-            cmd.Parameters.AddWithValue("@CID", CID);
-            cmd.ExecuteNonQuery();
-            GADJIT.sqlConnection.Close();
-            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-            client.EnableSsl = true;
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential("GADJITMA@gmail.com", "GADJIT2021");
-            MailMessage msg = new MailMessage();
-            msg.To.Add(emailtemp);
-            msg.From = new MailAddress("GADJITMA@gmail.com");
-            msg.Subject = "Création d'un Ticket";
-            msg.Body = "Bonjour:\n\nVotre Ticket a été Crée.\nVoici votre code de ticket :[ " + ID + " ]. \n\n-Pour consulter votre ticket veuillez rejoindre le panel consultez votre ticket.\n Merci \n \nGADJIT MAROC.";
-            client.Send(msg);
-            MessageBox.Show("Ticket a été Crée", "Nouvelle Ticket",MessageBoxButtons.OK,MessageBoxIcon.Information);
-            this.Close();
         }
 
         private void ComboBoxCatGadjit_SelectedIndexChanged(object sender, EventArgs e)
@@ -122,13 +123,17 @@ namespace GADJIT_WIN_CLIENT
                 ComboBoxMarque.Items.Insert(0, "Choisissez une marque");
                 //
                 ComboBoxMarque.SelectedIndex = 0;
+                ComboBoxRefGadjit.Items.Clear();
+                ComboBoxRefGadjit.SelectedIndex = -1;
                 GADJIT.sqlConnection.Close();
             }
         }
 
         private void ComboBoxMarque_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(ComboBoxCatGadjit.SelectedIndex!=0 && ComboBoxMarque.SelectedIndex != 0)
+            ComboBoxRefGadjit.Items.Clear();
+            ComboBoxRefGadjit.SelectedIndex = -1;
+            if (ComboBoxCatGadjit.SelectedIndex!=0 && ComboBoxMarque.SelectedIndex != 0)
             {                
                 GADJIT.sqlConnection.Open();
                 SqlCommand cmd = new SqlCommand("select GadBraID from GadgetBrand where GadBraDesig=@bradDes", GADJIT.sqlConnection);
@@ -177,6 +182,14 @@ namespace GADJIT_WIN_CLIENT
         private void ButtonAnnuler_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void getclientemail()
+        {
+            SqlCommand cmd = new SqlCommand("select CliEmail from Client where CliID=@CID", GADJIT.sqlConnection);
+            cmd.Parameters.AddWithValue("@CID", CID);
+            GADJIT.sqlConnection.Open();
+            email = cmd.ExecuteScalar().ToString();
+            GADJIT.sqlConnection.Close();
         }
     }
 }

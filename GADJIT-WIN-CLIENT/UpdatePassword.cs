@@ -18,13 +18,11 @@ namespace GADJIT_WIN_CLIENT
             InitializeComponent();
         }
 
-        string emailtemp = "";
-        string mdp = "";
+        public int CID;
+        public string mdp = "";
 
         private void UpdatePassword_Load(object sender, EventArgs e)
         {
-            emailtemp = Login.Cemail;
-            mdp = ClientInformation.passCont;
         }
 
         private void ButtonAnnuler_Click(object sender, EventArgs e)
@@ -38,8 +36,8 @@ namespace GADJIT_WIN_CLIENT
             {
                 if (TextBoxNewPass.Text == TextBoxConfNewPass.Text)
                 {
-                    SqlCommand cmd = new SqlCommand("update Client set CliPassWord=@pass where CliEmail =@emailtemp", GADJIT.sqlConnection);
-                    cmd.Parameters.AddWithValue("@emailtemp", emailtemp);
+                    SqlCommand cmd = new SqlCommand("update Client set CliPassWord=@pass where CliID =@CID", GADJIT.sqlConnection);
+                    cmd.Parameters.AddWithValue("@CID", CID);
                     cmd.Parameters.AddWithValue("@pass", TextBoxNewPass.Text);
                     GADJIT.sqlConnection.Open();
                     cmd.ExecuteNonQuery();

@@ -17,8 +17,7 @@ namespace GADJIT_WIN_CLIENT
         {
             InitializeComponent();
         }
-        string emailtemp = "";
-        public static int CID ;
+        public int CID ;
         public static int TID ;
         int RefID;
         int CatID ;
@@ -32,16 +31,7 @@ namespace GADJIT_WIN_CLIENT
         SqlDataReader dr;
         private void ConsultationTicketForClient_Load(object sender, EventArgs e)
         {
-            emailtemp = Login.Cemail;
-            //
-            GADJIT.sqlConnection.Open();
-            SqlCommand cmd = new SqlCommand("select CliID from Client where CliEmail = '" + emailtemp + "'", GADJIT.sqlConnection);
-            SqlDataReader dr = cmd.ExecuteReader();
-            dr.Read();
-            CID = Convert.ToInt32(dr["CliID"]);
-            dr.Close();
-            //
-            cmd = new SqlCommand("select TicID from Ticket where CliID = @CID", GADJIT.sqlConnection);
+            SqlCommand cmd = new SqlCommand("select TicID from Ticket where CliID = @CID", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@CID", CID);
             dr = cmd.ExecuteReader();
             while (dr.Read())
@@ -250,6 +240,7 @@ namespace GADJIT_WIN_CLIENT
         private void ButtonDiagnostic_Click(object sender, EventArgs e)
         {
             DiagnosticTicketForClient diag = new DiagnosticTicketForClient();
+            diag.CID = CID;
             diag.ShowDialog();
             ConsultationTicketForClient_Load(sender, e);
         }

@@ -36,15 +36,17 @@ namespace GADJIT_WIN_CLIENT
             if ((int) cmd.ExecuteScalar() == 1)
             {
                 Cemail = TexrBoxEmail.Text.Trim();
-                cmd = new SqlCommand("select CliSta from Client where CliEmail=@Email", GADJIT.sqlConnection);
+                cmd = new SqlCommand("select CliID,CliSta from Client where CliEmail=@Email", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@Email",Cemail);
                 SqlDataReader dr = cmd.ExecuteReader();
                 dr.Read();
-                if(dr.GetBoolean(0) == true)
+                if(dr.GetBoolean(1) == true)
                 {
-                    GADJIT.sqlConnection.Close();
                     this.Hide();
                     HOME home = new HOME();
+                    home.CID = dr.GetInt32(0);
+                    GADJIT.sqlConnection.Close();
+                    this.Hide();
                     home.ShowDialog();
                     this.Show();
                 }
