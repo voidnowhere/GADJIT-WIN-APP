@@ -26,6 +26,7 @@ namespace GADJIT_WIN_CLIENT
         int BrandID;
         int RefID;
         string email = "";
+        int cityID;
         private void CreationTicket_Load(object sender, EventArgs e)
         {
             GADJIT.sqlConnection.Open();
@@ -47,6 +48,7 @@ namespace GADJIT_WIN_CLIENT
         {
             if(RichTextBoxAdress.Text !="" && RichTextBoxProbTicket.Text != "" && ComboBoxCatGadjit.SelectedIndex >0 && ComboBoxMarque.SelectedIndex>0 && ComboBoxRefGadjit.SelectedIndex>0 && ComboBoxville.SelectedIndex>0)
             {
+                getcityid();
                 GADJIT.sqlConnection.Open();
                 SqlCommand cmd = new SqlCommand("select max(TicID) from Ticket ", GADJIT.sqlConnection);
                 if (cmd.ExecuteScalar() != DBNull.Value)
@@ -57,12 +59,13 @@ namespace GADJIT_WIN_CLIENT
                 {
                     ID = 0;
                 }
-                cmd = new SqlCommand("insert into Ticket(TicID, TicDT, TicProb, TicAddress, TicSta, CliID, GadRefID) values(@ID, GETDATE(), @prob, @Adres, 'PV', @CID, @ref)", GADJIT.sqlConnection);
+                cmd = new SqlCommand("insert into Ticket(TicID, TicDT, TicProb, TicAddress, CitID, TicSta, CliID, GadRefID) values(@ID, GETDATE(), @prob, @Adres,@city, 'PV', @CID, @ref)", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@ID", ID);
                 cmd.Parameters.AddWithValue("@prob", RichTextBoxProbTicket.Text);
                 cmd.Parameters.AddWithValue("@CID", CID);
                 cmd.Parameters.AddWithValue("@Ref", RefID);
-                cmd.Parameters.AddWithValue("@Adres", RichTextBoxAdress.Text + " " + ComboBoxville.Text);
+                cmd.Parameters.AddWithValue("@Adres", RichTextBoxAdress.Text);
+                cmd.Parameters.AddWithValue("@city", cityID);
                 cmd.ExecuteNonQuery();
                 cmd = new SqlCommand("select max(TicID) from TicketMonitoring ", GADJIT.sqlConnection);
                 int TID;
@@ -189,6 +192,14 @@ namespace GADJIT_WIN_CLIENT
             cmd.Parameters.AddWithValue("@CID", CID);
             GADJIT.sqlConnection.Open();
             email = cmd.ExecuteScalar().ToString();
+            GADJIT.sqlConnection.Close();
+        }
+        private void getcityid()
+        {
+            SqlCommand cmd = new SqlCommand("select CitID from City where CitDesig=@city ", GADJIT.sqlConnection);
+            cmd.Parameters.AddWithValue("@city", ComboBoxville.Text);
+            GADJIT.sqlConnection.Open();
+            cityID = (int)cmd.ExecuteScalar();
             GADJIT.sqlConnection.Close();
         }
     }

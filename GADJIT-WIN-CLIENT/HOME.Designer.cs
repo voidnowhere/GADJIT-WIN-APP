@@ -32,24 +32,31 @@ namespace GADJIT_WIN_CLIENT
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HOME));
             this.panel1 = new System.Windows.Forms.Panel();
             this.PictureBoxLogout = new System.Windows.Forms.PictureBox();
-            this.ButtonProfil = new System.Windows.Forms.Button();
-            this.ButtonConsultationTicket = new System.Windows.Forms.Button();
-            this.ButtonNewTicket = new System.Windows.Forms.Button();
             this.PictureBoxExit = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.LblNom = new System.Windows.Forms.Label();
+            this.lblPrenom = new System.Windows.Forms.Label();
+            this.lblemail = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.ButtonProfil = new System.Windows.Forms.Button();
+            this.ButtonConsultationTicket = new System.Windows.Forms.Button();
+            this.ButtonNewTicket = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.panel1.Controls.Add(this.PictureBoxLogout);
             this.panel1.Controls.Add(this.ButtonProfil);
             this.panel1.Controls.Add(this.ButtonConsultationTicket);
             this.panel1.Controls.Add(this.ButtonNewTicket);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.PictureBoxLogout);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -67,63 +74,6 @@ namespace GADJIT_WIN_CLIENT
             this.PictureBoxLogout.TabIndex = 9;
             this.PictureBoxLogout.TabStop = false;
             this.PictureBoxLogout.Click += new System.EventHandler(this.PictureBoxLogout_Click);
-            // 
-            // ButtonProfil
-            // 
-            this.ButtonProfil.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButtonProfil.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.ButtonProfil.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ButtonProfil.FlatAppearance.BorderSize = 0;
-            this.ButtonProfil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonProfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonProfil.ForeColor = System.Drawing.Color.White;
-            this.ButtonProfil.Location = new System.Drawing.Point(0, 80);
-            this.ButtonProfil.Name = "ButtonProfil";
-            this.ButtonProfil.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.ButtonProfil.Size = new System.Drawing.Size(158, 40);
-            this.ButtonProfil.TabIndex = 7;
-            this.ButtonProfil.Text = "Profil";
-            this.ButtonProfil.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ButtonProfil.UseVisualStyleBackColor = false;
-            this.ButtonProfil.Click += new System.EventHandler(this.ButtonProfil_Click);
-            // 
-            // ButtonConsultationTicket
-            // 
-            this.ButtonConsultationTicket.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButtonConsultationTicket.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.ButtonConsultationTicket.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ButtonConsultationTicket.FlatAppearance.BorderSize = 0;
-            this.ButtonConsultationTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonConsultationTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonConsultationTicket.ForeColor = System.Drawing.Color.White;
-            this.ButtonConsultationTicket.Location = new System.Drawing.Point(0, 40);
-            this.ButtonConsultationTicket.Name = "ButtonConsultationTicket";
-            this.ButtonConsultationTicket.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.ButtonConsultationTicket.Size = new System.Drawing.Size(158, 40);
-            this.ButtonConsultationTicket.TabIndex = 3;
-            this.ButtonConsultationTicket.Text = "Consultez votre ticket";
-            this.ButtonConsultationTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ButtonConsultationTicket.UseVisualStyleBackColor = false;
-            this.ButtonConsultationTicket.Click += new System.EventHandler(this.ButtonConsultationTicket_Click);
-            // 
-            // ButtonNewTicket
-            // 
-            this.ButtonNewTicket.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButtonNewTicket.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.ButtonNewTicket.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ButtonNewTicket.FlatAppearance.BorderSize = 0;
-            this.ButtonNewTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonNewTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonNewTicket.ForeColor = System.Drawing.Color.White;
-            this.ButtonNewTicket.Location = new System.Drawing.Point(0, 0);
-            this.ButtonNewTicket.Name = "ButtonNewTicket";
-            this.ButtonNewTicket.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.ButtonNewTicket.Size = new System.Drawing.Size(158, 40);
-            this.ButtonNewTicket.TabIndex = 2;
-            this.ButtonNewTicket.Text = "Nouveau ticket";
-            this.ButtonNewTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ButtonNewTicket.UseVisualStyleBackColor = false;
-            this.ButtonNewTicket.Click += new System.EventHandler(this.ButtonNewTicket_Click);
             // 
             // PictureBoxExit
             // 
@@ -165,6 +115,113 @@ namespace GADJIT_WIN_CLIENT
             this.richTextBox1.TabIndex = 36;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
+            // LblNom
+            // 
+            this.LblNom.AutoSize = true;
+            this.LblNom.ForeColor = System.Drawing.Color.White;
+            this.LblNom.Location = new System.Drawing.Point(3, 47);
+            this.LblNom.Name = "LblNom";
+            this.LblNom.Size = new System.Drawing.Size(38, 17);
+            this.LblNom.TabIndex = 10;
+            this.LblNom.Text = "Nom";
+            // 
+            // lblPrenom
+            // 
+            this.lblPrenom.AutoSize = true;
+            this.lblPrenom.ForeColor = System.Drawing.Color.White;
+            this.lblPrenom.Location = new System.Drawing.Point(3, 77);
+            this.lblPrenom.Name = "lblPrenom";
+            this.lblPrenom.Size = new System.Drawing.Size(56, 17);
+            this.lblPrenom.TabIndex = 11;
+            this.lblPrenom.Text = "Prenom";
+            // 
+            // lblemail
+            // 
+            this.lblemail.AutoSize = true;
+            this.lblemail.ForeColor = System.Drawing.Color.White;
+            this.lblemail.Location = new System.Drawing.Point(3, 106);
+            this.lblemail.Name = "lblemail";
+            this.lblemail.Size = new System.Drawing.Size(42, 17);
+            this.lblemail.TabIndex = 12;
+            this.lblemail.Text = "email";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Nirmala UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(3, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(141, 30);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Espace Client";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.lblemail);
+            this.panel2.Controls.Add(this.LblNom);
+            this.panel2.Controls.Add(this.lblPrenom);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(158, 127);
+            this.panel2.TabIndex = 38;
+            // 
+            // ButtonProfil
+            // 
+            this.ButtonProfil.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonProfil.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.ButtonProfil.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonProfil.FlatAppearance.BorderSize = 0;
+            this.ButtonProfil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonProfil.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonProfil.ForeColor = System.Drawing.Color.White;
+            this.ButtonProfil.Location = new System.Drawing.Point(0, 207);
+            this.ButtonProfil.Name = "ButtonProfil";
+            this.ButtonProfil.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.ButtonProfil.Size = new System.Drawing.Size(158, 40);
+            this.ButtonProfil.TabIndex = 41;
+            this.ButtonProfil.Text = "Profil";
+            this.ButtonProfil.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ButtonProfil.UseVisualStyleBackColor = false;
+            // 
+            // ButtonConsultationTicket
+            // 
+            this.ButtonConsultationTicket.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonConsultationTicket.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.ButtonConsultationTicket.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonConsultationTicket.FlatAppearance.BorderSize = 0;
+            this.ButtonConsultationTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonConsultationTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonConsultationTicket.ForeColor = System.Drawing.Color.White;
+            this.ButtonConsultationTicket.Location = new System.Drawing.Point(0, 167);
+            this.ButtonConsultationTicket.Name = "ButtonConsultationTicket";
+            this.ButtonConsultationTicket.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.ButtonConsultationTicket.Size = new System.Drawing.Size(158, 40);
+            this.ButtonConsultationTicket.TabIndex = 40;
+            this.ButtonConsultationTicket.Text = "Consultez votre ticket";
+            this.ButtonConsultationTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ButtonConsultationTicket.UseVisualStyleBackColor = false;
+            // 
+            // ButtonNewTicket
+            // 
+            this.ButtonNewTicket.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonNewTicket.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.ButtonNewTicket.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonNewTicket.FlatAppearance.BorderSize = 0;
+            this.ButtonNewTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonNewTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonNewTicket.ForeColor = System.Drawing.Color.White;
+            this.ButtonNewTicket.Location = new System.Drawing.Point(0, 127);
+            this.ButtonNewTicket.Name = "ButtonNewTicket";
+            this.ButtonNewTicket.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.ButtonNewTicket.Size = new System.Drawing.Size(158, 40);
+            this.ButtonNewTicket.TabIndex = 39;
+            this.ButtonNewTicket.Text = "Nouveau ticket";
+            this.ButtonNewTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ButtonNewTicket.UseVisualStyleBackColor = false;
+            // 
             // HOME
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -186,6 +243,8 @@ namespace GADJIT_WIN_CLIENT
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -193,12 +252,17 @@ namespace GADJIT_WIN_CLIENT
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button ButtonProfil;
-        private System.Windows.Forms.Button ButtonConsultationTicket;
-        private System.Windows.Forms.Button ButtonNewTicket;
         private System.Windows.Forms.PictureBox PictureBoxLogout;
         private System.Windows.Forms.PictureBox PictureBoxExit;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button ButtonProfil;
+        private System.Windows.Forms.Button ButtonConsultationTicket;
+        private System.Windows.Forms.Button ButtonNewTicket;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblemail;
+        private System.Windows.Forms.Label LblNom;
+        private System.Windows.Forms.Label lblPrenom;
     }
 }

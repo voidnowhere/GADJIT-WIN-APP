@@ -115,7 +115,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonClear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonClear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.ButtonClear.Location = new System.Drawing.Point(110, 474);
+            this.ButtonClear.Location = new System.Drawing.Point(110, 525);
             this.ButtonClear.Name = "ButtonClear";
             this.ButtonClear.Size = new System.Drawing.Size(179, 35);
             this.ButtonClear.TabIndex = 11;
@@ -130,7 +130,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonRegister.FlatAppearance.BorderSize = 0;
             this.ButtonRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonRegister.ForeColor = System.Drawing.Color.White;
-            this.ButtonRegister.Location = new System.Drawing.Point(110, 515);
+            this.ButtonRegister.Location = new System.Drawing.Point(110, 484);
             this.ButtonRegister.Name = "ButtonRegister";
             this.ButtonRegister.Size = new System.Drawing.Size(179, 35);
             this.ButtonRegister.TabIndex = 10;

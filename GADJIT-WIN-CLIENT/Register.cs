@@ -23,6 +23,7 @@ namespace GADJIT_WIN_CLIENT
         }
 
         int ID;
+        int cityID;
         public static string emailC;
         public static string NomC;
 
@@ -93,6 +94,7 @@ namespace GADJIT_WIN_CLIENT
                         v.ShowDialog();
                         try
                         {
+                            getcityid();
                             SqlCommand cmd = new SqlCommand("select max(CliID) from Client ", GADJIT.sqlConnection);
                             GADJIT.sqlConnection.Open();
                             if(cmd.ExecuteScalar() != DBNull.Value)
@@ -115,7 +117,7 @@ namespace GADJIT_WIN_CLIENT
                             cmd.Parameters.AddWithValue("@PassWord", TextBoxPassword.Text.Trim());
                             cmd.Parameters.AddWithValue("@PhoneNumber", TextBoxPhone.Text.Trim());
                             cmd.Parameters.AddWithValue("@Adress", RichTextBoxAdress.Text);
-                            cmd.Parameters.AddWithValue("@City", ComboxBoxCity.GetItemText(ComboxBoxCity.SelectedItem));
+                            cmd.Parameters.AddWithValue("@City", cityID);
                             cmd.ExecuteNonQuery();
                             SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
                             client.EnableSsl = true;
@@ -202,10 +204,13 @@ namespace GADJIT_WIN_CLIENT
         {
             TextBoxEmail.Text = TextBoxEmail.Text.Trim();
         }
-
-        private void label4_Click(object sender, EventArgs e)
+        private void getcityid()
         {
-
+            SqlCommand cmd = new SqlCommand("select CitID from City where CitDesig=@city ", GADJIT.sqlConnection);
+            cmd.Parameters.AddWithValue("@city", ComboxBoxCity.Text);
+            GADJIT.sqlConnection.Open();
+            cityID = (int)cmd.ExecuteScalar();
+            GADJIT.sqlConnection.Close();
         }
     }
 }
