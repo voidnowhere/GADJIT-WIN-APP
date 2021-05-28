@@ -40,6 +40,7 @@ namespace GADJIT_WIN_ASW
 
         SqlDataReader dataReader;
         //
+        Dictionary<int, string> city = new Dictionary<int, string>();
         bool filledDGV = false;
         bool where = false;
         String status = "";
@@ -98,16 +99,22 @@ namespace GADJIT_WIN_ASW
         {
             try
             {
-                SqlCommand sqlCommand = new SqlCommand("select CitDesig from City", GADJIT.sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("select CitID, CitDesig from City", GADJIT.sqlConnection);
                 GADJIT.sqlConnection.Open();
                 dataReader = sqlCommand.ExecuteReader();
                 if (dataReader.HasRows)
                 {
                     ComboBoxCitySearch.Items.Add("--tous--");
+                    //
+                    ColumnComboBoxCity.DisplayMember = "CitDesig";
+                    ColumnComboBoxCity.ValueMember = "CitID";
                     while (dataReader.Read())
                     {
-                        ComboBoxCitySearch.Items.Add(dataReader.GetString(0));
-                        ColumnComboBoxCity.Items.Add(dataReader.GetString(0));
+                        city.Add(dataReader.GetInt32(0), dataReader.GetString(1));
+                        //
+                        ComboBoxCitySearch.Items.Add(dataReader.GetString(1));
+                        //
+                        ColumnComboBoxCity.Items.Add(new { CitID = dataReader.GetInt32(0), CitDesig = dataReader.GetString(1) });
                     }
                 }
             }
@@ -159,8 +166,8 @@ namespace GADJIT_WIN_ASW
                     if (ComboBoxCitySearch.SelectedIndex > 0)
                     {
                         if (where) sqlQuery += " and";
-                        sqlQuery += " CitDesig = @city";
-                        sqlCommand.Parameters.Add("@city", SqlDbType.VarChar).Value = ComboBoxCitySearch.Text;
+                        sqlQuery += " CitID = @city";
+                        sqlCommand.Parameters.Add("@city", SqlDbType.Int).Value = city.Keys.First(i => city[i] == ComboBoxCitySearch.Text);
                         where = true;
                     }
                     if (ComboBoxStatusSearch.SelectedIndex > 0)
@@ -191,7 +198,7 @@ namespace GADJIT_WIN_ASW
                             dataReader["StafPassWord"],
                             dataReader["StafPhoneNumber"], 
                             dataReader["StafAddress"],
-                            dataReader["CitDesig"],
+                            dataReader["CitID"],
                             dataReader["StafSalary"],
                             dataReader["StafDispo"],
                             (dataReader.GetBoolean(12)) ? "Activer" : "Désactiver");
@@ -290,7 +297,7 @@ namespace GADJIT_WIN_ASW
                         try
                         {
                             string sqlQuery = "update Staff set StafCIN = @cin, StafPicture = @img, StafLastName = @lastName, StafFirstName = @firstName, StafEmail = @email, " +
-                                "StafPassWord = @password, StafPhoneNumber = @phoneNumber, StafAddress = @address, CitDesig = @city, StafSalary = @salary, " +
+                                "StafPassWord = @password, StafPhoneNumber = @phoneNumber, StafAddress = @address, CitID = @city, StafSalary = @salary, " +
                                 "StafSta = @status where StafID = @id";
                             SqlCommand sqlCommandUpdate = new SqlCommand(sqlQuery, GADJIT.sqlConnection);
 
@@ -312,7 +319,7 @@ namespace GADJIT_WIN_ASW
 
                             sqlCommandUpdate.Parameters.Add("@address", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxAdress", rowIndex].Value.ToString();
 
-                            sqlCommandUpdate.Parameters.Add("@city", SqlDbType.VarChar).Value = DGVStaff["ColumnComboBoxCity", rowIndex].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@city", SqlDbType.Int).Value = (int)DGVStaff["ColumnComboBoxCity", rowIndex].Value;
 
                             sqlCommandUpdate.Parameters.Add("@salary", SqlDbType.Money).Value = Convert.ToDecimal(DGVStaff["ColumnTextBoxSalary", rowIndex].Value.ToString());
 
@@ -367,7 +374,7 @@ namespace GADJIT_WIN_ASW
 
                             sqlCommandInsert.Parameters.Add("@address", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxAdress", rowIndex].Value.ToString();
 
-                            sqlCommandInsert.Parameters.Add("@city", SqlDbType.VarChar).Value = DGVStaff["ColumnComboBoxCity", rowIndex].Value.ToString();
+                            sqlCommandInsert.Parameters.Add("@city", SqlDbType.Int).Value = (int)DGVStaff["ColumnComboBoxCity", rowIndex].Value;
 
                             sqlCommandInsert.Parameters.Add("@salary", SqlDbType.Money).Value = Convert.ToDecimal(DGVStaff["ColumnTextBoxSalary", rowIndex].Value.ToString());
 
