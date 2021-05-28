@@ -32,17 +32,7 @@ namespace GADJIT_WIN_CLIENT
             GADJIT.sqlConnection.Open();
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
-            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-            client.EnableSsl = true;
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential("GADJITMA@gmail.com", "GADJIT2021");
-            MailMessage msg = new MailMessage();
-            msg.To.Add(email);
-            msg.From = new MailAddress("GADJITMA@gmail.com");
-            msg.Subject = "Inscription chez GADJIT";
-            msg.Body = "Bonjour " + nom + ":\nVotre CODE de verification est : "+check+" \nGADJIT MAROC.";
-            client.Send(msg);
+            GADJIT.SendEmail(email, "Bonjour " + nom + ":\nVotre CODE de verification est : " + check + " \nGADJIT MAROC.");
             MessageBox.Show("un email de verification d'inscription a été envoyer a votre boite mail", "mail envoyez",MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 

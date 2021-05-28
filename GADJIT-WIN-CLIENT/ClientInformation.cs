@@ -114,6 +114,8 @@ namespace GADJIT_WIN_CLIENT
             UpdatePassword passupd = new UpdatePassword();
             passupd.CID = CID;
             passupd.mdp = passCont;
+            passupd.nom = TextBoxNom.Text;
+            passupd.email = TextBoxPrenom.Text;
             passupd.ShowDialog();
             ClientInformation_Load(sender, e);
         }

@@ -147,19 +147,8 @@ namespace GADJIT_WIN_CLIENT
                             v.check = check;
                             v.ShowDialog();
                             //
-                            
-                            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-                            client.EnableSsl = true;
-                            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                            client.UseDefaultCredentials = false;
-                            client.Credentials = new NetworkCredential("GADJITMA@gmail.com", "GADJIT2021");
-                            MailMessage msg = new MailMessage();
-                            msg.To.Add(TextBoxEmail.Text);
-                            msg.From = new MailAddress("GADJITMA@gmail.com");
-                            msg.Subject = "Inscription chez GADJIT";
-                            msg.Body = "Bonjour " + TextBoxNom.Text + " :\nvotre inscription a bien été traitée bienvenue chez GADJIT. \nGADJIT MAROC.";
-                            client.Send(msg);
-                            MessageBox.Show("Inscription réussite", "Inscription",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                            GADJIT.SendEmail(TextBoxEmail.Text, "Bonjour " + TextBoxNom.Text + " :\nvotre inscription a bien été traitée bienvenue chez GADJIT. \nGADJIT MAROC.");
+                            MessageBox.Show("Inscription réussite", "Inscription", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         catch(Exception ex)
                         {
