@@ -26,11 +26,13 @@ namespace GADJIT_WIN_CLIENT
         int cityID;
         public static string emailC;
         public static string NomC;
+        SqlDataReader dataReader;
 
         private void Register_Load(object sender, EventArgs e)
         {
             TextBoxPassword.PasswordChar = '*';
             TextBoxPassword.MaxLength = 16;
+            FillComboBoxCity();
             ComboxBoxCity.SelectedIndex = 0;
             //Captcha
             Random random = new Random();
@@ -211,6 +213,33 @@ namespace GADJIT_WIN_CLIENT
             GADJIT.sqlConnection.Open();
             cityID = (int)cmd.ExecuteScalar();
             GADJIT.sqlConnection.Close();
+        }
+        private void FillComboBoxCity()
+        {
+            ComboxBoxCity.Items.Clear();
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand("select CitDesig from City", GADJIT.sqlConnection);
+                GADJIT.sqlConnection.Open();
+                dataReader = sqlCommand.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    ComboxBoxCity.Items.Add("----Votre Ville---");
+                    while (dataReader.Read())
+                    {
+                        ComboxBoxCity.Items.Add(dataReader.GetString(0));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error FillComboBoxCity()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                dataReader.Close();
+                GADJIT.sqlConnection.Close();
+            }
         }
     }
 }

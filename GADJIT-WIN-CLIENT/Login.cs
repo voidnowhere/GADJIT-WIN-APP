@@ -36,7 +36,7 @@ namespace GADJIT_WIN_CLIENT
             if ((int) cmd.ExecuteScalar() == 1)
             {
                 Cemail = TexrBoxEmail.Text.Trim();
-                cmd = new SqlCommand("select CliID,CliSta from Client where CliEmail=@Email", GADJIT.sqlConnection);
+                cmd = new SqlCommand("select CliID, CliSta, CliFirstName, CliLastName from Client where CliEmail=@Email", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@Email",Cemail);
                 SqlDataReader dr = cmd.ExecuteReader();
                 dr.Read();
@@ -45,6 +45,9 @@ namespace GADJIT_WIN_CLIENT
                     this.Hide();
                     HOME home = new HOME();
                     home.CID = dr.GetInt32(0);
+                    home.lblemail.Text = Cemail;
+                    home.lblPrenom.Text = dr.GetString(2);
+                    home.LblNom.Text = dr.GetString(3);
                     GADJIT.sqlConnection.Close();
                     this.Hide();
                     home.ShowDialog();

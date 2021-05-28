@@ -29,7 +29,6 @@ namespace GADJIT_WIN_CLIENT
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.ButtonAnnuler = new System.Windows.Forms.Button();
             this.ButtonConfirmer = new System.Windows.Forms.Button();
             this.RichTextBoxProbTicket = new System.Windows.Forms.RichTextBox();
@@ -45,10 +44,6 @@ namespace GADJIT_WIN_CLIENT
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.ComboBoxville = new System.Windows.Forms.ComboBox();
-            this.errorProvideradrs = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errorProviderprob = new System.Windows.Forms.ErrorProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvideradrs)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProviderprob)).BeginInit();
             this.SuspendLayout();
             // 
             // ButtonAnnuler
@@ -231,40 +226,10 @@ namespace GADJIT_WIN_CLIENT
             this.ComboBoxville.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ComboBoxville.DisplayMember = "reference";
             this.ComboBoxville.FormattingEnabled = true;
-            this.ComboBoxville.Items.AddRange(new object[] {
-            "----Votre Ville---",
-            "Casablanca",
-            "Fés",
-            "Tanger",
-            "Marrakech",
-            "Salé",
-            "Meknès",
-            "Rabat",
-            "Oujda",
-            "Kénitra",
-            "Agadir",
-            "Tétouan",
-            "Témara",
-            "Safi",
-            "Mohammédia",
-            "Khouribga",
-            "El Jadida",
-            "Béni Mellal",
-            "Nador",
-            "Taza",
-            "Khémisset"});
             this.ComboBoxville.Location = new System.Drawing.Point(163, 439);
             this.ComboBoxville.Name = "ComboBoxville";
             this.ComboBoxville.Size = new System.Drawing.Size(527, 25);
             this.ComboBoxville.TabIndex = 36;
-            // 
-            // errorProvideradrs
-            // 
-            this.errorProvideradrs.ContainerControl = this;
-            // 
-            // errorProviderprob
-            // 
-            this.errorProviderprob.ContainerControl = this;
             // 
             // CreationTicket
             // 
@@ -295,8 +260,6 @@ namespace GADJIT_WIN_CLIENT
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CreationTicket";
             this.Load += new System.EventHandler(this.CreationTicket_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvideradrs)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProviderprob)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -319,7 +282,5 @@ namespace GADJIT_WIN_CLIENT
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox ComboBoxville;
-        private System.Windows.Forms.ErrorProvider errorProvideradrs;
-        private System.Windows.Forms.ErrorProvider errorProviderprob;
     }
 }

@@ -27,8 +27,10 @@ namespace GADJIT_WIN_CLIENT
         int RefID;
         string email = "";
         int cityID;
+        SqlDataReader dataReader;
         private void CreationTicket_Load(object sender, EventArgs e)
         {
+            FillComboBoxCity();
             GADJIT.sqlConnection.Open();
             SqlCommand cmd = new SqlCommand("select GadCatDesig from GadgetCategory where GadCatSta = 1 ", GADJIT.sqlConnection);
             SqlDataReader dr =  cmd.ExecuteReader();
@@ -201,6 +203,33 @@ namespace GADJIT_WIN_CLIENT
             GADJIT.sqlConnection.Open();
             cityID = (int)cmd.ExecuteScalar();
             GADJIT.sqlConnection.Close();
+        }
+        private void FillComboBoxCity()
+        {
+            ComboBoxville.Items.Clear();
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand("select CitDesig from City", GADJIT.sqlConnection);
+                GADJIT.sqlConnection.Open();
+                dataReader = sqlCommand.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    ComboBoxville.Items.Add("----Votre Ville---");
+                    while (dataReader.Read())
+                    {
+                        ComboBoxville.Items.Add(dataReader.GetString(0));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error FillComboBoxCity()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                dataReader.Close();
+                GADJIT.sqlConnection.Close();
+            }
         }
     }
 }

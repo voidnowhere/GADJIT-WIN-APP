@@ -72,10 +72,10 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxCaptcha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.TextBoxCaptcha.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxCaptcha.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxCaptcha.Location = new System.Drawing.Point(124, 425);
+            this.TextBoxCaptcha.Location = new System.Drawing.Point(110, 425);
             this.TextBoxCaptcha.Multiline = true;
             this.TextBoxCaptcha.Name = "TextBoxCaptcha";
-            this.TextBoxCaptcha.Size = new System.Drawing.Size(216, 28);
+            this.TextBoxCaptcha.Size = new System.Drawing.Size(179, 28);
             this.TextBoxCaptcha.TabIndex = 9;
             // 
             // LabelCaptcha
@@ -83,7 +83,7 @@ namespace GADJIT_WIN_CLIENT
             this.LabelCaptcha.AutoSize = true;
             this.LabelCaptcha.Font = new System.Drawing.Font("Lucida Handwriting", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelCaptcha.ForeColor = System.Drawing.Color.Blue;
-            this.LabelCaptcha.Location = new System.Drawing.Point(155, 391);
+            this.LabelCaptcha.Location = new System.Drawing.Point(135, 391);
             this.LabelCaptcha.Name = "LabelCaptcha";
             this.LabelCaptcha.Size = new System.Drawing.Size(134, 31);
             this.LabelCaptcha.TabIndex = 48;
@@ -93,7 +93,7 @@ namespace GADJIT_WIN_CLIENT
             // 
             this.LabelGoToLogin.AutoSize = true;
             this.LabelGoToLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.LabelGoToLogin.Location = new System.Drawing.Point(247, 563);
+            this.LabelGoToLogin.Location = new System.Drawing.Point(237, 538);
             this.LabelGoToLogin.Name = "LabelGoToLogin";
             this.LabelGoToLogin.Size = new System.Drawing.Size(103, 17);
             this.LabelGoToLogin.TabIndex = 12;
@@ -103,7 +103,7 @@ namespace GADJIT_WIN_CLIENT
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(43, 563);
+            this.label10.Location = new System.Drawing.Point(30, 538);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(179, 17);
             this.label10.TabIndex = 46;
@@ -115,7 +115,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonClear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonClear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.ButtonClear.Location = new System.Drawing.Point(110, 525);
+            this.ButtonClear.Location = new System.Drawing.Point(110, 500);
             this.ButtonClear.Name = "ButtonClear";
             this.ButtonClear.Size = new System.Drawing.Size(179, 35);
             this.ButtonClear.TabIndex = 11;
@@ -130,7 +130,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonRegister.FlatAppearance.BorderSize = 0;
             this.ButtonRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonRegister.ForeColor = System.Drawing.Color.White;
-            this.ButtonRegister.Location = new System.Drawing.Point(110, 484);
+            this.ButtonRegister.Location = new System.Drawing.Point(110, 459);
             this.ButtonRegister.Name = "ButtonRegister";
             this.ButtonRegister.Size = new System.Drawing.Size(179, 35);
             this.ButtonRegister.TabIndex = 10;
@@ -257,7 +257,6 @@ namespace GADJIT_WIN_CLIENT
             this.label4.Size = new System.Drawing.Size(42, 17);
             this.label4.TabIndex = 32;
             this.label4.Text = "Email";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // TextBoxPrenom
             // 
@@ -329,28 +328,6 @@ namespace GADJIT_WIN_CLIENT
             this.ComboxBoxCity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ComboxBoxCity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComboxBoxCity.FormattingEnabled = true;
-            this.ComboxBoxCity.Items.AddRange(new object[] {
-            "----Votre Ville---",
-            "Casablanca",
-            "Fés",
-            "Tanger",
-            "Marrakech",
-            "Salé",
-            "Meknès",
-            "Rabat",
-            "Oujda",
-            "Kénitra",
-            "Agadir",
-            "Tétouan",
-            "Témara",
-            "Safi",
-            "Mohammédia",
-            "Khouribga",
-            "El Jadida",
-            "Béni Mellal",
-            "Nador",
-            "Taza",
-            "Khémisset"});
             this.ComboxBoxCity.Location = new System.Drawing.Point(201, 350);
             this.ComboxBoxCity.Name = "ComboxBoxCity";
             this.ComboxBoxCity.Size = new System.Drawing.Size(216, 25);
@@ -381,7 +358,7 @@ namespace GADJIT_WIN_CLIENT
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(443, 605);
+            this.ClientSize = new System.Drawing.Size(443, 565);
             this.Controls.Add(this.ComboxBoxCity);
             this.Controls.Add(this.PictureBoxExit);
             this.Controls.Add(this.TextBoxCaptcha);

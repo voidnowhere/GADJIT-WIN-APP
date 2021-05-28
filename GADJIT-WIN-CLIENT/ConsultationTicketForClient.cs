@@ -33,6 +33,7 @@ namespace GADJIT_WIN_CLIENT
         {
             SqlCommand cmd = new SqlCommand("select TicID from Ticket where CliID = @CID", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@CID", CID);
+            GADJIT.sqlConnection.Open();
             dr = cmd.ExecuteReader();
             while (dr.Read())
             {
