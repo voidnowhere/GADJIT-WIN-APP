@@ -54,7 +54,7 @@ namespace GADJIT_WIN_ASW
                                         Admin.LabelLastName.Text = dr.GetString(0);
                                         Admin.LabelFirstName.Text = dr.GetString(1);
                                         Admin.LabelEmail.Text = TextBoxEMail.Text;
-                                        //Admin.adminID = dr.GetInt32(3);
+                                        Admin.adminID = dr.GetInt32(3);
                                         //
                                         dr.Close();
                                         GADJIT.sqlConnection.Close();

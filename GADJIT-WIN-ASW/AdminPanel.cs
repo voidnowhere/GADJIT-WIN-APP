@@ -19,6 +19,7 @@ namespace GADJIT_WIN_ASW
         }
 
         public Login login;
+        public int adminID;
 
         private void CloseMdiChildIdExists()
         {
@@ -29,9 +30,9 @@ namespace GADJIT_WIN_ASW
         {
             try
             {
-                SqlCommand sqlCommandDispo = new SqlCommand("update Admin set AdmDispo = @dispo where AdmEmail = @email", GADJIT.sqlConnection);
+                SqlCommand sqlCommandDispo = new SqlCommand("update Admin set AdmDispo = @dispo where AdmID = @adminID", GADJIT.sqlConnection);
                 sqlCommandDispo.Parameters.Add("@dispo", SqlDbType.VarChar).Value = dispo;
-                sqlCommandDispo.Parameters.Add("@email", SqlDbType.NVarChar).Value = LabelEmail.Text;
+                sqlCommandDispo.Parameters.Add("@adminID", SqlDbType.Int).Value = adminID;
                 GADJIT.sqlConnection.Open();
                 sqlCommandDispo.ExecuteNonQuery();
             }
@@ -79,7 +80,7 @@ namespace GADJIT_WIN_ASW
                 UnlockAdminPanel unlockAdminPanel = new UnlockAdminPanel();
                 unlockAdminPanel.login = login;
                 unlockAdminPanel.adminPanel = this;
-                unlockAdminPanel.email = LabelEmail.Text;
+                unlockAdminPanel.adminID = adminID;
                 unlockAdminPanel.ShowDialog();
                 PannelButtonsLock(true);
                 //
@@ -211,6 +212,7 @@ namespace GADJIT_WIN_ASW
         {
             UpdateAdminPassword updateAdminPassword = new UpdateAdminPassword();
             updateAdminPassword.email = LabelEmail.Text;
+            updateAdminPassword.adminID = adminID;
             updateAdminPassword.ShowDialog();
         }
     }
