@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Mail;
+using System.Data.SqlClient;
 
 namespace GADJIT_WIN_CLIENT
 {
@@ -18,36 +19,29 @@ namespace GADJIT_WIN_CLIENT
         {
             InitializeComponent();
         }
-        string check = "";
+        public string check ;
+        public int CID;
+        public string email;
+        public string nom;
         private void EmailVerification_Load(object sender, EventArgs e)
         {
-            Random random = new Random();
-            int num = random.Next(6, 8);
-            int total = 0;
-            do
-            {
-                int chr = random.Next(48, 123);
-                if ((chr >= 48 && chr <= 57) || (chr >= 65 && chr <= 90) || (chr >= 97 && chr <= 122))
-                {
-                    check = check + (char)chr;
-                    total++;
-                    if (total == num)
-                        break;
-                    {
-
-                    }
-                }
-            } while (true);
+            MessageBox.Show(check);
+            SqlCommand cmd = new SqlCommand("update Client set CliVerCod=@code where CliID=@CID", GADJIT.sqlConnection);
+            cmd.Parameters.AddWithValue("@code", check);
+            cmd.Parameters.AddWithValue("@CID", CID);
+            GADJIT.sqlConnection.Open();
+            cmd.ExecuteNonQuery();
+            GADJIT.sqlConnection.Close();
             SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
             client.EnableSsl = true;
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
             client.UseDefaultCredentials = false;
             client.Credentials = new NetworkCredential("GADJITMA@gmail.com", "GADJIT2021");
             MailMessage msg = new MailMessage();
-            msg.To.Add(Register.emailC);
+            msg.To.Add(email);
             msg.From = new MailAddress("GADJITMA@gmail.com");
             msg.Subject = "Inscription chez GADJIT";
-            msg.Body = "Bonjour " + Register.NomC + ":\nVotre CODE de verification est : "+check+" \nGADJIT MAROC.";
+            msg.Body = "Bonjour " + nom + ":\nVotre CODE de verification est : "+check+" \nGADJIT MAROC.";
             client.Send(msg);
             MessageBox.Show("un email de verification d'inscription a été envoyer a votre boite mail", "mail envoyez",MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -56,13 +50,23 @@ namespace GADJIT_WIN_CLIENT
         {
             if(check == textBox1.Text)
             {
+                SqlCommand cmd = new SqlCommand("update Client set CliVerCod=null where CliID=@CID", GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("@CID", CID);
+                GADJIT.sqlConnection.Open();
+                cmd.ExecuteNonQuery();
+                GADJIT.sqlConnection.Close();
                 this.Close();
             }
             else
             {
-                MessageBox.Show("code incorrect nouveau code a ete envoyer");
+                MessageBox.Show("code incorrect nouveau code a été  envoyer");
                 EmailVerification_Load(sender,e);
             }
+        }
+
+        private void ButtonClear_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

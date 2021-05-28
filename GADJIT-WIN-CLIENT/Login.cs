@@ -19,6 +19,7 @@ namespace GADJIT_WIN_CLIENT
         }
 
         public static string Cemail;
+        string check;
 
         private void LabelInscritpion_Click(object sender, EventArgs e)
         {
@@ -36,27 +37,59 @@ namespace GADJIT_WIN_CLIENT
             if ((int) cmd.ExecuteScalar() == 1)
             {
                 Cemail = TexrBoxEmail.Text.Trim();
-                cmd = new SqlCommand("select CliID, CliSta, CliFirstName, CliLastName from Client where CliEmail=@Email", GADJIT.sqlConnection);
+                cmd = new SqlCommand("select CliID, CliSta, CliFirstName, CliLastName,CliVerCod from Client where CliEmail=@Email", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@Email",Cemail);
                 SqlDataReader dr = cmd.ExecuteReader();
                 dr.Read();
-                if(dr.GetBoolean(1) == true)
+                if (dr.IsDBNull(4))
                 {
-                    this.Hide();
-                    HOME home = new HOME();
-                    home.CID = dr.GetInt32(0);
-                    home.lblemail.Text = Cemail;
-                    home.lblPrenom.Text = dr.GetString(2);
-                    home.LblNom.Text = dr.GetString(3);
-                    GADJIT.sqlConnection.Close();
-                    this.Hide();
-                    home.ShowDialog();
-                    this.Show();
+                    if (dr.GetBoolean(1) == true)
+                    {
+                        this.Hide();
+                        HOME home = new HOME();
+                        home.CID = dr.GetInt32(0);
+                        home.lblemail.Text = Cemail;
+                        home.lblPrenom.Text = dr.GetString(2);
+                        home.LblNom.Text = dr.GetString(3);
+                        dr.Close();
+                        GADJIT.sqlConnection.Close();
+                        this.Hide();
+                        home.ShowDialog();
+                        this.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Votre compte est desactive pour plus d'information contacte le service clienttelle", "compte desactive", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Votre compte est desactive pour plus d'information contacte le service clienttelle", "compte desactive", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    EmailVerification v = new EmailVerification();
+                    v.email = Cemail;
+                    v.nom = dr.GetString(3);
+                    v.CID = dr.GetInt32(0);
+                    GADJIT.sqlConnection.Close();
+                    Random random = new Random();
+                    int num = random.Next(6, 8);
+                    int total = 0;
+                    do
+                    {
+                        int chr = random.Next(48, 123);
+                        if ((chr >= 48 && chr <= 57) || (chr >= 65 && chr <= 90) || (chr >= 97 && chr <= 122))
+                        {
+                            check = check + (char)chr;
+                            total++;
+                            if (total == num)
+                                break;
+                            {
+
+                            }
+                        }
+                    } while (true);
+                    v.check = check;
+                    v.ShowDialog();
                 }
+                
          
                 ButtonClear_Click(sender, e);               
             }

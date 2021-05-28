@@ -63,6 +63,7 @@ namespace GADJIT_WIN_CLIENT
             consultationTicket.MdiParent = this;
             consultationTicket.Dock = DockStyle.Fill;
             consultationTicket.CID = CID;
+            consultationTicket.email = lblemail.Text;
             consultationTicket.Show();
         }
 
@@ -74,6 +75,7 @@ namespace GADJIT_WIN_CLIENT
             clientinfo.MdiParent = this;
             clientinfo.Dock = DockStyle.Fill;
             clientinfo.CID = CID;
+            clientinfo.home = this;
             clientinfo.Show();
         }
          private void hidemessage()

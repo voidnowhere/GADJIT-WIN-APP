@@ -21,7 +21,7 @@ namespace GADJIT_WIN_CLIENT
         }
         int TMID ;
         public int CID;
-        string email="";
+        public string email="";
         private void PictureBoxExit_Click(object sender, EventArgs e)
         {
             this.Close();

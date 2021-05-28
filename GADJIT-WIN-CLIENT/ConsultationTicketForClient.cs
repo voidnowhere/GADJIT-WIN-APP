@@ -22,11 +22,12 @@ namespace GADJIT_WIN_CLIENT
         int RefID;
         int CatID ;
         int BrandID ;
-        public static string price = "";
-        public static string Ref = "";
-        public static string Cat = "";
-        public static string Brand = "";
-        public static string prob = "";
+        public static string price;
+        public static string Ref;
+        public static string Cat;
+        public static string Brand;
+        public static string prob;
+        public string email;
         //
         SqlDataReader dr;
         private void ConsultationTicketForClient_Load(object sender, EventArgs e)
@@ -228,9 +229,9 @@ namespace GADJIT_WIN_CLIENT
                     {
                         labelDiag.Visible = TextBoxDiag.Visible = ButtonDiagnostic.Visible = true;
                         TextBoxDiag.Text = "Diagnostic Disponible";
+                        price = (dr.GetSqlMoney(3)).ToString();
                     }
                     RefID = Convert.ToInt32(dr["GadRefID"]);
-                    price = (dr.GetSqlMoney(3)).ToString();
                     dr.Close();
                     GADJIT.sqlConnection.Close();
                     BringBrandCatRef();
@@ -242,6 +243,7 @@ namespace GADJIT_WIN_CLIENT
         {
             DiagnosticTicketForClient diag = new DiagnosticTicketForClient();
             diag.CID = CID;
+            diag.email = email;
             diag.ShowDialog();
             ConsultationTicketForClient_Load(sender, e);
         }

@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.Net;
+using System.Net.Mail;
 
 namespace GADJIT_WIN_CLIENT
 {
@@ -17,6 +19,21 @@ namespace GADJIT_WIN_CLIENT
             String code = Regex.Match(id, @"^\D+").ToString();
             String num = Regex.Match(id, @"\d+$").ToString();
             return code + (int.Parse(num) + 1).ToString();
+        }
+        public static void SendEmail(string toEmail, string msg)
+        {
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.EnableSsl = true;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential("GADJITMA@gmail.com", "GADJIT2021");
+            //
+            MailMessage mail = new MailMessage(
+                "GADJITMA@gmail.com",
+                toEmail,
+                "Compte GADJIT",
+                "Bonjour:\n\n" + msg + "\n\nGADJIT MAROC.");
+            smtp.Send(mail);
         }
     }
 }

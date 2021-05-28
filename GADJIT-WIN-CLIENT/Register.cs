@@ -24,6 +24,7 @@ namespace GADJIT_WIN_CLIENT
 
         int ID;
         int cityID;
+        string check;
         public static string emailC;
         public static string NomC;
         SqlDataReader dataReader;
@@ -54,7 +55,24 @@ namespace GADJIT_WIN_CLIENT
                 }
             } while (true);
             LabelCaptcha.Text = captcha;
-            //
+            //verification code
+            random = new Random();
+            num = random.Next(6, 8);
+            total = 0;
+            do
+            {
+                int chr = random.Next(48, 123);
+                if ((chr >= 48 && chr <= 57) || (chr >= 65 && chr <= 90) || (chr >= 97 && chr <= 122))
+                {
+                    check = check + (char)chr;
+                    total++;
+                    if (total == num)
+                        break;
+                    {
+
+                    }
+                }
+            } while (true);
         }
 
         private void ButtonClear_Click(object sender, EventArgs e)
@@ -92,26 +110,25 @@ namespace GADJIT_WIN_CLIENT
                     {
                         emailC = TextBoxEmail.Text;
                         NomC = TextBoxNom.Text;
-                        EmailVerification v = new EmailVerification();
-                        v.ShowDialog();
+                        SqlCommand cmd = new SqlCommand("select max(CliID) from Client ", GADJIT.sqlConnection);
+                        GADJIT.sqlConnection.Open();
+                        if (cmd.ExecuteScalar() != DBNull.Value)
+                        {
+                            ID = (int)cmd.ExecuteScalar() + 1;
+                        }
+                        else
+                        {
+                            ID = 0;
+                        }
+                        GADJIT.sqlConnection.Close();
                         try
                         {
                             getcityid();
-                            SqlCommand cmd = new SqlCommand("select max(CliID) from Client ", GADJIT.sqlConnection);
-                            GADJIT.sqlConnection.Open();
-                            if(cmd.ExecuteScalar() != DBNull.Value)
-                            {
-                                ID = (int)cmd.ExecuteScalar() + 1;
-                            }
-                            else
-                            {
-                                ID = 0;
-                            }
                             //
                             errorProviderCity.SetError(ComboxBoxCity, null);
                             errorProviderCaptcha.SetError(TextBoxCaptcha, null);
                             errorProviderEmail.SetError(TextBoxEmail, null);
-                            cmd = new SqlCommand("insert into client values(@ClientID,@LastName,@FirstName,@Email,@PassWord,@PhoneNumber,@Adress,@City,1)", GADJIT.sqlConnection);
+                            cmd = new SqlCommand("insert into client values(@ClientID,@LastName,@FirstName,@Email,@PassWord,@PhoneNumber,@Adress,@City,1,null)", GADJIT.sqlConnection);
                             cmd.Parameters.AddWithValue("@ClientID", ID);
                             cmd.Parameters.AddWithValue("@LastName", TextBoxNom.Text.Trim());
                             cmd.Parameters.AddWithValue("@FirstName", TextBoxPrenom.Text.Trim());
@@ -120,7 +137,17 @@ namespace GADJIT_WIN_CLIENT
                             cmd.Parameters.AddWithValue("@PhoneNumber", TextBoxPhone.Text.Trim());
                             cmd.Parameters.AddWithValue("@Adress", RichTextBoxAdress.Text);
                             cmd.Parameters.AddWithValue("@City", cityID);
+                            GADJIT.sqlConnection.Open();
                             cmd.ExecuteNonQuery();
+                            GADJIT.sqlConnection.Close();
+                            EmailVerification v = new EmailVerification();
+                            v.email = TextBoxEmail.Text;
+                            v.nom = TextBoxNom.Text;
+                            v.CID = ID;
+                            v.check = check;
+                            v.ShowDialog();
+                            //
+                            
                             SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
                             client.EnableSsl = true;
                             client.DeliveryMethod = SmtpDeliveryMethod.Network;
@@ -137,10 +164,6 @@ namespace GADJIT_WIN_CLIENT
                         catch(Exception ex)
                         {
                             MessageBox.Show(ex.Message,"Email non valider");
-                        }
-                        finally
-                        {
-                            GADJIT.sqlConnection.Close();
                         }
                         Login login = new Login();
                         login.Show();

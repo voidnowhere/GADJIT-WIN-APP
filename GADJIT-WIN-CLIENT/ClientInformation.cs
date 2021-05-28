@@ -20,28 +20,31 @@ namespace GADJIT_WIN_CLIENT
         }
         string passCont = "";
         public int CID;
-        int cityID;
+        SqlDataReader dr;
+        private Dictionary<int, string> city = new Dictionary<int,string>();
+        public HOME home;
         private void ClientInformation_Load(object sender, EventArgs e)
         {
             ComboxBoxCity.SelectedIndex = 0;
-            getcity();
+            FillComboBoxCity();
             //
-            SqlCommand cmd = new SqlCommand("select CliLastName,CliFirstName,CliEmail,CliPassWord,CliPhoneNumber,CliAddress,CitID from Client where CliID=@CID ", GADJIT.sqlConnection);
+            SqlCommand cmd = new SqlCommand("select CliLastName,CliFirstName,CliEmail,CliPassWord,CliPhoneNumber,CliAddress,CitDesig from Client, City where CliID=@CID and Client.CitID = City.CitID ", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@CID", CID);
             GADJIT.sqlConnection.Open();
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
+            dr = cmd.ExecuteReader();
+            if(dr.HasRows)
             {
+                dr.Read();
                 TextBoxEmail.Text = dr["CliEmail"].ToString();
                 TextBoxNom.Text = dr["CliLastName"].ToString();
                 TextBoxPrenom.Text = dr["CliFirstName"].ToString();
                 TextBoxTelephone.Text = dr["CliPhoneNumber"].ToString();
                 RichTextBoxAdress.Text = dr["CliAddress"].ToString();
                 passCont = dr["CliPassWord"].ToString();
-                cityID = (int)dr["CitID"];
-                dr.Close();
-                GADJIT.sqlConnection.Close();
+                ComboxBoxCity.Text = dr["CitDesig"].ToString();
             }
+            dr.Close();
+            GADJIT.sqlConnection.Close();
         }
 
         private void ButtonAnnuler_Click(object sender, EventArgs e)
@@ -52,16 +55,15 @@ namespace GADJIT_WIN_CLIENT
 
         private void ButtonUpdate_Click(object sender, EventArgs e)
         {
-            getcityid();
             try
             {
                     GADJIT.sqlConnection.Open();
-                    SqlCommand cmd = new SqlCommand("update Client set" +
-                                                   "CliEmail=@email" +
-                                                   "CliLastName=@name," +
-                                                   "CliFirstName=@prenom," +
-                                                   "CliPhoneNumber=@phone," +
-                                                   "CliAddress=@adress," +
+                    SqlCommand cmd = new SqlCommand("update Client set " +
+                                                   "CliEmail=@email, " +
+                                                   "CliLastName=@name, " +
+                                                   "CliFirstName=@prenom, " +
+                                                   "CliPhoneNumber=@phone, " +
+                                                   "CliAddress=@adress, " +
                                                    "CitID=@city " +
                                                    "where CliID = @CID", GADJIT.sqlConnection);                 
                     cmd.Parameters.AddWithValue("@name", TextBoxNom.Text.Trim());
@@ -69,12 +71,14 @@ namespace GADJIT_WIN_CLIENT
                     cmd.Parameters.AddWithValue("@email", TextBoxEmail.Text.Trim());
                     cmd.Parameters.AddWithValue("@phone", TextBoxTelephone.Text.Trim());
                     cmd.Parameters.AddWithValue("@adress", RichTextBoxAdress.Text);
-                    cmd.Parameters.AddWithValue("@city", cityID);
-                    cmd.Parameters.AddWithValue("@email", TextBoxEmail.Text.Trim());
+                    cmd.Parameters.AddWithValue("@city", city.Keys.First(i => city[i]==ComboxBoxCity.Text));
                     cmd.Parameters.AddWithValue("@CID", CID);
                     cmd.ExecuteNonQuery();
                     GADJIT.sqlConnection.Close();
                     MessageBox.Show("Modification reussite");
+                    home.lblemail.Text = TextBoxEmail.Text;
+                    home.lblPrenom.Text = TextBoxPrenom.Text;
+                    home.LblNom.Text = TextBoxNom.Text;
             }
             catch(Exception ex)
             {
@@ -113,21 +117,33 @@ namespace GADJIT_WIN_CLIENT
             passupd.ShowDialog();
             ClientInformation_Load(sender, e);
         }
-        private void getcity()
+        private void FillComboBoxCity()
         {
-            SqlCommand cmd = new SqlCommand("select CitDesig from City where CitID=@CITID", GADJIT.sqlConnection);
-            cmd.Parameters.AddWithValue("@CITID", cityID);
-            GADJIT.sqlConnection.Open();
-            ComboxBoxCity.SelectedItem = cmd.ExecuteScalar().ToString();
-            GADJIT.sqlConnection.Close();
-        }
-        private void getcityid()
-        {
-            SqlCommand cmd = new SqlCommand("select CitID from city where CitDesig=@city", GADJIT.sqlConnection);
-            cmd.Parameters.AddWithValue("@city", ComboxBoxCity.Text);
-            GADJIT.sqlConnection.Open();
-            cityID = (int)cmd.ExecuteScalar();
-            GADJIT.sqlConnection.Close();
+            ComboxBoxCity.Items.Clear();
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand("select * from City", GADJIT.sqlConnection);
+                GADJIT.sqlConnection.Open();
+                dr = sqlCommand.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    ComboxBoxCity.Items.Add("----Votre Ville---");
+                    while (dr.Read())
+                    {
+                        ComboxBoxCity.Items.Add(dr.GetString(1));
+                        city.Add(dr.GetInt32(0), dr.GetString(1));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error FillComboBoxCity()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                dr.Close();
+                GADJIT.sqlConnection.Close();
+            }
         }
     }
 }

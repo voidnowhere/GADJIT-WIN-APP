@@ -33,6 +33,7 @@ namespace GADJIT_WIN_CLIENT
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.ButtonRegister = new System.Windows.Forms.Button();
+            this.ButtonClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -69,7 +70,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonRegister.FlatAppearance.BorderSize = 0;
             this.ButtonRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonRegister.ForeColor = System.Drawing.Color.White;
-            this.ButtonRegister.Location = new System.Drawing.Point(92, 136);
+            this.ButtonRegister.Location = new System.Drawing.Point(198, 131);
             this.ButtonRegister.Name = "ButtonRegister";
             this.ButtonRegister.Size = new System.Drawing.Size(128, 35);
             this.ButtonRegister.TabIndex = 31;
@@ -77,11 +78,26 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonRegister.UseVisualStyleBackColor = false;
             this.ButtonRegister.Click += new System.EventHandler(this.ButtonRegister_Click);
             // 
+            // ButtonClear
+            // 
+            this.ButtonClear.BackColor = System.Drawing.Color.White;
+            this.ButtonClear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonClear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.ButtonClear.Location = new System.Drawing.Point(38, 131);
+            this.ButtonClear.Name = "ButtonClear";
+            this.ButtonClear.Size = new System.Drawing.Size(128, 35);
+            this.ButtonClear.TabIndex = 32;
+            this.ButtonClear.Text = "Pas Maintenant";
+            this.ButtonClear.UseVisualStyleBackColor = false;
+            this.ButtonClear.Click += new System.EventHandler(this.ButtonClear_Click);
+            // 
             // EmailVerification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(344, 205);
+            this.Controls.Add(this.ButtonClear);
             this.Controls.Add(this.ButtonRegister);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
@@ -104,5 +120,6 @@ namespace GADJIT_WIN_CLIENT
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button ButtonRegister;
+        private System.Windows.Forms.Button ButtonClear;
     }
 }
