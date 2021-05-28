@@ -119,7 +119,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonClear.Name = "ButtonClear";
             this.ButtonClear.Size = new System.Drawing.Size(179, 35);
             this.ButtonClear.TabIndex = 11;
-            this.ButtonClear.Text = "CLEAR";
+            this.ButtonClear.Text = "VIDER";
             this.ButtonClear.UseVisualStyleBackColor = false;
             this.ButtonClear.Click += new System.EventHandler(this.ButtonClear_Click);
             // 
