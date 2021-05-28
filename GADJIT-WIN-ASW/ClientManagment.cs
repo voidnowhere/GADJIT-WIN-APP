@@ -20,14 +20,14 @@ namespace GADJIT_WIN_ASW
 
         SqlDataReader dataReader;
         //
-        bool where = false;
+        Dictionary<int, string> city = new Dictionary<int, string>();
         bool filledDGV = false;
 
         private void FillComboBoxCity()
         {
             try
             {
-                SqlCommand sqlCommand = new SqlCommand("select CitDesig from City", GADJIT.sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("select CitID, CitDesig from City", GADJIT.sqlConnection);
                 GADJIT.sqlConnection.Open();
                 dataReader = sqlCommand.ExecuteReader();
                 if (dataReader.HasRows)
@@ -35,7 +35,8 @@ namespace GADJIT_WIN_ASW
                     ComboBoxCitySearch.Items.Add("--tous--");
                     while (dataReader.Read())
                     {
-                        ComboBoxCitySearch.Items.Add(dataReader.GetString(0));
+                        city.Add(dataReader.GetInt32(0), dataReader.GetString(1));
+                        ComboBoxCitySearch.Items.Add(dataReader.GetString(1));
                     }
                 }
             }
@@ -55,38 +56,36 @@ namespace GADJIT_WIN_ASW
             try
             {
                 DGVClient.Rows.Clear();
-                where = false;
                 //
-                String sqlQuery = "select CliID, CliLastName, CliFirstName, CliEmail, CliPhoneNumber, CliAddress, CitDesig, CliSta from Client";
+                String sqlQuery = 
+                    "select CliID, CliLastName, CliFirstName, CliEmail, CliPhoneNumber, CliAddress, CitDesig, CliSta " +
+                    "from Client as cl, City as ci " +
+                    "where cl.CitID = ci.CitID";
                 SqlCommand sqlCommand = new SqlCommand();
                 if (TextBoxEmailSearch.Text != "" || TextBoxLastNameSearch.Text != "" || 
                     ComboBoxCitySearch.SelectedIndex > 0 || ComboBoxStatusSearch.SelectedIndex > 0)
                 {
-                    sqlQuery += " where";
                     if (TextBoxEmailSearch.Text != "")
                     {
-                        if (where) sqlQuery += " and";
+                        sqlQuery += " and";
                         sqlQuery += " CliEmail like @email";
                         sqlCommand.Parameters.Add("@email", SqlDbType.NVarChar).Value = "%" + TextBoxEmailSearch.Text + "%";
-                        where = true;
                     }
                     if (TextBoxLastNameSearch.Text != "")
                     {
-                        if (where) sqlQuery += " and";
+                        sqlQuery += " and";
                         sqlQuery += " CliLastName like @name";
                         sqlCommand.Parameters.Add("@name", SqlDbType.VarChar).Value = "%" + TextBoxLastNameSearch.Text + "%";
-                        where = true;
                     }
                     if (ComboBoxCitySearch.SelectedIndex > 0)
                     {
-                        if (where) sqlQuery += " and";
-                        sqlQuery += " CitDesig = @city";
-                        sqlCommand.Parameters.Add("@city", SqlDbType.VarChar).Value = ComboBoxCitySearch.Text;
-                        where = true;
+                        sqlQuery += " and";
+                        sqlQuery += " cl.CitID = @citID";
+                        sqlCommand.Parameters.Add("@citID", SqlDbType.Int).Value = city.Keys.First(i => city[i] == ComboBoxCitySearch.Text);
                     }
                     if (ComboBoxStatusSearch.SelectedIndex > 0)
                     {
-                        if (where) sqlQuery += " and";
+                        sqlQuery += " and";
                         sqlQuery += " CliSta = @sta";
                         sqlCommand.Parameters.Add("@sta", SqlDbType.Bit).Value = (ComboBoxStatusSearch.SelectedIndex == 1) ? true : false;
                     }
