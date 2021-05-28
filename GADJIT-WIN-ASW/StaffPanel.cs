@@ -109,5 +109,12 @@ namespace GADJIT_WIN_ASW
             staffTicketProgression.Dock = DockStyle.Fill;
             staffTicketProgression.Show();
         }
+
+        private void CircularPicturePasswordChange_Click(object sender, EventArgs e)
+        {
+            UpdateStaffPassword updateStaffPassword = new UpdateStaffPassword();
+            updateStaffPassword.email = LabelEmail.Text;
+            updateStaffPassword.ShowDialog();
+        }
     }
 }

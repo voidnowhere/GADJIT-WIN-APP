@@ -120,7 +120,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonNewTicket.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.ButtonNewTicket.Size = new System.Drawing.Size(158, 40);
             this.ButtonNewTicket.TabIndex = 2;
-            this.ButtonNewTicket.Text = "Nouvelle ticket";
+            this.ButtonNewTicket.Text = "Nouveau ticket";
             this.ButtonNewTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonNewTicket.UseVisualStyleBackColor = false;
             this.ButtonNewTicket.Click += new System.EventHandler(this.ButtonNewTicket_Click);

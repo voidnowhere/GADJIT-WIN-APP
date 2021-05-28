@@ -101,6 +101,12 @@ namespace GADJIT_WIN_ASW
             ButtonClientManagment.BackColor = Color.FromArgb(247, 181, 46);
             ButtonStaffManagment.BackColor = Color.FromArgb(247, 181, 46);
             ButtonWorkerManagment.BackColor = Color.FromArgb(247, 181, 46);
+            //
+            ButtonGadgetCategoryBrandManagment.BackColor = Color.White;
+            ButtonGadgetCategoryBrandManagment.ForeColor = Color.FromArgb(218, 165, 33);
+            //
+            ButtonGadgetReferenceManagment.BackColor = Color.White;
+            ButtonGadgetReferenceManagment.ForeColor = Color.FromArgb(218, 165, 33);
         }
 
         private void ButtonStatisticsMenu_Click(object sender, EventArgs e)
@@ -108,6 +114,7 @@ namespace GADJIT_WIN_ASW
             ResetButtonsColor();
             PanelStatistics.Visible = true;
             PanelGadgetManagment.Visible = false;
+            CloseMdiChildIdExists();
         }
 
         private void ButtonTicketManagment_Click(object sender, EventArgs e)
@@ -170,6 +177,7 @@ namespace GADJIT_WIN_ASW
         {
             ResetButtonsColor();
             ButtonGadgetCategoryBrandManagment.BackColor = Color.FromArgb(218, 165, 33);
+            ButtonGadgetCategoryBrandManagment.ForeColor = Color.White;
             //
             CloseMdiChildIdExists();
             GadgetCategoryBrandManagment categoryBrandManagment = new GadgetCategoryBrandManagment();
@@ -182,6 +190,7 @@ namespace GADJIT_WIN_ASW
         {
             ResetButtonsColor();
             ButtonGadgetReferenceManagment.BackColor = Color.FromArgb(218, 165, 33);
+            ButtonGadgetReferenceManagment.ForeColor = Color.White;
             //
             CloseMdiChildIdExists();
             GadgetReferenceManagment referenceManagment = new GadgetReferenceManagment();
@@ -195,6 +204,7 @@ namespace GADJIT_WIN_ASW
             ResetButtonsColor();
             PanelStatistics.Visible = false;
             PanelGadgetManagment.Visible = true;
+            CloseMdiChildIdExists();
         }
 
         private void CircularPicturePasswordChange_Click(object sender, EventArgs e)

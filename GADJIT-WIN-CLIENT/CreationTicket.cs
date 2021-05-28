@@ -61,9 +61,8 @@ namespace GADJIT_WIN_CLIENT
             {
                 ID = 0;
             }
-            cmd = new SqlCommand("insert into Ticket(TicID, TicDT, TicProb, TicAddress, TicSta, CliID, GadRefID) values(@ID, @date, @prob, @Adres, 'PV', @CID, @ref)", GADJIT.sqlConnection);
+            cmd = new SqlCommand("insert into Ticket(TicID, TicDT, TicProb, TicAddress, TicSta, CliID, GadRefID) values(@ID, GETDATE(), @prob, @Adres, 'PV', @CID, @ref)", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@ID", ID); 
-            cmd.Parameters.AddWithValue("@date", DateTime.Now);
             cmd.Parameters.AddWithValue("@prob", RichTextBoxProbTicket.Text);
             cmd.Parameters.AddWithValue("@CID", CID);
             cmd.Parameters.AddWithValue("@Ref", RefID);
@@ -79,9 +78,8 @@ namespace GADJIT_WIN_CLIENT
             {
                 TID = 0;
             }
-            cmd = new SqlCommand("insert into TicketMonitoring values(@id,@Date,'Ticket Cree','C',@CID,1,1)", GADJIT.sqlConnection);
+            cmd = new SqlCommand("insert into TicketMonitoring values(@id,GETDATE(),'Ticket Cree','C',@CID,1)", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@id", TID);
-            cmd.Parameters.AddWithValue("@Date", DateTime.Now);
             cmd.Parameters.AddWithValue("@CID", CID);
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
@@ -93,7 +91,7 @@ namespace GADJIT_WIN_CLIENT
             MailMessage msg = new MailMessage();
             msg.To.Add(emailtemp);
             msg.From = new MailAddress("GADJITMA@gmail.com");
-            msg.Subject = "Création d'une nouvelle ticket";
+            msg.Subject = "Création d'un Ticket";
             msg.Body = "Bonjour:\n\nVotre Ticket a été Crée.\nVoici votre code de ticket :[ " + ID + " ]. \n\n-Pour consulter votre ticket veuillez rejoindre le panel consultez votre ticket.\n Merci \n \nGADJIT MAROC.";
             client.Send(msg);
             MessageBox.Show("Ticket a été Crée", "Nouvelle Ticket",MessageBoxButtons.OK,MessageBoxIcon.Information);

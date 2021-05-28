@@ -29,21 +29,21 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ComboBoxWorker = new System.Windows.Forms.ComboBox();
             this.TextBoxClientPhoneNumber = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.TextBoxClientEmail = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.TextBoxClientName = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.ButtonAssign = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.RichTextBoxProblem = new System.Windows.Forms.RichTextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.TextBoxClientID = new System.Windows.Forms.TextBox();
+            this.TextBoxClient = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.TextBoxClientAddress = new System.Windows.Forms.TextBox();
+            this.ButtonCancel = new System.Windows.Forms.Button();
+            this.TextBoxTicketAddress = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.LabelWorkerTicketsCount = new System.Windows.Forms.Label();
             this.ButtonVerify = new System.Windows.Forms.Button();
@@ -68,6 +68,7 @@ namespace GADJIT_WIN_ASW
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TextBoxTotalTickets = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -87,14 +88,13 @@ namespace GADJIT_WIN_ASW
             this.ComboBoxWorker.Name = "ComboBoxWorker";
             this.ComboBoxWorker.Size = new System.Drawing.Size(198, 24);
             this.ComboBoxWorker.TabIndex = 32;
-            this.ComboBoxWorker.SelectedIndexChanged += new System.EventHandler(this.ComboBoxWorker_SelectedIndexChanged);
             // 
             // TextBoxClientPhoneNumber
             // 
             this.TextBoxClientPhoneNumber.BackColor = System.Drawing.Color.White;
             this.TextBoxClientPhoneNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxClientPhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxClientPhoneNumber.Location = new System.Drawing.Point(142, 115);
+            this.TextBoxClientPhoneNumber.Location = new System.Drawing.Point(143, 85);
             this.TextBoxClientPhoneNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TextBoxClientPhoneNumber.Name = "TextBoxClientPhoneNumber";
             this.TextBoxClientPhoneNumber.ReadOnly = true;
@@ -105,7 +105,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(8, 115);
+            this.label16.Location = new System.Drawing.Point(9, 85);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(110, 16);
@@ -117,7 +117,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxClientEmail.BackColor = System.Drawing.Color.White;
             this.TextBoxClientEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxClientEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxClientEmail.Location = new System.Drawing.Point(142, 85);
+            this.TextBoxClientEmail.Location = new System.Drawing.Point(143, 55);
             this.TextBoxClientEmail.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TextBoxClientEmail.Name = "TextBoxClientEmail";
             this.TextBoxClientEmail.ReadOnly = true;
@@ -128,40 +128,18 @@ namespace GADJIT_WIN_ASW
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(8, 85);
+            this.label14.Location = new System.Drawing.Point(9, 55);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(78, 16);
             this.label14.TabIndex = 22;
             this.label14.Text = "Client Email";
             // 
-            // TextBoxClientName
-            // 
-            this.TextBoxClientName.BackColor = System.Drawing.Color.White;
-            this.TextBoxClientName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBoxClientName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxClientName.Location = new System.Drawing.Point(142, 57);
-            this.TextBoxClientName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.TextBoxClientName.Name = "TextBoxClientName";
-            this.TextBoxClientName.ReadOnly = true;
-            this.TextBoxClientName.Size = new System.Drawing.Size(198, 15);
-            this.TextBoxClientName.TabIndex = 21;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(8, 57);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(126, 16);
-            this.label15.TabIndex = 20;
-            this.label15.Text = "Client Nom Complet";
-            // 
             // ButtonAssign
             // 
             this.ButtonAssign.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonAssign.BackColor = System.Drawing.Color.RoyalBlue;
+            this.ButtonAssign.Enabled = false;
             this.ButtonAssign.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.ButtonAssign.FlatAppearance.BorderSize = 0;
             this.ButtonAssign.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -180,7 +158,7 @@ namespace GADJIT_WIN_ASW
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(7, 251);
+            this.label4.Location = new System.Drawing.Point(8, 249);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 16);
@@ -195,11 +173,11 @@ namespace GADJIT_WIN_ASW
             this.RichTextBoxProblem.BackColor = System.Drawing.Color.White;
             this.RichTextBoxProblem.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.RichTextBoxProblem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RichTextBoxProblem.Location = new System.Drawing.Point(142, 173);
+            this.RichTextBoxProblem.Location = new System.Drawing.Point(142, 146);
             this.RichTextBoxProblem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.RichTextBoxProblem.Name = "RichTextBoxProblem";
             this.RichTextBoxProblem.ReadOnly = true;
-            this.RichTextBoxProblem.Size = new System.Drawing.Size(198, 57);
+            this.RichTextBoxProblem.Size = new System.Drawing.Size(198, 84);
             this.RichTextBoxProblem.TabIndex = 9;
             this.RichTextBoxProblem.Text = "";
             // 
@@ -207,24 +185,24 @@ namespace GADJIT_WIN_ASW
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(8, 173);
+            this.label7.Location = new System.Drawing.Point(8, 146);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(67, 16);
             this.label7.TabIndex = 8;
             this.label7.Text = "Probleme";
             // 
-            // TextBoxClientID
+            // TextBoxClient
             // 
-            this.TextBoxClientID.BackColor = System.Drawing.Color.White;
-            this.TextBoxClientID.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBoxClientID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxClientID.Location = new System.Drawing.Point(142, 27);
-            this.TextBoxClientID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.TextBoxClientID.Name = "TextBoxClientID";
-            this.TextBoxClientID.ReadOnly = true;
-            this.TextBoxClientID.Size = new System.Drawing.Size(198, 15);
-            this.TextBoxClientID.TabIndex = 7;
+            this.TextBoxClient.BackColor = System.Drawing.Color.White;
+            this.TextBoxClient.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxClient.Location = new System.Drawing.Point(142, 27);
+            this.TextBoxClient.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.TextBoxClient.Name = "TextBoxClient";
+            this.TextBoxClient.ReadOnly = true;
+            this.TextBoxClient.Size = new System.Drawing.Size(198, 15);
+            this.TextBoxClient.TabIndex = 7;
             // 
             // label6
             // 
@@ -233,15 +211,16 @@ namespace GADJIT_WIN_ASW
             this.label6.Location = new System.Drawing.Point(8, 27);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(57, 16);
+            this.label6.Size = new System.Drawing.Size(41, 16);
             this.label6.TabIndex = 6;
-            this.label6.Text = "Client ID";
+            this.label6.Text = "Client";
             // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.TextBoxClientAddress);
+            this.groupBox1.Controls.Add(this.ButtonCancel);
+            this.groupBox1.Controls.Add(this.TextBoxTicketAddress);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.LabelWorkerTicketsCount);
             this.groupBox1.Controls.Add(this.ButtonVerify);
@@ -250,11 +229,9 @@ namespace GADJIT_WIN_ASW
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.TextBoxClientEmail);
             this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.TextBoxClientName);
-            this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.RichTextBoxProblem);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.TextBoxClientID);
+            this.groupBox1.Controls.Add(this.TextBoxClient);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.ButtonAssign);
             this.groupBox1.Controls.Add(this.label4);
@@ -268,49 +245,64 @@ namespace GADJIT_WIN_ASW
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ticket détail";
             // 
-            // TextBoxClientAddress
+            // ButtonCancel
             // 
-            this.TextBoxClientAddress.BackColor = System.Drawing.Color.White;
-            this.TextBoxClientAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TextBoxClientAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxClientAddress.Location = new System.Drawing.Point(141, 144);
-            this.TextBoxClientAddress.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.TextBoxClientAddress.Name = "TextBoxClientAddress";
-            this.TextBoxClientAddress.ReadOnly = true;
-            this.TextBoxClientAddress.Size = new System.Drawing.Size(198, 15);
-            this.TextBoxClientAddress.TabIndex = 36;
+            this.ButtonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ButtonCancel.BackColor = System.Drawing.Color.RoyalBlue;
+            this.ButtonCancel.Enabled = false;
+            this.ButtonCancel.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.ButtonCancel.FlatAppearance.BorderSize = 0;
+            this.ButtonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonCancel.ForeColor = System.Drawing.Color.White;
+            this.ButtonCancel.Location = new System.Drawing.Point(151, 288);
+            this.ButtonCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.ButtonCancel.Name = "ButtonCancel";
+            this.ButtonCancel.Size = new System.Drawing.Size(89, 30);
+            this.ButtonCancel.TabIndex = 37;
+            this.ButtonCancel.Text = "Annuler";
+            this.ButtonCancel.UseVisualStyleBackColor = false;
+            this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
+            // 
+            // TextBoxTicketAddress
+            // 
+            this.TextBoxTicketAddress.BackColor = System.Drawing.Color.White;
+            this.TextBoxTicketAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxTicketAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxTicketAddress.Location = new System.Drawing.Point(142, 114);
+            this.TextBoxTicketAddress.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.TextBoxTicketAddress.Name = "TextBoxTicketAddress";
+            this.TextBoxTicketAddress.ReadOnly = true;
+            this.TextBoxTicketAddress.Size = new System.Drawing.Size(198, 15);
+            this.TextBoxTicketAddress.TabIndex = 36;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(7, 144);
+            this.label2.Location = new System.Drawing.Point(8, 114);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 16);
+            this.label2.Size = new System.Drawing.Size(59, 16);
             this.label2.TabIndex = 35;
-            this.label2.Text = "Client Adresse";
+            this.label2.Text = "Adresse";
             // 
             // LabelWorkerTicketsCount
             // 
-            this.LabelWorkerTicketsCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.LabelWorkerTicketsCount.AutoSize = true;
-            this.LabelWorkerTicketsCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelWorkerTicketsCount.Location = new System.Drawing.Point(382, 251);
-            this.LabelWorkerTicketsCount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LabelWorkerTicketsCount.Location = new System.Drawing.Point(0, 0);
             this.LabelWorkerTicketsCount.Name = "LabelWorkerTicketsCount";
-            this.LabelWorkerTicketsCount.Size = new System.Drawing.Size(0, 16);
-            this.LabelWorkerTicketsCount.TabIndex = 34;
+            this.LabelWorkerTicketsCount.Size = new System.Drawing.Size(100, 23);
+            this.LabelWorkerTicketsCount.TabIndex = 38;
             // 
             // ButtonVerify
             // 
             this.ButtonVerify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.ButtonVerify.BackColor = System.Drawing.Color.RoyalBlue;
+            this.ButtonVerify.Enabled = false;
             this.ButtonVerify.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.ButtonVerify.FlatAppearance.BorderSize = 0;
             this.ButtonVerify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonVerify.ForeColor = System.Drawing.Color.White;
-            this.ButtonVerify.Location = new System.Drawing.Point(151, 288);
+            this.ButtonVerify.Location = new System.Drawing.Point(54, 288);
             this.ButtonVerify.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonVerify.Name = "ButtonVerify";
             this.ButtonVerify.Size = new System.Drawing.Size(89, 30);
@@ -447,7 +439,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.DTPTicketToSearch.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.DTPTicketToSearch.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTPTicketToSearch.Location = new System.Drawing.Point(445, 76);
+            this.DTPTicketToSearch.Location = new System.Drawing.Point(445, 77);
             this.DTPTicketToSearch.Name = "DTPTicketToSearch";
             this.DTPTicketToSearch.Size = new System.Drawing.Size(90, 22);
             this.DTPTicketToSearch.TabIndex = 23;
@@ -543,37 +535,50 @@ namespace GADJIT_WIN_ASW
             this.DGVTicket.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
-            this.Column3});
+            this.Column3,
+            this.Column4});
             this.DGVTicket.Location = new System.Drawing.Point(13, 160);
             this.DGVTicket.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.DGVTicket.Name = "DGVTicket";
             this.DGVTicket.ReadOnly = true;
             this.DGVTicket.Size = new System.Drawing.Size(410, 303);
             this.DGVTicket.TabIndex = 50;
-            this.DGVTicket.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVTicket_CellMouseClick);
+            this.DGVTicket.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVTicket_CellMouseDoubleClick);
             // 
             // Column1
             // 
             this.Column1.HeaderText = "Code";
-            this.Column1.MinimumWidth = 100;
+            this.Column1.MinimumWidth = 75;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
+            this.Column1.Width = 75;
             // 
             // Column2
             // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.Format = "g";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle1;
             this.Column2.HeaderText = "Date";
-            this.Column2.MinimumWidth = 150;
+            this.Column2.MinimumWidth = 125;
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
+            this.Column2.Width = 125;
             // 
             // Column3
             // 
             this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.HeaderText = "Référence";
-            this.Column3.MinimumWidth = 150;
+            this.Column3.HeaderText = "Gadget";
+            this.Column3.MinimumWidth = 200;
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column4.HeaderText = "Description";
+            this.Column4.MinimumWidth = 300;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // TextBoxTotalTickets
             // 
@@ -644,13 +649,11 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox TextBoxClientEmail;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox TextBoxClientName;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button ButtonAssign;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RichTextBox RichTextBoxProblem;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox TextBoxClientID;
+        private System.Windows.Forms.TextBox TextBoxClient;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -674,12 +677,14 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.ComboBox ComboBoxBrandSearch;
         private System.Windows.Forms.Button ButtonReset;
         private System.Windows.Forms.TextBox TextBoxClientLastNameSearch;
+        private System.Windows.Forms.Button ButtonVerify;
+        private System.Windows.Forms.Label LabelWorkerTicketsCount;
+        private System.Windows.Forms.TextBox TextBoxTicketAddress;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button ButtonCancel;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.Button ButtonVerify;
-        private System.Windows.Forms.Label LabelWorkerTicketsCount;
-        private System.Windows.Forms.TextBox TextBoxClientAddress;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }

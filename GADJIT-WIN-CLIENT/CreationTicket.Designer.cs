@@ -178,9 +178,9 @@ namespace GADJIT_WIN_CLIENT
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
             this.label1.Location = new System.Drawing.Point(298, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(253, 27);
+            this.label1.Size = new System.Drawing.Size(241, 27);
             this.label1.TabIndex = 22;
-            this.label1.Text = "NOUVELLE TICKET";
+            this.label1.Text = "NOUVEAU TICKET";
             // 
             // RichTextBoxAdress
             // 

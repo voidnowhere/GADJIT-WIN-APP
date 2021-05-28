@@ -153,6 +153,16 @@ namespace GADJIT_WIN_ASW.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap passwordChangeStaff {
+            get {
+                object obj = ResourceManager.GetObject("passwordChangeStaff", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap shutdown_26px {
             get {
                 object obj = ResourceManager.GetObject("shutdown_26px", resourceCulture);

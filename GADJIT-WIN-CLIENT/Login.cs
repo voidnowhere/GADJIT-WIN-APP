@@ -29,18 +29,30 @@ namespace GADJIT_WIN_CLIENT
 
         private void ButtonLogin_Click(object sender, EventArgs e)
         {          
-            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Client WHERE CliEmail=@Email and CliPassWord=@pass ", GADJIT.sqlConnection);
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Client WHERE CliEmail=@Email and CliPassWord=@pass", GADJIT.sqlConnection);
             GADJIT.sqlConnection.Open();
             cmd.Parameters.AddWithValue("@pass", TextBoxPassWord.Text);
             cmd.Parameters.AddWithValue("@Email", TexrBoxEmail.Text);
             if ((int) cmd.ExecuteScalar() == 1)
             {
                 Cemail = TexrBoxEmail.Text.Trim();
-                GADJIT.sqlConnection.Close();
-                this.Hide();
-                HOME home = new HOME();
-                home.ShowDialog();
-                this.Show();
+                cmd = new SqlCommand("select CliSta from Client where CliEmail=@Email", GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("@Email",Cemail);
+                SqlDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                if(dr.GetBoolean(0) == true)
+                {
+                    GADJIT.sqlConnection.Close();
+                    this.Hide();
+                    HOME home = new HOME();
+                    home.ShowDialog();
+                    this.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Votre compte est desactive pour plus d'information contacte le service clienttelle", "compte desactive", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+         
                 ButtonClear_Click(sender, e);               
             }
             else

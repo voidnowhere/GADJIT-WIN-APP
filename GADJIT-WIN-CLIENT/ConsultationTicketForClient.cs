@@ -18,7 +18,7 @@ namespace GADJIT_WIN_CLIENT
             InitializeComponent();
         }
         string emailtemp = "";
-        int CID ;
+        public static int CID ;
         public static int TID ;
         int RefID;
         int CatID ;
@@ -158,7 +158,7 @@ namespace GADJIT_WIN_CLIENT
             {
                 DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
                 TID = Convert.ToInt32(row.Cells["TicketID"].Value);
-                SqlCommand cmd = new SqlCommand("select TicRepPri,TicProb,GadRefID,TicSta from Ticket where TicID=@TID", GADJIT.sqlConnection);
+                SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicRepPri,TicSta from Ticket where TicID=@TID", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@TID", TID);
                 GADJIT.sqlConnection.Open();
                 dr = cmd.ExecuteReader();
@@ -166,9 +166,9 @@ namespace GADJIT_WIN_CLIENT
                 {
                     dr.Read();
                     prob = RichTextBoxProb.Text = dr["TicProb"].ToString();
-                    if(dr["TicSta"].ToString()== "en cours de diagnostic")
+                    if (dr["TicSta"].ToString() == "CD")
                     {
-                        labelDiag.Visible =TextBoxDiag.Visible=ButtonDiagnostic.Visible =true;
+                        labelDiag.Visible = TextBoxDiag.Visible = ButtonDiagnostic.Visible = true;
                         TextBoxDiag.Text = "Diagnostic Disponible";
                     }
                     RefID = Convert.ToInt32(dr["GadRefID"]);
@@ -196,7 +196,7 @@ namespace GADJIT_WIN_CLIENT
             {
                 DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
                 TID = Convert.ToInt32(row.Cells["TicketID"].Value);
-                SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicSta,TicRepPri from Ticket where TicID=@TID", GADJIT.sqlConnection);
+                SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicRepPri,TicSta from Ticket where TicID=@TID", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@TID", TID);
                 GADJIT.sqlConnection.Open();
                 dr = cmd.ExecuteReader();
@@ -204,7 +204,7 @@ namespace GADJIT_WIN_CLIENT
                 {
                     dr.Read();
                     prob = RichTextBoxProb.Text = dr["TicProb"].ToString();
-                    if (dr["TicSta"].ToString() == "en cours de diagnostic")
+                    if (dr["TicSta"].ToString() == "CD")
                     {
                         labelDiag.Visible = TextBoxDiag.Visible = ButtonDiagnostic.Visible = true;
                         TextBoxDiag.Text = "Diagnostic Disponible";
@@ -225,7 +225,7 @@ namespace GADJIT_WIN_CLIENT
             {
                 DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
                 TID = Convert.ToInt32(row.Cells["TicketID"].Value);
-                SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicSta from Ticket where TicID=@TID", GADJIT.sqlConnection);
+                SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicRepPri,TicSta from Ticket where TicID=@TID", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@TID", TID);
                 GADJIT.sqlConnection.Open();
                 dr = cmd.ExecuteReader();
@@ -233,13 +233,13 @@ namespace GADJIT_WIN_CLIENT
                 {
                     dr.Read();
                     prob = RichTextBoxProb.Text = dr["TicProb"].ToString();
-                    if (dr["TicSta"].ToString() == "en cours de diagnostic")
+                    if (dr["TicSta"].ToString() == "CD")
                     {
                         labelDiag.Visible = TextBoxDiag.Visible = ButtonDiagnostic.Visible = true;
                         TextBoxDiag.Text = "Diagnostic Disponible";
                     }
                     RefID = Convert.ToInt32(dr["GadRefID"]);
-                    price = dr["TicRepPri"].ToString();
+                    price = (dr.GetSqlMoney(3)).ToString();
                     dr.Close();
                     GADJIT.sqlConnection.Close();
                     BringBrandCatRef();

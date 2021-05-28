@@ -47,12 +47,12 @@ namespace GADJIT_WIN_ASW
             // 
             this.LabelHelp.AutoSize = true;
             this.LabelHelp.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelHelp.Location = new System.Drawing.Point(13, 547);
+            this.LabelHelp.Location = new System.Drawing.Point(13, 469);
             this.LabelHelp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelHelp.Name = "LabelHelp";
-            this.LabelHelp.Size = new System.Drawing.Size(68, 23);
+            this.LabelHelp.Size = new System.Drawing.Size(70, 23);
             this.LabelHelp.TabIndex = 14;
-            this.LabelHelp.Text = "HELP ?";
+            this.LabelHelp.Text = "Aide ?";
             // 
             // label2
             // 
@@ -61,15 +61,15 @@ namespace GADJIT_WIN_ASW
             this.label2.Location = new System.Drawing.Point(49, 293);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 23);
+            this.label2.Size = new System.Drawing.Size(144, 23);
             this.label2.TabIndex = 19;
-            this.label2.Text = "PassWord :";
+            this.label2.Text = "Mot de passe :";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(113, 227);
+            this.label1.Location = new System.Drawing.Point(122, 227);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(71, 23);
@@ -83,20 +83,21 @@ namespace GADJIT_WIN_ASW
             this.ButtonLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonLogin.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonLogin.ForeColor = System.Drawing.Color.White;
-            this.ButtonLogin.Location = new System.Drawing.Point(492, 423);
+            this.ButtonLogin.Location = new System.Drawing.Point(392, 372);
             this.ButtonLogin.Margin = new System.Windows.Forms.Padding(4);
             this.ButtonLogin.Name = "ButtonLogin";
-            this.ButtonLogin.Size = new System.Drawing.Size(173, 58);
+            this.ButtonLogin.Size = new System.Drawing.Size(168, 50);
             this.ButtonLogin.TabIndex = 13;
-            this.ButtonLogin.Text = "LOGIN";
+            this.ButtonLogin.Text = "CONNECTER";
             this.ButtonLogin.UseVisualStyleBackColor = false;
             this.ButtonLogin.Click += new System.EventHandler(this.ButtonLogin_Click);
             // 
             // TextBoxPassWord
             // 
             this.TextBoxPassWord.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.TextBoxPassWord.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxPassWord.Location = new System.Drawing.Point(306, 287);
+            this.TextBoxPassWord.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxPassWord.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxPassWord.Location = new System.Drawing.Point(201, 287);
             this.TextBoxPassWord.Margin = new System.Windows.Forms.Padding(4);
             this.TextBoxPassWord.Multiline = true;
             this.TextBoxPassWord.Name = "TextBoxPassWord";
@@ -106,8 +107,9 @@ namespace GADJIT_WIN_ASW
             // TextBoxEMail
             // 
             this.TextBoxEMail.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.TextBoxEMail.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxEMail.Location = new System.Drawing.Point(306, 221);
+            this.TextBoxEMail.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxEMail.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxEMail.Location = new System.Drawing.Point(201, 221);
             this.TextBoxEMail.Margin = new System.Windows.Forms.Padding(4);
             this.TextBoxEMail.Multiline = true;
             this.TextBoxEMail.Name = "TextBoxEMail";
@@ -117,7 +119,7 @@ namespace GADJIT_WIN_ASW
             // pictureBox3
             // 
             this.pictureBox3.Image = global::GADJIT_WIN_ASW.Properties.Resources.namewithstyle;
-            this.pictureBox3.Location = new System.Drawing.Point(103, 31);
+            this.pictureBox3.Location = new System.Drawing.Point(53, 23);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(477, 123);
@@ -128,7 +130,7 @@ namespace GADJIT_WIN_ASW
             // PictureBoxExit
             // 
             this.PictureBoxExit.Image = global::GADJIT_WIN_ASW.Properties.Resources.shutdown_60px;
-            this.PictureBoxExit.Location = new System.Drawing.Point(1191, -1);
+            this.PictureBoxExit.Location = new System.Drawing.Point(986, -1);
             this.PictureBoxExit.Margin = new System.Windows.Forms.Padding(4);
             this.PictureBoxExit.Name = "PictureBoxExit";
             this.PictureBoxExit.Size = new System.Drawing.Size(42, 41);
@@ -140,10 +142,10 @@ namespace GADJIT_WIN_ASW
             // pictureBox2
             // 
             this.pictureBox2.Image = global::GADJIT_WIN_ASW.Properties.Resources.logowithphone;
-            this.pictureBox2.Location = new System.Drawing.Point(793, -1);
+            this.pictureBox2.Location = new System.Drawing.Point(588, -1);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(440, 579);
+            this.pictureBox2.Size = new System.Drawing.Size(440, 493);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 15;
             this.pictureBox2.TabStop = false;
@@ -153,7 +155,7 @@ namespace GADJIT_WIN_ASW
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1232, 579);
+            this.ClientSize = new System.Drawing.Size(1026, 492);
             this.Controls.Add(this.LabelHelp);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

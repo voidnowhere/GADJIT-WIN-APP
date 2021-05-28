@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace GADJIT_WIN_ASW
 {
-    public partial class UpdateAdminPassword : Form
+    public partial class UpdateStaffPassword : Form
     {
-        public UpdateAdminPassword()
+        public UpdateStaffPassword()
         {
             InitializeComponent();
         }
@@ -24,7 +24,7 @@ namespace GADJIT_WIN_ASW
         {
             try
             {
-                SqlCommand sqlCommand = new SqlCommand("select COUNT(AdmEmail) from Admin where AdmEmail = @email and AdmPassWord = @pass", GADJIT.sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("select COUNT(StafEmail) from Staff where StafEmail = @email and StafPassWord = @pass", GADJIT.sqlConnection);
                 sqlCommand.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
                 sqlCommand.Parameters.Add("@pass", SqlDbType.NVarChar).Value = TextBoxOldPassword.Text;
                 GADJIT.sqlConnection.Open();
@@ -32,7 +32,7 @@ namespace GADJIT_WIN_ASW
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error CheckIfPasswordIsCorrect (string pass)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error CheckIfPasswordIsCorrect", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -51,7 +51,7 @@ namespace GADJIT_WIN_ASW
                     {
                         try
                         {
-                            SqlCommand sqlCommand = new SqlCommand("update Admin set AdmPassWord = @pass where AdmEmail = @email", GADJIT.sqlConnection);
+                            SqlCommand sqlCommand = new SqlCommand("update Staff set StafPassWord = @pass where StafEmail = @email", GADJIT.sqlConnection);
                             sqlCommand.Parameters.Add("@pass", SqlDbType.NVarChar).Value = TextBoxConfirmNewPassword.Text;
                             sqlCommand.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
                             GADJIT.sqlConnection.Open();

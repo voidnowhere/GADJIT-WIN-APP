@@ -42,6 +42,7 @@ namespace GADJIT_WIN_ASW
         //
         bool filledDGV = false;
         bool where = false;
+        String status = "";
 
         private bool CheckDGVCellsIfEmpty()
         {
@@ -181,10 +182,19 @@ namespace GADJIT_WIN_ASW
                 {
                     while (dataReader.Read())
                     {
-                        DGVWorker.Rows.Add(dataReader["WorID"], dataReader["WorCIN"], new Bitmap(new MemoryStream((byte[])dataReader["WorPicture"])),
-                            dataReader["WorLastName"], dataReader["WorFirstName"], dataReader["WorEmail"], dataReader["WorPassWord"], 
-                            dataReader["WorPhoneNumber"], dataReader["WorAddress"], dataReader["CitDesig"], dataReader["WorSalary"], null,
-                            dataReader["WorDispo"], (dataReader.GetBoolean(12)) ? "Activer" : "Désactiver");
+                        DGVWorker.Rows.Add(dataReader["WorID"],
+                            dataReader["WorCIN"],
+                            (dataReader["WorPicture"] == DBNull.Value) ? null : new Bitmap(new MemoryStream((byte[])dataReader["WorPicture"])),
+                            dataReader["WorLastName"],
+                            dataReader["WorFirstName"],
+                            dataReader["WorEmail"],
+                            dataReader["WorPassWord"], 
+                            dataReader["WorPhoneNumber"],
+                            dataReader["WorAddress"],
+                            dataReader["CitDesig"],
+                            dataReader["WorSalary"], null,
+                            dataReader["WorDispo"],
+                            (dataReader.GetBoolean(12)) ? "Activer" : "Désactiver");
                     }
                     WorkersStats();
                 }
@@ -262,6 +272,14 @@ namespace GADJIT_WIN_ASW
             }
         }
 
+        private void DGVWorker_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1 && e.RowIndex < ((DGVWorker.AllowUserToAddRows) ? DGVWorker.Rows.Count - 1 : DGVWorker.Rows.Count))
+            {
+                status = (DGVWorker[13, e.RowIndex].Value != null) ? DGVWorker[13, e.RowIndex].Value.ToString() : "";
+            }
+        }
+
         private void DGVWorker_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             int rowIndex = e.RowIndex;
@@ -307,11 +325,19 @@ namespace GADJIT_WIN_ASW
 
                             sqlCommandUpdate.Parameters.Add("@salary", SqlDbType.Money).Value = Convert.ToDecimal(DGVWorker["ColumnTextBoxSalary", rowIndex].Value.ToString());
 
+                            String statusDGV = DGVWorker["ColumnComboBoxStatus", rowIndex].Value.ToString();
                             sqlCommandUpdate.Parameters.Add("@status", SqlDbType.Bit).Value = (DGVWorker["ColumnComboBoxStatus", rowIndex].Value.ToString() == "Activer") ? 1 : 0;
 
                             GADJIT.sqlConnection.Open();
 
                             MessageBox.Show(sqlCommandUpdate.ExecuteNonQuery() + " réussi", "Mise à jour", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            if (status != statusDGV)
+                            {
+                                GADJIT.SendEmail(
+                                    DGVWorker["ColumnTextBoxEmail", rowIndex].Value.ToString(),
+                                    "Votre compte est " + statusDGV);
+                            }
 
                             WorkersStats();
                         }
@@ -383,6 +409,29 @@ namespace GADJIT_WIN_ASW
             }
         }
 
+        private bool CheckIfEmailExists(string email, string worID)
+        {
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand(
+                    "select COUNT(WorEmail) from Worker where WorID != @worID and WorEmail = @email",
+                    GADJIT.sqlConnection);
+                sqlCommand.Parameters.Add("@worID", SqlDbType.NVarChar).Value = worID;
+                sqlCommand.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
+                GADJIT.sqlConnection.Open();
+                if ((int)sqlCommand.ExecuteScalar() == 1) return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error CheckIfEmailExists(string email, string worID)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                GADJIT.sqlConnection.Close();
+            }
+            return false;
+        }
+
         private void DGVWorker_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             if (e.FormattedValue != null && (e.RowIndex < ((DGVWorker.AllowUserToAddRows) ? DGVWorker.Rows.Count - 1 : DGVWorker.Rows.Count)))
@@ -408,7 +457,15 @@ namespace GADJIT_WIN_ASW
                     }
                     else
                     {
-                        DGVWorker.Rows[e.RowIndex].ErrorText = "";
+                        if (CheckIfEmailExists(e.FormattedValue.ToString(), DGVWorker[0, e.RowIndex].Value.ToString()))
+                        {
+                            e.Cancel = true;
+                            DGVWorker.Rows[e.RowIndex].ErrorText = "email existe déjà";
+                        }
+                        else
+                        {
+                            DGVWorker.Rows[e.RowIndex].ErrorText = "";
+                        }
                     }
                 }
                 else if (e.ColumnIndex == 10) //Salary

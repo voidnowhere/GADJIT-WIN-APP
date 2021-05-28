@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="richTextBox1.Text" xml:space="preserve">
-    <value>GADJIT : est une application qui vos permes de reparaît vos appareillé électronique sans même ses deplace de chez vous.
+    <value>GADJIT : est une application qui vos permes de reparaît vos appareillé électronique sans même se deplace de chez vous.
 comment ça marche ?-
-       -bah par exemple si votre téléphone est tombé et votre afficheur a ete brise vous clickez sur le button nouveau ticket à votre gauche et vos entrez les informations de votre appareil et le problème et dans le bref délai on viendra récupérer votre appareil, on le répare et on vous livre chez vous !</value>
+       -Par exemple si votre téléphone est tombé ou votre afficheur a été brisé , vous clickez sur le button nouveau ticket à votre gauche, vous entrez les informations de votre appareil, le problème et dans le bref délai on viendra récupérer votre appareil, on le répare et on le livre chez vous !</value>
   </data>
 </root>
