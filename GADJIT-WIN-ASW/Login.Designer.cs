@@ -99,8 +99,10 @@ namespace GADJIT_WIN_ASW
             this.TextBoxPassWord.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxPassWord.Location = new System.Drawing.Point(201, 287);
             this.TextBoxPassWord.Margin = new System.Windows.Forms.Padding(4);
+            this.TextBoxPassWord.MaxLength = 16;
             this.TextBoxPassWord.Multiline = true;
             this.TextBoxPassWord.Name = "TextBoxPassWord";
+            this.TextBoxPassWord.PasswordChar = '*';
             this.TextBoxPassWord.Size = new System.Drawing.Size(359, 29);
             this.TextBoxPassWord.TabIndex = 12;
             // 
@@ -171,7 +173,6 @@ namespace GADJIT_WIN_ASW
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
