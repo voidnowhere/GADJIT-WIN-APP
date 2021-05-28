@@ -45,53 +45,6 @@ namespace GADJIT_WIN_ASW
             DTPTicketToSearch.MaxDate = DateTime.Now;
             GroupeBoxDiag.Visible = false;
         }
-        private void FillComboBoxsCategoryBrand()
-        {
-            try
-            {
-                SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand.Connection = GADJIT.sqlConnection;
-                GADJIT.sqlConnection.Open();
-                //
-                sqlCommand.CommandText = "select GadCatDesig from GadgetCategory";
-                dataReader = sqlCommand.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    ComboBoxCategorySearch.Items.Add(dataReader.GetString(0));
-                }
-                ComboBoxCategorySearch.Items.Insert(0, "--tous--");
-                ComboBoxCategorySearch.SelectedIndex = 0;
-                dataReader.Close();
-                //
-                sqlCommand.CommandText = "select GadBraDesig from GadgetBrand";
-                dataReader = sqlCommand.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    ComboBoxBrandSearch.Items.Add(dataReader.GetString(0));
-                }
-                ComboBoxBrandSearch.Items.Insert(0, "--tous--");
-                ComboBoxBrandSearch.SelectedIndex = 0;
-                dataReader.Close();
-                sqlCommand.CommandText = "select TicID from Ticket where WorID=@WID";
-                sqlCommand.Parameters.AddWithValue("@WID", WID);
-                dataReader = sqlCommand.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    ComboBoxCode.Items.Add((int)dataReader["TicID"]);
-                }
-                ComboBoxCode.Items.Insert(0, "--tous--");
-                ComboBoxCode.SelectedIndex = 0;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error FillComboBoxsCategoryBrand()", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                dataReader.Close();
-                GADJIT.sqlConnection.Close();
-            }
-        }
         private void FillDGV()
         {
             try
@@ -213,7 +166,7 @@ namespace GADJIT_WIN_ASW
                         ComboBoxPorg.SelectedIndex = 0;
                         dataReader.Close();
                         GADJIT.sqlConnection.Close();
-                        BringBrandCatRef();
+                        FillComboBoxsCategoryBrand();
                     }
                 }
                 catch (Exception ex)
@@ -279,7 +232,7 @@ namespace GADJIT_WIN_ASW
                         ComboBoxPorg.SelectedIndex = 0;
                         dataReader.Close();
                         GADJIT.sqlConnection.Close();
-                        BringBrandCatRef();
+                        FillComboBoxsCategoryBrand();
                     }
                 }
                 catch (Exception ex)
@@ -345,7 +298,7 @@ namespace GADJIT_WIN_ASW
                         ComboBoxPorg.SelectedIndex = 0;
                         dataReader.Close();
                         GADJIT.sqlConnection.Close();
-                        BringBrandCatRef();
+                        FillComboBoxsCategoryBrand();
                     }
                 }
                 catch (Exception ex)
@@ -354,41 +307,40 @@ namespace GADJIT_WIN_ASW
                 }
             }
         }
-        private void BringBrandCatRef()
+        private void FillComboBoxsCategoryBrand()
         {
-            SqlCommand cmd = new SqlCommand("select GadRefDesig,GadCatID,GadBraID from GadgetReference where GadRefID=@RefID", GADJIT.sqlConnection);
-            cmd.Parameters.AddWithValue("@RefID", RefID);
-            GADJIT.sqlConnection.Open();
-            dataReader = cmd.ExecuteReader();
-            if (dataReader.HasRows)
+            try
             {
-                dataReader.Read();
-                Ref = dataReader["GadRefDesig"].ToString();
-                CatID = (int)dataReader["GadCatID"];
-                BrandID = (int)dataReader["GadBraID"];
-                dataReader.Close();
-                cmd = new SqlCommand("select GadCatDesig from GadgetCategory where GadCatID=@CatID", GADJIT.sqlConnection);
-                cmd.Parameters.AddWithValue("@CatID", CatID);
-                dataReader = cmd.ExecuteReader();
-                if (dataReader.HasRows)
-                {
-                    dataReader.Read();
-                    Cat = dataReader["GadCatDesig"].ToString();
-                    dataReader.Close();
-                }
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = GADJIT.sqlConnection;
+                GADJIT.sqlConnection.Open();
                 //
-                cmd = new SqlCommand("select GadBraDesig from GadgetBrand where GadBraID=@BraID", GADJIT.sqlConnection);
-                cmd.Parameters.AddWithValue("@BraID", BrandID);
-                dataReader = cmd.ExecuteReader();
-                if (dataReader.HasRows)
+                sqlCommand.CommandText = "select GadCatDesig from GadgetCategory";
+                dataReader = sqlCommand.ExecuteReader();
+                while (dataReader.Read())
                 {
-                    dataReader.Read();
-                    Brand = dataReader["GadBraDesig"].ToString();
-                    dataReader.Close();
+                    ComboBoxCategorySearch.Items.Add(dataReader.GetString(0));
                 }
-                TextBoxGadget.Text = Cat + " " + Brand + " " + Ref;
+                ComboBoxCategorySearch.Items.Insert(0, "--tous--");
+                dataReader.Close();
+                //
+                sqlCommand.CommandText = "select GadBraDesig from GadgetBrand";
+                dataReader = sqlCommand.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    ComboBoxBrandSearch.Items.Add(dataReader.GetString(0));
+                }
+                ComboBoxBrandSearch.Items.Insert(0, "--tous--");
             }
-            GADJIT.sqlConnection.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error FillComboBoxsCategoryBrand()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                dataReader.Close();
+                GADJIT.sqlConnection.Close();
+            }
         }
         private void TicketsStats()
         {
@@ -420,15 +372,18 @@ namespace GADJIT_WIN_ASW
             GADJIT.sqlConnection.Close();
             dataReader.Close();
             //
-            cmd = new SqlCommand("insert into Diagnostic Values(@DID,@TID,@DiagCmt,@Price,@Time)", GADJIT.sqlConnection);
-            cmd.Parameters.AddWithValue("@DID", DID);
-            cmd.Parameters.AddWithValue("@TID", TID);
-            cmd.Parameters.AddWithValue("@DiagCmt", richTextBoxDiag.Text);
-            cmd.Parameters.AddWithValue("@Price", TextBoxPrice.Text);
-            cmd.Parameters.AddWithValue("@Time", textBoxWorkTime.Text);
-            GADJIT.sqlConnection.Open();
-            cmd.ExecuteNonQuery();
-            GADJIT.sqlConnection.Close();
+            if (richTextBoxDiag.Text != "" && TextBoxPrice.Text != "" && textBoxWorkTime.Text != "")
+            {
+                cmd = new SqlCommand("insert into Diagnostic Values(@DID,@TID,@DiagCmt,@Price,@Time)", GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("@DID", DID);
+                cmd.Parameters.AddWithValue("@TID", TID);
+                cmd.Parameters.AddWithValue("@DiagCmt", richTextBoxDiag.Text);
+                cmd.Parameters.AddWithValue("@Price", TextBoxPrice.Text);
+                cmd.Parameters.AddWithValue("@Time", textBoxWorkTime.Text);
+                GADJIT.sqlConnection.Open();
+                cmd.ExecuteNonQuery();
+                GADJIT.sqlConnection.Close();
+            }
             //
             GADJIT.sqlConnection.Open();
             cmd.CommandText = "insert into TicketMonitoring values(@TID, GETDATE(), @statut, 'W', @WID, 1)";
