@@ -95,6 +95,7 @@ namespace GADJIT_WIN_CLIENT
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxRefGadjit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ComboBoxRefGadjit.DisplayMember = "reference";
+            this.ComboBoxRefGadjit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxRefGadjit.FormattingEnabled = true;
             this.ComboBoxRefGadjit.Location = new System.Drawing.Point(163, 160);
             this.ComboBoxRefGadjit.Name = "ComboBoxRefGadjit";
@@ -107,6 +108,7 @@ namespace GADJIT_WIN_CLIENT
             this.ComboBoxMarque.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxMarque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.ComboBoxMarque.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxMarque.FormattingEnabled = true;
             this.ComboBoxMarque.Location = new System.Drawing.Point(163, 119);
             this.ComboBoxMarque.Name = "ComboBoxMarque";
@@ -119,6 +121,7 @@ namespace GADJIT_WIN_CLIENT
             this.ComboBoxCatGadjit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxCatGadjit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.ComboBoxCatGadjit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxCatGadjit.FormattingEnabled = true;
             this.ComboBoxCatGadjit.Items.AddRange(new object[] {
             "Choisissez une categotie"});
@@ -225,6 +228,7 @@ namespace GADJIT_WIN_CLIENT
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxville.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ComboBoxville.DisplayMember = "reference";
+            this.ComboBoxville.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxville.FormattingEnabled = true;
             this.ComboBoxville.Location = new System.Drawing.Point(163, 439);
             this.ComboBoxville.Name = "ComboBoxville";

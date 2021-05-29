@@ -122,6 +122,11 @@ namespace GADJIT_WIN_CLIENT
                 ComboBoxRefGadjit.SelectedIndex = -1;
                 GADJIT.sqlConnection.Close();
             }
+            else
+            {
+                ComboBoxMarque.Items.Clear();
+                ComboBoxRefGadjit.Items.Clear();
+            }
         }
 
         private void ComboBoxMarque_SelectedIndexChanged(object sender, EventArgs e)
