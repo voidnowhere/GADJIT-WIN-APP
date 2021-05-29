@@ -76,7 +76,7 @@ namespace GADJIT_WIN_CLIENT
                                 status = "en cours de diagnostic";
                                 break;
                             case "CD":
-                                status = "confirmation diagnostic";
+                                status = "diagnostic disponible";
                                 break;
                             case "ER":
                                 status = "en cours de reparation";
