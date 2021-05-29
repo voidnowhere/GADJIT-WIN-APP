@@ -173,7 +173,7 @@ namespace GADJIT_WIN_ASW
                         switch (dataReader["TicSta"].ToString())
                         {
                             case "ED":
-                                ComboBoxPorg.Items.AddRange(new string[] {"Confirmation de Diagnostic" });
+                                ComboBoxPorg.Items.AddRange(new string[] { "Confirmation de Diagnostic" });
                                 if (GroupeBoxDiag.Visible == false)
                                 {
                                     GroupeBoxDiag.Visible = true;
@@ -201,7 +201,14 @@ namespace GADJIT_WIN_ASW
                                 }
                                 break;
                             default:
-                                ComboBoxPorg.Items.Add("non disponible");
+                                if (GroupeBoxDiag.Visible == true)
+                                {
+                                    GroupeBoxDiag.Visible = false;
+                                }
+                                if (GroupeBoxDiag.Visible == true)
+                                {
+                                    ComboBoxPorg.Visible = false;
+                                }
                                 break;
                         }
                         ComboBoxPorg.SelectedIndex = 0;
@@ -267,7 +274,14 @@ namespace GADJIT_WIN_ASW
                                 }
                                 break;
                             default:
-                                ComboBoxPorg.Items.Add("non disponible");
+                                if (GroupeBoxDiag.Visible == true)
+                                {
+                                    GroupeBoxDiag.Visible = false;
+                                }
+                                if(GroupeBoxDiag.Visible == true)
+                                {
+                                    ComboBoxPorg.Visible = false;
+                                }
                                 break;
                         }
                         ComboBoxPorg.SelectedIndex = 0;
@@ -333,7 +347,14 @@ namespace GADJIT_WIN_ASW
                                 }
                                 break;
                             default:
-                                ComboBoxPorg.Items.Add("non disponible");
+                                if (GroupeBoxDiag.Visible == true)
+                                {
+                                    GroupeBoxDiag.Visible = false;
+                                }
+                                if (GroupeBoxDiag.Visible == true)
+                                {
+                                    ComboBoxPorg.Visible = false;
+                                }
                                 break;
                         }
                         ComboBoxPorg.SelectedIndex = 0;
@@ -458,6 +479,9 @@ namespace GADJIT_WIN_ASW
                 GADJIT.sqlConnection.Open();
                 cmd.ExecuteNonQuery();
                 GADJIT.sqlConnection.Close();
+                textBoxWorkTime.Clear();
+                richTextBoxDiag.Clear();
+                TextBoxPrice.Clear();
             }
             //
             //
