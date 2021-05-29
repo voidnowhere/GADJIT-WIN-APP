@@ -50,7 +50,7 @@ namespace GADJIT_WIN_ASW
             }
         }
 
-        private int GetMaxGadgetCategoryId()
+        private int GenerateGadgetCategoryId()
         {
             try
             {
@@ -60,7 +60,7 @@ namespace GADJIT_WIN_ASW
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error GetMaxGadgetCategoryId", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error GenerateGadgetCategoryId", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -89,24 +89,24 @@ namespace GADJIT_WIN_ASW
             return false;
         }
 
-        private bool CheckIfCategoryDesigExists(int id, string desig)
+        private bool CheckIfCategoryDesigExists(int catID, string desig)
         {
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(
-                    (id == -1) ? 
+                    (catID == -1) ? 
                         "select COUNT(GadCatDesig) from GadgetCategory where GadCatDesig = @desig" 
                         :
                         "select COUNT(GadCatDesig) from GadgetCategory where GadCatID != @id and GadCatDesig = @desig",
                     GADJIT.sqlConnection);
-                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = catID;
                 sqlCommand.Parameters.Add("@desig", SqlDbType.VarChar).Value = desig;
                 GADJIT.sqlConnection.Open();
                 if ((int)sqlCommand.ExecuteScalar() > 0) return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error CheckIfCategoryDesigExists(string desig)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error CheckIfCategoryDesigExists(int catID, string desig)", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -184,7 +184,7 @@ namespace GADJIT_WIN_ASW
                         try
                         {
                             SqlCommand sqlCommandInsertCategory = new SqlCommand("insert into GadgetCategory values(@id, @desig, @sta)", GADJIT.sqlConnection);
-                            sqlCommandInsertCategory.Parameters.Add("@id", SqlDbType.Int).Value = GetMaxGadgetCategoryId();
+                            sqlCommandInsertCategory.Parameters.Add("@id", SqlDbType.Int).Value = GenerateGadgetCategoryId();
                             sqlCommandInsertCategory.Parameters.Add("@desig", SqlDbType.VarChar).Value = DGVCategory[1, rowIndex].Value.ToString();
                             sqlCommandInsertCategory.Parameters.Add("@sta", SqlDbType.Bit).Value = (DGVCategory[2, rowIndex].Value.ToString() == "Activer") ? true : false;
 
@@ -237,14 +237,14 @@ namespace GADJIT_WIN_ASW
                 SqlCommand sqlCommandCheckInGadgetReference = new SqlCommand("select COUNT(GadCatID) from GadgetReference where GadCatID = @id", GADJIT.sqlConnection);
                 sqlCommandCheckInGadgetReference.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 GADJIT.sqlConnection.Open();
-                if ((int)sqlCommandCheckInGadgetReference.ExecuteScalar() >= 1)
+                if ((int)sqlCommandCheckInGadgetReference.ExecuteScalar() > 0)
                 {
                     return false;
                 }
                 //
                 SqlCommand sqlCommandCheckInWorkerSpecialty = new SqlCommand("select COUNT(GadCatID) from WorkerSpecialty where GadCatID = @id", GADJIT.sqlConnection);
                 sqlCommandCheckInWorkerSpecialty.Parameters.Add("@id", SqlDbType.Int).Value = id;
-                if ((int)sqlCommandCheckInWorkerSpecialty.ExecuteScalar() >= 1)
+                if ((int)sqlCommandCheckInWorkerSpecialty.ExecuteScalar() > 0)
                 {
                     return false;
                 }
@@ -348,7 +348,7 @@ namespace GADJIT_WIN_ASW
             }
         }
 
-        private int GetMaxGadgetBrandId()
+        private int GenerateGadgetBrandId()
         {
             try
             {
@@ -358,7 +358,7 @@ namespace GADJIT_WIN_ASW
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error GetMaxGadgetBrandId", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error GenerateGadgetBrandId", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -483,7 +483,7 @@ namespace GADJIT_WIN_ASW
                         try
                         {
                             SqlCommand sqlCommandInsertCategory = new SqlCommand("insert into GadgetBrand values(@id, @desig, @sta)", GADJIT.sqlConnection);
-                            sqlCommandInsertCategory.Parameters.Add("@id", SqlDbType.Int).Value = GetMaxGadgetBrandId();
+                            sqlCommandInsertCategory.Parameters.Add("@id", SqlDbType.Int).Value = GenerateGadgetBrandId();
                             sqlCommandInsertCategory.Parameters.Add("@desig", SqlDbType.VarChar).Value = DGVBrand[1, rowIndex].Value.ToString();
                             sqlCommandInsertCategory.Parameters.Add("@sta", SqlDbType.Bit).Value = (DGVBrand[2, rowIndex].Value.ToString() == "Activer") ? true : false;
 
@@ -536,14 +536,14 @@ namespace GADJIT_WIN_ASW
                 SqlCommand sqlCommandCheckInGadgetReference = new SqlCommand("select COUNT(GadBraID) from GadgetReference where GadBraID = @id", GADJIT.sqlConnection);
                 sqlCommandCheckInGadgetReference.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 GADJIT.sqlConnection.Open();
-                if ((int)sqlCommandCheckInGadgetReference.ExecuteScalar() >= 1)
+                if ((int)sqlCommandCheckInGadgetReference.ExecuteScalar() > 0)
                 {
                     return false;
                 }
                 //
                 SqlCommand sqlCommandCheckInWorkerSpecialty = new SqlCommand("select COUNT(GadBraID) from WorkerSpecialty where GadBraID = @id", GADJIT.sqlConnection);
                 sqlCommandCheckInWorkerSpecialty.Parameters.Add("@id", SqlDbType.Int).Value = id;
-                if ((int)sqlCommandCheckInWorkerSpecialty.ExecuteScalar() >= 1)
+                if ((int)sqlCommandCheckInWorkerSpecialty.ExecuteScalar() > 0)
                 {
                     return false;
                 }

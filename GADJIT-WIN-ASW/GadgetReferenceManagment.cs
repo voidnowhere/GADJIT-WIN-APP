@@ -46,10 +46,7 @@ namespace GADJIT_WIN_ASW
                 SqlCommand sqlCommand = new SqlCommand("select COUNT(GadRefID) from GadgetReference where GadRefID = @id", GADJIT.sqlConnection);
                 sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 GADJIT.sqlConnection.Open();
-                if ((int)sqlCommand.ExecuteScalar() == 1)
-                {
-                    return true;
-                }
+                if ((int)sqlCommand.ExecuteScalar() == 1) return true;
             }
             catch (Exception ex)
             {
@@ -62,7 +59,7 @@ namespace GADJIT_WIN_ASW
             return false;
         }
 
-        private int GetMaxGadgetReferenceId()
+        private int GenerateGadgetReferenceId()
         {
             try
             {
@@ -285,7 +282,7 @@ namespace GADJIT_WIN_ASW
                         {
                             SqlCommand sqlCommandInsert = new SqlCommand("insert into GadgetReference values(@id, @catID, @braID, @desig, @descr, @sta)", GADJIT.sqlConnection);
 
-                            sqlCommandInsert.Parameters.Add("@id", SqlDbType.Int).Value = GetMaxGadgetReferenceId();
+                            sqlCommandInsert.Parameters.Add("@id", SqlDbType.Int).Value = GenerateGadgetReferenceId();
 
                             sqlCommandInsert.Parameters.Add("@catID", SqlDbType.Int).Value = (int)DGVReference["ColumnComboBoxCategory", rowIndex].Value;
 
@@ -372,7 +369,7 @@ namespace GADJIT_WIN_ASW
                 SqlCommand sqlCommand = new SqlCommand("select COUNT(GadRefID) from Ticket where GadRefID = @id", GADJIT.sqlConnection);
                 sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 GADJIT.sqlConnection.Open();
-                if((int)sqlCommand.ExecuteScalar() >= 1)
+                if((int)sqlCommand.ExecuteScalar() > 0)
                 {
                     return false;
                 }
