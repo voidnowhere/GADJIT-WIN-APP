@@ -83,15 +83,21 @@ namespace GADJIT_WIN_ASW
             return false;
         }
 
-        private void InsertNewIDInDGV()
+        private void InsertNewIDInDGV(int rowIndex)
         {
-            if (DGVStaff.Rows.Count > 2)
+            try
             {
-                DGVStaff[0, DGVStaff.CurrentRow.Index].Value = (int)DGVStaff[0, DGVStaff.CurrentRow.Index - 1].Value + 1;
+                SqlCommand sqlCommand = new SqlCommand("select MAX(StafID) from Staff", GADJIT.sqlConnection);
+                GADJIT.sqlConnection.Open();
+                DGVStaff[0, rowIndex].Value = (sqlCommand.ExecuteScalar() == null) ? 0 : int.Parse(sqlCommand.ExecuteScalar().ToString()) + 1;
             }
-            else
+            catch (Exception ex)
             {
-                DGVStaff[0, DGVStaff.CurrentRow.Index].Value = 0;
+                MessageBox.Show(ex.Message, "Error InsertNewIDInDGV(int rowIndex)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                GADJIT.sqlConnection.Close();
             }
         }
 
@@ -285,7 +291,7 @@ namespace GADJIT_WIN_ASW
                 int rowIndex = e.RowIndex;
                 if (DGVStaff[0, rowIndex].Value == null) // ID
                 {
-                    InsertNewIDInDGV();
+                    InsertNewIDInDGV(rowIndex);
                     DGVStaff[6, rowIndex].Value = GADJIT.PasswordGenerator(8); //Password
                     DGVStaff[11, rowIndex].Value = "Hors Ligne"; //Disponibility
                     DGVStaff[12, rowIndex].Value = "Activer"; //Status
@@ -455,6 +461,11 @@ namespace GADJIT_WIN_ASW
                     }
                     else
                     {
+                        if (DGVStaff[0, e.RowIndex].Value == null)
+                        {
+                            InsertNewIDInDGV(e.RowIndex);
+                            DGVStaff_CellValidating(sender, e);
+                        }
                         if (CheckIfEmailExists(e.FormattedValue.ToString(), DGVStaff[0, e.RowIndex].Value.ToString()))
                         {
                             e.Cancel = true;
