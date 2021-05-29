@@ -46,14 +46,14 @@ namespace GADJIT_WIN_ASW
             this.ButtonReset = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.DGVReference = new System.Windows.Forms.DataGridView();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.ColumnTextBoxID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnComboBoxCategory = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.ColumnComboBoxBrand = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.ColumnTextBoxDesignation = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTextBoxDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnComboBoxStatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVReference)).BeginInit();
             this.SuspendLayout();
@@ -251,18 +251,42 @@ namespace GADJIT_WIN_ASW
             this.DGVReference.Name = "DGVReference";
             this.DGVReference.Size = new System.Drawing.Size(951, 419);
             this.DGVReference.TabIndex = 71;
+            this.DGVReference.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVReference_CellEndEdit);
             this.DGVReference.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.DGVReference_CellValidating);
             this.DGVReference.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVReference_CellValueChanged);
             this.DGVReference.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGVReference_EditingControlShowing);
             this.DGVReference.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DGVReference_UserDeletedRow);
             this.DGVReference.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DGVReference_UserDeletingRow);
             // 
+            // label20
+            // 
+            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(873, 546);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(44, 16);
+            this.label20.TabIndex = 73;
+            this.label20.Text = "Total";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(348, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(291, 25);
+            this.label1.TabIndex = 70;
+            this.label1.Text = "Gestion Gadget Référence";
+            // 
             // ColumnTextBoxID
             // 
             this.ColumnTextBoxID.HeaderText = "Code";
-            this.ColumnTextBoxID.MinimumWidth = 100;
+            this.ColumnTextBoxID.MinimumWidth = 50;
             this.ColumnTextBoxID.Name = "ColumnTextBoxID";
             this.ColumnTextBoxID.ReadOnly = true;
+            this.ColumnTextBoxID.Width = 50;
             // 
             // ColumnComboBoxCategory
             // 
@@ -304,28 +328,6 @@ namespace GADJIT_WIN_ASW
             this.ColumnComboBoxStatus.Name = "ColumnComboBoxStatus";
             this.ColumnComboBoxStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnComboBoxStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // label20
-            // 
-            this.label20.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(873, 546);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(44, 16);
-            this.label20.TabIndex = 73;
-            this.label20.Text = "Total";
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(348, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(291, 25);
-            this.label1.TabIndex = 70;
-            this.label1.Text = "Gestion Gadget Référence";
             // 
             // GadgetReferenceManagment
             // 

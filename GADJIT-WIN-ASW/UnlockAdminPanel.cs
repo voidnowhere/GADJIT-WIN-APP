@@ -20,7 +20,7 @@ namespace GADJIT_WIN_ASW
 
         public Login login;
         public AdminPanel adminPanel;
-        public string email;
+        public int adminID;
 
         private void ButtonLogin_Click(object sender, EventArgs e)
         {
@@ -28,8 +28,8 @@ namespace GADJIT_WIN_ASW
             {
                 try
                 {
-                    SqlCommand sqlCommandDispo = new SqlCommand("select COUNT(AdmEmail) from Admin where AdmEmail = @email and AdmPassWord = @pass", GADJIT.sqlConnection);
-                    sqlCommandDispo.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
+                    SqlCommand sqlCommandDispo = new SqlCommand("select COUNT(AdmEmail) from Admin where AdmID = @adminID and AdmPassWord = @pass", GADJIT.sqlConnection);
+                    sqlCommandDispo.Parameters.Add("@adminID", SqlDbType.Int).Value = adminID;
                     sqlCommandDispo.Parameters.Add("@pass", SqlDbType.NVarChar).Value = TextBoxPassWord.Text;
                     GADJIT.sqlConnection.Open();
                     if ((int)sqlCommandDispo.ExecuteScalar() == 1)
@@ -57,8 +57,8 @@ namespace GADJIT_WIN_ASW
         {
             try
             {
-                SqlCommand sqlCommandDispo = new SqlCommand("update Admin set AdmDispo = 'Hors Ligne' where AdmEmail = @email", GADJIT.sqlConnection);
-                sqlCommandDispo.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
+                SqlCommand sqlCommandDispo = new SqlCommand("update Admin set AdmDispo = 'Hors Ligne' where AdmID = @adminID", GADJIT.sqlConnection);
+                sqlCommandDispo.Parameters.Add("@adminID", SqlDbType.Int).Value = adminID;
                 GADJIT.sqlConnection.Open();
                 sqlCommandDispo.ExecuteNonQuery();
                 this.Close();
@@ -73,11 +73,6 @@ namespace GADJIT_WIN_ASW
             {
                 GADJIT.sqlConnection.Close();
             }
-        }
-
-        private void UnlockAdminPanel_Load(object sender, EventArgs e)
-        {
-            this.CenterToScreen();
         }
     }
 }

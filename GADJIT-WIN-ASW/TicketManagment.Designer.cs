@@ -61,22 +61,22 @@ namespace GADJIT_WIN_ASW
             this.label17 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.DGVTicket = new System.Windows.Forms.DataGridView();
-            this.ColumnTicketID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTicketDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTicketStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnGadgetReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnRepairePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TextBoxTotalTickets = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.GroupBoxTicketDeails = new System.Windows.Forms.GroupBox();
             this.TextBoxAddress = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.DGVTicketMonitoring = new System.Windows.Forms.DataGridView();
+            this.label10 = new System.Windows.Forms.Label();
+            this.ColumnTicketID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTicketDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTicketStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnGadgetReference = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnRepairePrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTicketMonitoringDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTicketMonitoringWho = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label10 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVTicket)).BeginInit();
@@ -424,51 +424,6 @@ namespace GADJIT_WIN_ASW
             this.DGVTicket.TabIndex = 24;
             this.DGVTicket.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVTicket_CellMouseDoubleClick);
             // 
-            // ColumnTicketID
-            // 
-            this.ColumnTicketID.HeaderText = "Code";
-            this.ColumnTicketID.MinimumWidth = 50;
-            this.ColumnTicketID.Name = "ColumnTicketID";
-            this.ColumnTicketID.ReadOnly = true;
-            this.ColumnTicketID.Width = 50;
-            // 
-            // ColumnTicketDateTime
-            // 
-            dataGridViewCellStyle1.Format = "g";
-            dataGridViewCellStyle1.NullValue = null;
-            this.ColumnTicketDateTime.DefaultCellStyle = dataGridViewCellStyle1;
-            this.ColumnTicketDateTime.HeaderText = "Date";
-            this.ColumnTicketDateTime.MinimumWidth = 100;
-            this.ColumnTicketDateTime.Name = "ColumnTicketDateTime";
-            this.ColumnTicketDateTime.ReadOnly = true;
-            // 
-            // ColumnTicketStatus
-            // 
-            this.ColumnTicketStatus.HeaderText = "Etat";
-            this.ColumnTicketStatus.MinimumWidth = 150;
-            this.ColumnTicketStatus.Name = "ColumnTicketStatus";
-            this.ColumnTicketStatus.ReadOnly = true;
-            this.ColumnTicketStatus.Width = 150;
-            // 
-            // ColumnGadgetReference
-            // 
-            this.ColumnGadgetReference.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnGadgetReference.HeaderText = "Gadget";
-            this.ColumnGadgetReference.MinimumWidth = 150;
-            this.ColumnGadgetReference.Name = "ColumnGadgetReference";
-            this.ColumnGadgetReference.ReadOnly = true;
-            // 
-            // ColumnRepairePrice
-            // 
-            dataGridViewCellStyle2.Format = "0:00";
-            dataGridViewCellStyle2.NullValue = null;
-            this.ColumnRepairePrice.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ColumnRepairePrice.HeaderText = "Prix réparation";
-            this.ColumnRepairePrice.MinimumWidth = 75;
-            this.ColumnRepairePrice.Name = "ColumnRepairePrice";
-            this.ColumnRepairePrice.ReadOnly = true;
-            this.ColumnRepairePrice.Width = 75;
-            // 
             // TextBoxTotalTickets
             // 
             this.TextBoxTotalTickets.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -552,16 +507,74 @@ namespace GADJIT_WIN_ASW
             this.DGVTicketMonitoring.TabIndex = 27;
             this.DGVTicketMonitoring.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVTicketMonitoring_CellMouseDoubleClick);
             // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(593, 53);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(164, 25);
+            this.label10.TabIndex = 26;
+            this.label10.Text = "Gestion Ticket";
+            // 
+            // ColumnTicketID
+            // 
+            this.ColumnTicketID.HeaderText = "Code";
+            this.ColumnTicketID.MinimumWidth = 50;
+            this.ColumnTicketID.Name = "ColumnTicketID";
+            this.ColumnTicketID.ReadOnly = true;
+            this.ColumnTicketID.Width = 50;
+            // 
+            // ColumnTicketDateTime
+            // 
+            dataGridViewCellStyle1.Format = "g";
+            dataGridViewCellStyle1.NullValue = null;
+            this.ColumnTicketDateTime.DefaultCellStyle = dataGridViewCellStyle1;
+            this.ColumnTicketDateTime.HeaderText = "Date";
+            this.ColumnTicketDateTime.MinimumWidth = 95;
+            this.ColumnTicketDateTime.Name = "ColumnTicketDateTime";
+            this.ColumnTicketDateTime.ReadOnly = true;
+            this.ColumnTicketDateTime.Width = 95;
+            // 
+            // ColumnTicketStatus
+            // 
+            this.ColumnTicketStatus.HeaderText = "Etat";
+            this.ColumnTicketStatus.MinimumWidth = 150;
+            this.ColumnTicketStatus.Name = "ColumnTicketStatus";
+            this.ColumnTicketStatus.ReadOnly = true;
+            this.ColumnTicketStatus.Width = 150;
+            // 
+            // ColumnGadgetReference
+            // 
+            this.ColumnGadgetReference.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnGadgetReference.HeaderText = "Gadget";
+            this.ColumnGadgetReference.MinimumWidth = 150;
+            this.ColumnGadgetReference.Name = "ColumnGadgetReference";
+            this.ColumnGadgetReference.ReadOnly = true;
+            // 
+            // ColumnRepairePrice
+            // 
+            dataGridViewCellStyle2.Format = "0:00";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ColumnRepairePrice.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ColumnRepairePrice.HeaderText = "Prix réparation";
+            this.ColumnRepairePrice.MinimumWidth = 75;
+            this.ColumnRepairePrice.Name = "ColumnRepairePrice";
+            this.ColumnRepairePrice.ReadOnly = true;
+            this.ColumnRepairePrice.Width = 75;
+            // 
             // ColumnTicketMonitoringDateTime
             // 
-            this.ColumnTicketMonitoringDateTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewCellStyle3.Format = "g";
             dataGridViewCellStyle3.NullValue = null;
             this.ColumnTicketMonitoringDateTime.DefaultCellStyle = dataGridViewCellStyle3;
+            this.ColumnTicketMonitoringDateTime.FillWeight = 96.4467F;
             this.ColumnTicketMonitoringDateTime.HeaderText = "Date";
-            this.ColumnTicketMonitoringDateTime.MinimumWidth = 100;
+            this.ColumnTicketMonitoringDateTime.MinimumWidth = 95;
             this.ColumnTicketMonitoringDateTime.Name = "ColumnTicketMonitoringDateTime";
             this.ColumnTicketMonitoringDateTime.ReadOnly = true;
+            this.ColumnTicketMonitoringDateTime.Width = 95;
             // 
             // Column2
             // 
@@ -573,6 +586,7 @@ namespace GADJIT_WIN_ASW
             // ColumnTicketMonitoringWho
             // 
             this.ColumnTicketMonitoringWho.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnTicketMonitoringWho.FillWeight = 103.5533F;
             this.ColumnTicketMonitoringWho.HeaderText = "Qui";
             this.ColumnTicketMonitoringWho.MinimumWidth = 100;
             this.ColumnTicketMonitoringWho.Name = "ColumnTicketMonitoringWho";
@@ -584,17 +598,6 @@ namespace GADJIT_WIN_ASW
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.Visible = false;
-            // 
-            // label10
-            // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(593, 53);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(164, 25);
-            this.label10.TabIndex = 26;
-            this.label10.Text = "Gestion Ticket";
             // 
             // TicketManagment
             // 

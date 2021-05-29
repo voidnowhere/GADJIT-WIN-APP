@@ -100,8 +100,8 @@ namespace GADJIT_WIN_ASW
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UnlockAdminPanel";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UnlockConfirmation";
-            this.Load += new System.EventHandler(this.UnlockAdminPanel_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogOut)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

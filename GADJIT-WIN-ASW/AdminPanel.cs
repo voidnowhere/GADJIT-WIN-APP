@@ -19,6 +19,7 @@ namespace GADJIT_WIN_ASW
         }
 
         public Login login;
+        public int adminID;
 
         private void CloseMdiChildIdExists()
         {
@@ -29,9 +30,9 @@ namespace GADJIT_WIN_ASW
         {
             try
             {
-                SqlCommand sqlCommandDispo = new SqlCommand("update Admin set AdmDispo = @dispo where AdmEmail = @email", GADJIT.sqlConnection);
+                SqlCommand sqlCommandDispo = new SqlCommand("update Admin set AdmDispo = @dispo where AdmID = @adminID", GADJIT.sqlConnection);
                 sqlCommandDispo.Parameters.Add("@dispo", SqlDbType.VarChar).Value = dispo;
-                sqlCommandDispo.Parameters.Add("@email", SqlDbType.NVarChar).Value = LabelEmail.Text;
+                sqlCommandDispo.Parameters.Add("@adminID", SqlDbType.Int).Value = adminID;
                 GADJIT.sqlConnection.Open();
                 sqlCommandDispo.ExecuteNonQuery();
             }
@@ -63,6 +64,7 @@ namespace GADJIT_WIN_ASW
             ButtonStaffManagment.Enabled = tf;
             ButtonWorkerManagment.Enabled = tf;
             ButtonGadgetMenu.Enabled = tf;
+            ButtonCityManagement.Enabled = tf;
         }
 
         private void ButtonDisponibility_Click(object sender, EventArgs e)
@@ -79,7 +81,7 @@ namespace GADJIT_WIN_ASW
                 UnlockAdminPanel unlockAdminPanel = new UnlockAdminPanel();
                 unlockAdminPanel.login = login;
                 unlockAdminPanel.adminPanel = this;
-                unlockAdminPanel.email = LabelEmail.Text;
+                unlockAdminPanel.adminID = adminID;
                 unlockAdminPanel.ShowDialog();
                 PannelButtonsLock(true);
                 //
@@ -101,6 +103,7 @@ namespace GADJIT_WIN_ASW
             ButtonClientManagment.BackColor = Color.FromArgb(247, 181, 46);
             ButtonStaffManagment.BackColor = Color.FromArgb(247, 181, 46);
             ButtonWorkerManagment.BackColor = Color.FromArgb(247, 181, 46);
+            ButtonCityManagement.BackColor = Color.FromArgb(247, 181, 46);
             //
             ButtonGadgetCategoryBrandManagment.BackColor = Color.White;
             ButtonGadgetCategoryBrandManagment.ForeColor = Color.FromArgb(218, 165, 33);
@@ -199,6 +202,19 @@ namespace GADJIT_WIN_ASW
             referenceManagment.Show();
         }
 
+        private void ButtonCityManagement_Click(object sender, EventArgs e)
+        {
+            ResetButtonsColor();
+            ButtonCityManagement.BackColor = Color.FromArgb(218, 165, 33);
+            ButtonCityManagement.ForeColor = Color.White;
+            //
+            CloseMdiChildIdExists();
+            CityManagement cityManagement = new CityManagement();
+            cityManagement.MdiParent = this;
+            cityManagement.Dock = DockStyle.Fill;
+            cityManagement.Show();
+        }
+
         private void ButtonGadgetMenu_Click(object sender, EventArgs e)
         {
             ResetButtonsColor();
@@ -211,6 +227,7 @@ namespace GADJIT_WIN_ASW
         {
             UpdateAdminPassword updateAdminPassword = new UpdateAdminPassword();
             updateAdminPassword.email = LabelEmail.Text;
+            updateAdminPassword.adminID = adminID;
             updateAdminPassword.ShowDialog();
         }
     }

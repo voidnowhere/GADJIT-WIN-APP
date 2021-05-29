@@ -33,9 +33,6 @@ namespace GADJIT_WIN_ASW
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.TextBoxDeactivatedCategory = new System.Windows.Forms.TextBox();
             this.DGVCategory = new System.Windows.Forms.DataGridView();
-            this.ColumnTextBoxCategoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTextBoxCategoryDesignation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnComboBoxCategoryStatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.label13 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -44,14 +41,17 @@ namespace GADJIT_WIN_ASW
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.TextBoxDeactivatedBrand = new System.Windows.Forms.TextBox();
             this.DGVBrand = new System.Windows.Forms.DataGridView();
-            this.ColumnTextBoxBrandID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTextBoxBrandDesignation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnComboBoxBrandStatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.TextBoxTotalBrand = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TextBoxActivedBrand = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.ColumnTextBoxCategoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTextBoxCategoryDesignation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnComboBoxCategoryStatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ColumnTextBoxBrandID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTextBoxBrandDesignation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnComboBoxBrandStatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVCategory)).BeginInit();
             this.groupBox6.SuspendLayout();
@@ -113,36 +113,12 @@ namespace GADJIT_WIN_ASW
             this.DGVCategory.Name = "DGVCategory";
             this.DGVCategory.Size = new System.Drawing.Size(472, 389);
             this.DGVCategory.TabIndex = 1;
+            this.DGVCategory.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVCategory_CellEndEdit);
             this.DGVCategory.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.DGVCategory_CellValidating);
             this.DGVCategory.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVCategory_CellValueChanged);
             this.DGVCategory.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGVCategory_EditingControlShowing);
             this.DGVCategory.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DGVCategory_UserDeletedRow);
             this.DGVCategory.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DGVCategory_UserDeletingRow);
-            // 
-            // ColumnTextBoxCategoryID
-            // 
-            this.ColumnTextBoxCategoryID.HeaderText = "Code";
-            this.ColumnTextBoxCategoryID.MinimumWidth = 100;
-            this.ColumnTextBoxCategoryID.Name = "ColumnTextBoxCategoryID";
-            this.ColumnTextBoxCategoryID.ReadOnly = true;
-            // 
-            // ColumnTextBoxCategoryDesignation
-            // 
-            this.ColumnTextBoxCategoryDesignation.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnTextBoxCategoryDesignation.HeaderText = "Designation";
-            this.ColumnTextBoxCategoryDesignation.MinimumWidth = 200;
-            this.ColumnTextBoxCategoryDesignation.Name = "ColumnTextBoxCategoryDesignation";
-            // 
-            // ColumnComboBoxCategoryStatus
-            // 
-            this.ColumnComboBoxCategoryStatus.HeaderText = "Status";
-            this.ColumnComboBoxCategoryStatus.Items.AddRange(new object[] {
-            "Activer",
-            "Désactiver"});
-            this.ColumnComboBoxCategoryStatus.MinimumWidth = 100;
-            this.ColumnComboBoxCategoryStatus.Name = "ColumnComboBoxCategoryStatus";
-            this.ColumnComboBoxCategoryStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnComboBoxCategoryStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // label13
             // 
@@ -245,36 +221,12 @@ namespace GADJIT_WIN_ASW
             this.DGVBrand.Name = "DGVBrand";
             this.DGVBrand.Size = new System.Drawing.Size(478, 389);
             this.DGVBrand.TabIndex = 4;
+            this.DGVBrand.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVBrand_CellEndEdit);
             this.DGVBrand.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.DGVBrand_CellValidating);
             this.DGVBrand.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVBrand_CellValueChanged);
             this.DGVBrand.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGVBrand_EditingControlShowing);
             this.DGVBrand.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DGVBrand_UserDeletedRow);
             this.DGVBrand.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DGVBrand_UserDeletingRow);
-            // 
-            // ColumnTextBoxBrandID
-            // 
-            this.ColumnTextBoxBrandID.HeaderText = "Code";
-            this.ColumnTextBoxBrandID.MinimumWidth = 100;
-            this.ColumnTextBoxBrandID.Name = "ColumnTextBoxBrandID";
-            this.ColumnTextBoxBrandID.ReadOnly = true;
-            // 
-            // ColumnTextBoxBrandDesignation
-            // 
-            this.ColumnTextBoxBrandDesignation.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnTextBoxBrandDesignation.HeaderText = "Designation";
-            this.ColumnTextBoxBrandDesignation.MinimumWidth = 200;
-            this.ColumnTextBoxBrandDesignation.Name = "ColumnTextBoxBrandDesignation";
-            // 
-            // ColumnComboBoxBrandStatus
-            // 
-            this.ColumnComboBoxBrandStatus.HeaderText = "Status";
-            this.ColumnComboBoxBrandStatus.Items.AddRange(new object[] {
-            "Activer",
-            "Désactiver"});
-            this.ColumnComboBoxBrandStatus.MinimumWidth = 100;
-            this.ColumnComboBoxBrandStatus.Name = "ColumnComboBoxBrandStatus";
-            this.ColumnComboBoxBrandStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnComboBoxBrandStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // label2
             // 
@@ -332,6 +284,58 @@ namespace GADJIT_WIN_ASW
             this.label4.Size = new System.Drawing.Size(44, 16);
             this.label4.TabIndex = 61;
             this.label4.Text = "Total";
+            // 
+            // ColumnTextBoxCategoryID
+            // 
+            this.ColumnTextBoxCategoryID.HeaderText = "Code";
+            this.ColumnTextBoxCategoryID.MinimumWidth = 50;
+            this.ColumnTextBoxCategoryID.Name = "ColumnTextBoxCategoryID";
+            this.ColumnTextBoxCategoryID.ReadOnly = true;
+            this.ColumnTextBoxCategoryID.Width = 50;
+            // 
+            // ColumnTextBoxCategoryDesignation
+            // 
+            this.ColumnTextBoxCategoryDesignation.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnTextBoxCategoryDesignation.HeaderText = "Designation";
+            this.ColumnTextBoxCategoryDesignation.MinimumWidth = 200;
+            this.ColumnTextBoxCategoryDesignation.Name = "ColumnTextBoxCategoryDesignation";
+            // 
+            // ColumnComboBoxCategoryStatus
+            // 
+            this.ColumnComboBoxCategoryStatus.HeaderText = "Status";
+            this.ColumnComboBoxCategoryStatus.Items.AddRange(new object[] {
+            "Activer",
+            "Désactiver"});
+            this.ColumnComboBoxCategoryStatus.MinimumWidth = 100;
+            this.ColumnComboBoxCategoryStatus.Name = "ColumnComboBoxCategoryStatus";
+            this.ColumnComboBoxCategoryStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnComboBoxCategoryStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // ColumnTextBoxBrandID
+            // 
+            this.ColumnTextBoxBrandID.HeaderText = "Code";
+            this.ColumnTextBoxBrandID.MinimumWidth = 50;
+            this.ColumnTextBoxBrandID.Name = "ColumnTextBoxBrandID";
+            this.ColumnTextBoxBrandID.ReadOnly = true;
+            this.ColumnTextBoxBrandID.Width = 50;
+            // 
+            // ColumnTextBoxBrandDesignation
+            // 
+            this.ColumnTextBoxBrandDesignation.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnTextBoxBrandDesignation.HeaderText = "Designation";
+            this.ColumnTextBoxBrandDesignation.MinimumWidth = 200;
+            this.ColumnTextBoxBrandDesignation.Name = "ColumnTextBoxBrandDesignation";
+            // 
+            // ColumnComboBoxBrandStatus
+            // 
+            this.ColumnComboBoxBrandStatus.HeaderText = "Status";
+            this.ColumnComboBoxBrandStatus.Items.AddRange(new object[] {
+            "Activer",
+            "Désactiver"});
+            this.ColumnComboBoxBrandStatus.MinimumWidth = 100;
+            this.ColumnComboBoxBrandStatus.Name = "ColumnComboBoxBrandStatus";
+            this.ColumnComboBoxBrandStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnComboBoxBrandStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // GadgetCategoryBrandManagment
             // 
