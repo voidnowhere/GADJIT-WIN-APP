@@ -34,8 +34,6 @@ namespace GADJIT_WIN_ASW
         ColumnTextBoxSalary
         ColumnComboBoxDisponibility
         ColumnComboBoxStatus
-
-        StafID StafCIN StafPicture StafLastName StafFirstName StafEmail StafPassWord StafPhoneNumber StafAdress CitDesig StafSalary StafDispo StafSta
         */
 
         SqlDataReader dataReader;
@@ -191,7 +189,8 @@ namespace GADJIT_WIN_ASW
                 {
                     while (dataReader.Read())
                     {
-                        DGVStaff.Rows.Add(dataReader["StafID"],
+                        DGVStaff.Rows.Add(
+                            dataReader["StafID"],
                             dataReader["StafCIN"],
                             (dataReader["StafPicture"] == DBNull.Value) ? null : new Bitmap(new MemoryStream((byte[])dataReader["StafPicture"])),
                             dataReader["StafLastName"],
@@ -359,7 +358,7 @@ namespace GADJIT_WIN_ASW
                         }
                         else
                         {
-                            MessageBox.Show("Cet employé a été supprimer", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Ce personnel a été supprimer", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             GADJIT.sqlConnection.Close();
                             FillDGVStaff();
                         }
@@ -514,10 +513,7 @@ namespace GADJIT_WIN_ASW
                 SqlCommand sqlCommand = new SqlCommand("select COUNT(StafID) from Ticket where StafID = @id", GADJIT.sqlConnection);
                 sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 GADJIT.sqlConnection.Open();
-                if ((int)sqlCommand.ExecuteScalar() > 0)
-                {
-                    return false;
-                }
+                if ((int)sqlCommand.ExecuteScalar() > 0) return false;
             }
             catch (Exception ex)
             {
