@@ -55,7 +55,7 @@ namespace GADJIT_WIN_ASW
 
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Parameters.AddWithValue("@WorID", WID);
-                sqlCommand.Parameters.Add("@dateF", SqlDbType.DateTime).Value = DTPTicketFromSearch.Value;
+                sqlCommand.Parameters.Add("@dateF", SqlDbType.DateTime).Value = DTPTicketFromSearch.Value.AddDays(-1);
                 sqlCommand.Parameters.Add("@dateT", SqlDbType.DateTime).Value = DTPTicketToSearch.Value;
 
                 if (ComboBoxCategorySearch.SelectedIndex > 0 || ComboBoxBrandSearch.SelectedIndex > 0 || ComboBoxReferenceSearch.SelectedIndex > 0)
