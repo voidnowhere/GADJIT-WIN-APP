@@ -89,7 +89,7 @@ namespace GADJIT_WIN_ASW
             {
                 SqlCommand sqlCommand = new SqlCommand("select MAX(StafID) from Staff", GADJIT.sqlConnection);
                 GADJIT.sqlConnection.Open();
-                DGVStaff[0, rowIndex].Value = (sqlCommand.ExecuteScalar() == null) ? 0 : int.Parse(sqlCommand.ExecuteScalar().ToString()) + 1;
+                DGVStaff[0, rowIndex].Value = (sqlCommand.ExecuteScalar() == DBNull.Value) ? 0 : int.Parse(sqlCommand.ExecuteScalar().ToString()) + 1;
             }
             catch (Exception ex)
             {
@@ -702,7 +702,11 @@ namespace GADJIT_WIN_ASW
 
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
-            FillDGVStaff();
+            if (TextBoxCINSearch.Text != "" || TextBoxEmailSearch.Text != "" || TextBoxLastNameSearch.Text != ""
+                || ComboBoxCitySearch.SelectedIndex > 0 || ComboBoxStatusSearch.SelectedIndex > 0)
+            {
+                FillDGVStaff();
+            }
         }
 
         private void ButtonReset_Click(object sender, EventArgs e)
