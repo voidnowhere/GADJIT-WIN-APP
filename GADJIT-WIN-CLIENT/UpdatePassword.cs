@@ -47,13 +47,17 @@ namespace GADJIT_WIN_CLIENT
                     GADJIT.sqlConnection.Close();
                     errorProviderConfPass.SetError(TextBoxConfNewPass, null);
                     MessageBox.Show("Mot de passe modifie avec succes", "modification mot de passe", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    GADJIT.SendEmail(email, "Bonjour " + nom + " :\nvous avez modifier votre mot de passe voici le nouveau mot de pass."+TextBoxNewPass.Text+" \nGADJIT MAROC.");
+                    GADJIT.SendEmail(email, "Bonjour " + nom + " :\nvous avez modifier votre mot de passe voici le nouveau mot de pass." + TextBoxNewPass.Text + " \nGADJIT MAROC.");
                     this.Close();
                 }
                 else
                 {
                     errorProviderConfPass.SetError(TextBoxConfNewPass, "mot de passe doit Être identique");
                 }
+            }
+            else
+            {
+                MessageBox.Show("Entrez l'ancien mot de passe correct", "Incorrect", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

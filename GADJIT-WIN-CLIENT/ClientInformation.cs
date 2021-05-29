@@ -25,8 +25,8 @@ namespace GADJIT_WIN_CLIENT
         public HOME home;
         private void ClientInformation_Load(object sender, EventArgs e)
         {
-            ComboxBoxCity.SelectedIndex = 0;
             FillComboBoxCity();
+            ComboxBoxCity.SelectedIndex=0;
             //
             SqlCommand cmd = new SqlCommand("select CliLastName,CliFirstName,CliEmail,CliPassWord,CliPhoneNumber,CliAddress,CitDesig from Client, City where CliID=@CID and Client.CitID = City.CitID ", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@CID", CID);
@@ -117,7 +117,6 @@ namespace GADJIT_WIN_CLIENT
             passupd.nom = TextBoxNom.Text;
             passupd.email = TextBoxPrenom.Text;
             passupd.ShowDialog();
-            ClientInformation_Load(sender, e);
         }
         private void FillComboBoxCity()
         {
@@ -129,7 +128,6 @@ namespace GADJIT_WIN_CLIENT
                 dr = sqlCommand.ExecuteReader();
                 if (dr.HasRows)
                 {
-                    ComboxBoxCity.Items.Add("----Votre Ville---");
                     while (dr.Read())
                     {
                         ComboxBoxCity.Items.Add(dr.GetString(1));
