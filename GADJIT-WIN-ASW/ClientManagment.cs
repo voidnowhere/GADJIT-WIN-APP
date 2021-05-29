@@ -171,7 +171,11 @@ namespace GADJIT_WIN_ASW
 
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
-            FillDGVClient();
+            if (TextBoxEmailSearch.Text != "" || TextBoxLastNameSearch.Text != ""
+                || ComboBoxCitySearch.SelectedIndex > 0 || ComboBoxStatusSearch.SelectedIndex > 0)
+            {
+                FillDGVClient();
+            }
         }
 
         private void ButtonReset_Click(object sender, EventArgs e)
