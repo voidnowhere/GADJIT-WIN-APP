@@ -175,7 +175,7 @@ namespace GADJIT_WIN_ASW
                         switch (dataReader["TicSta"].ToString())
                         {
                             case "ED":
-                                ComboBoxPorg.Items.AddRange(new string[] { "En Cours de Diagnostique", "Confirmation de Diagnostic" });
+                                ComboBoxPorg.Items.AddRange(new string[] {"Confirmation de Diagnostic" });
                                 if (GroupeBoxDiag.Visible == false)
                                 {
                                     GroupeBoxDiag.Visible = true;
@@ -188,7 +188,7 @@ namespace GADJIT_WIN_ASW
                                     GroupeBoxDiag.Visible = false;
                                 }
                                 break;
-                            case "en cours de reparation":
+                            case "ER":
                                 ComboBoxPorg.Items.AddRange(new string[] { "En cours de Reparation", "Repare" });
                                 if (GroupeBoxDiag.Visible == true)
                                 {
@@ -202,7 +202,7 @@ namespace GADJIT_WIN_ASW
                                     GroupeBoxDiag.Visible = false;
                                 }
                                 break;
-                            default :
+                            default:
                                 ComboBoxPorg.Items.Add("non disponible");
                                 break;
                         }
@@ -215,7 +215,7 @@ namespace GADJIT_WIN_ASW
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Erreur en selection cell",  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Erreur en selection cell", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -241,7 +241,7 @@ namespace GADJIT_WIN_ASW
                         switch (dataReader["TicSta"].ToString())
                         {
                             case "ED":
-                                ComboBoxPorg.Items.AddRange(new string[] { "En Cours de Diagnostique", "Confirmation de Diagnostic" });
+                                ComboBoxPorg.Items.AddRange(new string[] { "Confirmation de Diagnostic" });
                                 if (GroupeBoxDiag.Visible == false)
                                 {
                                     GroupeBoxDiag.Visible = true;
@@ -307,7 +307,7 @@ namespace GADJIT_WIN_ASW
                         switch (dataReader["TicSta"].ToString())
                         {
                             case "ED":
-                                ComboBoxPorg.Items.AddRange(new string[] { "En Cours de Diagnostique", "Confirmation de Diagnostic" });
+                                ComboBoxPorg.Items.AddRange(new string[] {"Confirmation de Diagnostic" });
                                 if (GroupeBoxDiag.Visible == false)
                                 {
                                     GroupeBoxDiag.Visible = true;
@@ -353,6 +353,8 @@ namespace GADJIT_WIN_ASW
         }
         private void FillComboBoxsCategoryBrand()
         {
+            ComboBoxBrandSearch.Items.Clear();
+            ComboBoxCategorySearch.Items.Clear();
             try
             {
                 SqlCommand sqlCommand = new SqlCommand();
@@ -428,7 +430,7 @@ namespace GADJIT_WIN_ASW
             GADJIT.sqlConnection.Close();
             dataReader.Close();
             //
-            if (richTextBoxDiag.Text != "" && TextBoxPrice.Text != "" && textBoxWorkTime.Text != "")
+            if (richTextBoxDiag.Text != "" && TextBoxPrice.Text != "" && textBoxWorkTime.Text != "" )
             {
                 cmd = new SqlCommand("insert into Diagnostic Values(@DID,@TID,@DiagCmt,@Price,@Time)", GADJIT.sqlConnection);
                 cmd.Parameters.AddWithValue("@DID", DID);
@@ -436,16 +438,67 @@ namespace GADJIT_WIN_ASW
                 cmd.Parameters.AddWithValue("@DiagCmt", richTextBoxDiag.Text);
                 cmd.Parameters.AddWithValue("@Price", TextBoxPrice.Text);
                 cmd.Parameters.AddWithValue("@Time", textBoxWorkTime.Text);
+                cmd.Parameters.AddWithValue("@prix", int.Parse(TextBoxPrice.Text) + 100);
                 GADJIT.sqlConnection.Open();
                 cmd.ExecuteNonQuery();
                 GADJIT.sqlConnection.Close();
+                cmd = new SqlCommand("update Ticket set TicSta=@statut,TicRepPri=@prix where TicID=@TID", GADJIT.sqlConnection);
+                switch (ComboBoxPorg.Text)
+                {
+                    case "Confirmation de Diagnostic":
+                        cmd.Parameters.AddWithValue("@statut", "CD");
+                        break;
+                    case "En cours de Reparation":
+                        cmd.Parameters.AddWithValue("@statut", "ER");
+                        break;
+                    case "Repare":
+                        cmd.Parameters.AddWithValue("@statut", "R");
+                        break;
+                }
+                cmd.Parameters.AddWithValue("@TID", TID);
+                cmd.Parameters.AddWithValue("@prix", TextBoxPrice.Text);
+                GADJIT.sqlConnection.Open();
+                cmd.ExecuteNonQuery();
+                GADJIT.sqlConnection.Close();
+            }
+            //
+            //
+            if (ComboBoxPorg.SelectedIndex > -1)
+            {
+                cmd = new SqlCommand("update Ticket set TicSta=@statut where TicID=@TID", GADJIT.sqlConnection);
+                switch (ComboBoxPorg.Text)
+                {
+                    case "Confirmation de Diagnostic":
+                        cmd.Parameters.AddWithValue("@statut", "CD");
+                        break;
+                    case "En cours de Reparation":
+                        cmd.Parameters.AddWithValue("@statut", "ER");
+                        break;
+                    case "Repare":
+                        cmd.Parameters.AddWithValue("@statut", "R");
+                        break;
+                }
+                cmd.Parameters.AddWithValue("@TID", TID);
+                GADJIT.sqlConnection.Open();
+                cmd.ExecuteNonQuery();
+                GADJIT.sqlConnection.Close();
+                GetClientEmail();
+                if (ComboBoxPorg.Text == "CD")
+                {
+                    GADJIT.SendEmail(emailtemp, "Bonjour:\n\n le diagnostic de votre ticket code : [" + TID + "] est disponible consultez votre ticket sur notre Application Gadjit! \n\nGADJIT MAROC.");
+                }
+                else if (ComboBoxPorg.Text == "R")
+                {
+                    GADJIT.SendEmail(emailtemp, "Bonjour:\n\n l'Appareil avec le ticket code : [" + TID + "] a été reparé! \n On vous contactera dans le bref delais pour confirmer la livraison de votre GADJIT. \n\nGADJIT MAROC.");
+                }
             }
             //
             cmd = new SqlCommand("select max(TicID) from TicketMonitoring ", GADJIT.sqlConnection);
             GADJIT.sqlConnection.Open();
             if (cmd.ExecuteScalar() != DBNull.Value)
             {
-                TMID += (int)cmd.ExecuteScalar();
+                TMID = (int)cmd.ExecuteScalar();
+                TMID++;
             }
             else
             {
@@ -455,46 +508,14 @@ namespace GADJIT_WIN_ASW
             dataReader.Close();
             //
             GADJIT.sqlConnection.Open();
-            cmd.CommandText = "insert into TicketMonitoring values(@TMID, GETDATE(), @statut, 'W', @WID, 1)";
+            cmd.CommandText = "insert into TicketMonitoring values(@TMID, GETDATE(), @statutTM, 'W', @WIDTM,1)";
             cmd.Parameters.AddWithValue("@TMID", TMID);
-            cmd.Parameters.AddWithValue("@statut", ComboBoxPorg.Text);
-            cmd.Parameters.AddWithValue("@WID", WID);
+            cmd.Parameters.AddWithValue("@statutTM", ComboBoxPorg.Text);
+            cmd.Parameters.AddWithValue("@WIDTM", WID);
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
             //
-            if (ComboBoxPorg.Text != "")
-            {
-                cmd = new SqlCommand("update Ticket set TicSta=@statut,TicRePri=@prix where TicID=@TID", GADJIT.sqlConnection);
-                switch (ComboBoxPorg.Text)
-                {
-                    case "Confirmation de Diagnostic":
-                        cmd.Parameters.AddWithValue("@statut", "CD");
-                        break;
-                    case "En cours de Reparation":
-                        cmd.Parameters.AddWithValue("@statut", "ER");
-                        break;
-                    case "En Cours de Diagnostique":
-                        cmd.Parameters.AddWithValue("@statut", "ED");
-                        break;
-                    case "Repare":
-                        cmd.Parameters.AddWithValue("@statut", "R");
-                        break;
-                }
-                cmd.Parameters.AddWithValue("@TID", TID);
-                cmd.Parameters.AddWithValue("@prix", int.Parse(TextBoxPrice.Text) + 100);
-                GADJIT.sqlConnection.Open();
-                cmd.ExecuteNonQuery();
-                GADJIT.sqlConnection.Close();
-            }
-            GetClientEmail();
-            if (ComboBoxPorg.Text == "CD")
-            {
-                GADJIT.SendEmail(emailtemp,"Bonjour:\n\n le diagnostic de votre ticket code : [" + TID + "] est disponible consultez votre ticket sur notre Application Gadjit! \n\nGADJIT MAROC.");
-            }
-            else if (ComboBoxPorg.Text == "R")
-            {
-                GADJIT.SendEmail(emailtemp, "Bonjour:\n\n l'Appareil avec le ticket code : [" + TID + "] a été reparé! \n On vous contactera dans le bref delais pour confirmer la livraison de votre GADJIT. \n\nGADJIT MAROC.");
-            }
+            ComboBoxPorg.Items.Clear();
             TicketConsultationWorker_Load(sender, e);
         }
         private void GetClientEmail()
@@ -575,7 +596,33 @@ namespace GADJIT_WIN_ASW
 
         private void ButtonReset_Click(object sender, EventArgs e)
         {
-            TicketConsultationWorker_Load(sender, e);
+            ComboBoxBrandSearch.SelectedIndex = 0;
+            ComboBoxCategorySearch.SelectedIndex = 0;
+            ComboBoxCode.SelectedIndex = 0;
+            ComboBoxReferenceSearch.Items.Clear();
+            textBoxWorkTime.Clear();
+            TextBoxGadget.Clear();
+            RichTextBoxProblem.Clear();
+            richTextBoxDiag.Clear();
+            TextBoxPrice.Clear();
+        }
+
+        private void TextBoxPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxWorkTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -29,8 +29,8 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.GroupeBoxDiag = new System.Windows.Forms.GroupBox();
             this.textBoxWorkTime = new System.Windows.Forms.TextBox();
@@ -131,6 +131,7 @@ namespace GADJIT_WIN_ASW
             this.textBoxWorkTime.Name = "textBoxWorkTime";
             this.textBoxWorkTime.Size = new System.Drawing.Size(295, 24);
             this.textBoxWorkTime.TabIndex = 45;
+            this.textBoxWorkTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxWorkTime_KeyPress);
             // 
             // label6
             // 
@@ -158,6 +159,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxPrice.Name = "TextBoxPrice";
             this.TextBoxPrice.Size = new System.Drawing.Size(295, 24);
             this.TextBoxPrice.TabIndex = 43;
+            this.TextBoxPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxPrice_KeyPress);
             // 
             // label4
             // 
@@ -626,9 +628,9 @@ namespace GADJIT_WIN_ASW
             // 
             // DATE
             // 
-            dataGridViewCellStyle1.Format = "g";
-            dataGridViewCellStyle1.NullValue = null;
-            this.DATE.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Format = "d";
+            dataGridViewCellStyle5.NullValue = null;
+            this.DATE.DefaultCellStyle = dataGridViewCellStyle5;
             this.DATE.HeaderText = "Date";
             this.DATE.MinimumWidth = 125;
             this.DATE.Name = "DATE";
@@ -645,9 +647,9 @@ namespace GADJIT_WIN_ASW
             // 
             // PRIX
             // 
-            dataGridViewCellStyle2.Format = "0:00";
-            dataGridViewCellStyle2.NullValue = null;
-            this.PRIX.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Format = "0:00";
+            dataGridViewCellStyle6.NullValue = null;
+            this.PRIX.DefaultCellStyle = dataGridViewCellStyle6;
             this.PRIX.HeaderText = "Prix Réparation";
             this.PRIX.MinimumWidth = 100;
             this.PRIX.Name = "PRIX";
