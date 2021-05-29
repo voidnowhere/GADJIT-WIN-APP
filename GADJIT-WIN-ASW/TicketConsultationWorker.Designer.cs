@@ -30,6 +30,7 @@ namespace GADJIT_WIN_ASW
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.GroupeBoxDiag = new System.Windows.Forms.GroupBox();
             this.textBoxWorkTime = new System.Windows.Forms.TextBox();
@@ -58,11 +59,6 @@ namespace GADJIT_WIN_ASW
             this.DTPTicketToSearch = new System.Windows.Forms.DateTimePicker();
             this.DTPTicketFromSearch = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
-            this.DGVTicket = new System.Windows.Forms.DataGridView();
-            this.CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Refrence = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ButtonRecherche = new System.Windows.Forms.Button();
@@ -73,16 +69,23 @@ namespace GADJIT_WIN_ASW
             this.TextBoxTicketRepare = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.DGVTicket = new System.Windows.Forms.DataGridView();
+            this.CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.STATUT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRIX = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GADGET = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.GroupeBoxDiag.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVTicket)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVTicket)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.GroupeBoxDiag);
             this.groupBox1.Controls.Add(this.TextBoxGadget);
             this.groupBox1.Controls.Add(this.label17);
@@ -97,7 +100,7 @@ namespace GADJIT_WIN_ASW
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Size = new System.Drawing.Size(622, 468);
+            this.groupBox1.Size = new System.Drawing.Size(622, 471);
             this.groupBox1.TabIndex = 75;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ticket détail";
@@ -444,57 +447,6 @@ namespace GADJIT_WIN_ASW
             this.label10.TabIndex = 73;
             this.label10.Text = "Tickets Consulation";
             // 
-            // DGVTicket
-            // 
-            this.DGVTicket.AllowUserToAddRows = false;
-            this.DGVTicket.AllowUserToDeleteRows = false;
-            this.DGVTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.DGVTicket.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVTicket.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CODE,
-            this.DATE,
-            this.Refrence,
-            this.Sta});
-            this.DGVTicket.Location = new System.Drawing.Point(18, 170);
-            this.DGVTicket.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.DGVTicket.Name = "DGVTicket";
-            this.DGVTicket.ReadOnly = true;
-            this.DGVTicket.Size = new System.Drawing.Size(439, 217);
-            this.DGVTicket.TabIndex = 74;
-            this.DGVTicket.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellClick);
-            this.DGVTicket.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentClick);
-            this.DGVTicket.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentDoubleClick);
-            // 
-            // CODE
-            // 
-            this.CODE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CODE.HeaderText = "Code";
-            this.CODE.Name = "CODE";
-            this.CODE.ReadOnly = true;
-            // 
-            // DATE
-            // 
-            this.DATE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.DATE.DefaultCellStyle = dataGridViewCellStyle1;
-            this.DATE.HeaderText = "Date";
-            this.DATE.Name = "DATE";
-            this.DATE.ReadOnly = true;
-            // 
-            // Refrence
-            // 
-            this.Refrence.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Refrence.HeaderText = "Gadget";
-            this.Refrence.Name = "Refrence";
-            this.Refrence.ReadOnly = true;
-            // 
-            // Sta
-            // 
-            this.Sta.HeaderText = "Etat";
-            this.Sta.Name = "Sta";
-            this.Sta.ReadOnly = true;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -525,7 +477,7 @@ namespace GADJIT_WIN_ASW
             this.groupBox2.Controls.Add(this.ButtonRecherche);
             this.groupBox2.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.Teal;
-            this.groupBox2.Location = new System.Drawing.Point(18, 64);
+            this.groupBox2.Location = new System.Drawing.Point(3, 64);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1069, 100);
             this.groupBox2.TabIndex = 76;
@@ -635,20 +587,88 @@ namespace GADJIT_WIN_ASW
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.TextBoxTicketRepare);
             this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Location = new System.Drawing.Point(18, 393);
+            this.groupBox3.Location = new System.Drawing.Point(3, 382);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(316, 145);
             this.groupBox3.TabIndex = 77;
             this.groupBox3.TabStop = false;
             // 
+            // DGVTicket
+            // 
+            this.DGVTicket.AllowUserToAddRows = false;
+            this.DGVTicket.AllowUserToDeleteRows = false;
+            this.DGVTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DGVTicket.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVTicket.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CODE,
+            this.DATE,
+            this.STATUT,
+            this.PRIX,
+            this.GADGET});
+            this.DGVTicket.Location = new System.Drawing.Point(3, 182);
+            this.DGVTicket.Name = "DGVTicket";
+            this.DGVTicket.ReadOnly = true;
+            this.DGVTicket.Size = new System.Drawing.Size(455, 206);
+            this.DGVTicket.TabIndex = 78;
+            this.DGVTicket.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellClick);
+            this.DGVTicket.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentClick);
+            this.DGVTicket.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentDoubleClick);
+            // 
+            // CODE
+            // 
+            this.CODE.HeaderText = "Code";
+            this.CODE.MinimumWidth = 50;
+            this.CODE.Name = "CODE";
+            this.CODE.ReadOnly = true;
+            this.CODE.Width = 50;
+            // 
+            // DATE
+            // 
+            dataGridViewCellStyle1.Format = "g";
+            dataGridViewCellStyle1.NullValue = null;
+            this.DATE.DefaultCellStyle = dataGridViewCellStyle1;
+            this.DATE.HeaderText = "Date";
+            this.DATE.MinimumWidth = 125;
+            this.DATE.Name = "DATE";
+            this.DATE.ReadOnly = true;
+            this.DATE.Width = 125;
+            // 
+            // STATUT
+            // 
+            this.STATUT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.STATUT.HeaderText = "Etat";
+            this.STATUT.MinimumWidth = 100;
+            this.STATUT.Name = "STATUT";
+            this.STATUT.ReadOnly = true;
+            // 
+            // PRIX
+            // 
+            dataGridViewCellStyle2.Format = "0:00";
+            dataGridViewCellStyle2.NullValue = null;
+            this.PRIX.DefaultCellStyle = dataGridViewCellStyle2;
+            this.PRIX.HeaderText = "Prix Réparation";
+            this.PRIX.MinimumWidth = 100;
+            this.PRIX.Name = "PRIX";
+            this.PRIX.ReadOnly = true;
+            // 
+            // GADGET
+            // 
+            this.GADGET.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.GADGET.HeaderText = "Gadget";
+            this.GADGET.MinimumWidth = 100;
+            this.GADGET.Name = "GADGET";
+            this.GADGET.ReadOnly = true;
+            // 
             // TicketConsultationWorker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1105, 673);
+            this.ClientSize = new System.Drawing.Size(1105, 653);
+            this.Controls.Add(this.DGVTicket);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.DGVTicket);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
             this.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -661,11 +681,11 @@ namespace GADJIT_WIN_ASW
             this.groupBox1.PerformLayout();
             this.GroupeBoxDiag.ResumeLayout(false);
             this.GroupeBoxDiag.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.DGVTicket)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVTicket)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -700,7 +720,6 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.DateTimePicker DTPTicketToSearch;
         private System.Windows.Forms.DateTimePicker DTPTicketFromSearch;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DataGridView DGVTicket;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button ButtonRecherche;
@@ -711,9 +730,11 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.TextBox TextBoxTicketRepare;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.DataGridView DGVTicket;
         private System.Windows.Forms.DataGridViewTextBoxColumn CODE;
         private System.Windows.Forms.DataGridViewTextBoxColumn DATE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Refrence;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Sta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STATUT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PRIX;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GADGET;
     }
 }

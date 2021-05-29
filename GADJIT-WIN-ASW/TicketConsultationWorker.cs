@@ -24,7 +24,7 @@ namespace GADJIT_WIN_ASW
         int WID ;
         int TID;
         int CID;
-        int RefID;
+        int TMID;
         string emailtemp;
         int DID;
         private void TicketConsultationWorker_Load(object sender, EventArgs e)
@@ -46,11 +46,15 @@ namespace GADJIT_WIN_ASW
             {
                 DGVTicket.Rows.Clear();
                 //
-                String sqlQuery = "select distinct TicID, TicDT, GadRefDesig,TicSta " +
-                    "from Ticket as t, GadgetReference as gr, GadgetCategory as gc, GadgetBrand as gb, Worker as w " +
-                    "where t.WorID = @id and t.GadRefID = gr.GadRefID and TicDT between @dateF and @dateT";
+                String sqlQuery =
+                    "select distinct TicID, TicDT, TicSta, TicRepPri, gc.GadCatDesig + ' ' + gb.GadBraDesig + ' ' + gr.GadRefDesig as Gadget " +
+                    "from Ticket as t, GadgetReference as gr, GadgetCategory as gc, GadgetBrand as gb, Worker as w, Client as c " +
+                    "where t.WorID = @WorID " +
+                    "and t.GadRefID = gr.GadRefID and gr.GadCatID = gc.GadCatID and gr.GadBraID = gb.GadBraID " +
+                    "and TicDT between @dateF and @dateT";
+
                 SqlCommand sqlCommand = new SqlCommand();
-                sqlCommand.Parameters.Add("@id",SqlDbType.Int).Value=WID;
+                sqlCommand.Parameters.AddWithValue("@WorID", WID);
                 sqlCommand.Parameters.Add("@dateF", SqlDbType.DateTime).Value = DTPTicketFromSearch.Value;
                 sqlCommand.Parameters.Add("@dateT", SqlDbType.DateTime).Value = DTPTicketToSearch.Value;
 
@@ -80,7 +84,52 @@ namespace GADJIT_WIN_ASW
                 {
                     while (dataReader.Read())
                     {
-                        DGVTicket.Rows.Add((int)dataReader["TicID"], dataReader.GetDateTime(1), dataReader.GetString(2), dataReader.GetString(3));
+                        String status = "";
+                        switch (dataReader["TicSta"].ToString())
+                        {
+                            case "PV":
+                                status = "pas encore vérifié";
+                                break;
+                            case "V":
+                                status = "vérifié";
+                                break;
+                            case "A":
+                                status = "annulé";
+                                break;
+                            case "ED":
+                                status = "en cours de diagnostic";
+                                break;
+                            case "CD":
+                                status = "confirmation diagnostic";
+                                break;
+                            case "ER":
+                                status = "en cours de reparation";
+                                break;
+                            case "R":
+                                status = "reparé";
+                                break;
+                            case "DV":
+                                status = "diagnostic validé";
+                                break;
+                            case "DR":
+                                status = "diagnostic rejeté";
+                                break;
+                            case "RC":
+                                status = "retour au client";
+                                break;
+                            case "EL":
+                                status = "En cours de livraison";
+                                break;
+                            case "L":
+                                status = "livré";
+                                break;
+                        }
+                        DGVTicket.Rows.Add(
+                            dataReader["TicID"],
+                            dataReader["TicDT"],
+                            status,
+                            (dataReader["TicRepPri"].ToString() == "") ? "" : dataReader.GetSqlMoney(3).ToString(),
+                            dataReader["Gadget"]);
                     }
                     TextBoxTotalTickets.Text = DGVTicket.Rows.Count.ToString();
                 }
@@ -113,7 +162,7 @@ namespace GADJIT_WIN_ASW
                 {
                     DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
                     TID = (int)row.Cells["CODE"].Value;
-                    SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicSta,CliID from Ticket where TicID=@TID", GADJIT.sqlConnection);
+                    SqlCommand cmd = new SqlCommand("select TicProb,TicSta,CliID from Ticket where TicID=@TID", GADJIT.sqlConnection);
                     cmd.Parameters.AddWithValue("@TID", TID);
                     GADJIT.sqlConnection.Open();
                     dataReader = cmd.ExecuteReader();
@@ -121,7 +170,6 @@ namespace GADJIT_WIN_ASW
                     {
                         dataReader.Read();
                         RichTextBoxProblem.Text = dataReader["TicProb"].ToString();
-                        RefID = (int)dataReader["GadRefID"];
                         CID = (int)dataReader["CliID"];
                         ComboBoxPorg.Items.Clear();
                         switch (dataReader["TicSta"].ToString())
@@ -161,6 +209,7 @@ namespace GADJIT_WIN_ASW
                         ComboBoxPorg.SelectedIndex = 0;
                         dataReader.Close();
                         GADJIT.sqlConnection.Close();
+                        TextBoxGadget.Text = row.Cells["GADGET"].Value.ToString();
                         FillComboBoxsCategoryBrand();
                     }
                 }
@@ -179,7 +228,7 @@ namespace GADJIT_WIN_ASW
                 {
                     DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
                     TID = (int)row.Cells["CODE"].Value;
-                    SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicSta,CliID from Ticket where TicID=@TID", GADJIT.sqlConnection);
+                    SqlCommand cmd = new SqlCommand("select TicProb,TicSta,CliID from Ticket where TicID=@TID", GADJIT.sqlConnection);
                     cmd.Parameters.AddWithValue("@TID", TID);
                     GADJIT.sqlConnection.Open();
                     dataReader = cmd.ExecuteReader();
@@ -187,7 +236,6 @@ namespace GADJIT_WIN_ASW
                     {
                         dataReader.Read();
                         RichTextBoxProblem.Text = dataReader["TicProb"].ToString();
-                        RefID = (int)dataReader["GadRefID"];
                         CID = (int)dataReader["CliID"];
                         ComboBoxPorg.Items.Clear();
                         switch (dataReader["TicSta"].ToString())
@@ -227,6 +275,7 @@ namespace GADJIT_WIN_ASW
                         ComboBoxPorg.SelectedIndex = 0;
                         dataReader.Close();
                         GADJIT.sqlConnection.Close();
+                        TextBoxGadget.Text = row.Cells["GADGET"].Value.ToString();
                         FillComboBoxsCategoryBrand();
                     }
                 }
@@ -245,7 +294,7 @@ namespace GADJIT_WIN_ASW
                 {
                     DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
                     TID = (int)row.Cells["CODE"].Value;
-                    SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicSta,CliID from Ticket where TicID=@TID", GADJIT.sqlConnection);
+                    SqlCommand cmd = new SqlCommand("select TicProb,TicSta,CliID from Ticket where TicID=@TID", GADJIT.sqlConnection);
                     cmd.Parameters.AddWithValue("@TID", TID);
                     GADJIT.sqlConnection.Open();
                     dataReader = cmd.ExecuteReader();
@@ -253,7 +302,6 @@ namespace GADJIT_WIN_ASW
                     {
                         dataReader.Read();
                         RichTextBoxProblem.Text = dataReader["TicProb"].ToString();
-                        RefID = (int)dataReader["GadRefID"];
                         CID = (int)dataReader["CliID"];
                         ComboBoxPorg.Items.Clear();
                         switch (dataReader["TicSta"].ToString())
@@ -293,6 +341,7 @@ namespace GADJIT_WIN_ASW
                         ComboBoxPorg.SelectedIndex = 0;
                         dataReader.Close();
                         GADJIT.sqlConnection.Close();
+                        TextBoxGadget.Text = row.Cells["GADGET"].Value.ToString();
                         FillComboBoxsCategoryBrand();
                     }
                 }
@@ -392,8 +441,22 @@ namespace GADJIT_WIN_ASW
                 GADJIT.sqlConnection.Close();
             }
             //
+            cmd = new SqlCommand("select max(TicID) from TicketMonitoring ", GADJIT.sqlConnection);
             GADJIT.sqlConnection.Open();
-            cmd.CommandText = "insert into TicketMonitoring values(@TID, GETDATE(), @statut, 'W', @WID, 1)";
+            if (cmd.ExecuteScalar() != DBNull.Value)
+            {
+                TMID += (int)cmd.ExecuteScalar();
+            }
+            else
+            {
+                TMID = 0;
+            }
+            GADJIT.sqlConnection.Close();
+            dataReader.Close();
+            //
+            GADJIT.sqlConnection.Open();
+            cmd.CommandText = "insert into TicketMonitoring values(@TMID, GETDATE(), @statut, 'W', @WID, 1)";
+            cmd.Parameters.AddWithValue("@TMID", TMID);
             cmd.Parameters.AddWithValue("@statut", ComboBoxPorg.Text);
             cmd.Parameters.AddWithValue("@WID", WID);
             cmd.ExecuteNonQuery();
@@ -416,9 +479,6 @@ namespace GADJIT_WIN_ASW
                     case "Repare":
                         cmd.Parameters.AddWithValue("@statut", "R");
                         break;
-                    default:
-                        cmd.Parameters.AddWithValue("@statut", ComboBoxPorg.Text);
-                        break;
                 }
                 cmd.Parameters.AddWithValue("@TID", TID);
                 cmd.Parameters.AddWithValue("@prix", int.Parse(TextBoxPrice.Text) + 100);
@@ -429,31 +489,11 @@ namespace GADJIT_WIN_ASW
             GetClientEmail();
             if (ComboBoxPorg.Text == "CD")
             {
-                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-                client.EnableSsl = true;
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("GADJITMA@gmail.com", "GADJIT2021");
-                MailMessage msg = new MailMessage();
-                msg.To.Add(emailtemp);
-                msg.From = new MailAddress("GADJITMA@gmail.com");
-                msg.Subject = "Diagnostic Disponible";
-                msg.Body = "Bonjour:\n\n le diagnostic de votre ticket code : [" + TID + "] est disponible consultez votre ticket sur notre Application Gadjit! \n\nGADJIT MAROC.";
-                client.Send(msg);
+                GADJIT.SendEmail(emailtemp,"Bonjour:\n\n le diagnostic de votre ticket code : [" + TID + "] est disponible consultez votre ticket sur notre Application Gadjit! \n\nGADJIT MAROC.");
             }
             else if (ComboBoxPorg.Text == "R")
             {
-                SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-                client.EnableSsl = true;
-                client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential("GADJITMA@gmail.com", "GADJIT2021");
-                MailMessage msg = new MailMessage();
-                msg.To.Add(emailtemp);
-                msg.From = new MailAddress("GADJITMA@gmail.com");
-                msg.Subject = "Appareil reparé  ";
-                msg.Body = "Bonjour:\n\n l'Appareil avec le ticket code : [" + TID + "] a été reparé! \n On vous contactera dans le bref delais pour confirmer la livraison de votre GADJIT. \n\nGADJIT MAROC.";
-                client.Send(msg);
+                GADJIT.SendEmail(emailtemp, "Bonjour:\n\n l'Appareil avec le ticket code : [" + TID + "] a été reparé! \n On vous contactera dans le bref delais pour confirmer la livraison de votre GADJIT. \n\nGADJIT MAROC.");
             }
             TicketConsultationWorker_Load(sender, e);
         }
