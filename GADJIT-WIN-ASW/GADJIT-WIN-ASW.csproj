@@ -59,6 +59,12 @@
     <Compile Include="CirucularButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CityManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CityManagement.Designer.cs">
+      <DependentUpon>CityManagement.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClientManagment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +172,9 @@
     </Compile>
     <EmbeddedResource Include="AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CityManagement.resx">
+      <DependentUpon>CityManagement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClientManagment.resx">
       <DependentUpon>ClientManagment.cs</DependentUpon>

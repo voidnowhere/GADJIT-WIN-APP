@@ -64,6 +64,7 @@ namespace GADJIT_WIN_ASW
             ButtonStaffManagment.Enabled = tf;
             ButtonWorkerManagment.Enabled = tf;
             ButtonGadgetMenu.Enabled = tf;
+            ButtonCityManagement.Enabled = tf;
         }
 
         private void ButtonDisponibility_Click(object sender, EventArgs e)
@@ -102,6 +103,7 @@ namespace GADJIT_WIN_ASW
             ButtonClientManagment.BackColor = Color.FromArgb(247, 181, 46);
             ButtonStaffManagment.BackColor = Color.FromArgb(247, 181, 46);
             ButtonWorkerManagment.BackColor = Color.FromArgb(247, 181, 46);
+            ButtonCityManagement.BackColor = Color.FromArgb(247, 181, 46);
             //
             ButtonGadgetCategoryBrandManagment.BackColor = Color.White;
             ButtonGadgetCategoryBrandManagment.ForeColor = Color.FromArgb(218, 165, 33);
@@ -198,6 +200,19 @@ namespace GADJIT_WIN_ASW
             referenceManagment.MdiParent = this;
             referenceManagment.Dock = DockStyle.Fill;
             referenceManagment.Show();
+        }
+
+        private void ButtonCityManagement_Click(object sender, EventArgs e)
+        {
+            ResetButtonsColor();
+            ButtonCityManagement.BackColor = Color.FromArgb(218, 165, 33);
+            ButtonCityManagement.ForeColor = Color.White;
+            //
+            CloseMdiChildIdExists();
+            CityManagement cityManagement = new CityManagement();
+            cityManagement.MdiParent = this;
+            cityManagement.Dock = DockStyle.Fill;
+            cityManagement.Show();
         }
 
         private void ButtonGadgetMenu_Click(object sender, EventArgs e)
