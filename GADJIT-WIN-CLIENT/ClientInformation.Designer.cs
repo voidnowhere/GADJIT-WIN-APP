@@ -62,7 +62,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonAnnuler.Location = new System.Drawing.Point(62, 537);
             this.ButtonAnnuler.Name = "ButtonAnnuler";
             this.ButtonAnnuler.Size = new System.Drawing.Size(216, 37);
-            this.ButtonAnnuler.TabIndex = 8;
+            this.ButtonAnnuler.TabIndex = 7;
             this.ButtonAnnuler.Text = "Annuler";
             this.ButtonAnnuler.UseVisualStyleBackColor = false;
             this.ButtonAnnuler.Click += new System.EventHandler(this.ButtonAnnuler_Click);
@@ -78,7 +78,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonUpdate.Location = new System.Drawing.Point(300, 537);
             this.ButtonUpdate.Name = "ButtonUpdate";
             this.ButtonUpdate.Size = new System.Drawing.Size(216, 37);
-            this.ButtonUpdate.TabIndex = 7;
+            this.ButtonUpdate.TabIndex = 6;
             this.ButtonUpdate.Text = "MODIFIER";
             this.ButtonUpdate.UseVisualStyleBackColor = false;
             this.ButtonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
@@ -292,7 +292,7 @@ namespace GADJIT_WIN_CLIENT
             this.labelshowGroupBox.Location = new System.Drawing.Point(149, 509);
             this.labelshowGroupBox.Name = "labelshowGroupBox";
             this.labelshowGroupBox.Size = new System.Drawing.Size(163, 13);
-            this.labelshowGroupBox.TabIndex = 60;
+            this.labelshowGroupBox.TabIndex = 8;
             this.labelshowGroupBox.Text = "Changez votre Mot de passe ?";
             this.labelshowGroupBox.Click += new System.EventHandler(this.labelshowGroupBox_Click);
             // 

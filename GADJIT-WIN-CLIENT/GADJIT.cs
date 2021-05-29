@@ -28,11 +28,7 @@ namespace GADJIT_WIN_CLIENT
             smtp.UseDefaultCredentials = false;
             smtp.Credentials = new NetworkCredential("GADJITMA@gmail.com", "GADJIT2021");
             //
-            MailMessage mail = new MailMessage(
-                "GADJITMA@gmail.com",
-                toEmail,
-                "Compte GADJIT",
-                "Bonjour:\n\n" + msg + "\n\nGADJIT MAROC.");
+            MailMessage mail = new MailMessage("GADJITMA@gmail.com",toEmail,"Compte GADJIT", "Bonjour:\n\n" + msg + "\n\nGADJIT MAROC.");
             smtp.Send(mail);
         }
     }

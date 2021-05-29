@@ -55,7 +55,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonAnnuler.Location = new System.Drawing.Point(163, 505);
             this.ButtonAnnuler.Name = "ButtonAnnuler";
             this.ButtonAnnuler.Size = new System.Drawing.Size(216, 35);
-            this.ButtonAnnuler.TabIndex = 32;
+            this.ButtonAnnuler.TabIndex = 7;
             this.ButtonAnnuler.Text = "Annuler";
             this.ButtonAnnuler.UseVisualStyleBackColor = false;
             this.ButtonAnnuler.Click += new System.EventHandler(this.ButtonAnnuler_Click);
@@ -71,7 +71,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonConfirmer.Location = new System.Drawing.Point(474, 505);
             this.ButtonConfirmer.Name = "ButtonConfirmer";
             this.ButtonConfirmer.Size = new System.Drawing.Size(216, 35);
-            this.ButtonConfirmer.TabIndex = 31;
+            this.ButtonConfirmer.TabIndex = 6;
             this.ButtonConfirmer.Text = "Confirmer";
             this.ButtonConfirmer.UseVisualStyleBackColor = false;
             this.ButtonConfirmer.Click += new System.EventHandler(this.ButtonConfirmer_Click);
@@ -86,7 +86,7 @@ namespace GADJIT_WIN_CLIENT
             this.RichTextBoxProbTicket.Location = new System.Drawing.Point(163, 208);
             this.RichTextBoxProbTicket.Name = "RichTextBoxProbTicket";
             this.RichTextBoxProbTicket.Size = new System.Drawing.Size(527, 99);
-            this.RichTextBoxProbTicket.TabIndex = 30;
+            this.RichTextBoxProbTicket.TabIndex = 3;
             this.RichTextBoxProbTicket.Text = "";
             // 
             // ComboBoxRefGadjit
@@ -99,7 +99,7 @@ namespace GADJIT_WIN_CLIENT
             this.ComboBoxRefGadjit.Location = new System.Drawing.Point(163, 160);
             this.ComboBoxRefGadjit.Name = "ComboBoxRefGadjit";
             this.ComboBoxRefGadjit.Size = new System.Drawing.Size(527, 25);
-            this.ComboBoxRefGadjit.TabIndex = 29;
+            this.ComboBoxRefGadjit.TabIndex = 2;
             this.ComboBoxRefGadjit.SelectedIndexChanged += new System.EventHandler(this.ComboBoxRefGadjit_SelectedIndexChanged);
             // 
             // ComboBoxMarque
@@ -111,7 +111,7 @@ namespace GADJIT_WIN_CLIENT
             this.ComboBoxMarque.Location = new System.Drawing.Point(163, 119);
             this.ComboBoxMarque.Name = "ComboBoxMarque";
             this.ComboBoxMarque.Size = new System.Drawing.Size(527, 25);
-            this.ComboBoxMarque.TabIndex = 28;
+            this.ComboBoxMarque.TabIndex = 1;
             this.ComboBoxMarque.SelectedIndexChanged += new System.EventHandler(this.ComboBoxMarque_SelectedIndexChanged);
             // 
             // ComboBoxCatGadjit
@@ -125,7 +125,7 @@ namespace GADJIT_WIN_CLIENT
             this.ComboBoxCatGadjit.Location = new System.Drawing.Point(163, 79);
             this.ComboBoxCatGadjit.Name = "ComboBoxCatGadjit";
             this.ComboBoxCatGadjit.Size = new System.Drawing.Size(527, 25);
-            this.ComboBoxCatGadjit.TabIndex = 27;
+            this.ComboBoxCatGadjit.TabIndex = 0;
             this.ComboBoxCatGadjit.SelectedIndexChanged += new System.EventHandler(this.ComboBoxCatGadjit_SelectedIndexChanged);
             // 
             // label5
@@ -194,7 +194,7 @@ namespace GADJIT_WIN_CLIENT
             this.RichTextBoxAdress.Location = new System.Drawing.Point(163, 325);
             this.RichTextBoxAdress.Name = "RichTextBoxAdress";
             this.RichTextBoxAdress.Size = new System.Drawing.Size(527, 99);
-            this.RichTextBoxAdress.TabIndex = 34;
+            this.RichTextBoxAdress.TabIndex = 4;
             this.RichTextBoxAdress.Text = "";
             // 
             // label6
@@ -229,7 +229,7 @@ namespace GADJIT_WIN_CLIENT
             this.ComboBoxville.Location = new System.Drawing.Point(163, 439);
             this.ComboBoxville.Name = "ComboBoxville";
             this.ComboBoxville.Size = new System.Drawing.Size(527, 25);
-            this.ComboBoxville.TabIndex = 36;
+            this.ComboBoxville.TabIndex = 5;
             // 
             // CreationTicket
             // 

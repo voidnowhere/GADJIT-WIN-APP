@@ -61,7 +61,7 @@ namespace GADJIT_WIN_CLIENT
             this.textBox1.Location = new System.Drawing.Point(204, 86);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(122, 25);
-            this.textBox1.TabIndex = 30;
+            this.textBox1.TabIndex = 0;
             // 
             // ButtonRegister
             // 
@@ -73,7 +73,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonRegister.Location = new System.Drawing.Point(198, 131);
             this.ButtonRegister.Name = "ButtonRegister";
             this.ButtonRegister.Size = new System.Drawing.Size(128, 35);
-            this.ButtonRegister.TabIndex = 31;
+            this.ButtonRegister.TabIndex = 1;
             this.ButtonRegister.Text = "Verifier le code";
             this.ButtonRegister.UseVisualStyleBackColor = false;
             this.ButtonRegister.Click += new System.EventHandler(this.ButtonRegister_Click);
@@ -87,7 +87,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonClear.Location = new System.Drawing.Point(38, 131);
             this.ButtonClear.Name = "ButtonClear";
             this.ButtonClear.Size = new System.Drawing.Size(128, 35);
-            this.ButtonClear.TabIndex = 32;
+            this.ButtonClear.TabIndex = 2;
             this.ButtonClear.Text = "Pas Maintenant";
             this.ButtonClear.UseVisualStyleBackColor = false;
             this.ButtonClear.Click += new System.EventHandler(this.ButtonClear_Click);

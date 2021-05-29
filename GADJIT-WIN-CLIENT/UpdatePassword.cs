@@ -52,7 +52,7 @@ namespace GADJIT_WIN_CLIENT
                 }
                 else
                 {
-                    errorProviderConfPass.SetError(TextBoxConfNewPass, "mot de passe doit etre identique");
+                    errorProviderConfPass.SetError(TextBoxConfNewPass, "mot de passe doit Être identique");
                 }
             }
         }

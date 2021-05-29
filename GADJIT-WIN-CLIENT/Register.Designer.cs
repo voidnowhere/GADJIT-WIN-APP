@@ -76,7 +76,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxCaptcha.Multiline = true;
             this.TextBoxCaptcha.Name = "TextBoxCaptcha";
             this.TextBoxCaptcha.Size = new System.Drawing.Size(179, 28);
-            this.TextBoxCaptcha.TabIndex = 9;
+            this.TextBoxCaptcha.TabIndex = 8;
             // 
             // LabelCaptcha
             // 
@@ -96,7 +96,7 @@ namespace GADJIT_WIN_CLIENT
             this.LabelGoToLogin.Location = new System.Drawing.Point(237, 538);
             this.LabelGoToLogin.Name = "LabelGoToLogin";
             this.LabelGoToLogin.Size = new System.Drawing.Size(103, 17);
-            this.LabelGoToLogin.TabIndex = 12;
+            this.LabelGoToLogin.TabIndex = 11;
             this.LabelGoToLogin.Text = "connectez-vous";
             this.LabelGoToLogin.Click += new System.EventHandler(this.LabelGoToLogin_Click);
             // 
@@ -118,7 +118,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonClear.Location = new System.Drawing.Point(110, 500);
             this.ButtonClear.Name = "ButtonClear";
             this.ButtonClear.Size = new System.Drawing.Size(179, 35);
-            this.ButtonClear.TabIndex = 11;
+            this.ButtonClear.TabIndex = 10;
             this.ButtonClear.Text = "VIDER";
             this.ButtonClear.UseVisualStyleBackColor = false;
             this.ButtonClear.Click += new System.EventHandler(this.ButtonClear_Click);
@@ -133,7 +133,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonRegister.Location = new System.Drawing.Point(110, 459);
             this.ButtonRegister.Name = "ButtonRegister";
             this.ButtonRegister.Size = new System.Drawing.Size(179, 35);
-            this.ButtonRegister.TabIndex = 10;
+            this.ButtonRegister.TabIndex = 9;
             this.ButtonRegister.Text = "INSCRIPTION";
             this.ButtonRegister.UseVisualStyleBackColor = false;
             this.ButtonRegister.Click += new System.EventHandler(this.ButtonRegister_Click);
@@ -146,7 +146,7 @@ namespace GADJIT_WIN_CLIENT
             this.RichTextBoxAdress.Location = new System.Drawing.Point(201, 279);
             this.RichTextBoxAdress.Name = "RichTextBoxAdress";
             this.RichTextBoxAdress.Size = new System.Drawing.Size(216, 65);
-            this.RichTextBoxAdress.TabIndex = 7;
+            this.RichTextBoxAdress.TabIndex = 6;
             this.RichTextBoxAdress.Text = "";
             // 
             // label9
@@ -177,7 +177,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxPhone.Multiline = true;
             this.TextBoxPhone.Name = "TextBoxPhone";
             this.TextBoxPhone.Size = new System.Drawing.Size(216, 28);
-            this.TextBoxPhone.TabIndex = 6;
+            this.TextBoxPhone.TabIndex = 5;
             this.TextBoxPhone.Tag = "06xxxxxxxx";
             this.TextBoxPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxPhone_KeyPress);
             this.TextBoxPhone.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxPhone_Validating);
@@ -202,7 +202,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxConfPassword.Name = "TextBoxConfPassword";
             this.TextBoxConfPassword.PasswordChar = '*';
             this.TextBoxConfPassword.Size = new System.Drawing.Size(216, 28);
-            this.TextBoxConfPassword.TabIndex = 5;
+            this.TextBoxConfPassword.TabIndex = 4;
             this.TextBoxConfPassword.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxConfPassword_Validating);
             // 
             // label6
@@ -225,7 +225,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxPassword.Name = "TextBoxPassword";
             this.TextBoxPassword.PasswordChar = '*';
             this.TextBoxPassword.Size = new System.Drawing.Size(216, 28);
-            this.TextBoxPassword.TabIndex = 4;
+            this.TextBoxPassword.TabIndex = 3;
             // 
             // label5
             // 
@@ -246,7 +246,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxEmail.Multiline = true;
             this.TextBoxEmail.Name = "TextBoxEmail";
             this.TextBoxEmail.Size = new System.Drawing.Size(216, 28);
-            this.TextBoxEmail.TabIndex = 3;
+            this.TextBoxEmail.TabIndex = 2;
             this.TextBoxEmail.TextChanged += new System.EventHandler(this.TextBoxEmail_TextChanged);
             // 
             // label4
@@ -267,7 +267,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxPrenom.Multiline = true;
             this.TextBoxPrenom.Name = "TextBoxPrenom";
             this.TextBoxPrenom.Size = new System.Drawing.Size(216, 28);
-            this.TextBoxPrenom.TabIndex = 2;
+            this.TextBoxPrenom.TabIndex = 1;
             // 
             // label3
             // 
@@ -288,7 +288,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxNom.Multiline = true;
             this.TextBoxNom.Name = "TextBoxNom";
             this.TextBoxNom.Size = new System.Drawing.Size(216, 28);
-            this.TextBoxNom.TabIndex = 1;
+            this.TextBoxNom.TabIndex = 0;
             // 
             // label2
             // 
@@ -331,7 +331,7 @@ namespace GADJIT_WIN_CLIENT
             this.ComboxBoxCity.Location = new System.Drawing.Point(201, 350);
             this.ComboxBoxCity.Name = "ComboxBoxCity";
             this.ComboxBoxCity.Size = new System.Drawing.Size(216, 25);
-            this.ComboxBoxCity.TabIndex = 51;
+            this.ComboxBoxCity.TabIndex = 7;
             // 
             // errorProviderEmail
             // 

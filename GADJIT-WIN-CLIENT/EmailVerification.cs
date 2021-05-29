@@ -25,7 +25,6 @@ namespace GADJIT_WIN_CLIENT
         public string nom;
         private void EmailVerification_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(check);
             SqlCommand cmd = new SqlCommand("update Client set CliVerCod=@code where CliID=@CID", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@code", check);
             cmd.Parameters.AddWithValue("@CID", CID);

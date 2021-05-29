@@ -32,7 +32,7 @@ namespace GADJIT_WIN_CLIENT
         SqlDataReader dr;
         private void ConsultationTicketForClient_Load(object sender, EventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("select TicID from Ticket where CliID = @CID", GADJIT.sqlConnection);
+            SqlCommand cmd = new SqlCommand("select TicID from Ticket where CliID =@CID", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@CID", CID);
             GADJIT.sqlConnection.Open();
             dr = cmd.ExecuteReader();
@@ -52,7 +52,8 @@ namespace GADJIT_WIN_CLIENT
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("Select TicID,TicDT,TicRepPri,TicSta from ticket ", GADJIT.sqlConnection);
+                SqlCommand cmd = new SqlCommand("Select TicID,TicDT,TicRepPri,TicSta from ticket where CliID=@CID", GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("@CID", CID);
                 GADJIT.sqlConnection.Open();
                 dr = cmd.ExecuteReader();
                 if (dr.HasRows)
@@ -90,10 +91,8 @@ namespace GADJIT_WIN_CLIENT
                 dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
-                    while (dr.Read())
-                    {
-                        DGVTicket.Rows.Add(dr["TicID"], dr["TicDT"], dr["TicRepPri"], dr["TicSta"]);
-                    }
+                    dr.Read();
+                    DGVTicket.Rows.Add(dr["TicID"], dr["TicDT"], dr["TicRepPri"], dr["TicSta"]);
                 }
                 price = dr["TicRepPri"].ToString();
             }

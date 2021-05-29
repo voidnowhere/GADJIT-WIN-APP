@@ -76,7 +76,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonProfil.Name = "ButtonProfil";
             this.ButtonProfil.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.ButtonProfil.Size = new System.Drawing.Size(214, 40);
-            this.ButtonProfil.TabIndex = 41;
+            this.ButtonProfil.TabIndex = 2;
             this.ButtonProfil.Text = "Profil";
             this.ButtonProfil.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonProfil.UseVisualStyleBackColor = false;
@@ -95,7 +95,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonConsultationTicket.Name = "ButtonConsultationTicket";
             this.ButtonConsultationTicket.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.ButtonConsultationTicket.Size = new System.Drawing.Size(214, 40);
-            this.ButtonConsultationTicket.TabIndex = 40;
+            this.ButtonConsultationTicket.TabIndex = 1;
             this.ButtonConsultationTicket.Text = "Consultez votre ticket";
             this.ButtonConsultationTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonConsultationTicket.UseVisualStyleBackColor = false;
@@ -114,7 +114,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonNewTicket.Name = "ButtonNewTicket";
             this.ButtonNewTicket.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.ButtonNewTicket.Size = new System.Drawing.Size(214, 40);
-            this.ButtonNewTicket.TabIndex = 39;
+            this.ButtonNewTicket.TabIndex = 0;
             this.ButtonNewTicket.Text = "Nouveau ticket";
             this.ButtonNewTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonNewTicket.UseVisualStyleBackColor = false;
