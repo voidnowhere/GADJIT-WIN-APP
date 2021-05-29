@@ -50,83 +50,98 @@ namespace GADJIT_WIN_CLIENT
         {
             if(RichTextBoxAdress.Text !="" && RichTextBoxProbTicket.Text != "" && ComboBoxCatGadjit.SelectedIndex >0 && ComboBoxMarque.SelectedIndex>0 && ComboBoxRefGadjit.SelectedIndex>0 && ComboBoxville.SelectedIndex>0)
             {
-                getcityid();
-                GADJIT.sqlConnection.Open();
-                SqlCommand cmd = new SqlCommand("select max(TicID) from Ticket ", GADJIT.sqlConnection);
-                if (cmd.ExecuteScalar() != DBNull.Value)
+                try
                 {
-                    ID = (int)cmd.ExecuteScalar() + 1;
+                    getcityid();
+                    GADJIT.sqlConnection.Open();
+                    SqlCommand cmd = new SqlCommand("select max(TicID) from Ticket ", GADJIT.sqlConnection);
+                    if (cmd.ExecuteScalar() != DBNull.Value)
+                    {
+                        ID = (int)cmd.ExecuteScalar() + 1;
+                    }
+                    else
+                    {
+                        ID = 0;
+                    }
+                    cmd = new SqlCommand("insert into Ticket(TicID, TicDT, TicProb, TicAddress, CitID, TicSta, CliID, GadRefID) values(@ID, GETDATE(), @prob, @Adres,@city, 'PV', @CID, @ref)", GADJIT.sqlConnection);
+                    cmd.Parameters.AddWithValue("@ID", ID);
+                    cmd.Parameters.AddWithValue("@prob", RichTextBoxProbTicket.Text);
+                    cmd.Parameters.AddWithValue("@CID", CID);
+                    cmd.Parameters.AddWithValue("@Ref", RefID);
+                    cmd.Parameters.AddWithValue("@Adres", RichTextBoxAdress.Text);
+                    cmd.Parameters.AddWithValue("@city", cityID);
+                    cmd.ExecuteNonQuery();
+                    cmd = new SqlCommand("select max(TicID) from TicketMonitoring ", GADJIT.sqlConnection);
+                    int TID;
+                    if (cmd.ExecuteScalar() != DBNull.Value)
+                    {
+                        TID = (int)cmd.ExecuteScalar() + 1;
+                    }
+                    else
+                    {
+                        TID = 0;
+                    }
+                    cmd = new SqlCommand("insert into TicketMonitoring values(@id,GETDATE(),'Ticket Cree','C',@CID,1)", GADJIT.sqlConnection);
+                    cmd.Parameters.AddWithValue("@id", TID);
+                    cmd.Parameters.AddWithValue("@CID", CID);
+                    cmd.ExecuteNonQuery();
+                    GADJIT.sqlConnection.Close();
+                    GADJIT.SendEmail(email, "Bonjour:\n\nVotre Ticket a été Crée.\nVoici votre code de ticket:[" + ID + "]. \n\n - Pour consulter votre ticket veuillez rejoindre le panel consultez votre ticket.\n Merci \n \nGADJIT MAROC.");
+                    MessageBox.Show("Ticket a été Crée", "Nouvelle Ticket", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                 }
-                else
+                catch(Exception ex)
                 {
-                    ID = 0;
+                    MessageBox.Show(ex.Message, "Erreur in Creation Ticket");
                 }
-                cmd = new SqlCommand("insert into Ticket(TicID, TicDT, TicProb, TicAddress, CitID, TicSta, CliID, GadRefID) values(@ID, GETDATE(), @prob, @Adres,@city, 'PV', @CID, @ref)", GADJIT.sqlConnection);
-                cmd.Parameters.AddWithValue("@ID", ID);
-                cmd.Parameters.AddWithValue("@prob", RichTextBoxProbTicket.Text);
-                cmd.Parameters.AddWithValue("@CID", CID);
-                cmd.Parameters.AddWithValue("@Ref", RefID);
-                cmd.Parameters.AddWithValue("@Adres", RichTextBoxAdress.Text);
-                cmd.Parameters.AddWithValue("@city", cityID);
-                cmd.ExecuteNonQuery();
-                cmd = new SqlCommand("select max(TicID) from TicketMonitoring ", GADJIT.sqlConnection);
-                int TID;
-                if (cmd.ExecuteScalar() != DBNull.Value)
-                {
-                    TID = (int)cmd.ExecuteScalar() + 1;
-                }
-                else
-                {
-                    TID = 0;
-                }
-                cmd = new SqlCommand("insert into TicketMonitoring values(@id,GETDATE(),'Ticket Cree','C',@CID,1)", GADJIT.sqlConnection);
-                cmd.Parameters.AddWithValue("@id", TID);
-                cmd.Parameters.AddWithValue("@CID", CID);
-                cmd.ExecuteNonQuery();
-                GADJIT.sqlConnection.Close();
-                GADJIT.SendEmail(email, "Bonjour:\n\nVotre Ticket a été Crée.\nVoici votre code de ticket:[" + ID + "]. \n\n - Pour consulter votre ticket veuillez rejoindre le panel consultez votre ticket.\n Merci \n \nGADJIT MAROC.");
-                MessageBox.Show("Ticket a été Crée", "Nouvelle Ticket", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                
             }
             else
             {
-                MessageBox.Show("champ vide", "Veuillez remplicer tout les champs", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Veuillez remplicer tout les champs","champ vide",MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void ComboBoxCatGadjit_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(ComboBoxCatGadjit.SelectedIndex > 0)
+            if (ComboBoxCatGadjit.SelectedIndex > 0)
             {
-                GADJIT.sqlConnection.Open();
-                SqlCommand cmd = new SqlCommand("select GadCatID from GadgetCategory where GadCatDesig = @CatDes", GADJIT.sqlConnection);
-                cmd.Parameters.AddWithValue("CatDes", ComboBoxCatGadjit.Text);
-                SqlDataReader dr = cmd.ExecuteReader();
-                dr.Read();
-                CatID = Convert.ToInt32(dr["GadCatID"]);
-                dr.Close();
-                //
-                ComboBoxMarque.Items.Clear();
-                cmd = new SqlCommand("SELECT DISTINCT GadBraDesig FROM GadgetReference, GadgetBrand WHERE GadgetReference.GadBraID = GadgetBrand.GadBraID AND(GadCatID = @CatID) AND GadBraSta = 1 ", GADJIT.sqlConnection);
-                cmd.Parameters.AddWithValue("@CatID", CatID);
-                dr = cmd.ExecuteReader();
-                while (dr.Read())
+                try
                 {
-                    ComboBoxMarque.Items.Add(dr["GadBraDesig"].ToString());
+                    GADJIT.sqlConnection.Open();
+                    SqlCommand cmd = new SqlCommand("select GadCatID from GadgetCategory where GadCatDesig = @CatDes", GADJIT.sqlConnection);
+                    cmd.Parameters.AddWithValue("CatDes", ComboBoxCatGadjit.Text);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    dr.Read();
+                    CatID = Convert.ToInt32(dr["GadCatID"]);
+                    dr.Close();
+                    //
+                    ComboBoxMarque.Items.Clear();
+                    cmd = new SqlCommand("SELECT DISTINCT GadBraDesig FROM GadgetReference, GadgetBrand WHERE GadgetReference.GadBraID = GadgetBrand.GadBraID AND(GadCatID = @CatID) AND GadBraSta = 1 ", GADJIT.sqlConnection);
+                    cmd.Parameters.AddWithValue("@CatID", CatID);
+                    dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        ComboBoxMarque.Items.Add(dr["GadBraDesig"].ToString());
+                    }
+                    dr.Close();
+                    ComboBoxMarque.Items.Insert(0, "Choisissez une marque");
+                    //
+                    ComboBoxMarque.SelectedIndex = 0;
+                    ComboBoxRefGadjit.Items.Clear();
+                    ComboBoxRefGadjit.SelectedIndex = -1;
+                    GADJIT.sqlConnection.Close();
                 }
-                dr.Close();
-                ComboBoxMarque.Items.Insert(0, "Choisissez une marque");
-                //
-                ComboBoxMarque.SelectedIndex = 0;
-                ComboBoxRefGadjit.Items.Clear();
-                ComboBoxRefGadjit.SelectedIndex = -1;
-                GADJIT.sqlConnection.Close();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Cat selectedindex changed");
+                }
             }
             else
             {
                 ComboBoxMarque.Items.Clear();
                 ComboBoxRefGadjit.Items.Clear();
-            }
+            }                     
         }
 
         private void ComboBoxMarque_SelectedIndexChanged(object sender, EventArgs e)
@@ -134,28 +149,35 @@ namespace GADJIT_WIN_CLIENT
             ComboBoxRefGadjit.Items.Clear();
             ComboBoxRefGadjit.SelectedIndex = -1;
             if (ComboBoxCatGadjit.SelectedIndex!=0 && ComboBoxMarque.SelectedIndex != 0)
-            {                
-                GADJIT.sqlConnection.Open();
-                SqlCommand cmd = new SqlCommand("select GadBraID from GadgetBrand where GadBraDesig=@bradDes", GADJIT.sqlConnection);
-                cmd.Parameters.AddWithValue("@bradDes", ComboBoxMarque.Text);
-                SqlDataReader dr = cmd.ExecuteReader();
-                dr.Read();
-                BrandID = Convert.ToInt32(dr["GadBraID"]);
-                dr.Close();
-                //
-                ComboBoxRefGadjit.Items.Clear();
-                cmd = new SqlCommand("select GadRefDesig from GadgetReference where GadCatID = @CatID and GadBraID = @BrandID and GadRefSta=1", GADJIT.sqlConnection);
-                cmd.Parameters.AddWithValue("@CatID", CatID);
-                cmd.Parameters.AddWithValue("@BrandID", BrandID);
-                dr = cmd.ExecuteReader();
-                while (dr.Read())
+            {
+                try
                 {
-                    ComboBoxRefGadjit.Items.Add(dr["GadRefDesig"].ToString());
+                    GADJIT.sqlConnection.Open();
+                    SqlCommand cmd = new SqlCommand("select GadBraID from GadgetBrand where GadBraDesig=@bradDes", GADJIT.sqlConnection);
+                    cmd.Parameters.AddWithValue("@bradDes", ComboBoxMarque.Text);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    dr.Read();
+                    BrandID = Convert.ToInt32(dr["GadBraID"]);
+                    dr.Close();
+                    //
+                    ComboBoxRefGadjit.Items.Clear();
+                    cmd = new SqlCommand("select GadRefDesig from GadgetReference where GadCatID = @CatID and GadBraID = @BrandID and GadRefSta=1", GADJIT.sqlConnection);
+                    cmd.Parameters.AddWithValue("@CatID", CatID);
+                    cmd.Parameters.AddWithValue("@BrandID", BrandID);
+                    dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        ComboBoxRefGadjit.Items.Add(dr["GadRefDesig"].ToString());
+                    }
+                    dr.Close();
+                    ComboBoxRefGadjit.Items.Insert(0, "choisissez une reference");
+                    ComboBoxRefGadjit.SelectedIndex = 0;
+                    GADJIT.sqlConnection.Close();
                 }
-                dr.Close();
-                ComboBoxRefGadjit.Items.Insert(0, "choisissez une reference");
-                ComboBoxRefGadjit.SelectedIndex = 0;
-                GADJIT.sqlConnection.Close();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Erreur comboBoxBrand changed index");
+                }
             }
         }
 
@@ -168,14 +190,21 @@ namespace GADJIT_WIN_CLIENT
         {
             if (ComboBoxRefGadjit.SelectedIndex != 0)
             {
-                GADJIT.sqlConnection.Open();
-                SqlCommand cmd = new SqlCommand("select GadRefID from GadgetReference where GadRefDesig=@RefDes", GADJIT.sqlConnection);
-                cmd.Parameters.AddWithValue("@RefDes", ComboBoxRefGadjit.Text);
-                SqlDataReader dr = cmd.ExecuteReader();
-                dr.Read();
-                RefID = Convert.ToInt32(dr["GadRefID"]);
-                dr.Close();
-                GADJIT.sqlConnection.Close();
+                try
+                {
+                    GADJIT.sqlConnection.Open();
+                    SqlCommand cmd = new SqlCommand("select GadRefID from GadgetReference where GadRefDesig=@RefDes", GADJIT.sqlConnection);
+                    cmd.Parameters.AddWithValue("@RefDes", ComboBoxRefGadjit.Text);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    dr.Read();
+                    RefID = Convert.ToInt32(dr["GadRefID"]);
+                    dr.Close();
+                    GADJIT.sqlConnection.Close();
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Erreur getting refID from selected index change in comboRef ");
+                }
             }   
         }
 
@@ -185,19 +214,33 @@ namespace GADJIT_WIN_CLIENT
         }
         private void getclientemail()
         {
-            SqlCommand cmd = new SqlCommand("select CliEmail from Client where CliID=@CID", GADJIT.sqlConnection);
-            cmd.Parameters.AddWithValue("@CID", CID);
-            GADJIT.sqlConnection.Open();
-            email = cmd.ExecuteScalar().ToString();
-            GADJIT.sqlConnection.Close();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("select CliEmail from Client where CliID=@CID", GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("@CID", CID);
+                GADJIT.sqlConnection.Open();
+                email = cmd.ExecuteScalar().ToString();
+                GADJIT.sqlConnection.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur getting client email");
+            }
         }
         private void getcityid()
         {
-            SqlCommand cmd = new SqlCommand("select CitID from City where CitDesig=@city ", GADJIT.sqlConnection);
-            cmd.Parameters.AddWithValue("@city", ComboBoxville.Text);
-            GADJIT.sqlConnection.Open();
-            cityID = (int)cmd.ExecuteScalar();
-            GADJIT.sqlConnection.Close();
+            try
+            {
+                SqlCommand cmd = new SqlCommand("select CitID from City where CitDesig=@city ", GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("@city", ComboBoxville.Text);
+                GADJIT.sqlConnection.Open();
+                cityID = (int)cmd.ExecuteScalar();
+                GADJIT.sqlConnection.Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur getting city ID");
+            }
         }
         private void FillComboBoxCity()
         {
