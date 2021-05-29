@@ -23,14 +23,9 @@ namespace GADJIT_WIN_ASW
         SqlDataReader dataReader;
         int WID ;
         int TID;
-        int RefID;
-        int CatID;
-        int BrandID;
-        string Ref = "";
-        string Cat = "";
-        string Brand = "";
         int CID;
-        string emailtemp = "";
+        int RefID;
+        string emailtemp;
         int DID;
         private void TicketConsultationWorker_Load(object sender, EventArgs e)
         {
@@ -331,6 +326,15 @@ namespace GADJIT_WIN_ASW
                     ComboBoxBrandSearch.Items.Add(dataReader.GetString(0));
                 }
                 ComboBoxBrandSearch.Items.Insert(0, "--tous--");
+                dataReader.Close();
+                sqlCommand.CommandText = "select TicID from Ticket where WorID=@ID";
+                sqlCommand.Parameters.AddWithValue("@ID", WID);
+                dataReader = sqlCommand.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    ComboBoxCode.Items.Add(dataReader.GetInt32(0));
+                }
+                ComboBoxCode.Items.Insert(0, "--tous--");
             }
             catch (Exception ex)
             {
@@ -340,6 +344,9 @@ namespace GADJIT_WIN_ASW
             {
                 dataReader.Close();
                 GADJIT.sqlConnection.Close();
+                ComboBoxBrandSearch.SelectedIndex = 0;
+                ComboBoxCategorySearch.SelectedIndex = 0;
+                ComboBoxCode.SelectedIndex = 0;
             }
         }
         private void TicketsStats()

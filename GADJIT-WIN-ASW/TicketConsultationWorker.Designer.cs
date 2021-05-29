@@ -59,6 +59,10 @@ namespace GADJIT_WIN_ASW
             this.DTPTicketFromSearch = new System.Windows.Forms.DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
             this.DGVTicket = new System.Windows.Forms.DataGridView();
+            this.CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Refrence = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Sta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.ButtonRecherche = new System.Windows.Forms.Button();
@@ -69,10 +73,6 @@ namespace GADJIT_WIN_ASW
             this.TextBoxTicketRepare = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Refrence = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Sta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.GroupeBoxDiag.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVTicket)).BeginInit();
@@ -367,6 +367,7 @@ namespace GADJIT_WIN_ASW
             this.ComboBoxCategorySearch.Name = "ComboBoxCategorySearch";
             this.ComboBoxCategorySearch.Size = new System.Drawing.Size(187, 29);
             this.ComboBoxCategorySearch.TabIndex = 48;
+            this.ComboBoxCategorySearch.SelectedIndexChanged += new System.EventHandler(this.ComboBoxCategorySearch_SelectedIndexChanged);
             // 
             // label22
             // 
@@ -389,6 +390,7 @@ namespace GADJIT_WIN_ASW
             this.ComboBoxBrandSearch.Name = "ComboBoxBrandSearch";
             this.ComboBoxBrandSearch.Size = new System.Drawing.Size(187, 29);
             this.ComboBoxBrandSearch.TabIndex = 46;
+            this.ComboBoxBrandSearch.SelectedIndexChanged += new System.EventHandler(this.ComboBoxBrandSearch_SelectedIndexChanged);
             // 
             // label21
             // 
@@ -462,6 +464,36 @@ namespace GADJIT_WIN_ASW
             this.DGVTicket.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellClick);
             this.DGVTicket.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentClick);
             this.DGVTicket.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentDoubleClick);
+            // 
+            // CODE
+            // 
+            this.CODE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CODE.HeaderText = "Code";
+            this.CODE.Name = "CODE";
+            this.CODE.ReadOnly = true;
+            // 
+            // DATE
+            // 
+            this.DATE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.DATE.DefaultCellStyle = dataGridViewCellStyle1;
+            this.DATE.HeaderText = "Date";
+            this.DATE.Name = "DATE";
+            this.DATE.ReadOnly = true;
+            // 
+            // Refrence
+            // 
+            this.Refrence.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Refrence.HeaderText = "Gadget";
+            this.Refrence.Name = "Refrence";
+            this.Refrence.ReadOnly = true;
+            // 
+            // Sta
+            // 
+            this.Sta.HeaderText = "Etat";
+            this.Sta.Name = "Sta";
+            this.Sta.ReadOnly = true;
             // 
             // label11
             // 
@@ -608,36 +640,6 @@ namespace GADJIT_WIN_ASW
             this.groupBox3.Size = new System.Drawing.Size(316, 145);
             this.groupBox3.TabIndex = 77;
             this.groupBox3.TabStop = false;
-            // 
-            // CODE
-            // 
-            this.CODE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CODE.HeaderText = "Code";
-            this.CODE.Name = "CODE";
-            this.CODE.ReadOnly = true;
-            // 
-            // DATE
-            // 
-            this.DATE.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.DATE.DefaultCellStyle = dataGridViewCellStyle1;
-            this.DATE.HeaderText = "Date";
-            this.DATE.Name = "DATE";
-            this.DATE.ReadOnly = true;
-            // 
-            // Refrence
-            // 
-            this.Refrence.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Refrence.HeaderText = "Gadget";
-            this.Refrence.Name = "Refrence";
-            this.Refrence.ReadOnly = true;
-            // 
-            // Sta
-            // 
-            this.Sta.HeaderText = "Etat";
-            this.Sta.Name = "Sta";
-            this.Sta.ReadOnly = true;
             // 
             // TicketConsultationWorker
             // 
