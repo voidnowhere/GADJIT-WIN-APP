@@ -24,7 +24,6 @@ namespace GADJIT_WIN_ASW
         int WID ;
         int TID;
         int CID;
-        int TMID;
         string emailtemp;
         int DID;
         private void TicketConsultationWorker_Load(object sender, EventArgs e)
@@ -335,7 +334,7 @@ namespace GADJIT_WIN_ASW
                                 }
                                 break;
                             default:
-                                ComboBoxPorg.Items.Add("non disponible");
+                                ComboBoxPorg.Items.Clear();
                                 break;
                         }
                         ComboBoxPorg.SelectedIndex = 0;
@@ -493,23 +492,9 @@ namespace GADJIT_WIN_ASW
                 }
             }
             //
-            cmd = new SqlCommand("select max(TicID) from TicketMonitoring ", GADJIT.sqlConnection);
-            GADJIT.sqlConnection.Open();
-            if (cmd.ExecuteScalar() != DBNull.Value)
-            {
-                TMID = (int)cmd.ExecuteScalar();
-                TMID++;
-            }
-            else
-            {
-                TMID = 0;
-            }
-            GADJIT.sqlConnection.Close();
-            dataReader.Close();
-            //
             GADJIT.sqlConnection.Open();
             cmd.CommandText = "insert into TicketMonitoring values(@TMID, GETDATE(), @statutTM, 'W', @WIDTM,1)";
-            cmd.Parameters.AddWithValue("@TMID", TMID);
+            cmd.Parameters.AddWithValue("@TMID", TID);
             cmd.Parameters.AddWithValue("@statutTM", ComboBoxPorg.Text);
             cmd.Parameters.AddWithValue("@WIDTM", WID);
             cmd.ExecuteNonQuery();
