@@ -247,7 +247,7 @@ namespace GADJIT_WIN_CLIENT
             ComboBoxville.Items.Clear();
             try
             {
-                SqlCommand sqlCommand = new SqlCommand("select CitDesig from City", GADJIT.sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("select CitDesig from City where CitSta=1", GADJIT.sqlConnection);
                 GADJIT.sqlConnection.Open();
                 dataReader = sqlCommand.ExecuteReader();
                 if (dataReader.HasRows)
