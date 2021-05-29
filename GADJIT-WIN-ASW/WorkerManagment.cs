@@ -40,6 +40,7 @@ namespace GADJIT_WIN_ASW
 
         SqlDataReader dataReader;
         //
+        Dictionary<int, string> city = new Dictionary<int, string>();
         bool filledDGV = false;
         bool where = false;
         String status = "";
@@ -82,15 +83,21 @@ namespace GADJIT_WIN_ASW
             return false;
         }
 
-        private void InsertNewIDInDGV()
+        private void InsertNewIDInDGV(int rowIndex)
         {
-            if (DGVWorker.Rows.Count > 2)
+            try
             {
-                DGVWorker[0, DGVWorker.CurrentRow.Index].Value = (int)DGVWorker[0, DGVWorker.CurrentRow.Index - 1].Value + 1;
+                SqlCommand sqlCommand = new SqlCommand("select MAX(WorID) from Worker", GADJIT.sqlConnection);
+                GADJIT.sqlConnection.Open();
+                DGVWorker[0, rowIndex].Value = (sqlCommand.ExecuteScalar() == DBNull.Value) ? 0 : int.Parse(sqlCommand.ExecuteScalar().ToString()) + 1;
             }
-            else
+            catch (Exception ex)
             {
-                DGVWorker[0, DGVWorker.CurrentRow.Index].Value = 0;
+                MessageBox.Show(ex.Message, "Error InsertNewIDInDGV(int rowIndex)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                GADJIT.sqlConnection.Close();
             }
         }
 
@@ -98,16 +105,22 @@ namespace GADJIT_WIN_ASW
         {
             try
             {
-                SqlCommand sqlCommand = new SqlCommand("select CitDesig from City", GADJIT.sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("select CitID, CitDesig from City", GADJIT.sqlConnection);
                 GADJIT.sqlConnection.Open();
                 dataReader = sqlCommand.ExecuteReader();
                 if (dataReader.HasRows)
                 {
                     ComboBoxCitySearch.Items.Add("--tous--");
+                    //
+                    ColumnComboBoxCity.DisplayMember = "CitDesig";
+                    ColumnComboBoxCity.ValueMember = "CitID";
                     while (dataReader.Read())
                     {
-                        ComboBoxCitySearch.Items.Add(dataReader.GetString(0));
-                        ColumnComboBoxCity.Items.Add(dataReader.GetString(0));
+                        city.Add(dataReader.GetInt32(0), dataReader.GetString(1));
+                        //
+                        ComboBoxCitySearch.Items.Add(dataReader.GetString(1));
+                        //
+                        ColumnComboBoxCity.Items.Add(new { CitID = dataReader.GetInt32(0), CitDesig = dataReader.GetString(1) });
                     }
                 }
             }
@@ -159,8 +172,8 @@ namespace GADJIT_WIN_ASW
                     if (ComboBoxCitySearch.SelectedIndex > 0)
                     {
                         if (where) sqlQuery += " and";
-                        sqlQuery += " CitDesig = @city";
-                        sqlCommand.Parameters.Add("@city", SqlDbType.VarChar).Value = ComboBoxCitySearch.Text;
+                        sqlQuery += " CitID = @city";
+                        sqlCommand.Parameters.Add("@city", SqlDbType.Int).Value = city.Keys.First(i => city[i] == ComboBoxCitySearch.Text);
                         where = true;
                     }
                     if (ComboBoxStatusSearch.SelectedIndex > 0)
@@ -191,7 +204,7 @@ namespace GADJIT_WIN_ASW
                             dataReader["WorPassWord"], 
                             dataReader["WorPhoneNumber"],
                             dataReader["WorAddress"],
-                            dataReader["CitDesig"],
+                            dataReader["CitID"],
                             dataReader["WorSalary"], null,
                             dataReader["WorDispo"],
                             (dataReader.GetBoolean(12)) ? "Activer" : "Désactiver");
@@ -287,7 +300,7 @@ namespace GADJIT_WIN_ASW
             {
                 if (DGVWorker[0, rowIndex].Value == null) // ID
                 {
-                    InsertNewIDInDGV();
+                    InsertNewIDInDGV(rowIndex);
                     DGVWorker[6, rowIndex].Value = GADJIT.PasswordGenerator(8); //Password
                     DGVWorker[12, rowIndex].Value = "Hors Ligne"; //Disponibility
                     DGVWorker[13, rowIndex].Value = "Activer"; //Status
@@ -299,7 +312,7 @@ namespace GADJIT_WIN_ASW
                         try
                         {
                             string sqlQuery = "update Worker set WorCIN = @cin, WorPicture = @img, WorLastName = @lastName, WorFirstName = @firstName, WorEmail = @email, " +
-                                "WorPassWord = @password, WorPhoneNumber = @phoneNumber, WorAddress = @address, CitDesig = @city, WorSalary = @salary, " +
+                                "WorPassWord = @password, WorPhoneNumber = @phoneNumber, WorAddress = @address, CitID = @city, WorSalary = @salary, " +
                                 "WorSta = @status where WorID = @id";
                             SqlCommand sqlCommandUpdate = new SqlCommand(sqlQuery, GADJIT.sqlConnection);
 
@@ -321,7 +334,7 @@ namespace GADJIT_WIN_ASW
 
                             sqlCommandUpdate.Parameters.Add("@address", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxAdress", rowIndex].Value.ToString();
 
-                            sqlCommandUpdate.Parameters.Add("@city", SqlDbType.VarChar).Value = DGVWorker["ColumnComboBoxCity", rowIndex].Value.ToString();
+                            sqlCommandUpdate.Parameters.Add("@city", SqlDbType.Int).Value = (int)DGVWorker["ColumnComboBoxCity", rowIndex].Value;
 
                             sqlCommandUpdate.Parameters.Add("@salary", SqlDbType.Money).Value = Convert.ToDecimal(DGVWorker["ColumnTextBoxSalary", rowIndex].Value.ToString());
 
@@ -376,7 +389,7 @@ namespace GADJIT_WIN_ASW
 
                             sqlCommandInsert.Parameters.Add("@address", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxAdress", rowIndex].Value.ToString();
 
-                            sqlCommandInsert.Parameters.Add("@city", SqlDbType.VarChar).Value = DGVWorker["ColumnComboBoxCity", rowIndex].Value.ToString();
+                            sqlCommandInsert.Parameters.Add("@city", SqlDbType.Int).Value = (int)DGVWorker["ColumnComboBoxCity", rowIndex].Value;
 
                             sqlCommandInsert.Parameters.Add("@salary", SqlDbType.Money).Value = Convert.ToDecimal(DGVWorker["ColumnTextBoxSalary", rowIndex].Value.ToString());
 
@@ -457,6 +470,11 @@ namespace GADJIT_WIN_ASW
                     }
                     else
                     {
+                        if (DGVWorker[0, e.RowIndex].Value == null)
+                        {
+                            InsertNewIDInDGV(e.RowIndex);
+                            DGVWorker_CellValidating(sender, e);
+                        }
                         if (CheckIfEmailExists(e.FormattedValue.ToString(), DGVWorker[0, e.RowIndex].Value.ToString()))
                         {
                             e.Cancel = true;
@@ -696,7 +714,11 @@ namespace GADJIT_WIN_ASW
 
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
-            FillDGVWorker();
+            if(TextBoxCINSearch.Text != "" || TextBoxEmailSearch.Text != "" || TextBoxLastNameSearch.Text != ""
+                || ComboBoxCitySearch.SelectedIndex > 0 || ComboBoxStatusSearch.SelectedIndex > 0)
+            {
+                FillDGVWorker();
+            }
         }
 
         private void ButtonReset_Click(object sender, EventArgs e)
