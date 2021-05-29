@@ -29,8 +29,7 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.GroupeBoxDiag = new System.Windows.Forms.GroupBox();
             this.textBoxWorkTime = new System.Windows.Forms.TextBox();
@@ -72,9 +71,8 @@ namespace GADJIT_WIN_ASW
             this.DGVTicket = new System.Windows.Forms.DataGridView();
             this.CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.STATUT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRIX = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GADGET = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.STATUT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.GroupeBoxDiag.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -606,9 +604,8 @@ namespace GADJIT_WIN_ASW
             this.DGVTicket.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CODE,
             this.DATE,
-            this.STATUT,
-            this.PRIX,
-            this.GADGET});
+            this.GADGET,
+            this.STATUT});
             this.DGVTicket.Location = new System.Drawing.Point(3, 182);
             this.DGVTicket.Name = "DGVTicket";
             this.DGVTicket.ReadOnly = true;
@@ -628,32 +625,14 @@ namespace GADJIT_WIN_ASW
             // 
             // DATE
             // 
-            dataGridViewCellStyle5.Format = "d";
-            dataGridViewCellStyle5.NullValue = null;
-            this.DATE.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.DATE.DefaultCellStyle = dataGridViewCellStyle1;
             this.DATE.HeaderText = "Date";
             this.DATE.MinimumWidth = 125;
             this.DATE.Name = "DATE";
             this.DATE.ReadOnly = true;
             this.DATE.Width = 125;
-            // 
-            // STATUT
-            // 
-            this.STATUT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.STATUT.HeaderText = "Etat";
-            this.STATUT.MinimumWidth = 100;
-            this.STATUT.Name = "STATUT";
-            this.STATUT.ReadOnly = true;
-            // 
-            // PRIX
-            // 
-            dataGridViewCellStyle6.Format = "0:00";
-            dataGridViewCellStyle6.NullValue = null;
-            this.PRIX.DefaultCellStyle = dataGridViewCellStyle6;
-            this.PRIX.HeaderText = "Prix Réparation";
-            this.PRIX.MinimumWidth = 100;
-            this.PRIX.Name = "PRIX";
-            this.PRIX.ReadOnly = true;
             // 
             // GADGET
             // 
@@ -662,6 +641,14 @@ namespace GADJIT_WIN_ASW
             this.GADGET.MinimumWidth = 100;
             this.GADGET.Name = "GADGET";
             this.GADGET.ReadOnly = true;
+            // 
+            // STATUT
+            // 
+            this.STATUT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.STATUT.HeaderText = "Etat";
+            this.STATUT.MinimumWidth = 100;
+            this.STATUT.Name = "STATUT";
+            this.STATUT.ReadOnly = true;
             // 
             // TicketConsultationWorker
             // 
@@ -735,8 +722,7 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.DataGridView DGVTicket;
         private System.Windows.Forms.DataGridViewTextBoxColumn CODE;
         private System.Windows.Forms.DataGridViewTextBoxColumn DATE;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STATUT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PRIX;
         private System.Windows.Forms.DataGridViewTextBoxColumn GADGET;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STATUT;
     }
 }

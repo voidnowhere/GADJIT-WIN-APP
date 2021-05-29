@@ -46,7 +46,7 @@ namespace GADJIT_WIN_ASW
                 DGVTicket.Rows.Clear();
                 //
                 String sqlQuery =
-                    "select distinct TicID, TicDT, TicSta, TicRepPri, gc.GadCatDesig + ' ' + gb.GadBraDesig + ' ' + gr.GadRefDesig as Gadget " +
+                    "select distinct TicID, TicDT, TicSta, gc.GadCatDesig + ' ' + gb.GadBraDesig + ' ' + gr.GadRefDesig as Gadget " +
                     "from Ticket as t, GadgetReference as gr, GadgetCategory as gc, GadgetBrand as gb, Worker as w, Client as c " +
                     "where t.WorID = @WorID " +
                     "and t.GadRefID = gr.GadRefID and gr.GadCatID = gc.GadCatID and gr.GadBraID = gb.GadBraID " +
@@ -127,7 +127,6 @@ namespace GADJIT_WIN_ASW
                             dataReader["TicID"],
                             dataReader["TicDT"],
                             status,
-                            (dataReader["TicRepPri"].ToString() == "") ? "" : dataReader.GetSqlMoney(3).ToString(),
                             dataReader["Gadget"]);
                     }
                     TextBoxTotalTickets.Text = DGVTicket.Rows.Count.ToString();
@@ -253,7 +252,7 @@ namespace GADJIT_WIN_ASW
                                     GroupeBoxDiag.Visible = false;
                                 }
                                 break;
-                            case "en cours de reparation":
+                            case "ER":
                                 ComboBoxPorg.Items.AddRange(new string[] { "En cours de Reparation", "Repare" });
                                 if (GroupeBoxDiag.Visible == true)
                                 {
@@ -306,7 +305,7 @@ namespace GADJIT_WIN_ASW
                         switch (dataReader["TicSta"].ToString())
                         {
                             case "ED":
-                                ComboBoxPorg.Items.AddRange(new string[] {"Confirmation de Diagnostic" });
+                                ComboBoxPorg.Items.AddRange(new string[] { "Confirmation de Diagnostic" });
                                 if (GroupeBoxDiag.Visible == false)
                                 {
                                     GroupeBoxDiag.Visible = true;
@@ -319,7 +318,7 @@ namespace GADJIT_WIN_ASW
                                     GroupeBoxDiag.Visible = false;
                                 }
                                 break;
-                            case "en cours de reparation":
+                            case "ER":
                                 ComboBoxPorg.Items.AddRange(new string[] { "En cours de Reparation", "Repare" });
                                 if (GroupeBoxDiag.Visible == true)
                                 {
@@ -334,7 +333,7 @@ namespace GADJIT_WIN_ASW
                                 }
                                 break;
                             default:
-                                ComboBoxPorg.Items.Clear();
+                                ComboBoxPorg.Items.Add("non disponible");
                                 break;
                         }
                         ComboBoxPorg.SelectedIndex = 0;
