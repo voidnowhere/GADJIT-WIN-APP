@@ -32,20 +32,6 @@ namespace GADJIT_WIN_ASW
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DGVWorker = new System.Windows.Forms.DataGridView();
-            this.ColumnTextBoxID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTextBoxCIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPictureBox = new System.Windows.Forms.DataGridViewImageColumn();
-            this.ColumnTextBoxLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTextBoxFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTextBoxEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTextBoxPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTextBoxPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTextBoxAdress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnComboBoxCity = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.ColumnTextBoxSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnSpecialty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnComboBoxDisponibility = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.ColumnComboBoxStatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ButtonReset = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -66,6 +52,20 @@ namespace GADJIT_WIN_ASW
             this.TextBoxTotalStaffs = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.ColumnTextBoxID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTextBoxCIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPictureBox = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ColumnTextBoxLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTextBoxFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTextBoxEmail = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTextBoxPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTextBoxPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTextBoxAdress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnComboBoxCity = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ColumnTextBoxSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnSpecialty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnComboBoxDisponibility = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ColumnComboBoxStatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.DGVWorker)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -97,126 +97,13 @@ namespace GADJIT_WIN_ASW
             this.DGVWorker.TabIndex = 7;
             this.DGVWorker.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVWorker_CellClick);
             this.DGVWorker.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVWorker_CellDoubleClick);
+            this.DGVWorker.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVWorker_CellEndEdit);
             this.DGVWorker.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVWorker_CellMouseClick);
             this.DGVWorker.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.DGVWorker_CellValidating);
             this.DGVWorker.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVWorker_CellValueChanged);
             this.DGVWorker.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.DGVStaff_EditingControlShowing);
             this.DGVWorker.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DGVWorker_UserDeletedRow);
             this.DGVWorker.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DGVWorker_UserDeletingRow);
-            // 
-            // ColumnTextBoxID
-            // 
-            this.ColumnTextBoxID.HeaderText = "Code";
-            this.ColumnTextBoxID.MinimumWidth = 100;
-            this.ColumnTextBoxID.Name = "ColumnTextBoxID";
-            this.ColumnTextBoxID.ReadOnly = true;
-            // 
-            // ColumnTextBoxCIN
-            // 
-            this.ColumnTextBoxCIN.HeaderText = "CIN";
-            this.ColumnTextBoxCIN.MaxInputLength = 8;
-            this.ColumnTextBoxCIN.MinimumWidth = 100;
-            this.ColumnTextBoxCIN.Name = "ColumnTextBoxCIN";
-            // 
-            // ColumnPictureBox
-            // 
-            this.ColumnPictureBox.HeaderText = "Photo";
-            this.ColumnPictureBox.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.ColumnPictureBox.MinimumWidth = 50;
-            this.ColumnPictureBox.Name = "ColumnPictureBox";
-            this.ColumnPictureBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnPictureBox.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ColumnPictureBox.Width = 50;
-            // 
-            // ColumnTextBoxLastName
-            // 
-            this.ColumnTextBoxLastName.HeaderText = "Nom";
-            this.ColumnTextBoxLastName.MinimumWidth = 100;
-            this.ColumnTextBoxLastName.Name = "ColumnTextBoxLastName";
-            // 
-            // ColumnTextBoxFirstName
-            // 
-            this.ColumnTextBoxFirstName.HeaderText = "Prénom";
-            this.ColumnTextBoxFirstName.MinimumWidth = 100;
-            this.ColumnTextBoxFirstName.Name = "ColumnTextBoxFirstName";
-            // 
-            // ColumnTextBoxEmail
-            // 
-            this.ColumnTextBoxEmail.HeaderText = "Email";
-            this.ColumnTextBoxEmail.MinimumWidth = 150;
-            this.ColumnTextBoxEmail.Name = "ColumnTextBoxEmail";
-            this.ColumnTextBoxEmail.Width = 150;
-            // 
-            // ColumnTextBoxPassword
-            // 
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
-            this.ColumnTextBoxPassword.DefaultCellStyle = dataGridViewCellStyle1;
-            this.ColumnTextBoxPassword.HeaderText = "Mot de passe";
-            this.ColumnTextBoxPassword.MinimumWidth = 100;
-            this.ColumnTextBoxPassword.Name = "ColumnTextBoxPassword";
-            // 
-            // ColumnTextBoxPhoneNumber
-            // 
-            this.ColumnTextBoxPhoneNumber.HeaderText = "Téléphone";
-            this.ColumnTextBoxPhoneNumber.MaxInputLength = 10;
-            this.ColumnTextBoxPhoneNumber.MinimumWidth = 100;
-            this.ColumnTextBoxPhoneNumber.Name = "ColumnTextBoxPhoneNumber";
-            // 
-            // ColumnTextBoxAdress
-            // 
-            this.ColumnTextBoxAdress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnTextBoxAdress.HeaderText = "Adresse";
-            this.ColumnTextBoxAdress.MinimumWidth = 200;
-            this.ColumnTextBoxAdress.Name = "ColumnTextBoxAdress";
-            // 
-            // ColumnComboBoxCity
-            // 
-            this.ColumnComboBoxCity.HeaderText = "Ville";
-            this.ColumnComboBoxCity.MinimumWidth = 100;
-            this.ColumnComboBoxCity.Name = "ColumnComboBoxCity";
-            // 
-            // ColumnTextBoxSalary
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "0.00";
-            dataGridViewCellStyle2.NullValue = null;
-            this.ColumnTextBoxSalary.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ColumnTextBoxSalary.HeaderText = "Salaire";
-            this.ColumnTextBoxSalary.MinimumWidth = 100;
-            this.ColumnTextBoxSalary.Name = "ColumnTextBoxSalary";
-            // 
-            // ColumnSpecialty
-            // 
-            this.ColumnSpecialty.HeaderText = "Spécialité";
-            this.ColumnSpecialty.MinimumWidth = 60;
-            this.ColumnSpecialty.Name = "ColumnSpecialty";
-            this.ColumnSpecialty.ReadOnly = true;
-            this.ColumnSpecialty.Width = 60;
-            // 
-            // ColumnComboBoxDisponibility
-            // 
-            this.ColumnComboBoxDisponibility.HeaderText = "Disponibilité";
-            this.ColumnComboBoxDisponibility.Items.AddRange(new object[] {
-            "Hors Ligne",
-            "En Ligne",
-            "Break"});
-            this.ColumnComboBoxDisponibility.MinimumWidth = 100;
-            this.ColumnComboBoxDisponibility.Name = "ColumnComboBoxDisponibility";
-            this.ColumnComboBoxDisponibility.ReadOnly = true;
-            this.ColumnComboBoxDisponibility.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnComboBoxDisponibility.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // ColumnComboBoxStatus
-            // 
-            this.ColumnComboBoxStatus.HeaderText = "Status";
-            this.ColumnComboBoxStatus.Items.AddRange(new object[] {
-            "Activer",
-            "Désactiver"});
-            this.ColumnComboBoxStatus.MinimumWidth = 100;
-            this.ColumnComboBoxStatus.Name = "ColumnComboBoxStatus";
-            this.ColumnComboBoxStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnComboBoxStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // groupBox1
             // 
@@ -431,6 +318,122 @@ namespace GADJIT_WIN_ASW
             this.label1.Size = new System.Drawing.Size(190, 25);
             this.label1.TabIndex = 57;
             this.label1.Text = "Gestion Employé";
+            // 
+            // ColumnTextBoxID
+            // 
+            this.ColumnTextBoxID.HeaderText = "Code";
+            this.ColumnTextBoxID.MinimumWidth = 50;
+            this.ColumnTextBoxID.Name = "ColumnTextBoxID";
+            this.ColumnTextBoxID.ReadOnly = true;
+            this.ColumnTextBoxID.Width = 50;
+            // 
+            // ColumnTextBoxCIN
+            // 
+            this.ColumnTextBoxCIN.HeaderText = "CIN";
+            this.ColumnTextBoxCIN.MaxInputLength = 8;
+            this.ColumnTextBoxCIN.MinimumWidth = 60;
+            this.ColumnTextBoxCIN.Name = "ColumnTextBoxCIN";
+            this.ColumnTextBoxCIN.Width = 60;
+            // 
+            // ColumnPictureBox
+            // 
+            this.ColumnPictureBox.HeaderText = "Photo";
+            this.ColumnPictureBox.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.ColumnPictureBox.MinimumWidth = 50;
+            this.ColumnPictureBox.Name = "ColumnPictureBox";
+            this.ColumnPictureBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnPictureBox.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ColumnPictureBox.Width = 50;
+            // 
+            // ColumnTextBoxLastName
+            // 
+            this.ColumnTextBoxLastName.HeaderText = "Nom";
+            this.ColumnTextBoxLastName.MinimumWidth = 100;
+            this.ColumnTextBoxLastName.Name = "ColumnTextBoxLastName";
+            // 
+            // ColumnTextBoxFirstName
+            // 
+            this.ColumnTextBoxFirstName.HeaderText = "Prénom";
+            this.ColumnTextBoxFirstName.MinimumWidth = 100;
+            this.ColumnTextBoxFirstName.Name = "ColumnTextBoxFirstName";
+            // 
+            // ColumnTextBoxEmail
+            // 
+            this.ColumnTextBoxEmail.HeaderText = "Email";
+            this.ColumnTextBoxEmail.MinimumWidth = 150;
+            this.ColumnTextBoxEmail.Name = "ColumnTextBoxEmail";
+            this.ColumnTextBoxEmail.Width = 150;
+            // 
+            // ColumnTextBoxPassword
+            // 
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            this.ColumnTextBoxPassword.DefaultCellStyle = dataGridViewCellStyle1;
+            this.ColumnTextBoxPassword.HeaderText = "Mot de passe";
+            this.ColumnTextBoxPassword.MinimumWidth = 100;
+            this.ColumnTextBoxPassword.Name = "ColumnTextBoxPassword";
+            // 
+            // ColumnTextBoxPhoneNumber
+            // 
+            this.ColumnTextBoxPhoneNumber.HeaderText = "Téléphone";
+            this.ColumnTextBoxPhoneNumber.MaxInputLength = 10;
+            this.ColumnTextBoxPhoneNumber.MinimumWidth = 100;
+            this.ColumnTextBoxPhoneNumber.Name = "ColumnTextBoxPhoneNumber";
+            // 
+            // ColumnTextBoxAdress
+            // 
+            this.ColumnTextBoxAdress.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnTextBoxAdress.HeaderText = "Adresse";
+            this.ColumnTextBoxAdress.MinimumWidth = 200;
+            this.ColumnTextBoxAdress.Name = "ColumnTextBoxAdress";
+            // 
+            // ColumnComboBoxCity
+            // 
+            this.ColumnComboBoxCity.HeaderText = "Ville";
+            this.ColumnComboBoxCity.MinimumWidth = 100;
+            this.ColumnComboBoxCity.Name = "ColumnComboBoxCity";
+            // 
+            // ColumnTextBoxSalary
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "0.00";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ColumnTextBoxSalary.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ColumnTextBoxSalary.HeaderText = "Salaire";
+            this.ColumnTextBoxSalary.MinimumWidth = 100;
+            this.ColumnTextBoxSalary.Name = "ColumnTextBoxSalary";
+            // 
+            // ColumnSpecialty
+            // 
+            this.ColumnSpecialty.HeaderText = "Spécialité";
+            this.ColumnSpecialty.MinimumWidth = 60;
+            this.ColumnSpecialty.Name = "ColumnSpecialty";
+            this.ColumnSpecialty.ReadOnly = true;
+            this.ColumnSpecialty.Width = 60;
+            // 
+            // ColumnComboBoxDisponibility
+            // 
+            this.ColumnComboBoxDisponibility.HeaderText = "Disponibilité";
+            this.ColumnComboBoxDisponibility.Items.AddRange(new object[] {
+            "Hors Ligne",
+            "En Ligne",
+            "Break"});
+            this.ColumnComboBoxDisponibility.MinimumWidth = 100;
+            this.ColumnComboBoxDisponibility.Name = "ColumnComboBoxDisponibility";
+            this.ColumnComboBoxDisponibility.ReadOnly = true;
+            this.ColumnComboBoxDisponibility.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnComboBoxDisponibility.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // ColumnComboBoxStatus
+            // 
+            this.ColumnComboBoxStatus.HeaderText = "Status";
+            this.ColumnComboBoxStatus.Items.AddRange(new object[] {
+            "Activer",
+            "Désactiver"});
+            this.ColumnComboBoxStatus.MinimumWidth = 100;
+            this.ColumnComboBoxStatus.Name = "ColumnComboBoxStatus";
+            this.ColumnComboBoxStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnComboBoxStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // WorkerManagment
             // 
