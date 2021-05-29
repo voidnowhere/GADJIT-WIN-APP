@@ -283,9 +283,10 @@ namespace GADJIT_WIN_ASW
             // ColumnTextBoxID
             // 
             this.ColumnTextBoxID.HeaderText = "Code";
-            this.ColumnTextBoxID.MinimumWidth = 100;
+            this.ColumnTextBoxID.MinimumWidth = 50;
             this.ColumnTextBoxID.Name = "ColumnTextBoxID";
             this.ColumnTextBoxID.ReadOnly = true;
+            this.ColumnTextBoxID.Width = 50;
             // 
             // ColumnTextBoxLastName
             // 
