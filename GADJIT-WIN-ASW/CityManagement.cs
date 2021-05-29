@@ -309,7 +309,7 @@ namespace GADJIT_WIN_ASW
 
         private void DGVCity_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            FillDGVCity();
+            CityStats();
         }
 
         private void OnlyLetterWhiteSpaceKeyPressCheck(object sender, KeyPressEventArgs e)
