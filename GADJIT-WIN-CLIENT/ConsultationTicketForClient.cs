@@ -28,6 +28,7 @@ namespace GADJIT_WIN_CLIENT
         public static string Brand;
         public static string prob;
         public string email;
+        string status;
         //
         SqlDataReader dr;
         private void ConsultationTicketForClient_Load(object sender, EventArgs e)
@@ -60,7 +61,46 @@ namespace GADJIT_WIN_CLIENT
                 {
                     while (dr.Read())
                     {
-                        DGVTicket.Rows.Add(dr["TicID"], dr["TicDT"], dr["TicRepPri"], dr["TicSta"]);
+                        switch (dr["TicSta"].ToString())
+                        {
+                            case "PV":
+                                status = "pas encore vérifié";
+                                break;
+                            case "V":
+                                status = "vérifié";
+                                break;
+                            case "A":
+                                status = "annulé";
+                                break;
+                            case "ED":
+                                status = "en cours de diagnostic";
+                                break;
+                            case "CD":
+                                status = "confirmation diagnostic";
+                                break;
+                            case "ER":
+                                status = "en cours de reparation";
+                                break;
+                            case "R":
+                                status = "reparé";
+                                break;
+                            case "DV":
+                                status = "diagnostic validé";
+                                break;
+                            case "DR":
+                                status = "diagnostic rejeté";
+                                break;
+                            case "RC":
+                                status = "retour au client";
+                                break;
+                            case "EL":
+                                status = "en cours de livraison";
+                                break;
+                            case "L":
+                                status = "livré";
+                                break;
+                        }
+                        DGVTicket.Rows.Add(dr["TicID"], dr["TicDT"], dr["TicRepPri"], status);
                     }
                 }
             }
