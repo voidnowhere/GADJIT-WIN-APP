@@ -115,7 +115,7 @@ namespace GADJIT_WIN_CLIENT
             passupd.CID = CID;
             passupd.mdp = passCont;
             passupd.nom = TextBoxNom.Text;
-            passupd.email = TextBoxPrenom.Text;
+            passupd.email = TextBoxEmail.Text;
             passupd.ShowDialog();
         }
         private void FillComboBoxCity()
