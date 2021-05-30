@@ -24,7 +24,12 @@ namespace GADJIT_WIN_ASW
         {
             if(RichTextBoxDescription.Text != "")
             {
-                if (MessageBox.Show("Voulez-vous confirmer l'annulation ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                if (MessageBox.Show(
+                    (staffTicketProgression != null) ? "êtes-vous sûr d'annuler le ticket ?" : "Voulez-vous confirmer l'annulation ?", "Confirmation",
+                    MessageBoxButtons.OKCancel,
+                    MessageBoxIcon.Warning) 
+                    == 
+                    DialogResult.OK)
                 {
                     if (staffTicketVerification != null)
                     {
