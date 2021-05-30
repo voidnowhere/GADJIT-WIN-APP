@@ -48,11 +48,11 @@ namespace GADJIT_WIN_CLIENT
             this.PictureBoxSearch = new System.Windows.Forms.PictureBox();
             this.Information = new System.Windows.Forms.GroupBox();
             this.DGVTicket = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.TicketID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DTTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrixTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StatutTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxSearch)).BeginInit();
             this.Information.SuspendLayout();
@@ -77,7 +77,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonDiagnostic.FlatAppearance.BorderSize = 0;
             this.ButtonDiagnostic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonDiagnostic.ForeColor = System.Drawing.Color.White;
-            this.ButtonDiagnostic.Location = new System.Drawing.Point(322, 257);
+            this.ButtonDiagnostic.Location = new System.Drawing.Point(322, 274);
             this.ButtonDiagnostic.Name = "ButtonDiagnostic";
             this.ButtonDiagnostic.Size = new System.Drawing.Size(132, 28);
             this.ButtonDiagnostic.TabIndex = 39;
@@ -93,7 +93,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxDiag.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.TextBoxDiag.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxDiag.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxDiag.Location = new System.Drawing.Point(115, 257);
+            this.TextBoxDiag.Location = new System.Drawing.Point(115, 274);
             this.TextBoxDiag.Multiline = true;
             this.TextBoxDiag.Name = "TextBoxDiag";
             this.TextBoxDiag.Size = new System.Drawing.Size(201, 28);
@@ -104,7 +104,7 @@ namespace GADJIT_WIN_CLIENT
             // 
             this.labelDiag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelDiag.AutoSize = true;
-            this.labelDiag.Location = new System.Drawing.Point(16, 261);
+            this.labelDiag.Location = new System.Drawing.Point(16, 278);
             this.labelDiag.Name = "labelDiag";
             this.labelDiag.Size = new System.Drawing.Size(99, 17);
             this.labelDiag.TabIndex = 36;
@@ -118,16 +118,16 @@ namespace GADJIT_WIN_CLIENT
             this.RichTextBoxProb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.RichTextBoxProb.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.RichTextBoxProb.ForeColor = System.Drawing.Color.Black;
-            this.RichTextBoxProb.Location = new System.Drawing.Point(115, 177);
+            this.RichTextBoxProb.Location = new System.Drawing.Point(115, 154);
             this.RichTextBoxProb.Name = "RichTextBoxProb";
-            this.RichTextBoxProb.Size = new System.Drawing.Size(339, 51);
+            this.RichTextBoxProb.Size = new System.Drawing.Size(339, 81);
             this.RichTextBoxProb.TabIndex = 35;
             this.RichTextBoxProb.Text = "";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 177);
+            this.label5.Location = new System.Drawing.Point(17, 154);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 17);
             this.label5.TabIndex = 34;
@@ -140,7 +140,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxRef.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.TextBoxRef.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxRef.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxRef.Location = new System.Drawing.Point(115, 124);
+            this.TextBoxRef.Location = new System.Drawing.Point(115, 96);
             this.TextBoxRef.Multiline = true;
             this.TextBoxRef.Name = "TextBoxRef";
             this.TextBoxRef.Size = new System.Drawing.Size(339, 28);
@@ -153,7 +153,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxMarque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.TextBoxMarque.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxMarque.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxMarque.Location = new System.Drawing.Point(115, 83);
+            this.TextBoxMarque.Location = new System.Drawing.Point(115, 62);
             this.TextBoxMarque.Multiline = true;
             this.TextBoxMarque.Name = "TextBoxMarque";
             this.TextBoxMarque.Size = new System.Drawing.Size(339, 28);
@@ -175,7 +175,7 @@ namespace GADJIT_WIN_CLIENT
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 128);
+            this.label4.Location = new System.Drawing.Point(16, 100);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 17);
             this.label4.TabIndex = 30;
@@ -184,7 +184,7 @@ namespace GADJIT_WIN_CLIENT
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(23, 87);
+            this.label3.Location = new System.Drawing.Point(23, 66);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 17);
             this.label3.TabIndex = 29;
@@ -210,12 +210,11 @@ namespace GADJIT_WIN_CLIENT
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.groupBox2.BackColor = System.Drawing.Color.White;
             this.groupBox2.Controls.Add(this.PictureBoxSearch);
             this.groupBox2.Controls.Add(this.ComboBoxCodeTicket);
             this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Location = new System.Drawing.Point(161, 54);
+            this.groupBox2.Location = new System.Drawing.Point(80, 39);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(662, 83);
             this.groupBox2.TabIndex = 39;
@@ -235,7 +234,8 @@ namespace GADJIT_WIN_CLIENT
             // 
             // Information
             // 
-            this.Information.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.Information.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.Information.Controls.Add(this.ButtonDiagnostic);
             this.Information.Controls.Add(this.TextBoxDiag);
             this.Information.Controls.Add(this.labelDiag);
@@ -247,9 +247,9 @@ namespace GADJIT_WIN_CLIENT
             this.Information.Controls.Add(this.label4);
             this.Information.Controls.Add(this.label3);
             this.Information.Controls.Add(this.label6);
-            this.Information.Location = new System.Drawing.Point(491, 164);
+            this.Information.Location = new System.Drawing.Point(399, 128);
             this.Information.Name = "Information";
-            this.Information.Size = new System.Drawing.Size(469, 353);
+            this.Information.Size = new System.Drawing.Size(469, 357);
             this.Information.TabIndex = 38;
             this.Information.TabStop = false;
             this.Information.Text = "Information :";
@@ -258,33 +258,22 @@ namespace GADJIT_WIN_CLIENT
             // 
             this.DGVTicket.AllowUserToAddRows = false;
             this.DGVTicket.AllowUserToDeleteRows = false;
-            this.DGVTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.DGVTicket.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.DGVTicket.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVTicket.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TicketID,
             this.DTTicket,
             this.PrixTicket,
             this.StatutTicket});
-            this.DGVTicket.Location = new System.Drawing.Point(11, 166);
+            this.DGVTicket.Location = new System.Drawing.Point(11, 128);
             this.DGVTicket.Name = "DGVTicket";
             this.DGVTicket.ReadOnly = true;
-            this.DGVTicket.Size = new System.Drawing.Size(464, 351);
+            this.DGVTicket.Size = new System.Drawing.Size(382, 355);
             this.DGVTicket.TabIndex = 36;
             this.DGVTicket.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentClick);
             this.DGVTicket.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentDoubleClick);
             this.DGVTicket.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellDoubleClick);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.label1.Location = new System.Drawing.Point(337, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(253, 27);
-            this.label1.TabIndex = 35;
-            this.label1.Text = "Consultation Ticket";
             // 
             // TicketID
             // 
@@ -327,12 +316,24 @@ namespace GADJIT_WIN_CLIENT
             this.StatutTicket.Name = "StatutTicket";
             this.StatutTicket.ReadOnly = true;
             // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.label1.Location = new System.Drawing.Point(281, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(253, 27);
+            this.label1.TabIndex = 35;
+            this.label1.Text = "Consultation Ticket";
+            // 
             // ConsultationTicketForClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(970, 529);
+            this.ClientSize = new System.Drawing.Size(891, 497);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.Information);
             this.Controls.Add(this.DGVTicket);

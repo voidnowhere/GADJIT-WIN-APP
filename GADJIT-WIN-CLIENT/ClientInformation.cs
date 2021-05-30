@@ -23,6 +23,7 @@ namespace GADJIT_WIN_CLIENT
         SqlDataReader dr;
         private Dictionary<int, string> city = new Dictionary<int,string>();
         public HOME home;
+        string check;
         private void ClientInformation_Load(object sender, EventArgs e)
         {
             FillComboBoxCity();
@@ -55,8 +56,37 @@ namespace GADJIT_WIN_CLIENT
 
         private void ButtonUpdate_Click(object sender, EventArgs e)
         {
+            if(TextBoxEmail.Text != home.lblemail.Text)
+            {
+                Random random = new Random();
+                int num = random.Next(4, 4);
+                string captcha = "";
+                int total = 0;
+                do
+                {
+                    int chr = random.Next(48, 123);
+                    if ((chr >= 48 && chr <= 57) || (chr >= 65 && chr <= 90) || (chr >= 97 && chr <= 122))
+                    {
+                        check = check + (char)chr;
+                        total++;
+                        if (total == num)
+                            break;
+                        {
+
+                        }
+                    }
+                } while (true);
+                //
+                EmailVerification v = new EmailVerification();
+                v.email = TextBoxEmail.Text;
+                v.nom = TextBoxNom.Text;
+                v.CID = CID;
+                v.check = check;
+                v.ShowDialog();
+            }
             try
             {
+
                     GADJIT.sqlConnection.Open();
                     SqlCommand cmd = new SqlCommand("update Client set " +
                                                    "CliEmail=@email, " +

@@ -86,5 +86,13 @@ namespace GADJIT_WIN_CLIENT
                 richTextBox1.Visible = false;
             }
          }
+        public void showmessage()
+        {
+            if (label1.Visible == false && richTextBox1.Visible == false)
+            {
+                label1.Visible = true;
+                richTextBox1.Visible = true;
+            }
+        }
     }
 }
