@@ -135,7 +135,9 @@ namespace GADJIT_WIN_ASW
                     sqlCommand.Parameters.Add("@sta", SqlDbType.Bit).Value = (DGVClient[7, e.RowIndex].Value.ToString() == "Activer") ? true : false;
                     GADJIT.sqlConnection.Open();
 
-                    MessageBox.Show(sqlCommand.ExecuteNonQuery() + " réussi", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    sqlCommand.ExecuteNonQuery();
+
+                    MessageBox.Show("Modification réussi", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     GADJIT.SendEmail(
                         DGVClient[3, e.RowIndex].Value.ToString(),
