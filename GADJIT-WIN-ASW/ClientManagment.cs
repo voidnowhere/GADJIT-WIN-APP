@@ -57,8 +57,8 @@ namespace GADJIT_WIN_ASW
             {
                 DGVClient.Rows.Clear();
                 //
-                String sqlQuery = 
-                    "select CliID, CliLastName, CliFirstName, CliEmail, CliPhoneNumber, CliAddress, CitDesig, CliSta " +
+                String sqlQuery =
+                    "select CliID, CliLastName, CliFirstName, CliEmail, CliPhoneNumber, CliAddress, CitDesig, CliSta, CliVerCod " +
                     "from Client as cl, City as ci " +
                     "where cl.CitID = ci.CitID";
                 SqlCommand sqlCommand = new SqlCommand();
@@ -99,8 +99,15 @@ namespace GADJIT_WIN_ASW
                 {
                     while (dataReader.Read())
                     {
-                        DGVClient.Rows.Add(dataReader["CliID"], dataReader["CliLastName"], dataReader["CliFirstName"], dataReader["CliEmail"],
-                            dataReader["CliPhoneNumber"], dataReader["CliAddress"], dataReader["CitDesig"],
+                        DGVClient.Rows.Add(
+                            dataReader["CliID"],
+                            dataReader["CliLastName"],
+                            dataReader["CliFirstName"],
+                            dataReader["CliEmail"],
+                            dataReader["CliPhoneNumber"],
+                            dataReader["CliAddress"],
+                            dataReader["CitDesig"],
+                            (dataReader["CliVerCod"] == DBNull.Value) ? "oui" : "non",
                             (dataReader.GetBoolean(7)) ? "Activer" : "Désactiver");
                     }
                     ClientsStats();
