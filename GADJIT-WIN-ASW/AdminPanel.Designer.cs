@@ -50,10 +50,10 @@ namespace GADJIT_WIN_ASW
             this.PanelBottom = new System.Windows.Forms.Panel();
             this.PictureBoxLogOut = new System.Windows.Forms.PictureBox();
             this.SideMenuPanel = new System.Windows.Forms.Panel();
+            this.ButtonCityManagement = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ButtonCityManagement = new System.Windows.Forms.Button();
             this.PanelGadgetManagment.SuspendLayout();
             this.PanelStatistics.SuspendLayout();
             this.PanelTop.SuspendLayout();
@@ -69,7 +69,7 @@ namespace GADJIT_WIN_ASW
             // LabelFirstName
             // 
             this.LabelFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelFirstName.Location = new System.Drawing.Point(4, 71);
+            this.LabelFirstName.Location = new System.Drawing.Point(4, 75);
             this.LabelFirstName.Name = "LabelFirstName";
             this.LabelFirstName.Size = new System.Drawing.Size(125, 17);
             this.LabelFirstName.TabIndex = 6;
@@ -81,7 +81,7 @@ namespace GADJIT_WIN_ASW
             this.PanelGadgetManagment.Controls.Add(this.ButtonGadgetReferenceManagment);
             this.PanelGadgetManagment.Controls.Add(this.ButtonGadgetCategoryBrandManagment);
             this.PanelGadgetManagment.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelGadgetManagment.Location = new System.Drawing.Point(0, 405);
+            this.PanelGadgetManagment.Location = new System.Drawing.Point(0, 421);
             this.PanelGadgetManagment.Name = "PanelGadgetManagment";
             this.PanelGadgetManagment.Size = new System.Drawing.Size(209, 86);
             this.PanelGadgetManagment.TabIndex = 3;
@@ -123,9 +123,9 @@ namespace GADJIT_WIN_ASW
             // LabelEmail
             // 
             this.LabelEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelEmail.Location = new System.Drawing.Point(4, 101);
+            this.LabelEmail.Location = new System.Drawing.Point(2, 106);
             this.LabelEmail.Name = "LabelEmail";
-            this.LabelEmail.Size = new System.Drawing.Size(202, 17);
+            this.LabelEmail.Size = new System.Drawing.Size(176, 17);
             this.LabelEmail.TabIndex = 4;
             this.LabelEmail.Text = "Admin Mail";
             // 
@@ -173,12 +173,12 @@ namespace GADJIT_WIN_ASW
             this.ButtonWorkerManagment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonWorkerManagment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonWorkerManagment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(206)))));
-            this.ButtonWorkerManagment.Location = new System.Drawing.Point(0, 284);
+            this.ButtonWorkerManagment.Location = new System.Drawing.Point(0, 300);
             this.ButtonWorkerManagment.Name = "ButtonWorkerManagment";
             this.ButtonWorkerManagment.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.ButtonWorkerManagment.Size = new System.Drawing.Size(209, 40);
             this.ButtonWorkerManagment.TabIndex = 6;
-            this.ButtonWorkerManagment.Text = "Gestion Employé";
+            this.ButtonWorkerManagment.Text = "Gestion Technicien";
             this.ButtonWorkerManagment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonWorkerManagment.UseVisualStyleBackColor = false;
             this.ButtonWorkerManagment.Click += new System.EventHandler(this.ButtonWorkerManagment_Click);
@@ -192,7 +192,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonStaffManagment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStaffManagment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonStaffManagment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(206)))));
-            this.ButtonStaffManagment.Location = new System.Drawing.Point(0, 324);
+            this.ButtonStaffManagment.Location = new System.Drawing.Point(0, 340);
             this.ButtonStaffManagment.Name = "ButtonStaffManagment";
             this.ButtonStaffManagment.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.ButtonStaffManagment.Size = new System.Drawing.Size(209, 40);
@@ -243,7 +243,7 @@ namespace GADJIT_WIN_ASW
             // LabelLastName
             // 
             this.LabelLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelLastName.Location = new System.Drawing.Point(4, 43);
+            this.LabelLastName.Location = new System.Drawing.Point(4, 47);
             this.LabelLastName.Name = "LabelLastName";
             this.LabelLastName.Size = new System.Drawing.Size(125, 17);
             this.LabelLastName.TabIndex = 5;
@@ -254,7 +254,7 @@ namespace GADJIT_WIN_ASW
             this.PanelStatistics.BackColor = System.Drawing.Color.White;
             this.PanelStatistics.Controls.Add(this.ButtonIncomes);
             this.PanelStatistics.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelStatistics.Location = new System.Drawing.Point(0, 167);
+            this.PanelStatistics.Location = new System.Drawing.Point(0, 183);
             this.PanelStatistics.Name = "PanelStatistics";
             this.PanelStatistics.Size = new System.Drawing.Size(209, 42);
             this.PanelStatistics.TabIndex = 2;
@@ -268,7 +268,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonStatisticsMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStatisticsMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonStatisticsMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(206)))));
-            this.ButtonStatisticsMenu.Location = new System.Drawing.Point(0, 127);
+            this.ButtonStatisticsMenu.Location = new System.Drawing.Point(0, 143);
             this.ButtonStatisticsMenu.Name = "ButtonStatisticsMenu";
             this.ButtonStatisticsMenu.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.ButtonStatisticsMenu.Size = new System.Drawing.Size(209, 40);
@@ -289,23 +289,23 @@ namespace GADJIT_WIN_ASW
             this.PanelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelTop.Location = new System.Drawing.Point(0, 0);
             this.PanelTop.Name = "PanelTop";
-            this.PanelTop.Size = new System.Drawing.Size(209, 127);
+            this.PanelTop.Size = new System.Drawing.Size(209, 143);
             this.PanelTop.TabIndex = 0;
             // 
             // LabelTop
             // 
             this.LabelTop.AutoSize = true;
             this.LabelTop.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelTop.Location = new System.Drawing.Point(3, 9);
+            this.LabelTop.Location = new System.Drawing.Point(12, 9);
             this.LabelTop.Name = "LabelTop";
-            this.LabelTop.Size = new System.Drawing.Size(124, 20);
+            this.LabelTop.Size = new System.Drawing.Size(117, 20);
             this.LabelTop.TabIndex = 7;
-            this.LabelTop.Text = "Espace Admin";
+            this.LabelTop.Text = "Configuration";
             // 
             // CircularPicturePasswordChange
             // 
             this.CircularPicturePasswordChange.Image = global::GADJIT_WIN_ASW.Properties.Resources.passwordChange;
-            this.CircularPicturePasswordChange.Location = new System.Drawing.Point(184, 7);
+            this.CircularPicturePasswordChange.Location = new System.Drawing.Point(184, 101);
             this.CircularPicturePasswordChange.Name = "CircularPicturePasswordChange";
             this.CircularPicturePasswordChange.Size = new System.Drawing.Size(22, 22);
             this.CircularPicturePasswordChange.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -316,7 +316,7 @@ namespace GADJIT_WIN_ASW
             // ButtonDisponibility
             // 
             this.ButtonDisponibility.BackColor = System.Drawing.Color.Lime;
-            this.ButtonDisponibility.Location = new System.Drawing.Point(145, 7);
+            this.ButtonDisponibility.Location = new System.Drawing.Point(184, 7);
             this.ButtonDisponibility.Name = "ButtonDisponibility";
             this.ButtonDisponibility.Size = new System.Drawing.Size(22, 22);
             this.ButtonDisponibility.TabIndex = 3;
@@ -365,33 +365,6 @@ namespace GADJIT_WIN_ASW
             this.SideMenuPanel.Size = new System.Drawing.Size(209, 626);
             this.SideMenuPanel.TabIndex = 1;
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.ButtonGadgetMenu);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 364);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(209, 41);
-            this.panel3.TabIndex = 4;
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.ButtonClientManagment);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 246);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(209, 38);
-            this.panel2.TabIndex = 10;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.ButtonTicketManagment);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 209);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(209, 37);
-            this.panel1.TabIndex = 11;
-            // 
             // ButtonCityManagement
             // 
             this.ButtonCityManagement.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -401,7 +374,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonCityManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonCityManagement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonCityManagement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(206)))));
-            this.ButtonCityManagement.Location = new System.Drawing.Point(0, 491);
+            this.ButtonCityManagement.Location = new System.Drawing.Point(0, 507);
             this.ButtonCityManagement.Name = "ButtonCityManagement";
             this.ButtonCityManagement.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.ButtonCityManagement.Size = new System.Drawing.Size(209, 40);
@@ -410,6 +383,33 @@ namespace GADJIT_WIN_ASW
             this.ButtonCityManagement.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ButtonCityManagement.UseVisualStyleBackColor = false;
             this.ButtonCityManagement.Click += new System.EventHandler(this.ButtonCityManagement_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.ButtonGadgetMenu);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 380);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(209, 41);
+            this.panel3.TabIndex = 4;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.ButtonClientManagment);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 262);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(209, 38);
+            this.panel2.TabIndex = 10;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.ButtonTicketManagment);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 225);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(209, 37);
+            this.panel1.TabIndex = 11;
             // 
             // AdminPanel
             // 

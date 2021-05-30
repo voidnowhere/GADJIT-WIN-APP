@@ -38,7 +38,7 @@ namespace GADJIT_WIN_ASW
                     }
                     else
                     {
-                        MessageBox.Show("mot de passe incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Mot de passe incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         TextBoxPassWord.Clear();
                     }
                 }
@@ -50,6 +50,10 @@ namespace GADJIT_WIN_ASW
                 {
                     GADJIT.sqlConnection.Close();
                 }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez taper votre mot de passe", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -298,7 +298,7 @@ namespace GADJIT_WIN_ASW
                 }
                 if (!CheckDGVCellsIfEmpty())
                 {
-                    if (DGVStaff[0, rowIndex].Value != null) //update
+                    if (DGVStaff[0, rowIndex].Value != null && e.ColumnIndex != 0) //update
                     {
                         if (CheckIDIfExists((int)DGVStaff[0, rowIndex].Value))
                         {
@@ -336,7 +336,9 @@ namespace GADJIT_WIN_ASW
 
                                 GADJIT.sqlConnection.Open();
 
-                                MessageBox.Show(sqlCommandUpdate.ExecuteNonQuery() + " réussi", "Mise à jour", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                sqlCommandUpdate.ExecuteNonQuery();
+
+                                MessageBox.Show("Modification réussi", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 if (status != statusDGV)
                                 {
@@ -363,7 +365,7 @@ namespace GADJIT_WIN_ASW
                             FillDGVStaff();
                         }
                     }
-                    else // insert
+                    else if(e.ColumnIndex != 0) // insert
                     {
                         try
                         {
@@ -371,7 +373,8 @@ namespace GADJIT_WIN_ASW
                             "values(@id, @cin, @img, @lastName, @firstName, @email, @password, @phoneNumber, @address, @city, @salary, @dispo, @status)";
                             SqlCommand sqlCommandInsert = new SqlCommand(sqlQuery, GADJIT.sqlConnection);
 
-                            sqlCommandInsert.Parameters.Add("@id", SqlDbType.Int).Value = GenerateStaffId();
+                            int id = GenerateStaffId();
+                            sqlCommandInsert.Parameters.Add("@id", SqlDbType.Int).Value = id;
 
                             sqlCommandInsert.Parameters.Add("@cin", SqlDbType.VarChar).Value = DGVStaff["ColumnTextBoxCIN", rowIndex].Value.ToString().ToUpper();
 
@@ -399,7 +402,9 @@ namespace GADJIT_WIN_ASW
 
                             GADJIT.sqlConnection.Open();
 
-                            MessageBox.Show(sqlCommandInsert.ExecuteNonQuery() + " réussi", "Ajout", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            sqlCommandInsert.ExecuteNonQuery();
+
+                            MessageBox.Show("Ajout réussi", "Insertion", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             GADJIT.SendEmail(
                                 DGVStaff["ColumnTextBoxEmail", rowIndex].Value.ToString(),
@@ -407,9 +412,9 @@ namespace GADJIT_WIN_ASW
                                 DGVStaff["ColumnTextBoxPassword", rowIndex].Value.ToString() +
                                 "\nVeuillez supprimé cet email.");
 
-                            GADJIT.sqlConnection.Close();
+                            StaffsStats();
 
-                            FillDGVStaff();
+                            DGVStaff[0, e.RowIndex].Value = id;
                         }
                         catch (Exception ex)
                         {
@@ -539,10 +544,13 @@ namespace GADJIT_WIN_ASW
                             SqlCommand sqlCommandDelete = new SqlCommand("delete from Staff where StafID = @id", GADJIT.sqlConnection);
                             sqlCommandDelete.Parameters.Add("@id", SqlDbType.Int).Value = (int)e.Row.Cells[0].Value;
 
-                            if (MessageBox.Show("Voulez vous supprimer ce personnel", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                            if (MessageBox.Show("Voulez-vous supprimer ce personnel ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                             {
                                 GADJIT.sqlConnection.Open();
-                                MessageBox.Show(sqlCommandDelete.ExecuteNonQuery() + " réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                sqlCommandDelete.ExecuteNonQuery();
+
+                                MessageBox.Show("Suppression réussi", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                             else
                             {
@@ -552,12 +560,12 @@ namespace GADJIT_WIN_ASW
                         else
                         {
                             e.Cancel = true;
-                            MessageBox.Show("interdit ce personnel est affecté dans des tickets", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Suppression interdit ce personnel est affectée dans des tickets", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Suppression réussi", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 catch (Exception ex)

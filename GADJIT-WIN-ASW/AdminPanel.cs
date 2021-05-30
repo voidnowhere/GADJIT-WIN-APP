@@ -58,6 +58,7 @@ namespace GADJIT_WIN_ASW
 
         private void PannelButtonsLock(bool tf)
         {
+            CircularPicturePasswordChange.Enabled = tf;
             ButtonStatisticsMenu.Enabled = tf;
             ButtonClientManagment.Enabled = tf;
             ButtonTicketManagment.Enabled = tf;

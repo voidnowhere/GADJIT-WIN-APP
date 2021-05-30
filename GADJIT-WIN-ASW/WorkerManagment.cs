@@ -307,7 +307,7 @@ namespace GADJIT_WIN_ASW
                 }
                 if (!CheckDGVCellsIfEmpty())
                 {
-                    if (DGVWorker[0, rowIndex].Value != null) //update
+                    if (DGVWorker[0, rowIndex].Value != null && e.ColumnIndex != 0) //update
                     {
                         if (CheckIDIfExists((int)DGVWorker[0, rowIndex].Value))
                         {
@@ -345,7 +345,9 @@ namespace GADJIT_WIN_ASW
 
                                 GADJIT.sqlConnection.Open();
 
-                                MessageBox.Show(sqlCommandUpdate.ExecuteNonQuery() + " réussi", "Mise à jour", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                sqlCommandUpdate.ExecuteNonQuery();
+
+                                MessageBox.Show("Modification réussi", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 if (status != statusDGV)
                                 {
@@ -367,12 +369,12 @@ namespace GADJIT_WIN_ASW
                         }
                         else
                         {
-                            MessageBox.Show("Cet employé a été supprimer", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Ce technicien a été supprimer", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             GADJIT.sqlConnection.Close();
                             FillDGVWorker();
                         }
                     }
-                    else //insert
+                    else if(e.ColumnIndex != 0) //insert
                     {
                         try
                         {
@@ -380,7 +382,8 @@ namespace GADJIT_WIN_ASW
                             "values(@id, @cin, @img, @lastName, @firstName, @email, @password, @phoneNumber, @address, @city, @salary, @dispo, @status)";
                             SqlCommand sqlCommandInsert = new SqlCommand(sqlQuery, GADJIT.sqlConnection);
 
-                            sqlCommandInsert.Parameters.Add("@id", SqlDbType.Int).Value = GenerateWorkerId();
+                            int id = GenerateWorkerId();
+                            sqlCommandInsert.Parameters.Add("@id", SqlDbType.Int).Value = id;
 
                             sqlCommandInsert.Parameters.Add("@cin", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxCIN", rowIndex].Value.ToString().ToUpper();
 
@@ -408,7 +411,9 @@ namespace GADJIT_WIN_ASW
 
                             GADJIT.sqlConnection.Open();
 
-                            MessageBox.Show(sqlCommandInsert.ExecuteNonQuery() + " réussi", "Ajout", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            sqlCommandInsert.ExecuteNonQuery();
+
+                            MessageBox.Show("Ajout réussi", "Insertion", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             GADJIT.SendEmail(
                                 DGVWorker["ColumnTextBoxEmail", rowIndex].Value.ToString(),
@@ -418,7 +423,9 @@ namespace GADJIT_WIN_ASW
 
                             GADJIT.sqlConnection.Close();
 
-                            FillDGVWorker();
+                            WorkersStats();
+
+                            DGVWorker[0, e.RowIndex].Value = id;
                         }
                         catch (Exception ex)
                         {
@@ -551,10 +558,10 @@ namespace GADJIT_WIN_ASW
                         SqlCommand sqlCommandDeleteWorker = new SqlCommand("delete from Worker where WorID = @id", GADJIT.sqlConnection);
                         sqlCommandDeleteWorker.Parameters.Add("@id", SqlDbType.Int).Value = id;
 
-                        if (MessageBox.Show("Voulez vous supprimer cet employé", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                        if (MessageBox.Show("Voulez-vous supprimer ce technicien ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                         {
                             GADJIT.sqlConnection.Open();
-                            MessageBox.Show(" réussi de " + WorkerSpecialty.ExecuteNonQuery() + " spécialité et " + sqlCommandDeleteWorker.ExecuteNonQuery() + " employé", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Suppression réussi de " + WorkerSpecialty.ExecuteNonQuery() + " spécialité et " + sqlCommandDeleteWorker.ExecuteNonQuery() + " technicien", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             WorkersStats();
                         }
                         else
@@ -565,12 +572,12 @@ namespace GADJIT_WIN_ASW
                     else
                     {
                         e.Cancel = true;
-                        MessageBox.Show("interdit cet employé est affecté dans des tickets", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Suppression interdit ce technicien est affectée dans des tickets", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Suppression réussi", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)

@@ -232,7 +232,7 @@ namespace GADJIT_WIN_ASW
                 int rowIndex = e.RowIndex;
                 if (!CheckDGVCellsIfEmpty())
                 {
-                    if (DGVReference[0, rowIndex].Value != null) //update
+                    if (DGVReference[0, rowIndex].Value != null && e.ColumnIndex != 0) //update
                     {
                         if (CheckIDIfExists((int)DGVReference[0, rowIndex].Value))
                         {
@@ -256,7 +256,9 @@ namespace GADJIT_WIN_ASW
 
                                 GADJIT.sqlConnection.Open();
 
-                                MessageBox.Show(sqlCommandUpdate.ExecuteNonQuery() + " réussi", "Mise à jour", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                sqlCommandUpdate.ExecuteNonQuery();
+
+                                MessageBox.Show("Modification réussi", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 ReferencesStats();
                             }
@@ -276,13 +278,14 @@ namespace GADJIT_WIN_ASW
                             FillDGVReference();
                         }
                     }
-                    else // insert
+                    else if(e.ColumnIndex != 0) // insert
                     {
                         try
                         {
                             SqlCommand sqlCommandInsert = new SqlCommand("insert into GadgetReference values(@id, @catID, @braID, @desig, @descr, @sta)", GADJIT.sqlConnection);
 
-                            sqlCommandInsert.Parameters.Add("@id", SqlDbType.Int).Value = GenerateGadgetReferenceId();
+                            int id = GenerateGadgetReferenceId();
+                            sqlCommandInsert.Parameters.Add("@id", SqlDbType.Int).Value = id;
 
                             sqlCommandInsert.Parameters.Add("@catID", SqlDbType.Int).Value = (int)DGVReference["ColumnComboBoxCategory", rowIndex].Value;
 
@@ -296,11 +299,13 @@ namespace GADJIT_WIN_ASW
 
                             GADJIT.sqlConnection.Open();
 
-                            MessageBox.Show(sqlCommandInsert.ExecuteNonQuery() + " réussi", "Ajout", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            sqlCommandInsert.ExecuteNonQuery();
 
-                            GADJIT.sqlConnection.Close();
+                            MessageBox.Show("Ajout réussi", "Insertion", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            FillDGVReference();
+                            ReferencesStats();
+
+                            DGVReference[0, e.RowIndex].Value = id;
                         }
                         catch (Exception ex)
                         {
@@ -398,10 +403,13 @@ namespace GADJIT_WIN_ASW
                             SqlCommand sqlCommandDelete = new SqlCommand("delete from GadgetReference where GadRefID = @id", GADJIT.sqlConnection);
                             sqlCommandDelete.Parameters.Add("@id", SqlDbType.Int).Value = (int)e.Row.Cells[0].Value;
 
-                            if (MessageBox.Show("Voulez vous supprimer cet référence", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                            if (MessageBox.Show("Voulez-vous supprimer cette référence ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                             {
                                 GADJIT.sqlConnection.Open();
-                                MessageBox.Show(sqlCommandDelete.ExecuteNonQuery() + " réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                sqlCommandDelete.ExecuteNonQuery();
+
+                                MessageBox.Show("Suppression réussi", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                             else
                             {
@@ -411,12 +419,12 @@ namespace GADJIT_WIN_ASW
                         else
                         {
                             e.Cancel = true;
-                            MessageBox.Show("interdit cette référence est deja assigné a une ticket", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Suppression interdit cette référence est déjà assignée à un ticket ou plusieurs tickets", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Suppression réussi", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 catch (Exception ex)
