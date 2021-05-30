@@ -284,6 +284,12 @@ namespace GADJIT_WIN_CLIENT
             diag.CID = CID;
             diag.email = email;
             diag.ShowDialog();
+            TextBoxCat.Clear();
+            TextBoxDiag.Clear();
+            TextBoxMarque.Clear();
+            TextBoxRef.Clear();
+            RichTextBoxProb.Clear();
+            labelDiag.Visible = TextBoxDiag.Visible = ButtonDiagnostic.Visible = true;
             ConsultationTicketForClient_Load(sender, e);
         }
     }

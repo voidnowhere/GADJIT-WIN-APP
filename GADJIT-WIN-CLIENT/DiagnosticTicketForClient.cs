@@ -29,8 +29,9 @@ namespace GADJIT_WIN_CLIENT
 
         private void DiagnosticTicketForClient_Load(object sender, EventArgs e)
         {
+            MessageBox.Show(ConsultationTicketForClient.Ref);
             TextBoxCatDiag.Text = ConsultationTicketForClient.Cat;
-            TextBoxMarDiag.Text = ConsultationTicketForClient.Cat;
+            TextBoxMarDiag.Text = ConsultationTicketForClient.Brand;
             TextBoxRefDiag.Text = ConsultationTicketForClient.Ref;
             RichtextBoxProbDiag.Text = ConsultationTicketForClient.prob;
             TextBoxPrice.Text = ConsultationTicketForClient.price;
@@ -58,8 +59,7 @@ namespace GADJIT_WIN_CLIENT
             GADJIT.SendEmail(email, "Bonjour:\n \n Votre Ticket a été Accepté.\n Merci pour votre confiance. \n reparation en cours.\n \nGADJIT MAROC.");
             //
             cmd = new SqlCommand("insert into TicketMonitoring values (@TID,GETDATE(),'diagnostic validé','C',@CID,1)", GADJIT.sqlConnection);
-            TicketMonitoringID();
-            cmd.Parameters.AddWithValue("@TID", TMID);
+            cmd.Parameters.AddWithValue("@TID", ConsultationTicketForClient.TID);
             cmd.Parameters.AddWithValue("@CID",CID);
             GADJIT.sqlConnection.Open();
             cmd.ExecuteNonQuery();
@@ -78,20 +78,12 @@ namespace GADJIT_WIN_CLIENT
             GADJIT.SendEmail(email, "Bonjour:\n \n Votre Ticket a été Accepté.\n Merci pour votre confiance. \n reparation en cours.\n \nGADJIT MAROC.");
             //
             cmd = new SqlCommand("insert into TicketMonitoring values (@TID,GETDATE(),'diagnostic rejeté','C',@CID,1)", GADJIT.sqlConnection);
-            TicketMonitoringID();
-            cmd.Parameters.AddWithValue("@TID", TMID);
+            cmd.Parameters.AddWithValue("@TID", ConsultationTicketForClient.TID);
             cmd.Parameters.AddWithValue("@CID", CID);
             GADJIT.sqlConnection.Open();
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
             this.Close();
-        }
-        private void TicketMonitoringID()
-        {
-            SqlCommand cmd = new SqlCommand("select max(TicID) from TicketMonitoring", GADJIT.sqlConnection);
-            GADJIT.sqlConnection.Open();
-            TMID = (int)cmd.ExecuteScalar();
-            GADJIT.sqlConnection.Close();
         }
         private void getclientemail()
         {
