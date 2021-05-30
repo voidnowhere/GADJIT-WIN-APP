@@ -207,6 +207,8 @@ namespace GADJIT_WIN_ASW
             ResetButtonsColor();
             ButtonCityManagement.BackColor = Color.FromArgb(218, 165, 33);
             ButtonCityManagement.ForeColor = Color.White;
+            PanelStatistics.Visible = false;
+            PanelGadgetManagment.Visible = false;
             //
             CloseMdiChildIdExists();
             CityManagement cityManagement = new CityManagement();
