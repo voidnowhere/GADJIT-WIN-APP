@@ -56,7 +56,8 @@ namespace GADJIT_WIN_CLIENT
             GADJIT.sqlConnection.Close();
             MessageBox.Show("Ticket Accepter!!", "Ticket Accepter", MessageBoxButtons.OK, MessageBoxIcon.Information);
             GADJIT.SendEmail(email, "Bonjour:\n \n Votre Ticket a été Accepté.\n Merci pour votre confiance. \n reparation en cours.\n \nGADJIT MAROC.");
-            cmd = new SqlCommand("insert into TicketMonitoring values (@TID,GETDATE(),'Diagnostic Accepter','C',@CID,1)", GADJIT.sqlConnection);
+            //
+            cmd = new SqlCommand("insert into TicketMonitoring values (@TID,GETDATE(),'diagnostic validé','C',@CID,1)", GADJIT.sqlConnection);
             TicketMonitoringID();
             cmd.Parameters.AddWithValue("@TID", TMID);
             cmd.Parameters.AddWithValue("@CID",CID);
@@ -75,7 +76,8 @@ namespace GADJIT_WIN_CLIENT
             GADJIT.sqlConnection.Close();
             MessageBox.Show("Ticket Annuler , on vous contactera pour livre votre Gadget dans le plus bref délais  ", "Ticket Annuler", MessageBoxButtons.OK, MessageBoxIcon.Information);
             GADJIT.SendEmail(email, "Bonjour:\n \n Votre Ticket a été Accepté.\n Merci pour votre confiance. \n reparation en cours.\n \nGADJIT MAROC.");
-            cmd = new SqlCommand("insert into TicketMonitoring values (@TID,GETDATE(),'Diagnostic Annuler','C',@CID,1)", GADJIT.sqlConnection);
+            //
+            cmd = new SqlCommand("insert into TicketMonitoring values (@TID,GETDATE(),'diagnostic rejeté','C',@CID,1)", GADJIT.sqlConnection);
             TicketMonitoringID();
             cmd.Parameters.AddWithValue("@TID", TMID);
             cmd.Parameters.AddWithValue("@CID", CID);
