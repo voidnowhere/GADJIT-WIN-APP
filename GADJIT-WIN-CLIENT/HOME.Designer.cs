@@ -31,6 +31,8 @@ namespace GADJIT_WIN_CLIENT
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HOME));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ButtonConsultationTicket = new System.Windows.Forms.Button();
+            this.ButtonNewTicket = new System.Windows.Forms.Button();
             this.ButtonProfil = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,8 +43,6 @@ namespace GADJIT_WIN_CLIENT
             this.PictureBoxExit = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.ButtonConsultationTicket = new System.Windows.Forms.Button();
-            this.ButtonNewTicket = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogout)).BeginInit();
@@ -60,8 +60,46 @@ namespace GADJIT_WIN_CLIENT
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(214, 587);
+            this.panel1.Size = new System.Drawing.Size(252, 587);
             this.panel1.TabIndex = 1;
+            // 
+            // ButtonConsultationTicket
+            // 
+            this.ButtonConsultationTicket.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonConsultationTicket.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.ButtonConsultationTicket.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonConsultationTicket.FlatAppearance.BorderSize = 0;
+            this.ButtonConsultationTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonConsultationTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonConsultationTicket.ForeColor = System.Drawing.Color.White;
+            this.ButtonConsultationTicket.Location = new System.Drawing.Point(0, 241);
+            this.ButtonConsultationTicket.Name = "ButtonConsultationTicket";
+            this.ButtonConsultationTicket.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.ButtonConsultationTicket.Size = new System.Drawing.Size(252, 40);
+            this.ButtonConsultationTicket.TabIndex = 40;
+            this.ButtonConsultationTicket.Text = "Consulte mon Ticket";
+            this.ButtonConsultationTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ButtonConsultationTicket.UseVisualStyleBackColor = false;
+            this.ButtonConsultationTicket.Click += new System.EventHandler(this.ButtonConsultationTicket_Click);
+            // 
+            // ButtonNewTicket
+            // 
+            this.ButtonNewTicket.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonNewTicket.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.ButtonNewTicket.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonNewTicket.FlatAppearance.BorderSize = 0;
+            this.ButtonNewTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonNewTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonNewTicket.ForeColor = System.Drawing.Color.White;
+            this.ButtonNewTicket.Location = new System.Drawing.Point(0, 201);
+            this.ButtonNewTicket.Name = "ButtonNewTicket";
+            this.ButtonNewTicket.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.ButtonNewTicket.Size = new System.Drawing.Size(252, 40);
+            this.ButtonNewTicket.TabIndex = 39;
+            this.ButtonNewTicket.Text = "Nouveau ticket";
+            this.ButtonNewTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ButtonNewTicket.UseVisualStyleBackColor = false;
+            this.ButtonNewTicket.Click += new System.EventHandler(this.ButtonNewTicket_Click);
             // 
             // ButtonProfil
             // 
@@ -75,7 +113,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonProfil.Location = new System.Drawing.Point(0, 161);
             this.ButtonProfil.Name = "ButtonProfil";
             this.ButtonProfil.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.ButtonProfil.Size = new System.Drawing.Size(214, 40);
+            this.ButtonProfil.Size = new System.Drawing.Size(252, 40);
             this.ButtonProfil.TabIndex = 2;
             this.ButtonProfil.Text = "Profil";
             this.ButtonProfil.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -91,7 +129,7 @@ namespace GADJIT_WIN_CLIENT
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(214, 161);
+            this.panel2.Size = new System.Drawing.Size(252, 161);
             this.panel2.TabIndex = 38;
             // 
             // label2
@@ -167,9 +205,9 @@ namespace GADJIT_WIN_CLIENT
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Font = new System.Drawing.Font("Nirmala UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.label1.Location = new System.Drawing.Point(214, 0);
+            this.label1.Location = new System.Drawing.Point(247, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(756, 80);
+            this.label1.Size = new System.Drawing.Size(723, 80);
             this.label1.TabIndex = 35;
             this.label1.Text = "Bienvenue chez GADJIT : ";
             // 
@@ -181,49 +219,11 @@ namespace GADJIT_WIN_CLIENT
             this.richTextBox1.BackColor = System.Drawing.Color.White;
             this.richTextBox1.Font = new System.Drawing.Font("Nirmala UI", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.ForeColor = System.Drawing.Color.DarkSlateBlue;
-            this.richTextBox1.Location = new System.Drawing.Point(214, 77);
+            this.richTextBox1.Location = new System.Drawing.Point(247, 77);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(789, 507);
+            this.richTextBox1.Size = new System.Drawing.Size(756, 507);
             this.richTextBox1.TabIndex = 36;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
-            // 
-            // ButtonConsultationTicket
-            // 
-            this.ButtonConsultationTicket.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButtonConsultationTicket.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.ButtonConsultationTicket.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ButtonConsultationTicket.FlatAppearance.BorderSize = 0;
-            this.ButtonConsultationTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonConsultationTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonConsultationTicket.ForeColor = System.Drawing.Color.White;
-            this.ButtonConsultationTicket.Location = new System.Drawing.Point(0, 241);
-            this.ButtonConsultationTicket.Name = "ButtonConsultationTicket";
-            this.ButtonConsultationTicket.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.ButtonConsultationTicket.Size = new System.Drawing.Size(214, 40);
-            this.ButtonConsultationTicket.TabIndex = 40;
-            this.ButtonConsultationTicket.Text = "Consultez votre ticket";
-            this.ButtonConsultationTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ButtonConsultationTicket.UseVisualStyleBackColor = false;
-            this.ButtonConsultationTicket.Click += new System.EventHandler(this.ButtonConsultationTicket_Click);
-            // 
-            // ButtonNewTicket
-            // 
-            this.ButtonNewTicket.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButtonNewTicket.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.ButtonNewTicket.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ButtonNewTicket.FlatAppearance.BorderSize = 0;
-            this.ButtonNewTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonNewTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonNewTicket.ForeColor = System.Drawing.Color.White;
-            this.ButtonNewTicket.Location = new System.Drawing.Point(0, 201);
-            this.ButtonNewTicket.Name = "ButtonNewTicket";
-            this.ButtonNewTicket.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.ButtonNewTicket.Size = new System.Drawing.Size(214, 40);
-            this.ButtonNewTicket.TabIndex = 39;
-            this.ButtonNewTicket.Text = "Nouveau ticket";
-            this.ButtonNewTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ButtonNewTicket.UseVisualStyleBackColor = false;
-            this.ButtonNewTicket.Click += new System.EventHandler(this.ButtonNewTicket_Click);
             // 
             // HOME
             // 

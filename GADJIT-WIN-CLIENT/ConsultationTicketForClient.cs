@@ -17,11 +17,11 @@ namespace GADJIT_WIN_CLIENT
         {
             InitializeComponent();
         }
-        public int CID ;
-        public static int TID ;
+        public int CID;
+        public static int TID;
         int RefID;
-        int CatID ;
-        int BrandID ;
+        int CatID;
+        int BrandID;
         public static string price;
         public static string Ref;
         public static string Cat;
@@ -104,9 +104,9 @@ namespace GADJIT_WIN_CLIENT
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"erreur FillDGVTicket");
+                MessageBox.Show(ex.Message, "erreur FillDGVTicket");
             }
             finally
             {
@@ -155,7 +155,7 @@ namespace GADJIT_WIN_CLIENT
             if (dr.HasRows)
             {
                 dr.Read();
-                Ref= TextBoxRef.Text = dr["GadRefDesig"].ToString();
+                Ref = TextBoxRef.Text = dr["GadRefDesig"].ToString();
                 CatID = Convert.ToInt32(dr["GadCatID"]);
                 BrandID = Convert.ToInt32(dr["GadBraID"]);
                 dr.Close();
@@ -268,7 +268,7 @@ namespace GADJIT_WIN_CLIENT
                     {
                         labelDiag.Visible = TextBoxDiag.Visible = ButtonDiagnostic.Visible = true;
                         TextBoxDiag.Text = "Diagnostic Disponible";
-                        price = (dr.GetSqlMoney(3)).ToString();
+                        price = (dr.GetSqlMoney(2)).ToString();
                     }
                     RefID = Convert.ToInt32(dr["GadRefID"]);
                     dr.Close();
@@ -291,6 +291,35 @@ namespace GADJIT_WIN_CLIENT
             RichTextBoxProb.Clear();
             labelDiag.Visible = TextBoxDiag.Visible = ButtonDiagnostic.Visible = true;
             ConsultationTicketForClient_Load(sender, e);
+        }
+
+        private void DGVTicket_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            clearTxtBox();
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
+                TID = Convert.ToInt32(row.Cells["TicketID"].Value);
+                SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicRepPri,TicSta from Ticket where TicID=@TID", GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("@TID", TID);
+                GADJIT.sqlConnection.Open();
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    dr.Read();
+                    prob = RichTextBoxProb.Text = dr["TicProb"].ToString();
+                    if (dr["TicSta"].ToString() == "CD")
+                    {
+                        labelDiag.Visible = TextBoxDiag.Visible = ButtonDiagnostic.Visible = true;
+                        TextBoxDiag.Text = "Diagnostic Disponible";
+                    }
+                    RefID = Convert.ToInt32(dr["GadRefID"]);
+                    price = dr["TicRepPri"].ToString();
+                    dr.Close();
+                    GADJIT.sqlConnection.Close();
+                    BringBrandCatRef();
+                }
+            }
         }
     }
 }

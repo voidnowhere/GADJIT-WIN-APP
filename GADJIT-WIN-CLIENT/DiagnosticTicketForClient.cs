@@ -29,7 +29,6 @@ namespace GADJIT_WIN_CLIENT
 
         private void DiagnosticTicketForClient_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(ConsultationTicketForClient.Ref);
             TextBoxCatDiag.Text = ConsultationTicketForClient.Cat;
             TextBoxMarDiag.Text = ConsultationTicketForClient.Brand;
             TextBoxRefDiag.Text = ConsultationTicketForClient.Ref;
