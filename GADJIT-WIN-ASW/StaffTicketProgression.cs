@@ -25,6 +25,8 @@ namespace GADJIT_WIN_ASW
         Dictionary<int, string> reference = new Dictionary<int, string>();
         public int staffID;
         int ticID;
+        public String ticCancelDes;
+        public bool isTicCanceled = false;
 
         private void FillComboBoxCategory()
         {
@@ -155,7 +157,7 @@ namespace GADJIT_WIN_ASW
                 String sqlQuery =
                     "select distinct TicID, TicDT, TicSta, TicRepPri, gc.GadCatDesig + ' ' + gb.GadBraDesig + ' ' + gr.GadRefDesig as Gadget, GadRefDescr " +
                     "from Ticket as t, GadgetReference as gr, GadgetCategory as gc, GadgetBrand as gb, Worker as w, Client as c " +
-                    "where t.StafID = @satfID and t.WorID is not null " +
+                    "where t.StafID = @satfID and (t.WorID is not null or (t.WorID is null and TicSta = 'A')) " +
                     "and t.GadRefID = gr.GadRefID and gr.GadCatID = gc.GadCatID and gr.GadBraID = gb.GadBraID " +
                     "and TicDT between @dateF and @dateT";
 
@@ -271,13 +273,21 @@ namespace GADJIT_WIN_ASW
         {
             try
             {
+                ClearTicketDetails();
                 DGVTicketMonitoring.Rows.Clear();
                 ComboBoxProgression.Items.Clear();
                 //
+                string ticSta = DGVTicket[2, e.RowIndex].Value.ToString();
+                //
                 SqlCommand sqlCommandTicketDetail = new SqlCommand(
+                    (ticSta != "annulé") ?
                     "select TicSta, TicAddress + ' - ' + CitDesig as Address, TicProb, CONVERT(varchar, t.CliID) + ' - ' + CliLastName + ' ' + CliFirstName as Client, CliEmail, CliPhoneNumber, WorLastName + ' ' + WorFirstName as WorName " +
                     "from Ticket as t, Worker as w, Client as cl, City as ci " +
-                    "where TicID = @ticID and t.WorID = w.WorID and t.CliID = cl.CliID and t.CitID = ci.CitID",
+                    "where TicID = @ticID and t.WorID = w.WorID and t.CliID = cl.CliID and t.CitID = ci.CitID"
+                    :
+                    "select TicSta, TicAddress + ' - ' + CitDesig as Address, TicProb, CONVERT(varchar, t.CliID) + ' - ' + CliLastName + ' ' + CliFirstName as Client, CliEmail, CliPhoneNumber " +
+                    "from Ticket as t, Client as cl, City as ci " +
+                    "where TicID = @ticID and t.CliID = cl.CliID and t.CitID = ci.CitID",
                     GADJIT.sqlConnection);
                 ticID = (int)DGVTicket[0, e.RowIndex].Value;
                 sqlCommandTicketDetail.Parameters.Add("@ticID", SqlDbType.Int).Value = ticID;
@@ -322,6 +332,14 @@ namespace GADJIT_WIN_ASW
                             ComboBoxProgression.SelectedIndex = 0;
                             ButtonSave.Enabled = true;
                             break;
+                        case "DV":
+                            ComboBoxProgression.Items.AddRange(new String[] {
+                                "--choisissez pour enregistrer--",
+                                "annulé"
+                            });
+                            ComboBoxProgression.SelectedIndex = 0;
+                            ButtonSave.Enabled = true;
+                            break;
                         default:
                             ComboBoxProgression.Items.Add("--non disponible--");
                             ComboBoxProgression.SelectedIndex = 0;
@@ -329,12 +347,15 @@ namespace GADJIT_WIN_ASW
                             break;
                     }
                     //
-                    TextBoxClient.Text = dataReader["Client"].ToString();
+                    GroupBoxClient.Text = "Client - " + dataReader["Client"].ToString();
                     TextBoxClientEmail.Text = dataReader["CliEmail"].ToString();
                     TextBoxClientPhoneNumber.Text = dataReader["CliPhoneNumber"].ToString();
                     TextBoxTicketAddress.Text = dataReader["Address"].ToString();
                     RichTextBoxProblem.Text = dataReader["TicProb"].ToString();
-                    TextBoxWorker.Text = dataReader["WorName"].ToString();
+                    if(ticSta != "annulé")
+                    {
+                        TextBoxWorker.Text = dataReader["WorName"].ToString();
+                    }
                 }
                 dataReader.Close();
                 //
@@ -386,7 +407,7 @@ namespace GADJIT_WIN_ASW
 
         private void ClearTicketDetails()
         {
-            TextBoxClient.Clear();
+            GroupBoxClient.Text = "";
             TextBoxClientEmail.Clear();
             TextBoxClientPhoneNumber.Clear();
             RichTextBoxProblem.Clear();
@@ -419,10 +440,17 @@ namespace GADJIT_WIN_ASW
         {
             if(ComboBoxProgression.SelectedIndex > 0)
             {
-                if (MessageBox.Show("Voulez vous confirmer la progression", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                if (MessageBox.Show("Voulez-vous confirmer la progression ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
                     try
                     {
+                        if(ComboBoxProgression.Text == "annulé")
+                        {
+                            TicketCancellationReason ticketCancellationReason = new TicketCancellationReason();
+                            ticketCancellationReason.staffTicketProgression = this;
+                            ticketCancellationReason.ShowDialog();
+                            if (!isTicCanceled) return;
+                        }
                         SqlCommand sqlCommand = new SqlCommand();
                         sqlCommand.CommandText = "update Ticket set TicSta = @status where TicID = @ticID";
                         String status = "";
@@ -453,7 +481,7 @@ namespace GADJIT_WIN_ASW
                         sqlCommand.ExecuteNonQuery();
 
                         sqlCommand.CommandText = "insert into TicketMonitoring values(@ticID, GETDATE(), @status, 'S', @stafID, 1)";
-                        sqlCommand.Parameters["@status"].Value = ComboBoxProgression.Text;
+                        sqlCommand.Parameters["@status"].Value = (isTicCanceled) ? ticCancelDes : ComboBoxProgression.Text;
                         sqlCommand.Parameters.Add("@stafID", SqlDbType.VarChar).Value = staffID;
                         sqlCommand.ExecuteNonQuery();
 
@@ -462,7 +490,7 @@ namespace GADJIT_WIN_ASW
                             "Votre ticket sous le code [" + ticID.ToString() + "] " +
                             "a changer de progression vers \"" + ComboBoxProgression.Text + "\"");
 
-                        MessageBox.Show("Modifier", "Progression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Etat du ticket changé", "Progression", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ButtonSave.Enabled = false;
                         GADJIT.sqlConnection.Close();
                         ButtonSearch_Click(sender, e);

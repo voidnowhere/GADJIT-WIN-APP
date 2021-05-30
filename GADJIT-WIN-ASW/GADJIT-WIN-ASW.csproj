@@ -71,6 +71,12 @@
     <Compile Include="ClientManagment.Designer.cs">
       <DependentUpon>ClientManagment.cs</DependentUpon>
     </Compile>
+    <Compile Include="TicketCancellationReason.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TicketCancellationReason.Designer.cs">
+      <DependentUpon>TicketCancellationReason.cs</DependentUpon>
+    </Compile>
     <Compile Include="TicketConsultationWorker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -178,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ClientManagment.resx">
       <DependentUpon>ClientManagment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TicketCancellationReason.resx">
+      <DependentUpon>TicketCancellationReason.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TicketConsultationWorker.resx">
       <DependentUpon>TicketConsultationWorker.cs</DependentUpon>
