@@ -33,7 +33,7 @@ namespace GADJIT_WIN_ASW
             {
                 try
                 {
-                    SqlCommand sqlCommandDispo = new SqlCommand("select COUNT(staffID) from Staff where StafID = @staffID and StafPassWord = @pass", GADJIT.sqlConnection);
+                    SqlCommand sqlCommandDispo = new SqlCommand("select COUNT(StafID) from Staff where StafID = @staffID and StafPassWord = @pass", GADJIT.sqlConnection);
                     sqlCommandDispo.Parameters.Add("@staffID", SqlDbType.Int).Value = staffID;
                     sqlCommandDispo.Parameters.Add("@pass", SqlDbType.NVarChar).Value = TextBoxPassWord.Text;
                     GADJIT.sqlConnection.Open();
@@ -43,7 +43,7 @@ namespace GADJIT_WIN_ASW
                     }
                     else
                     {
-                        MessageBox.Show("mot de passe incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Mot de passe incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         TextBoxPassWord.Clear();
                     }
                 }
@@ -56,6 +56,10 @@ namespace GADJIT_WIN_ASW
                     GADJIT.sqlConnection.Close();
                 }
             }
+            else
+            {
+                MessageBox.Show("Veuillez taper votre mot de passe", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)
@@ -66,6 +70,7 @@ namespace GADJIT_WIN_ASW
                 sqlCommandDispo.Parameters.Add("@staffID", SqlDbType.Int).Value = staffID;
                 GADJIT.sqlConnection.Open();
                 sqlCommandDispo.ExecuteNonQuery();
+                staffPanel.logout = true;
                 this.Close();
                 staffPanel.Close();
                 login.Show();
