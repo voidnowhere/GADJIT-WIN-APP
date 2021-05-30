@@ -163,11 +163,11 @@ namespace GADJIT_WIN_ASW
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Nirmala UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(39, 9);
+            this.label1.Location = new System.Drawing.Point(23, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 25);
+            this.label1.Size = new System.Drawing.Size(206, 25);
             this.label1.TabIndex = 9;
-            this.label1.Text = "Espace Personnel";
+            this.label1.Text = "Espace administration";
             // 
             // CircularProfilPicture
             // 
