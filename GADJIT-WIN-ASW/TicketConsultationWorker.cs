@@ -454,13 +454,6 @@ namespace GADJIT_WIN_ASW
                                 GroupeBoxDiag.Visible = true;
                             }
                             break;
-                        case "CD":
-                            ComboBoxPorg.Items.AddRange(new string[] { "Confirmation de Diagnostic" });
-                            if (GroupeBoxDiag.Visible == true)
-                            {
-                                GroupeBoxDiag.Visible = false;
-                            }
-                            break;
                         case "DV":
                                 ComboBoxPorg.Items.AddRange(new string[] { "En cours de Reparation" });
                                 if (GroupeBoxDiag.Visible == true)
