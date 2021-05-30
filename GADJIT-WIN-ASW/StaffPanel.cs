@@ -21,6 +21,7 @@ namespace GADJIT_WIN_ASW
 
         public Login login;
         public int staffID;
+        public bool logout = false;
 
         private void CloseMdiChildIdExists()
         {
@@ -56,6 +57,7 @@ namespace GADJIT_WIN_ASW
 
         private void PannelButtonsLock(bool tf)
         {
+            CircularPicturePasswordChange.Enabled = tf;
             ShowSubMenuButton.Enabled = tf;
             ButtonTicketVerification.Enabled = tf;
             ButtonTicketProgression.Enabled = tf;
@@ -79,7 +81,7 @@ namespace GADJIT_WIN_ASW
                 unlockStaffPanel.ShowDialog();
                 PannelButtonsLock(true);
                 //
-                StaffDispoChanger("En Ligne");
+                if(!logout) StaffDispoChanger("En Ligne");
                 ButtonDisponibility.BackColor = Color.Lime;
             }
         }
