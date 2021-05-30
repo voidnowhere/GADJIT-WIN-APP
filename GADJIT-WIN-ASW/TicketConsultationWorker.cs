@@ -126,8 +126,8 @@ namespace GADJIT_WIN_ASW
                         DGVTicket.Rows.Add(
                             dataReader["TicID"],
                             dataReader["TicDT"],
-                            status,
-                            dataReader["Gadget"]);
+                            dataReader["Gadget"],
+                            status);
                     }
                     TextBoxTotalTickets.Text = DGVTicket.Rows.Count.ToString();
                 }
@@ -149,226 +149,6 @@ namespace GADJIT_WIN_ASW
             TextBoxGadget.Clear();
             TextBoxPrice.Clear();
             ComboBoxPorg.Items.Clear();
-        }
-
-        private void DGVTicket_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            clearTxtBox();
-            if (e.RowIndex >= 0)
-            {
-                try
-                {
-                    DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
-                    TID = (int)row.Cells["CODE"].Value;
-                    SqlCommand cmd = new SqlCommand("select TicProb,TicSta,CliID from Ticket where TicID=@TID", GADJIT.sqlConnection);
-                    cmd.Parameters.AddWithValue("@TID", TID);
-                    GADJIT.sqlConnection.Open();
-                    dataReader = cmd.ExecuteReader();
-                    if (dataReader.HasRows)
-                    {
-                        dataReader.Read();
-                        RichTextBoxProblem.Text = dataReader["TicProb"].ToString();
-                        CID = (int)dataReader["CliID"];
-                        ComboBoxPorg.Items.Clear();
-                        switch (dataReader["TicSta"].ToString())
-                        {
-                            case "ED":
-                                ComboBoxPorg.Items.AddRange(new string[] { "Confirmation de Diagnostic" });
-                                if (GroupeBoxDiag.Visible == false)
-                                {
-                                    GroupeBoxDiag.Visible = true;
-                                }
-                                break;
-                            case "CD":
-                                ComboBoxPorg.Items.AddRange(new string[] { "Confirmation de Diagnostic", "En cours de Reparation" });
-                                if (GroupeBoxDiag.Visible == true)
-                                {
-                                    GroupeBoxDiag.Visible = false;
-                                }
-                                break;
-                            case "ER":
-                                ComboBoxPorg.Items.AddRange(new string[] { "En cours de Reparation", "Repare" });
-                                if (GroupeBoxDiag.Visible == true)
-                                {
-                                    GroupeBoxDiag.Visible = false;
-                                }
-                                break;
-                            case "R":
-                                ComboBoxPorg.Items.Add("Repare");
-                                if (GroupeBoxDiag.Visible == true)
-                                {
-                                    GroupeBoxDiag.Visible = false;
-                                }
-                                break;
-                            default:
-                                if (GroupeBoxDiag.Visible == true)
-                                {
-                                    GroupeBoxDiag.Visible = false;
-                                }
-                                if (GroupeBoxDiag.Visible == true)
-                                {
-                                    ComboBoxPorg.Visible = false;
-                                }
-                                break;
-                        }
-                        ComboBoxPorg.SelectedIndex = 0;
-                        dataReader.Close();
-                        GADJIT.sqlConnection.Close();
-                        TextBoxGadget.Text = row.Cells["GADGET"].Value.ToString();
-                        FillComboBoxsCategoryBrand();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Erreur en selection cell", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-        private void DGVTicket_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            clearTxtBox();
-            if (e.RowIndex >= 0)
-            {
-                try
-                {
-                    DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
-                    TID = (int)row.Cells["CODE"].Value;
-                    SqlCommand cmd = new SqlCommand("select TicProb,TicSta,CliID from Ticket where TicID=@TID", GADJIT.sqlConnection);
-                    cmd.Parameters.AddWithValue("@TID", TID);
-                    GADJIT.sqlConnection.Open();
-                    dataReader = cmd.ExecuteReader();
-                    if (dataReader.HasRows)
-                    {
-                        dataReader.Read();
-                        RichTextBoxProblem.Text = dataReader["TicProb"].ToString();
-                        CID = (int)dataReader["CliID"];
-                        ComboBoxPorg.Items.Clear();
-                        switch (dataReader["TicSta"].ToString())
-                        {
-                            case "ED":
-                                ComboBoxPorg.Items.AddRange(new string[] { "Confirmation de Diagnostic" });
-                                if (GroupeBoxDiag.Visible == false)
-                                {
-                                    GroupeBoxDiag.Visible = true;
-                                }
-                                break;
-                            case "CD":
-                                ComboBoxPorg.Items.AddRange(new string[] { "Confirmation de Diagnostic", "En cours de Reparation" });
-                                if (GroupeBoxDiag.Visible == true)
-                                {
-                                    GroupeBoxDiag.Visible = false;
-                                }
-                                break;
-                            case "ER":
-                                ComboBoxPorg.Items.AddRange(new string[] { "En cours de Reparation", "Repare" });
-                                if (GroupeBoxDiag.Visible == true)
-                                {
-                                    GroupeBoxDiag.Visible = false;
-                                }
-                                break;
-                            case "R":
-                                ComboBoxPorg.Items.Add("Repare");
-                                if (GroupeBoxDiag.Visible == true)
-                                {
-                                    GroupeBoxDiag.Visible = false;
-                                }
-                                break;
-                            default:
-                                if (GroupeBoxDiag.Visible == true)
-                                {
-                                    GroupeBoxDiag.Visible = false;
-                                }
-                                if(GroupeBoxDiag.Visible == true)
-                                {
-                                    ComboBoxPorg.Visible = false;
-                                }
-                                break;
-                        }
-                        ComboBoxPorg.SelectedIndex = 0;
-                        dataReader.Close();
-                        GADJIT.sqlConnection.Close();
-                        TextBoxGadget.Text = row.Cells["GADGET"].Value.ToString();
-                        FillComboBoxsCategoryBrand();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Erreur en selection cell", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-        private void DGVTicket_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            clearTxtBox();
-            if (e.RowIndex >= 0)
-            {
-                try
-                {
-                    DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
-                    TID = (int)row.Cells["CODE"].Value;
-                    SqlCommand cmd = new SqlCommand("select TicProb,TicSta,CliID from Ticket where TicID=@TID", GADJIT.sqlConnection);
-                    cmd.Parameters.AddWithValue("@TID", TID);
-                    GADJIT.sqlConnection.Open();
-                    dataReader = cmd.ExecuteReader();
-                    if (dataReader.HasRows)
-                    {
-                        dataReader.Read();
-                        RichTextBoxProblem.Text = dataReader["TicProb"].ToString();
-                        CID = (int)dataReader["CliID"];
-                        ComboBoxPorg.Items.Clear();
-                        switch (dataReader["TicSta"].ToString())
-                        {
-                            case "ED":
-                                ComboBoxPorg.Items.AddRange(new string[] { "Confirmation de Diagnostic" });
-                                if (GroupeBoxDiag.Visible == false)
-                                {
-                                    GroupeBoxDiag.Visible = true;
-                                }
-                                break;
-                            case "CD":
-                                ComboBoxPorg.Items.AddRange(new string[] { "Confirmation de Diagnostic", "En cours de Reparation" });
-                                if (GroupeBoxDiag.Visible == true)
-                                {
-                                    GroupeBoxDiag.Visible = false;
-                                }
-                                break;
-                            case "ER":
-                                ComboBoxPorg.Items.AddRange(new string[] { "En cours de Reparation", "Repare" });
-                                if (GroupeBoxDiag.Visible == true)
-                                {
-                                    GroupeBoxDiag.Visible = false;
-                                }
-                                break;
-                            case "R":
-                                ComboBoxPorg.Items.Add("Repare");
-                                if (GroupeBoxDiag.Visible == true)
-                                {
-                                    GroupeBoxDiag.Visible = false;
-                                }
-                                break;
-                            default:
-                                if (GroupeBoxDiag.Visible == true)
-                                {
-                                    GroupeBoxDiag.Visible = false;
-                                }
-                                if (GroupeBoxDiag.Visible == true)
-                                {
-                                    ComboBoxPorg.Visible = false;
-                                }
-                                break;
-                        }
-                        ComboBoxPorg.SelectedIndex = 0;
-                        dataReader.Close();
-                        GADJIT.sqlConnection.Close();
-                        TextBoxGadget.Text = row.Cells["GADGET"].Value.ToString();
-                        FillComboBoxsCategoryBrand();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Erreur en selection cell", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
         }
         private void FillComboBoxsCategoryBrand()
         {
@@ -483,6 +263,14 @@ namespace GADJIT_WIN_ASW
                 richTextBoxDiag.Clear();
                 TextBoxPrice.Clear();
             }
+            else
+            {
+                if(GroupeBoxDiag.Visible == true)
+                {
+                    MessageBox.Show("Veuillez remplir les champs avant d'enregistrer");
+                    return;
+                }
+            }
             //
             //
             if (ComboBoxPorg.SelectedIndex > -1)
@@ -513,6 +301,11 @@ namespace GADJIT_WIN_ASW
                 {
                     GADJIT.SendEmail(emailtemp, "Bonjour:\n\n l'Appareil avec le ticket code : [" + TID + "] a été reparé! \n On vous contactera dans le bref delais pour confirmer la livraison de votre GADJIT. \n\nGADJIT MAROC.");
                 }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez choisir une progression");
+                return;
             }
             //
             GADJIT.sqlConnection.Open();
@@ -631,6 +424,89 @@ namespace GADJIT_WIN_ASW
             {
                 e.Handled = true;
             }
+        }
+
+        private void DGVTicket_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            clearTxtBox();
+            if (e.RowIndex >= 0)
+            {
+              try
+                {
+                    DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
+                TID = (int)row.Cells["CODE"].Value;
+                SqlCommand cmd = new SqlCommand("select TicProb,TicSta,CliID from Ticket where TicID=@TID", GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("@TID", TID);
+                GADJIT.sqlConnection.Open();
+                dataReader = cmd.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    dataReader.Read();
+                    RichTextBoxProblem.Text = dataReader["TicProb"].ToString();
+                    CID = (int)dataReader["CliID"];
+                    ComboBoxPorg.Items.Clear();
+                    switch (dataReader["TicSta"].ToString())
+                    {
+                        case "ED":
+                            ComboBoxPorg.Items.AddRange(new string[] { "Confirmation de Diagnostic" });
+                            if (GroupeBoxDiag.Visible == false)
+                            {
+                                GroupeBoxDiag.Visible = true;
+                            }
+                            break;
+                        case "CD":
+                            ComboBoxPorg.Items.AddRange(new string[] { "Confirmation de Diagnostic" });
+                            if (GroupeBoxDiag.Visible == true)
+                            {
+                                GroupeBoxDiag.Visible = false;
+                            }
+                            break;
+                        case "DV":
+                                ComboBoxPorg.Items.AddRange(new string[] { "En cours de Reparation" });
+                                if (GroupeBoxDiag.Visible == true)
+                                {
+                                    GroupeBoxDiag.Visible = false;
+                                }
+                                break;
+
+                            case "ER":
+                            ComboBoxPorg.Items.AddRange(new string[] { "En cours de Reparation", "Repare" });
+                            if (GroupeBoxDiag.Visible == true)
+                            {
+                                GroupeBoxDiag.Visible = false;
+                            }
+                            break;
+                        case "R":
+                            ComboBoxPorg.Items.Add("Repare");
+                            if (GroupeBoxDiag.Visible == true)
+                            {
+                                GroupeBoxDiag.Visible = false;
+                            }
+                            break;
+                        default:
+                            ComboBoxPorg.Items.Add("Pas Disponible");
+                            if (GroupeBoxDiag.Visible == true)
+                            {
+                                GroupeBoxDiag.Visible = false;
+                            }
+                            if (GroupeBoxDiag.Visible == true)
+                            {
+                                ComboBoxPorg.Visible = false;
+                            }
+                            break;
+                    }
+                    ComboBoxPorg.SelectedIndex = 0;
+                    dataReader.Close();
+                    GADJIT.sqlConnection.Close();
+                    TextBoxGadget.Text = row.Cells["GADGET"].Value.ToString();
+                    FillComboBoxsCategoryBrand();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur en selection cell", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         }
     }
 }

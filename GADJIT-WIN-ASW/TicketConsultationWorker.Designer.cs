@@ -611,9 +611,7 @@ namespace GADJIT_WIN_ASW
             this.DGVTicket.ReadOnly = true;
             this.DGVTicket.Size = new System.Drawing.Size(455, 206);
             this.DGVTicket.TabIndex = 78;
-            this.DGVTicket.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellClick);
-            this.DGVTicket.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentClick);
-            this.DGVTicket.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentDoubleClick);
+            this.DGVTicket.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVTicket_CellMouseDoubleClick);
             // 
             // CODE
             // 
