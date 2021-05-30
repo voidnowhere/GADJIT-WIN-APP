@@ -55,6 +55,7 @@ namespace GADJIT_WIN_ASW
             this.ColumnTextBoxTelephone = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTextBoxAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTextBoxCity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnComboBoxStatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVClient)).BeginInit();
@@ -273,6 +274,7 @@ namespace GADJIT_WIN_ASW
             this.ColumnTextBoxTelephone,
             this.ColumnTextBoxAddress,
             this.ColumnTextBoxCity,
+            this.Column1,
             this.ColumnComboBoxStatus});
             this.DGVClient.Location = new System.Drawing.Point(14, 112);
             this.DGVClient.Name = "DGVClient";
@@ -305,17 +307,18 @@ namespace GADJIT_WIN_ASW
             // ColumnTextBoxEmail
             // 
             this.ColumnTextBoxEmail.HeaderText = "Email";
-            this.ColumnTextBoxEmail.MinimumWidth = 150;
+            this.ColumnTextBoxEmail.MinimumWidth = 200;
             this.ColumnTextBoxEmail.Name = "ColumnTextBoxEmail";
             this.ColumnTextBoxEmail.ReadOnly = true;
-            this.ColumnTextBoxEmail.Width = 150;
+            this.ColumnTextBoxEmail.Width = 200;
             // 
             // ColumnTextBoxTelephone
             // 
             this.ColumnTextBoxTelephone.HeaderText = "Téléphone";
-            this.ColumnTextBoxTelephone.MinimumWidth = 100;
+            this.ColumnTextBoxTelephone.MinimumWidth = 70;
             this.ColumnTextBoxTelephone.Name = "ColumnTextBoxTelephone";
             this.ColumnTextBoxTelephone.ReadOnly = true;
+            this.ColumnTextBoxTelephone.Width = 70;
             // 
             // ColumnTextBoxAddress
             // 
@@ -331,6 +334,13 @@ namespace GADJIT_WIN_ASW
             this.ColumnTextBoxCity.MinimumWidth = 100;
             this.ColumnTextBoxCity.Name = "ColumnTextBoxCity";
             this.ColumnTextBoxCity.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Vérifié";
+            this.Column1.MinimumWidth = 50;
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 50;
             // 
             // ColumnComboBoxStatus
             // 
@@ -397,6 +407,7 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTextBoxTelephone;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTextBoxAddress;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTextBoxCity;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewComboBoxColumn ColumnComboBoxStatus;
     }
 }
