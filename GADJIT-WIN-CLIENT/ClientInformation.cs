@@ -150,8 +150,8 @@ namespace GADJIT_WIN_CLIENT
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("select count(CliEmail) from client where CliEmail=@email and CliID!=@CID",GADJIT.sqlConnection);
-                cmd.Parameters.AddWithValue("@email", TextBoxEmail);
+                SqlCommand cmd = new SqlCommand("select count(CliEmail) from client where CliEmail=@email and CliID != @CID",GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("@email", TextBoxEmail.Text);
                 cmd.Parameters.AddWithValue("@CID", CID);
                 GADJIT.sqlConnection.Open();
                 if((int)cmd.ExecuteScalar() > 0)
