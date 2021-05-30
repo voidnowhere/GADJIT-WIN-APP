@@ -30,7 +30,7 @@ namespace GADJIT_WIN_CLIENT
 
         private void ButtonLogin_Click(object sender, EventArgs e)
         {          
-            SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM Client WHERE CliEmail=@Email and CliPassWord=@pass", GADJIT.sqlConnection);
+            SqlCommand cmd = new SqlCommand("SELECT COUNT(CliID) FROM Client WHERE CliEmail=@Email and CliPassWord=@pass", GADJIT.sqlConnection);
             GADJIT.sqlConnection.Open();
             cmd.Parameters.AddWithValue("@pass", TextBoxPassWord.Text);
             cmd.Parameters.AddWithValue("@Email", TexrBoxEmail.Text);
@@ -70,7 +70,7 @@ namespace GADJIT_WIN_CLIENT
                     v.CID = dr.GetInt32(0);
                     GADJIT.sqlConnection.Close();
                     Random random = new Random();
-                    int num = random.Next(6, 8);
+                    int num = random.Next(4,4);
                     int total = 0;
                     do
                     {
@@ -88,10 +88,8 @@ namespace GADJIT_WIN_CLIENT
                     } while (true);
                     v.check = check;
                     v.ShowDialog();
-                }
-                
-         
-                ButtonClear_Click(sender, e);               
+                    ButtonLogin_Click(sender, e);
+                }           
             }
             else
             {

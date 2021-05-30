@@ -34,6 +34,8 @@ namespace GADJIT_WIN_CLIENT
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.ButtonRegister = new System.Windows.Forms.Button();
             this.ButtonClear = new System.Windows.Forms.Button();
+            this.PictureBoxExit = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -92,11 +94,23 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonClear.UseVisualStyleBackColor = false;
             this.ButtonClear.Click += new System.EventHandler(this.ButtonClear_Click);
             // 
+            // PictureBoxExit
+            // 
+            this.PictureBoxExit.Image = global::GADJIT_WIN_CLIENT.Properties.Resources.close_window_52px;
+            this.PictureBoxExit.Location = new System.Drawing.Point(311, -1);
+            this.PictureBoxExit.Name = "PictureBoxExit";
+            this.PictureBoxExit.Size = new System.Drawing.Size(34, 33);
+            this.PictureBoxExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBoxExit.TabIndex = 33;
+            this.PictureBoxExit.TabStop = false;
+            this.PictureBoxExit.Click += new System.EventHandler(this.PictureBoxExit_Click);
+            // 
             // EmailVerification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(344, 205);
+            this.Controls.Add(this.PictureBoxExit);
             this.Controls.Add(this.ButtonClear);
             this.Controls.Add(this.ButtonRegister);
             this.Controls.Add(this.textBox1);
@@ -109,6 +123,7 @@ namespace GADJIT_WIN_CLIENT
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EmailVerification";
             this.Load += new System.EventHandler(this.EmailVerification_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,5 +136,6 @@ namespace GADJIT_WIN_CLIENT
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button ButtonRegister;
         private System.Windows.Forms.Button ButtonClear;
+        private System.Windows.Forms.PictureBox PictureBoxExit;
     }
 }

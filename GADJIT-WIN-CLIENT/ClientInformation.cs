@@ -145,5 +145,33 @@ namespace GADJIT_WIN_CLIENT
                 GADJIT.sqlConnection.Close();
             }
         }
+
+        private void TextBoxEmail_Validating(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                SqlCommand cmd = new SqlCommand("select count(CliEmail) from client where CliEmail=@email and CliID!=@CID",GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("@email", TextBoxEmail);
+                cmd.Parameters.AddWithValue("@CID", CID);
+                GADJIT.sqlConnection.Open();
+                if((int)cmd.ExecuteScalar() > 0)
+                {
+                    errorProviderEmail.SetError(TextBoxEmail,"email deja disponible");
+                    e.Cancel = true;
+                }
+                else
+                {
+                    errorProviderEmail.SetError(TextBoxEmail, null);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur TextBoxEmail_Validating");
+            }
+            finally
+            {
+                GADJIT.sqlConnection.Close();
+            }
+        }
     }
 }

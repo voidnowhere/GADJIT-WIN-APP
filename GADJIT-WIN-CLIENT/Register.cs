@@ -57,7 +57,7 @@ namespace GADJIT_WIN_CLIENT
             LabelCaptcha.Text = captcha;
             //verification code
             random = new Random();
-            num = random.Next(6, 8);
+            num = random.Next(4, 4);
             total = 0;
             do
             {
@@ -106,7 +106,7 @@ namespace GADJIT_WIN_CLIENT
             {
                 try
                 {
-                    if (ComboxBoxCity.SelectedIndex != 0)
+                    if (ComboxBoxCity.SelectedIndex != 0 && TextBoxConfPassword.Text != "" && TextBoxEmail.Text !="" && TextBoxNom.Text != "" && TextBoxPassword.Text != ""&&TextBoxPhone.Text!=""&&TextBoxPrenom.Text!=""&&RichTextBoxAdress.Text!="")
                     {
                         emailC = TextBoxEmail.Text;
                         NomC = TextBoxNom.Text;
@@ -160,7 +160,7 @@ namespace GADJIT_WIN_CLIENT
                     }
                     else
                     {
-                        errorProviderCity.SetError(ComboxBoxCity, "Vous devez choisir une ville");
+                        errorProviderCity.SetError(ComboxBoxCity, "Verifiez les champs !");
                     }
 
                 }
@@ -186,6 +186,7 @@ namespace GADJIT_WIN_CLIENT
             if (!isValid)
             {
                 errorProviderTelephone.SetError(TextBoxPhone, "Entrez un numéro de téléphone valide ");
+                e.Cancel = true;
             }
             else
             {
@@ -198,6 +199,7 @@ namespace GADJIT_WIN_CLIENT
             if (TextBoxPassword.Text != TextBoxConfPassword.Text)
             {
                 errorProviderPasswordConfirmation.SetError(TextBoxConfPassword, "Les mots de passe saisis ne sont pas identiques");
+                e.Cancel = true;
             }
             else
             {
