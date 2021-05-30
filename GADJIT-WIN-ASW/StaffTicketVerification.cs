@@ -27,6 +27,8 @@ namespace GADJIT_WIN_ASW
         int ticID;
         string chooseWorker = "--choisissez pour affecter--";
         string noWorkerIsAvailable = "--non disponible--";
+        public String ticCancelDes;
+        public bool isTicCanceled = false;
 
         private void FillComboBoxCategory()
         {
@@ -432,36 +434,39 @@ namespace GADJIT_WIN_ASW
 
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Voulez-vous confirmer l'annulation ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            try
             {
-                try
-                {
-                    SqlCommand sqlCommand = new SqlCommand();
-                    sqlCommand.CommandText = "update Ticket set StafID = @stafID, TicSta = 'A' where TicID = @ticID";
-                    sqlCommand.Parameters.Add("@stafID", SqlDbType.Int).Value = staffID;
-                    sqlCommand.Parameters.Add("@ticID", SqlDbType.Int).Value = ticID;
-                    sqlCommand.Connection = GADJIT.sqlConnection;
-                    GADJIT.sqlConnection.Open();
-                    sqlCommand.ExecuteNonQuery();
-                    //
-                    sqlCommand.CommandText = "insert into TicketMonitoring values(@ticID, GETDATE(), 'ticket annulé', 'S', @stafID, 1)";
-                    sqlCommand.ExecuteNonQuery();
+                TicketCancellationReason ticketCancellationReason = new TicketCancellationReason();
+                ticketCancellationReason.staffTicketVerification = this;
+                ticketCancellationReason.ShowDialog();
+                if (!isTicCanceled) return;
+                //
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.CommandText = "update Ticket set StafID = @stafID, TicSta = 'A' where TicID = @ticID";
+                sqlCommand.Parameters.Add("@stafID", SqlDbType.Int).Value = staffID;
+                sqlCommand.Parameters.Add("@ticID", SqlDbType.Int).Value = ticID;
+                sqlCommand.Connection = GADJIT.sqlConnection;
+                GADJIT.sqlConnection.Open();
+                sqlCommand.ExecuteNonQuery();
+                //
+                sqlCommand.CommandText = "insert into TicketMonitoring values(@ticID, GETDATE(), @des, 'S', @stafID, 1)";
+                sqlCommand.Parameters.Add("@des", SqlDbType.VarChar).Value = ticCancelDes;
+                sqlCommand.ExecuteNonQuery();
 
-                    GADJIT.SendEmail(TextBoxClientEmail.Text, "Votre ticket sous le code [" + ticID + "] a été annulé");
+                GADJIT.SendEmail(TextBoxClientEmail.Text, "Votre ticket sous le code [" + ticID + "] a été annulé");
 
-                    MessageBox.Show("Ticket annulé", "Annulation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ButtonAssign.Enabled = false;
-                    GADJIT.sqlConnection.Close();
-                    ButtonSearch_Click(sender, e);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error ButtonCancel_Click()", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    GADJIT.sqlConnection.Close();
-                }
+                MessageBox.Show("Ticket annulé", "Annulation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ButtonAssign.Enabled = false;
+                GADJIT.sqlConnection.Close();
+                ButtonSearch_Click(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error ButtonCancel_Click()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                GADJIT.sqlConnection.Close();
             }
         }
     }

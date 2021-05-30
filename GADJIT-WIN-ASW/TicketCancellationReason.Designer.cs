@@ -115,6 +115,7 @@ namespace GADJIT_WIN_ASW
             this.Name = "TicketCancellationReason";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TicketCancellationReason";
+            this.Load += new System.EventHandler(this.TicketCancellationReason_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

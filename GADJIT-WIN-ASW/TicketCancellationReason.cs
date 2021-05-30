@@ -17,6 +17,7 @@ namespace GADJIT_WIN_ASW
             InitializeComponent();
         }
 
+        public StaffTicketVerification staffTicketVerification;
         public StaffTicketProgression staffTicketProgression;
 
         private void ButtonSave_Click(object sender, EventArgs e)
@@ -25,8 +26,16 @@ namespace GADJIT_WIN_ASW
             {
                 if (MessageBox.Show("Voulez-vous confirmer l'annulation ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
-                    staffTicketProgression.isTicCanceled = true;
-                    staffTicketProgression.ticCancelDes = RichTextBoxDescription.Text;
+                    if (staffTicketVerification != null)
+                    {
+                        staffTicketVerification.isTicCanceled = true;
+                        staffTicketVerification.ticCancelDes = RichTextBoxDescription.Text;
+                    }
+                    else if (staffTicketProgression != null)
+                    {
+                        staffTicketProgression.isTicCanceled = true;
+                        staffTicketProgression.ticCancelDes = RichTextBoxDescription.Text;
+                    }
                     this.Close();
                 }
             }
@@ -38,8 +47,20 @@ namespace GADJIT_WIN_ASW
 
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
-            staffTicketProgression.isTicCanceled = false;
+            if (staffTicketVerification != null)
+            {
+                staffTicketVerification.isTicCanceled = false;
+            }
+            else if (staffTicketProgression != null)
+            {
+                staffTicketProgression.isTicCanceled = false;
+            }
             this.Close();
+        }
+
+        private void TicketCancellationReason_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
