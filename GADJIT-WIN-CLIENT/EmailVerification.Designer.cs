@@ -33,6 +33,9 @@ namespace GADJIT_WIN_CLIENT
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.ButtonRegister = new System.Windows.Forms.Button();
+            this.ButtonClear = new System.Windows.Forms.Button();
+            this.PictureBoxExit = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -60,7 +63,7 @@ namespace GADJIT_WIN_CLIENT
             this.textBox1.Location = new System.Drawing.Point(204, 86);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(122, 25);
-            this.textBox1.TabIndex = 30;
+            this.textBox1.TabIndex = 0;
             // 
             // ButtonRegister
             // 
@@ -69,19 +72,46 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonRegister.FlatAppearance.BorderSize = 0;
             this.ButtonRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonRegister.ForeColor = System.Drawing.Color.White;
-            this.ButtonRegister.Location = new System.Drawing.Point(92, 136);
+            this.ButtonRegister.Location = new System.Drawing.Point(198, 131);
             this.ButtonRegister.Name = "ButtonRegister";
             this.ButtonRegister.Size = new System.Drawing.Size(128, 35);
-            this.ButtonRegister.TabIndex = 31;
+            this.ButtonRegister.TabIndex = 1;
             this.ButtonRegister.Text = "Verifier le code";
             this.ButtonRegister.UseVisualStyleBackColor = false;
             this.ButtonRegister.Click += new System.EventHandler(this.ButtonRegister_Click);
+            // 
+            // ButtonClear
+            // 
+            this.ButtonClear.BackColor = System.Drawing.Color.White;
+            this.ButtonClear.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ButtonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonClear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.ButtonClear.Location = new System.Drawing.Point(38, 131);
+            this.ButtonClear.Name = "ButtonClear";
+            this.ButtonClear.Size = new System.Drawing.Size(128, 35);
+            this.ButtonClear.TabIndex = 2;
+            this.ButtonClear.Text = "Pas Maintenant";
+            this.ButtonClear.UseVisualStyleBackColor = false;
+            this.ButtonClear.Click += new System.EventHandler(this.ButtonClear_Click);
+            // 
+            // PictureBoxExit
+            // 
+            this.PictureBoxExit.Image = global::GADJIT_WIN_CLIENT.Properties.Resources.close_window_52px;
+            this.PictureBoxExit.Location = new System.Drawing.Point(311, -1);
+            this.PictureBoxExit.Name = "PictureBoxExit";
+            this.PictureBoxExit.Size = new System.Drawing.Size(34, 33);
+            this.PictureBoxExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PictureBoxExit.TabIndex = 33;
+            this.PictureBoxExit.TabStop = false;
+            this.PictureBoxExit.Click += new System.EventHandler(this.PictureBoxExit_Click);
             // 
             // EmailVerification
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(344, 205);
+            this.Controls.Add(this.PictureBoxExit);
+            this.Controls.Add(this.ButtonClear);
             this.Controls.Add(this.ButtonRegister);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
@@ -93,6 +123,7 @@ namespace GADJIT_WIN_CLIENT
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EmailVerification";
             this.Load += new System.EventHandler(this.EmailVerification_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxExit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -104,5 +135,7 @@ namespace GADJIT_WIN_CLIENT
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button ButtonRegister;
+        private System.Windows.Forms.Button ButtonClear;
+        private System.Windows.Forms.PictureBox PictureBoxExit;
     }
 }

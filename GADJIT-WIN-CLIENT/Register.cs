@@ -23,13 +23,17 @@ namespace GADJIT_WIN_CLIENT
         }
 
         int ID;
+        int cityID;
+        string check;
         public static string emailC;
         public static string NomC;
+        SqlDataReader dataReader;
 
         private void Register_Load(object sender, EventArgs e)
         {
             TextBoxPassword.PasswordChar = '*';
             TextBoxPassword.MaxLength = 16;
+            FillComboBoxCity();
             ComboxBoxCity.SelectedIndex = 0;
             //Captcha
             Random random = new Random();
@@ -51,7 +55,24 @@ namespace GADJIT_WIN_CLIENT
                 }
             } while (true);
             LabelCaptcha.Text = captcha;
-            //
+            //verification code
+            random = new Random();
+            num = random.Next(4, 4);
+            total = 0;
+            do
+            {
+                int chr = random.Next(48, 123);
+                if ((chr >= 48 && chr <= 57) || (chr >= 65 && chr <= 90) || (chr >= 97 && chr <= 122))
+                {
+                    check = check + (char)chr;
+                    total++;
+                    if (total == num)
+                        break;
+                    {
+
+                    }
+                }
+            } while (true);
         }
 
         private void ButtonClear_Click(object sender, EventArgs e)
@@ -85,29 +106,29 @@ namespace GADJIT_WIN_CLIENT
             {
                 try
                 {
-                    if (ComboxBoxCity.SelectedIndex != 0)
+                    if (ComboxBoxCity.SelectedIndex != 0 && TextBoxConfPassword.Text != "" && TextBoxEmail.Text !="" && TextBoxNom.Text != "" && TextBoxPassword.Text != ""&&TextBoxPhone.Text!=""&&TextBoxPrenom.Text!=""&&RichTextBoxAdress.Text!="")
                     {
                         emailC = TextBoxEmail.Text;
                         NomC = TextBoxNom.Text;
-                        EmailVerification v = new EmailVerification();
-                        v.ShowDialog();
+                        SqlCommand cmd = new SqlCommand("select max(CliID) from Client ", GADJIT.sqlConnection);
+                        GADJIT.sqlConnection.Open();
+                        if (cmd.ExecuteScalar() != DBNull.Value)
+                        {
+                            ID = (int)cmd.ExecuteScalar() + 1;
+                        }
+                        else
+                        {
+                            ID = 0;
+                        }
+                        GADJIT.sqlConnection.Close();
                         try
                         {
-                            SqlCommand cmd = new SqlCommand("select max(CliID) from Client ", GADJIT.sqlConnection);
-                            GADJIT.sqlConnection.Open();
-                            if(cmd.ExecuteScalar() != DBNull.Value)
-                            {
-                                ID = (int)cmd.ExecuteScalar() + 1;
-                            }
-                            else
-                            {
-                                ID = 0;
-                            }
+                            getcityid();
                             //
                             errorProviderCity.SetError(ComboxBoxCity, null);
                             errorProviderCaptcha.SetError(TextBoxCaptcha, null);
                             errorProviderEmail.SetError(TextBoxEmail, null);
-                            cmd = new SqlCommand("insert into client values(@ClientID,@LastName,@FirstName,@Email,@PassWord,@PhoneNumber,@Adress,@City,1)", GADJIT.sqlConnection);
+                            cmd = new SqlCommand("insert into client values(@ClientID,@LastName,@FirstName,@Email,@PassWord,@PhoneNumber,@Adress,@City,1,null)", GADJIT.sqlConnection);
                             cmd.Parameters.AddWithValue("@ClientID", ID);
                             cmd.Parameters.AddWithValue("@LastName", TextBoxNom.Text.Trim());
                             cmd.Parameters.AddWithValue("@FirstName", TextBoxPrenom.Text.Trim());
@@ -115,28 +136,23 @@ namespace GADJIT_WIN_CLIENT
                             cmd.Parameters.AddWithValue("@PassWord", TextBoxPassword.Text.Trim());
                             cmd.Parameters.AddWithValue("@PhoneNumber", TextBoxPhone.Text.Trim());
                             cmd.Parameters.AddWithValue("@Adress", RichTextBoxAdress.Text);
-                            cmd.Parameters.AddWithValue("@City", ComboxBoxCity.GetItemText(ComboxBoxCity.SelectedItem));
+                            cmd.Parameters.AddWithValue("@City", cityID);
+                            GADJIT.sqlConnection.Open();
                             cmd.ExecuteNonQuery();
-                            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-                            client.EnableSsl = true;
-                            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                            client.UseDefaultCredentials = false;
-                            client.Credentials = new NetworkCredential("GADJITMA@gmail.com", "GADJIT2021");
-                            MailMessage msg = new MailMessage();
-                            msg.To.Add(TextBoxEmail.Text);
-                            msg.From = new MailAddress("GADJITMA@gmail.com");
-                            msg.Subject = "Inscription chez GADJIT";
-                            msg.Body = "Bonjour " + TextBoxNom.Text + " :\nvotre inscription a bien été traitée bienvenue chez GADJIT. \nGADJIT MAROC.";
-                            client.Send(msg);
-                            MessageBox.Show("Inscription réussite", "Inscription",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                            GADJIT.sqlConnection.Close();
+                            EmailVerification v = new EmailVerification();
+                            v.email = TextBoxEmail.Text;
+                            v.nom = TextBoxNom.Text;
+                            v.CID = ID;
+                            v.check = check;
+                            v.ShowDialog();
+                            //
+                            GADJIT.SendEmail(TextBoxEmail.Text, "Bonjour " + TextBoxNom.Text + " :\nvotre inscription a bien été traitée bienvenue chez GADJIT. \nGADJIT MAROC.");
+                            MessageBox.Show("Inscription réussite", "Inscription", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         catch(Exception ex)
                         {
                             MessageBox.Show(ex.Message,"Email non valider");
-                        }
-                        finally
-                        {
-                            GADJIT.sqlConnection.Close();
                         }
                         Login login = new Login();
                         login.Show();
@@ -144,7 +160,7 @@ namespace GADJIT_WIN_CLIENT
                     }
                     else
                     {
-                        errorProviderCity.SetError(ComboxBoxCity, "Vous devez choisir une ville");
+                        errorProviderCity.SetError(ComboxBoxCity, "Verifiez les champs !");
                     }
 
                 }
@@ -170,6 +186,7 @@ namespace GADJIT_WIN_CLIENT
             if (!isValid)
             {
                 errorProviderTelephone.SetError(TextBoxPhone, "Entrez un numéro de téléphone valide ");
+                e.Cancel = true;
             }
             else
             {
@@ -182,6 +199,7 @@ namespace GADJIT_WIN_CLIENT
             if (TextBoxPassword.Text != TextBoxConfPassword.Text)
             {
                 errorProviderPasswordConfirmation.SetError(TextBoxConfPassword, "Les mots de passe saisis ne sont pas identiques");
+                e.Cancel = true;
             }
             else
             {
@@ -201,6 +219,41 @@ namespace GADJIT_WIN_CLIENT
         private void TextBoxEmail_TextChanged(object sender, EventArgs e)
         {
             TextBoxEmail.Text = TextBoxEmail.Text.Trim();
+        }
+        private void getcityid()
+        {
+            SqlCommand cmd = new SqlCommand("select CitID from City where CitDesig=@city ", GADJIT.sqlConnection);
+            cmd.Parameters.AddWithValue("@city", ComboxBoxCity.Text);
+            GADJIT.sqlConnection.Open();
+            cityID = (int)cmd.ExecuteScalar();
+            GADJIT.sqlConnection.Close();
+        }
+        private void FillComboBoxCity()
+        {
+            ComboxBoxCity.Items.Clear();
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand("select CitDesig from City", GADJIT.sqlConnection);
+                GADJIT.sqlConnection.Open();
+                dataReader = sqlCommand.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    ComboxBoxCity.Items.Add("----Votre Ville---");
+                    while (dataReader.Read())
+                    {
+                        ComboxBoxCity.Items.Add(dataReader.GetString(0));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error FillComboBoxCity()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                dataReader.Close();
+                GADJIT.sqlConnection.Close();
+            }
         }
     }
 }

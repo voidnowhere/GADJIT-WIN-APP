@@ -48,8 +48,10 @@ namespace GADJIT_WIN_CLIENT
             this.errorProviderConfPass = new System.Windows.Forms.ErrorProvider(this.components);
             this.errorProviderTelephone = new System.Windows.Forms.ErrorProvider(this.components);
             this.labelshowGroupBox = new System.Windows.Forms.Label();
+            this.errorProviderEmail = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderConfPass)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderTelephone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderEmail)).BeginInit();
             this.SuspendLayout();
             // 
             // ButtonAnnuler
@@ -62,8 +64,8 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonAnnuler.Location = new System.Drawing.Point(62, 537);
             this.ButtonAnnuler.Name = "ButtonAnnuler";
             this.ButtonAnnuler.Size = new System.Drawing.Size(216, 37);
-            this.ButtonAnnuler.TabIndex = 8;
-            this.ButtonAnnuler.Text = "Annuler";
+            this.ButtonAnnuler.TabIndex = 7;
+            this.ButtonAnnuler.Text = "Reinitialiser";
             this.ButtonAnnuler.UseVisualStyleBackColor = false;
             this.ButtonAnnuler.Click += new System.EventHandler(this.ButtonAnnuler_Click);
             // 
@@ -78,7 +80,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonUpdate.Location = new System.Drawing.Point(300, 537);
             this.ButtonUpdate.Name = "ButtonUpdate";
             this.ButtonUpdate.Size = new System.Drawing.Size(216, 37);
-            this.ButtonUpdate.TabIndex = 7;
+            this.ButtonUpdate.TabIndex = 6;
             this.ButtonUpdate.Text = "MODIFIER";
             this.ButtonUpdate.UseVisualStyleBackColor = false;
             this.ButtonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
@@ -173,6 +175,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxEmail.Name = "TextBoxEmail";
             this.TextBoxEmail.Size = new System.Drawing.Size(288, 37);
             this.TextBoxEmail.TabIndex = 0;
+            this.TextBoxEmail.Validating += new System.ComponentModel.CancelEventHandler(this.TextBoxEmail_Validating);
             // 
             // label4
             // 
@@ -292,9 +295,13 @@ namespace GADJIT_WIN_CLIENT
             this.labelshowGroupBox.Location = new System.Drawing.Point(149, 509);
             this.labelshowGroupBox.Name = "labelshowGroupBox";
             this.labelshowGroupBox.Size = new System.Drawing.Size(163, 13);
-            this.labelshowGroupBox.TabIndex = 60;
+            this.labelshowGroupBox.TabIndex = 8;
             this.labelshowGroupBox.Text = "Changez votre Mot de passe ?";
             this.labelshowGroupBox.Click += new System.EventHandler(this.labelshowGroupBox_Click);
+            // 
+            // errorProviderEmail
+            // 
+            this.errorProviderEmail.ContainerControl = this;
             // 
             // ClientInformation
             // 
@@ -328,6 +335,7 @@ namespace GADJIT_WIN_CLIENT
             this.Load += new System.EventHandler(this.ClientInformation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderConfPass)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProviderTelephone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderEmail)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,5 +361,6 @@ namespace GADJIT_WIN_CLIENT
         private System.Windows.Forms.ErrorProvider errorProviderConfPass;
         private System.Windows.Forms.ErrorProvider errorProviderTelephone;
         private System.Windows.Forms.Label labelshowGroupBox;
+        private System.Windows.Forms.ErrorProvider errorProviderEmail;
     }
 }

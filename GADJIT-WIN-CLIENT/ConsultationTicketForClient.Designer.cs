@@ -288,7 +288,7 @@ namespace GADJIT_WIN_CLIENT
             // 
             // TicketID
             // 
-            this.TicketID.HeaderText = "Code Ticket";
+            this.TicketID.HeaderText = "Code";
             this.TicketID.MinimumWidth = 50;
             this.TicketID.Name = "TicketID";
             this.TicketID.ReadOnly = true;
@@ -301,7 +301,7 @@ namespace GADJIT_WIN_CLIENT
             dataGridViewCellStyle1.NullValue = null;
             this.DTTicket.DefaultCellStyle = dataGridViewCellStyle1;
             this.DTTicket.FillWeight = 279.5918F;
-            this.DTTicket.HeaderText = "Date Ticket";
+            this.DTTicket.HeaderText = "Date";
             this.DTTicket.MinimumWidth = 150;
             this.DTTicket.Name = "DTTicket";
             this.DTTicket.ReadOnly = true;
@@ -313,7 +313,7 @@ namespace GADJIT_WIN_CLIENT
             dataGridViewCellStyle2.NullValue = null;
             this.PrixTicket.DefaultCellStyle = dataGridViewCellStyle2;
             this.PrixTicket.FillWeight = 10.20409F;
-            this.PrixTicket.HeaderText = "Prix Ticket";
+            this.PrixTicket.HeaderText = "Prix";
             this.PrixTicket.MinimumWidth = 50;
             this.PrixTicket.Name = "PrixTicket";
             this.PrixTicket.ReadOnly = true;
@@ -322,7 +322,7 @@ namespace GADJIT_WIN_CLIENT
             // 
             this.StatutTicket.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.StatutTicket.FillWeight = 10.20409F;
-            this.StatutTicket.HeaderText = "Etat Ticket";
+            this.StatutTicket.HeaderText = "Etat";
             this.StatutTicket.MinimumWidth = 171;
             this.StatutTicket.Name = "StatutTicket";
             this.StatutTicket.ReadOnly = true;

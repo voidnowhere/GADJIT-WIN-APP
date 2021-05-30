@@ -42,6 +42,8 @@ namespace GADJIT_WIN_CLIENT
             this.label1 = new System.Windows.Forms.Label();
             this.RichTextBoxAdress = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.ComboBoxville = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // ButtonAnnuler
@@ -50,10 +52,10 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonAnnuler.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonAnnuler.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonAnnuler.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.ButtonAnnuler.Location = new System.Drawing.Point(163, 447);
+            this.ButtonAnnuler.Location = new System.Drawing.Point(163, 505);
             this.ButtonAnnuler.Name = "ButtonAnnuler";
             this.ButtonAnnuler.Size = new System.Drawing.Size(216, 35);
-            this.ButtonAnnuler.TabIndex = 32;
+            this.ButtonAnnuler.TabIndex = 7;
             this.ButtonAnnuler.Text = "Annuler";
             this.ButtonAnnuler.UseVisualStyleBackColor = false;
             this.ButtonAnnuler.Click += new System.EventHandler(this.ButtonAnnuler_Click);
@@ -66,10 +68,10 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonConfirmer.FlatAppearance.BorderSize = 0;
             this.ButtonConfirmer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonConfirmer.ForeColor = System.Drawing.Color.White;
-            this.ButtonConfirmer.Location = new System.Drawing.Point(474, 447);
+            this.ButtonConfirmer.Location = new System.Drawing.Point(465, 505);
             this.ButtonConfirmer.Name = "ButtonConfirmer";
             this.ButtonConfirmer.Size = new System.Drawing.Size(216, 35);
-            this.ButtonConfirmer.TabIndex = 31;
+            this.ButtonConfirmer.TabIndex = 6;
             this.ButtonConfirmer.Text = "Confirmer";
             this.ButtonConfirmer.UseVisualStyleBackColor = false;
             this.ButtonConfirmer.Click += new System.EventHandler(this.ButtonConfirmer_Click);
@@ -83,8 +85,8 @@ namespace GADJIT_WIN_CLIENT
             this.RichTextBoxProbTicket.ForeColor = System.Drawing.Color.Black;
             this.RichTextBoxProbTicket.Location = new System.Drawing.Point(163, 208);
             this.RichTextBoxProbTicket.Name = "RichTextBoxProbTicket";
-            this.RichTextBoxProbTicket.Size = new System.Drawing.Size(527, 99);
-            this.RichTextBoxProbTicket.TabIndex = 30;
+            this.RichTextBoxProbTicket.Size = new System.Drawing.Size(518, 99);
+            this.RichTextBoxProbTicket.TabIndex = 3;
             this.RichTextBoxProbTicket.Text = "";
             // 
             // ComboBoxRefGadjit
@@ -93,11 +95,12 @@ namespace GADJIT_WIN_CLIENT
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxRefGadjit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ComboBoxRefGadjit.DisplayMember = "reference";
+            this.ComboBoxRefGadjit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxRefGadjit.FormattingEnabled = true;
             this.ComboBoxRefGadjit.Location = new System.Drawing.Point(163, 160);
             this.ComboBoxRefGadjit.Name = "ComboBoxRefGadjit";
-            this.ComboBoxRefGadjit.Size = new System.Drawing.Size(527, 25);
-            this.ComboBoxRefGadjit.TabIndex = 29;
+            this.ComboBoxRefGadjit.Size = new System.Drawing.Size(518, 25);
+            this.ComboBoxRefGadjit.TabIndex = 2;
             this.ComboBoxRefGadjit.SelectedIndexChanged += new System.EventHandler(this.ComboBoxRefGadjit_SelectedIndexChanged);
             // 
             // ComboBoxMarque
@@ -105,11 +108,12 @@ namespace GADJIT_WIN_CLIENT
             this.ComboBoxMarque.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxMarque.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.ComboBoxMarque.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxMarque.FormattingEnabled = true;
             this.ComboBoxMarque.Location = new System.Drawing.Point(163, 119);
             this.ComboBoxMarque.Name = "ComboBoxMarque";
-            this.ComboBoxMarque.Size = new System.Drawing.Size(527, 25);
-            this.ComboBoxMarque.TabIndex = 28;
+            this.ComboBoxMarque.Size = new System.Drawing.Size(518, 25);
+            this.ComboBoxMarque.TabIndex = 1;
             this.ComboBoxMarque.SelectedIndexChanged += new System.EventHandler(this.ComboBoxMarque_SelectedIndexChanged);
             // 
             // ComboBoxCatGadjit
@@ -117,13 +121,14 @@ namespace GADJIT_WIN_CLIENT
             this.ComboBoxCatGadjit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxCatGadjit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.ComboBoxCatGadjit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxCatGadjit.FormattingEnabled = true;
             this.ComboBoxCatGadjit.Items.AddRange(new object[] {
             "Choisissez une categotie"});
             this.ComboBoxCatGadjit.Location = new System.Drawing.Point(163, 79);
             this.ComboBoxCatGadjit.Name = "ComboBoxCatGadjit";
-            this.ComboBoxCatGadjit.Size = new System.Drawing.Size(527, 25);
-            this.ComboBoxCatGadjit.TabIndex = 27;
+            this.ComboBoxCatGadjit.Size = new System.Drawing.Size(518, 25);
+            this.ComboBoxCatGadjit.TabIndex = 0;
             this.ComboBoxCatGadjit.SelectedIndexChanged += new System.EventHandler(this.ComboBoxCatGadjit_SelectedIndexChanged);
             // 
             // label5
@@ -131,7 +136,7 @@ namespace GADJIT_WIN_CLIENT
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(47, 208);
+            this.label5.Location = new System.Drawing.Point(36, 208);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 17);
             this.label5.TabIndex = 26;
@@ -142,7 +147,7 @@ namespace GADJIT_WIN_CLIENT
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(46, 168);
+            this.label4.Location = new System.Drawing.Point(35, 168);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(76, 17);
             this.label4.TabIndex = 25;
@@ -153,7 +158,7 @@ namespace GADJIT_WIN_CLIENT
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(53, 127);
+            this.label3.Location = new System.Drawing.Point(42, 127);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 17);
             this.label3.TabIndex = 24;
@@ -164,7 +169,7 @@ namespace GADJIT_WIN_CLIENT
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 79);
+            this.label2.Location = new System.Drawing.Point(30, 79);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 17);
             this.label2.TabIndex = 23;
@@ -176,7 +181,7 @@ namespace GADJIT_WIN_CLIENT
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.label1.Location = new System.Drawing.Point(298, 9);
+            this.label1.Location = new System.Drawing.Point(293, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(241, 27);
             this.label1.TabIndex = 22;
@@ -191,8 +196,8 @@ namespace GADJIT_WIN_CLIENT
             this.RichTextBoxAdress.ForeColor = System.Drawing.Color.Black;
             this.RichTextBoxAdress.Location = new System.Drawing.Point(163, 325);
             this.RichTextBoxAdress.Name = "RichTextBoxAdress";
-            this.RichTextBoxAdress.Size = new System.Drawing.Size(527, 99);
-            this.RichTextBoxAdress.TabIndex = 34;
+            this.RichTextBoxAdress.Size = new System.Drawing.Size(518, 99);
+            this.RichTextBoxAdress.TabIndex = 4;
             this.RichTextBoxAdress.Text = "";
             // 
             // label6
@@ -206,12 +211,38 @@ namespace GADJIT_WIN_CLIENT
             this.label6.TabIndex = 33;
             this.label6.Text = "Adresse :";
             // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(47, 447);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(44, 17);
+            this.label7.TabIndex = 35;
+            this.label7.Text = "Ville :";
+            // 
+            // ComboBoxville
+            // 
+            this.ComboBoxville.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ComboBoxville.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.ComboBoxville.DisplayMember = "reference";
+            this.ComboBoxville.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBoxville.FormattingEnabled = true;
+            this.ComboBoxville.Location = new System.Drawing.Point(163, 439);
+            this.ComboBoxville.Name = "ComboBoxville";
+            this.ComboBoxville.Size = new System.Drawing.Size(518, 25);
+            this.ComboBoxville.TabIndex = 5;
+            // 
             // CreationTicket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(818, 523);
+            this.ClientSize = new System.Drawing.Size(809, 561);
+            this.Controls.Add(this.ComboBoxville);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.RichTextBoxAdress);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.ButtonAnnuler);
@@ -253,5 +284,7 @@ namespace GADJIT_WIN_CLIENT
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RichTextBox RichTextBoxAdress;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox ComboBoxville;
     }
 }
