@@ -86,7 +86,7 @@ namespace GADJIT_WIN_CLIENT
                     cmd.Parameters.AddWithValue("@CID", CID);
                     cmd.ExecuteNonQuery();
                     GADJIT.sqlConnection.Close();
-                    GADJIT.SendEmail(email, "Bonjour:\n\nVotre Ticket a été Crée.\nVoici votre code de ticket:[" + ID + "]. \n\n - Pour consulter votre ticket veuillez rejoindre le panel consultez votre ticket.\n Merci \n \nGADJIT MAROC.");
+                    GADJIT.SendEmail(email, "\n\nVotre Ticket a été Crée.\nVoici votre code de ticket:[" + ID + "]. \n\n - Pour consulter votre ticket veuillez rejoindre le panel consultez votre ticket.\n Merci. \n \n");
                     MessageBox.Show("Ticket a été Crée", "Nouvelle Ticket", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }

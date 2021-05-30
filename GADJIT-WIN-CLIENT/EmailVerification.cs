@@ -31,7 +31,7 @@ namespace GADJIT_WIN_CLIENT
             GADJIT.sqlConnection.Open();
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
-            GADJIT.SendEmail(email, "Bonjour " + nom + ":\nVotre CODE de verification est : " + check + " \nGADJIT MAROC.");
+            GADJIT.SendEmail(email,"" + nom + ":\nVotre CODE de verification est : " + check + " \n");
             MessageBox.Show("un email de verification d'inscription a été envoyer a votre boite mail", "mail envoyez",MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
