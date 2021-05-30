@@ -27,6 +27,7 @@ namespace GADJIT_WIN_ASW
         int ticID;
         public String ticCancelDes;
         public bool isTicCanceled = false;
+        bool ticStaCancel = false;
 
         private void FillComboBoxCategory()
         {
@@ -309,9 +310,10 @@ namespace GADJIT_WIN_ASW
                             break;
                         case "A":
                         case "DR":
+                            ticStaCancel = true;
                             ComboBoxProgression.Items.AddRange(new String[] {
                                 "--choisissez pour enregistrer--",
-                                "retour au client",
+                                "retour au client"
                             });
                             ComboBoxProgression.SelectedIndex = 0;
                             ButtonSave.Enabled = true;
@@ -319,7 +321,7 @@ namespace GADJIT_WIN_ASW
                         case "R":
                             ComboBoxProgression.Items.AddRange(new String[] {
                                 "--choisissez pour enregistrer--",
-                                "en cours de livraison",
+                                "en cours de livraison"
                             });
                             ComboBoxProgression.SelectedIndex = 0;
                             ButtonSave.Enabled = true;
@@ -327,7 +329,7 @@ namespace GADJIT_WIN_ASW
                         case "EL":
                             ComboBoxProgression.Items.AddRange(new String[] {
                                 "--choisissez pour enregistrer--",
-                                "livré",
+                                "livré"
                             });
                             ComboBoxProgression.SelectedIndex = 0;
                             ButtonSave.Enabled = true;
@@ -383,6 +385,17 @@ namespace GADJIT_WIN_ASW
                                 break;
                         }
                         DGVTicketMonitoring.Rows.Add(dataReader["TicMonDT"], who, dataReader["TicMonDes"]);
+                    }
+                    if (ticStaCancel)
+                    {
+                        if(DGVTicketMonitoring.Rows.Count < 4)
+                        {
+                            ComboBoxProgression.Items.Clear();
+                            ComboBoxProgression.Items.Add("--non disponible--");
+                            ComboBoxProgression.SelectedIndex = 0;
+                            ButtonSave.Enabled = false;
+                        }
+                        ticStaCancel = false;
                     }
                 }
             }
