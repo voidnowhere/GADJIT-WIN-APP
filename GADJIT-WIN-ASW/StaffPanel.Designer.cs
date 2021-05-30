@@ -30,24 +30,24 @@ namespace GADJIT_WIN_ASW
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.LogoutButton = new GADJIT_WIN_ASW.CircularPicture();
             this.panel3 = new System.Windows.Forms.Panel();
             this.ButtonTicketProgression = new System.Windows.Forms.Button();
             this.ButtonTicketVerification = new System.Windows.Forms.Button();
             this.ShowSubMenuButton = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.CircularPicturePasswordChange = new GADJIT_WIN_ASW.CircularPicture();
+            this.label1 = new System.Windows.Forms.Label();
+            this.CircularProfilPicture = new GADJIT_WIN_ASW.CircularPicture();
             this.ButtonDisponibility = new GADJIT_WIN_ASW.CirucularButton();
             this.LabelEmail = new System.Windows.Forms.Label();
             this.LabelFirstName = new System.Windows.Forms.Label();
             this.LabelLastName = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.CircularPicturePasswordChange = new GADJIT_WIN_ASW.CircularPicture();
-            this.LogoutButton = new GADJIT_WIN_ASW.CircularPicture();
-            this.CircularProfilPicture = new GADJIT_WIN_ASW.CircularPicture();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LogoutButton)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CircularPicturePasswordChange)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LogoutButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CircularProfilPicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,13 +65,25 @@ namespace GADJIT_WIN_ASW
             this.panel1.Size = new System.Drawing.Size(250, 565);
             this.panel1.TabIndex = 0;
             // 
+            // LogoutButton
+            // 
+            this.LogoutButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.LogoutButton.Image = global::GADJIT_WIN_ASW.Properties.Resources.logout_rounded_left_48pxblue;
+            this.LogoutButton.Location = new System.Drawing.Point(0, 515);
+            this.LogoutButton.Name = "LogoutButton";
+            this.LogoutButton.Size = new System.Drawing.Size(50, 50);
+            this.LogoutButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.LogoutButton.TabIndex = 3;
+            this.LogoutButton.TabStop = false;
+            this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Controls.Add(this.ButtonTicketProgression);
             this.panel3.Controls.Add(this.ButtonTicketVerification);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 179);
+            this.panel3.Location = new System.Drawing.Point(0, 214);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(250, 82);
             this.panel3.TabIndex = 2;
@@ -111,7 +123,7 @@ namespace GADJIT_WIN_ASW
             this.ShowSubMenuButton.FlatAppearance.BorderSize = 0;
             this.ShowSubMenuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ShowSubMenuButton.ForeColor = System.Drawing.Color.White;
-            this.ShowSubMenuButton.Location = new System.Drawing.Point(0, 139);
+            this.ShowSubMenuButton.Location = new System.Drawing.Point(0, 174);
             this.ShowSubMenuButton.Name = "ShowSubMenuButton";
             this.ShowSubMenuButton.Size = new System.Drawing.Size(250, 40);
             this.ShowSubMenuButton.TabIndex = 1;
@@ -132,49 +144,19 @@ namespace GADJIT_WIN_ASW
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(250, 139);
+            this.panel2.Size = new System.Drawing.Size(250, 174);
             this.panel2.TabIndex = 0;
             // 
-            // ButtonDisponibility
+            // CircularPicturePasswordChange
             // 
-            this.ButtonDisponibility.BackColor = System.Drawing.Color.Lime;
-            this.ButtonDisponibility.FlatAppearance.BorderSize = 2;
-            this.ButtonDisponibility.Location = new System.Drawing.Point(187, 106);
-            this.ButtonDisponibility.Name = "ButtonDisponibility";
-            this.ButtonDisponibility.Size = new System.Drawing.Size(25, 25);
-            this.ButtonDisponibility.TabIndex = 7;
-            this.ButtonDisponibility.UseVisualStyleBackColor = false;
-            this.ButtonDisponibility.Click += new System.EventHandler(this.cirucularButton_Click);
-            // 
-            // LabelEmail
-            // 
-            this.LabelEmail.AutoSize = true;
-            this.LabelEmail.ForeColor = System.Drawing.Color.White;
-            this.LabelEmail.Location = new System.Drawing.Point(3, 110);
-            this.LabelEmail.Name = "LabelEmail";
-            this.LabelEmail.Size = new System.Drawing.Size(79, 17);
-            this.LabelEmail.TabIndex = 6;
-            this.LabelEmail.Text = "Staff  Email";
-            // 
-            // LabelFirstName
-            // 
-            this.LabelFirstName.AutoSize = true;
-            this.LabelFirstName.ForeColor = System.Drawing.Color.White;
-            this.LabelFirstName.Location = new System.Drawing.Point(3, 70);
-            this.LabelFirstName.Name = "LabelFirstName";
-            this.LabelFirstName.Size = new System.Drawing.Size(108, 17);
-            this.LabelFirstName.TabIndex = 5;
-            this.LabelFirstName.Text = "Staff First Name";
-            // 
-            // LabelLastName
-            // 
-            this.LabelLastName.AutoSize = true;
-            this.LabelLastName.ForeColor = System.Drawing.Color.White;
-            this.LabelLastName.Location = new System.Drawing.Point(3, 43);
-            this.LabelLastName.Name = "LabelLastName";
-            this.LabelLastName.Size = new System.Drawing.Size(106, 17);
-            this.LabelLastName.TabIndex = 4;
-            this.LabelLastName.Text = "Staff Last Name";
+            this.CircularPicturePasswordChange.Image = global::GADJIT_WIN_ASW.Properties.Resources.passwordChangeStaff;
+            this.CircularPicturePasswordChange.Location = new System.Drawing.Point(222, 121);
+            this.CircularPicturePasswordChange.Name = "CircularPicturePasswordChange";
+            this.CircularPicturePasswordChange.Size = new System.Drawing.Size(25, 25);
+            this.CircularPicturePasswordChange.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.CircularPicturePasswordChange.TabIndex = 2;
+            this.CircularPicturePasswordChange.TabStop = false;
+            this.CircularPicturePasswordChange.Click += new System.EventHandler(this.CircularPicturePasswordChange_Click);
             // 
             // label1
             // 
@@ -187,38 +169,56 @@ namespace GADJIT_WIN_ASW
             this.label1.TabIndex = 9;
             this.label1.Text = "Espace Personnel";
             // 
-            // CircularPicturePasswordChange
-            // 
-            this.CircularPicturePasswordChange.Image = global::GADJIT_WIN_ASW.Properties.Resources.passwordChangeStaff;
-            this.CircularPicturePasswordChange.Location = new System.Drawing.Point(222, 106);
-            this.CircularPicturePasswordChange.Name = "CircularPicturePasswordChange";
-            this.CircularPicturePasswordChange.Size = new System.Drawing.Size(25, 25);
-            this.CircularPicturePasswordChange.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.CircularPicturePasswordChange.TabIndex = 2;
-            this.CircularPicturePasswordChange.TabStop = false;
-            this.CircularPicturePasswordChange.Click += new System.EventHandler(this.CircularPicturePasswordChange_Click);
-            // 
-            // LogoutButton
-            // 
-            this.LogoutButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.LogoutButton.Image = global::GADJIT_WIN_ASW.Properties.Resources.logout_rounded_left_48pxblue;
-            this.LogoutButton.Location = new System.Drawing.Point(0, 515);
-            this.LogoutButton.Name = "LogoutButton";
-            this.LogoutButton.Size = new System.Drawing.Size(50, 50);
-            this.LogoutButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.LogoutButton.TabIndex = 3;
-            this.LogoutButton.TabStop = false;
-            this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
-            // 
             // CircularProfilPicture
             // 
             this.CircularProfilPicture.Image = global::GADJIT_WIN_ASW.Properties.Resources.user_60px;
-            this.CircularProfilPicture.Location = new System.Drawing.Point(187, 34);
+            this.CircularProfilPicture.Location = new System.Drawing.Point(187, 49);
             this.CircularProfilPicture.Name = "CircularProfilPicture";
             this.CircularProfilPicture.Size = new System.Drawing.Size(60, 60);
             this.CircularProfilPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.CircularProfilPicture.TabIndex = 8;
             this.CircularProfilPicture.TabStop = false;
+            // 
+            // ButtonDisponibility
+            // 
+            this.ButtonDisponibility.BackColor = System.Drawing.Color.Lime;
+            this.ButtonDisponibility.FlatAppearance.BorderSize = 2;
+            this.ButtonDisponibility.Location = new System.Drawing.Point(187, 121);
+            this.ButtonDisponibility.Name = "ButtonDisponibility";
+            this.ButtonDisponibility.Size = new System.Drawing.Size(25, 25);
+            this.ButtonDisponibility.TabIndex = 7;
+            this.ButtonDisponibility.UseVisualStyleBackColor = false;
+            this.ButtonDisponibility.Click += new System.EventHandler(this.cirucularButton_Click);
+            // 
+            // LabelEmail
+            // 
+            this.LabelEmail.AutoSize = true;
+            this.LabelEmail.ForeColor = System.Drawing.Color.White;
+            this.LabelEmail.Location = new System.Drawing.Point(3, 125);
+            this.LabelEmail.Name = "LabelEmail";
+            this.LabelEmail.Size = new System.Drawing.Size(79, 17);
+            this.LabelEmail.TabIndex = 6;
+            this.LabelEmail.Text = "Staff  Email";
+            // 
+            // LabelFirstName
+            // 
+            this.LabelFirstName.AutoSize = true;
+            this.LabelFirstName.ForeColor = System.Drawing.Color.White;
+            this.LabelFirstName.Location = new System.Drawing.Point(3, 85);
+            this.LabelFirstName.Name = "LabelFirstName";
+            this.LabelFirstName.Size = new System.Drawing.Size(108, 17);
+            this.LabelFirstName.TabIndex = 5;
+            this.LabelFirstName.Text = "Staff First Name";
+            // 
+            // LabelLastName
+            // 
+            this.LabelLastName.AutoSize = true;
+            this.LabelLastName.ForeColor = System.Drawing.Color.White;
+            this.LabelLastName.Location = new System.Drawing.Point(3, 58);
+            this.LabelLastName.Name = "LabelLastName";
+            this.LabelLastName.Size = new System.Drawing.Size(106, 17);
+            this.LabelLastName.TabIndex = 4;
+            this.LabelLastName.Text = "Staff Last Name";
             // 
             // StaffPanel
             // 
@@ -235,11 +235,11 @@ namespace GADJIT_WIN_ASW
             this.Text = "StaffPanel";
             this.Load += new System.EventHandler(this.StaffPanel_Load);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.LogoutButton)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CircularPicturePasswordChange)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.LogoutButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CircularProfilPicture)).EndInit();
             this.ResumeLayout(false);
 

@@ -25,6 +25,8 @@ namespace GADJIT_WIN_ASW
         Dictionary<int, string> reference = new Dictionary<int, string>();
         public int staffID;
         int ticID;
+        string chooseWorker = "--choisissez pour affecter--";
+        string noWorkerIsAvailable = "--non disponible--";
 
         private void FillComboBoxCategory()
         {
@@ -165,7 +167,7 @@ namespace GADJIT_WIN_ASW
                 sqlCommand.Parameters.Add("@dateT", SqlDbType.DateTime).Value = DTPTicketToSearch.Value;
 
                 if (ComboBoxCategorySearch.SelectedIndex > 0 || ComboBoxBrandSearch.SelectedIndex > 0 || ComboBoxReferenceSearch.SelectedIndex > 0
-                    || TextBoxClientLastNameSearch.Text != "" || TextBoxWorkerLastNameSearch.Text != "")
+                    || TextBoxClientLastNameSearch.Text != "")
                 {
                     if (ComboBoxCategorySearch.SelectedIndex > 0)
                     {
@@ -186,11 +188,6 @@ namespace GADJIT_WIN_ASW
                     {
                         sqlQuery += " and t.CliID = c.CliID and c.CliLastName like @cLastName";
                         sqlCommand.Parameters.Add("@cLastName", SqlDbType.VarChar).Value = "%" + TextBoxClientLastNameSearch.Text + "%";
-                    }
-                    if (TextBoxWorkerLastNameSearch.Text != "")
-                    {
-                        sqlQuery += " and t.WorID = w.WorID and w.WorLastName like @wLastName";
-                        sqlCommand.Parameters.Add("@wLastName", SqlDbType.VarChar).Value = "%" + TextBoxWorkerLastNameSearch.Text + "%";
                     }
                 }
 
@@ -230,7 +227,6 @@ namespace GADJIT_WIN_ASW
         {
             try
             {
-                LabelWorkerTicketsCount.Text = "";
                 ComboBoxWorker.Items.Clear();
                 ticID = (int)DGVTicket[0, e.RowIndex].Value;
                 SqlCommand sqlCommand = new SqlCommand();
@@ -246,7 +242,7 @@ namespace GADJIT_WIN_ASW
                 if (dataReader.HasRows)
                 {
                     dataReader.Read();
-                    TextBoxClient.Text = dataReader["Client"].ToString();
+                    GroupBoxClient.Text = "Client - " + dataReader["Client"].ToString();
                     TextBoxClientEmail.Text = dataReader["CliEmail"].ToString();
                     TextBoxClientPhoneNumber.Text = dataReader["CliPhoneNumber"].ToString();
                     TextBoxTicketAddress.Text = dataReader["Address"].ToString();
@@ -281,12 +277,13 @@ namespace GADJIT_WIN_ASW
                     {
                         ComboBoxWorker.Items.Add(dataReader["Name"] + " | " + dataReader["TicketIn"] + " ticket en cours");
                     }
-                    ComboBoxWorker.Items.Insert(0, "--choisissez pour affecter--");
+                    ComboBoxWorker.Items.Insert(0, chooseWorker);
                     ComboBoxWorker.SelectedIndex = 0;
                 }
                 else
                 {
-                    ComboBoxWorker.Items.Insert(0, "--aucun employé--");
+                    ComboBoxWorker.Items.Insert(0, noWorkerIsAvailable);
+                    ComboBoxWorker.SelectedIndex = 0;
                 }
             }
             catch (Exception ex)
@@ -311,13 +308,12 @@ namespace GADJIT_WIN_ASW
 
         private void ClearTicketDetails()
         {
-            TextBoxClient.Clear();
+            GroupBoxClient.Text = "";
             TextBoxClientEmail.Clear();
             TextBoxClientPhoneNumber.Clear();
             TextBoxTicketAddress.Clear();
             RichTextBoxProblem.Clear();
             ComboBoxWorker.Items.Clear();
-            LabelWorkerTicketsCount.Text = "";
         }
 
         private void ButtonSearch_Click(object sender, EventArgs e)
@@ -338,7 +334,6 @@ namespace GADJIT_WIN_ASW
             DTPTicketToSearch.MaxDate = DateTime.Now;
             ComboBoxCategorySearch.SelectedIndex = 0;
             TextBoxClientLastNameSearch.Clear();
-            TextBoxWorkerLastNameSearch.Clear();
             //
             ButtonVerify.Enabled = false;
             ButtonCancel.Enabled = false;
@@ -349,7 +344,7 @@ namespace GADJIT_WIN_ASW
 
         private void ButtonVerify_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Voulez vous confirmer la verification", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            if (MessageBox.Show("Voulez-vous confirmer la vérification ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
                 try
                 {
@@ -368,7 +363,7 @@ namespace GADJIT_WIN_ASW
 
                     GADJIT.SendEmail(TextBoxClientEmail.Text, "Votre ticket sous le code [" + ticID + "] a été vérifié");
 
-                    MessageBox.Show("réussi", "Verification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Ticket verifié", "Verification", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ButtonVerify.Enabled = false;
                     ButtonAssign.Enabled = true;
                 }
@@ -387,7 +382,7 @@ namespace GADJIT_WIN_ASW
         {
             if(ComboBoxWorker.SelectedIndex > 0)
             {
-                if(MessageBox.Show("Voulez vous confirmer l'affectation", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                if(MessageBox.Show("Voulez-vous confirmer l'affectation ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
                     try
                     {
@@ -410,7 +405,7 @@ namespace GADJIT_WIN_ASW
                         sqlCommandAssigne.Parameters.Add("@stafID", SqlDbType.Int).Value = staffID;
                         sqlCommandAssigne.ExecuteNonQuery();
 
-                        MessageBox.Show("réussi", "Affectation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Ticket affecté", "Affectation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         GADJIT.sqlConnection.Close();
                         ButtonAssign.Enabled = false;
                         ButtonSearch_Click(sender, e);
@@ -425,11 +420,19 @@ namespace GADJIT_WIN_ASW
                     }
                 }
             }
+            else if(ComboBoxWorker.Text == chooseWorker)
+            {
+                MessageBox.Show("Veuillez choisir un technicien", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if(ComboBoxWorker.Text == noWorkerIsAvailable)
+            {
+                MessageBox.Show("Pas de technicien disponible", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Voulez vous confirmer l'annulation", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+            if (MessageBox.Show("Voulez-vous confirmer l'annulation ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
             {
                 try
                 {
@@ -446,7 +449,7 @@ namespace GADJIT_WIN_ASW
 
                     GADJIT.SendEmail(TextBoxClientEmail.Text, "Votre ticket sous le code [" + ticID + "] a été annulé");
 
-                    MessageBox.Show("réussi", "Annulation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Ticket annulé", "Annulation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ButtonAssign.Enabled = false;
                     GADJIT.sqlConnection.Close();
                     ButtonSearch_Click(sender, e);
