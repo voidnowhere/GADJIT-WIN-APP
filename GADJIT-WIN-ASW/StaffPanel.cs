@@ -20,6 +20,7 @@ namespace GADJIT_WIN_ASW
         }
 
         public Login login;
+        public int staffID;
 
         private void CloseMdiChildIdExists()
         {
@@ -30,9 +31,9 @@ namespace GADJIT_WIN_ASW
         {
             try
             {
-                SqlCommand sqlCommandDispo = new SqlCommand("update Staff set StafDispo = @dispo where StafEmail = @email", GADJIT.sqlConnection);
+                SqlCommand sqlCommandDispo = new SqlCommand("update Staff set StafDispo = @dispo where StafID = @staffID", GADJIT.sqlConnection);
                 sqlCommandDispo.Parameters.Add("@dispo", SqlDbType.VarChar).Value = dispo;
-                sqlCommandDispo.Parameters.Add("@email", SqlDbType.NVarChar).Value = LabelEmail.Text;
+                sqlCommandDispo.Parameters.Add("@staffID", SqlDbType.Int).Value = staffID;
                 GADJIT.sqlConnection.Open();
                 sqlCommandDispo.ExecuteNonQuery();
             }
@@ -74,7 +75,7 @@ namespace GADJIT_WIN_ASW
                 UnlockStaffPanel unlockStaffPanel = new UnlockStaffPanel();
                 unlockStaffPanel.login = login;
                 unlockStaffPanel.staffPanel = this;
-                unlockStaffPanel.email = LabelEmail.Text;
+                unlockStaffPanel.staffID = staffID;
                 unlockStaffPanel.ShowDialog();
                 PannelButtonsLock(true);
                 //
@@ -94,7 +95,7 @@ namespace GADJIT_WIN_ASW
         {
             CloseMdiChildIdExists();
             StaffTicketVerification staffTicketVerification = new StaffTicketVerification();
-            staffTicketVerification.email = LabelEmail.Text;
+            staffTicketVerification.staffID = staffID;
             staffTicketVerification.MdiParent = this;
             staffTicketVerification.Dock = DockStyle.Fill;
             staffTicketVerification.Show();
@@ -104,7 +105,7 @@ namespace GADJIT_WIN_ASW
         {
             CloseMdiChildIdExists();
             StaffTicketProgression staffTicketProgression = new StaffTicketProgression();
-            staffTicketProgression.email = LabelEmail.Text;
+            staffTicketProgression.staffID = staffID;
             staffTicketProgression.MdiParent = this;
             staffTicketProgression.Dock = DockStyle.Fill;
             staffTicketProgression.Show();
@@ -114,6 +115,7 @@ namespace GADJIT_WIN_ASW
         {
             UpdateStaffPassword updateStaffPassword = new UpdateStaffPassword();
             updateStaffPassword.email = LabelEmail.Text;
+            updateStaffPassword.staffID = staffID;
             updateStaffPassword.ShowDialog();
         }
     }

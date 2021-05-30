@@ -69,8 +69,8 @@ namespace GADJIT_WIN_ASW
                                             Staff.LabelLastName.Text = dr.GetString(0);
                                             Staff.LabelFirstName.Text = dr.GetString(1);
                                             Staff.LabelEmail.Text = TextBoxEMail.Text;
-                                            Staff.CircularProfilPicture.Image = (dr.GetValue(2) == DBNull.Value) ? null : Image.FromStream(new MemoryStream((byte[])dr.GetValue(3)));
-                                            //Staff.staffID = dr.GetInt32(3);
+                                            Staff.CircularProfilPicture.Image = (dr.GetValue(2) == DBNull.Value) ? null : Image.FromStream(new MemoryStream((byte[])dr.GetValue(2)));
+                                            Staff.staffID = dr.GetInt32(3);
                                             //
                                             dr.Close();
                                             GADJIT.sqlConnection.Close();

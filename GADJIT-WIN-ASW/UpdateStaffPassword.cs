@@ -19,13 +19,14 @@ namespace GADJIT_WIN_ASW
         }
 
         public string email;
+        public int staffID;
 
         private bool CheckIfPasswordIsCorrect()
         {
             try
             {
-                SqlCommand sqlCommand = new SqlCommand("select COUNT(StafEmail) from Staff where StafEmail = @email and StafPassWord = @pass", GADJIT.sqlConnection);
-                sqlCommand.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
+                SqlCommand sqlCommand = new SqlCommand("select COUNT(StafID) from Staff where StafID = @staffID and StafPassWord = @pass", GADJIT.sqlConnection);
+                sqlCommand.Parameters.Add("@staffID", SqlDbType.Int).Value = staffID;
                 sqlCommand.Parameters.Add("@pass", SqlDbType.NVarChar).Value = TextBoxOldPassword.Text;
                 GADJIT.sqlConnection.Open();
                 if ((int)sqlCommand.ExecuteScalar() == 1) return true;
@@ -51,9 +52,9 @@ namespace GADJIT_WIN_ASW
                     {
                         try
                         {
-                            SqlCommand sqlCommand = new SqlCommand("update Staff set StafPassWord = @pass where StafEmail = @email", GADJIT.sqlConnection);
+                            SqlCommand sqlCommand = new SqlCommand("update Staff set StafPassWord = @pass where StafID = @staffID", GADJIT.sqlConnection);
                             sqlCommand.Parameters.Add("@pass", SqlDbType.NVarChar).Value = TextBoxConfirmNewPassword.Text;
-                            sqlCommand.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
+                            sqlCommand.Parameters.Add("@staffID", SqlDbType.Int).Value = staffID;
                             GADJIT.sqlConnection.Open();
                             MessageBox.Show(sqlCommand.ExecuteNonQuery() + " réussi", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             GADJIT.SendEmail(email, "Votre mot de passe a été changé");

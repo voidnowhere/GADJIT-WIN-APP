@@ -20,7 +20,7 @@ namespace GADJIT_WIN_ASW
 
         public Login login;
         public StaffPanel staffPanel;
-        public string email;
+        public int staffID;
 
         private void UnlockStaffPanel_Load(object sender, EventArgs e)
         {
@@ -33,8 +33,8 @@ namespace GADJIT_WIN_ASW
             {
                 try
                 {
-                    SqlCommand sqlCommandDispo = new SqlCommand("select COUNT(StafEmail) from Staff where StafEmail = @email and StafPassWord = @pass", GADJIT.sqlConnection);
-                    sqlCommandDispo.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
+                    SqlCommand sqlCommandDispo = new SqlCommand("select COUNT(staffID) from Staff where StafID = @staffID and StafPassWord = @pass", GADJIT.sqlConnection);
+                    sqlCommandDispo.Parameters.Add("@staffID", SqlDbType.Int).Value = staffID;
                     sqlCommandDispo.Parameters.Add("@pass", SqlDbType.NVarChar).Value = TextBoxPassWord.Text;
                     GADJIT.sqlConnection.Open();
                     if ((int)sqlCommandDispo.ExecuteScalar() == 1)
@@ -62,8 +62,8 @@ namespace GADJIT_WIN_ASW
         {
             try
             {
-                SqlCommand sqlCommandDispo = new SqlCommand("update Staff set StafDispo = 'Hors Ligne' where StafEmail = @email", GADJIT.sqlConnection);
-                sqlCommandDispo.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
+                SqlCommand sqlCommandDispo = new SqlCommand("update Staff set StafDispo = 'Hors Ligne' where StafID = @staffID", GADJIT.sqlConnection);
+                sqlCommandDispo.Parameters.Add("@staffID", SqlDbType.Int).Value = staffID;
                 GADJIT.sqlConnection.Open();
                 sqlCommandDispo.ExecuteNonQuery();
                 this.Close();
