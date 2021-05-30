@@ -52,7 +52,8 @@ namespace GADJIT_WIN_ASW
                             sqlCommand.Parameters.Add("@pass", SqlDbType.NVarChar).Value = TextBoxConfirmNewPassword.Text;
                             sqlCommand.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
                             GADJIT.sqlConnection.Open();
-                            MessageBox.Show(sqlCommand.ExecuteNonQuery() + " réussi", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            sqlCommand.ExecuteNonQuery();
+                            MessageBox.Show("Mot de passe Modiffier", "Réussi",  MessageBoxButtons.OK, MessageBoxIcon.Information);
                             this.Close();
                         }
                         catch (Exception ex)
