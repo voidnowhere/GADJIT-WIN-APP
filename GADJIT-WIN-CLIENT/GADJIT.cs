@@ -31,7 +31,7 @@ namespace GADJIT_WIN_CLIENT
             MailMessage mail = new MailMessage(
                 "GADJITMA@gmail.com",
                 toEmail,
-                "Compte GADJIT",
+                "GADJIT",
                 "Bonjour:\n\n" + msg + "\n\nGADJIT MAROC.");
             smtp.Send(mail);
         }

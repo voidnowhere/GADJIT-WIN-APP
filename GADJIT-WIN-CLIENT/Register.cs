@@ -147,7 +147,7 @@ namespace GADJIT_WIN_CLIENT
                             v.check = check;
                             v.ShowDialog();
                             //
-                            GADJIT.SendEmail(TextBoxEmail.Text, "Bonjour " + TextBoxNom.Text + " :\nvotre inscription a bien été traitée bienvenue chez GADJIT. \nGADJIT MAROC.");
+                            GADJIT.SendEmail(TextBoxEmail.Text, " " + TextBoxNom.Text + " :\nvotre inscription a bien été traitée bienvenue chez GADJIT. \n");
                             MessageBox.Show("Inscription réussite", "Inscription", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         catch(Exception ex)
