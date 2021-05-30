@@ -490,7 +490,7 @@ namespace GADJIT_WIN_ASW
                             "Votre ticket sous le code [" + ticID.ToString() + "] " +
                             "a changer de progression vers \"" + ComboBoxProgression.Text + "\"");
 
-                        MessageBox.Show("Modifier", "Progression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Etat du ticket changé", "Progression", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ButtonSave.Enabled = false;
                         GADJIT.sqlConnection.Close();
                         ButtonSearch_Click(sender, e);
