@@ -29,8 +29,8 @@ namespace GADJIT_WIN_CLIENT
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ComboBoxCodeTicket = new System.Windows.Forms.ComboBox();
             this.ButtonDiagnostic = new System.Windows.Forms.Button();
             this.TextBoxDiag = new System.Windows.Forms.TextBox();
@@ -210,11 +210,12 @@ namespace GADJIT_WIN_CLIENT
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.groupBox2.BackColor = System.Drawing.Color.White;
             this.groupBox2.Controls.Add(this.PictureBoxSearch);
             this.groupBox2.Controls.Add(this.ComboBoxCodeTicket);
             this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Location = new System.Drawing.Point(80, 39);
+            this.groupBox2.Location = new System.Drawing.Point(183, 39);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(662, 83);
             this.groupBox2.TabIndex = 39;
@@ -234,8 +235,7 @@ namespace GADJIT_WIN_CLIENT
             // 
             // Information
             // 
-            this.Information.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.Information.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.Information.Controls.Add(this.ButtonDiagnostic);
             this.Information.Controls.Add(this.TextBoxDiag);
             this.Information.Controls.Add(this.labelDiag);
@@ -247,7 +247,7 @@ namespace GADJIT_WIN_CLIENT
             this.Information.Controls.Add(this.label4);
             this.Information.Controls.Add(this.label3);
             this.Information.Controls.Add(this.label6);
-            this.Information.Location = new System.Drawing.Point(399, 128);
+            this.Information.Location = new System.Drawing.Point(549, 128);
             this.Information.Name = "Information";
             this.Information.Size = new System.Drawing.Size(469, 357);
             this.Information.TabIndex = 38;
@@ -258,22 +258,23 @@ namespace GADJIT_WIN_CLIENT
             // 
             this.DGVTicket.AllowUserToAddRows = false;
             this.DGVTicket.AllowUserToDeleteRows = false;
-            this.DGVTicket.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.DGVTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.DGVTicket.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVTicket.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.TicketID,
             this.DTTicket,
             this.PrixTicket,
             this.StatutTicket});
-            this.DGVTicket.Location = new System.Drawing.Point(11, 128);
+            this.DGVTicket.Location = new System.Drawing.Point(78, 128);
             this.DGVTicket.Name = "DGVTicket";
             this.DGVTicket.ReadOnly = true;
-            this.DGVTicket.Size = new System.Drawing.Size(382, 355);
+            this.DGVTicket.Size = new System.Drawing.Size(465, 355);
             this.DGVTicket.TabIndex = 36;
+            this.DGVTicket.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentDoubleClick);
             this.DGVTicket.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentClick);
             this.DGVTicket.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentDoubleClick);
             this.DGVTicket.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellDoubleClick);
+            this.DGVTicket.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVTicket_CellMouseDoubleClick);
             // 
             // TicketID
             // 
@@ -286,9 +287,9 @@ namespace GADJIT_WIN_CLIENT
             // DTTicket
             // 
             this.DTTicket.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle1.Format = "g";
-            dataGridViewCellStyle1.NullValue = null;
-            this.DTTicket.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Format = "g";
+            dataGridViewCellStyle13.NullValue = null;
+            this.DTTicket.DefaultCellStyle = dataGridViewCellStyle13;
             this.DTTicket.FillWeight = 279.5918F;
             this.DTTicket.HeaderText = "Date";
             this.DTTicket.MinimumWidth = 150;
@@ -298,9 +299,9 @@ namespace GADJIT_WIN_CLIENT
             // PrixTicket
             // 
             this.PrixTicket.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Format = "0.00";
-            dataGridViewCellStyle2.NullValue = null;
-            this.PrixTicket.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Format = "0.00";
+            dataGridViewCellStyle14.NullValue = null;
+            this.PrixTicket.DefaultCellStyle = dataGridViewCellStyle14;
             this.PrixTicket.FillWeight = 10.20409F;
             this.PrixTicket.HeaderText = "Prix";
             this.PrixTicket.MinimumWidth = 50;
@@ -322,7 +323,7 @@ namespace GADJIT_WIN_CLIENT
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.label1.Location = new System.Drawing.Point(281, 9);
+            this.label1.Location = new System.Drawing.Point(411, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(253, 27);
             this.label1.TabIndex = 35;
@@ -333,7 +334,7 @@ namespace GADJIT_WIN_CLIENT
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(891, 497);
+            this.ClientSize = new System.Drawing.Size(1077, 497);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.Information);
             this.Controls.Add(this.DGVTicket);
