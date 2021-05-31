@@ -89,7 +89,7 @@ namespace GADJIT_WIN_ASW
                                             Worker.LabelLastName.Text = dr.GetString(0);
                                             Worker.LabelFirstName.Text = dr.GetString(1);
                                             Worker.LabelEmail.Text = TextBoxEMail.Text;
-                                            Worker.CircularProfilPicture.Image = (dr.GetValue(2) == DBNull.Value) ? null : Image.FromStream(new MemoryStream((byte[])dr.GetValue(3)));
+                                            Worker.CircularProfilPicture.Image = (dr.GetValue(2) == DBNull.Value) ? null : Image.FromStream(new MemoryStream((byte[])dr.GetValue(2)));
                                             //Worker.workerID = dr.GetInt32(3);
                                             //
                                             dr.Close();
