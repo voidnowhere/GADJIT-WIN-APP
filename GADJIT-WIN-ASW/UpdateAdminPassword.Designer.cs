@@ -69,7 +69,7 @@ namespace GADJIT_WIN_ASW
             // 
             // TextBoxNewPassword
             // 
-            this.TextBoxNewPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.TextBoxNewPassword.BackColor = System.Drawing.Color.White;
             this.TextBoxNewPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxNewPassword.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxNewPassword.Location = new System.Drawing.Point(76, 125);
@@ -94,7 +94,7 @@ namespace GADJIT_WIN_ASW
             // 
             // TextBoxConfirmNewPassword
             // 
-            this.TextBoxConfirmNewPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.TextBoxConfirmNewPassword.BackColor = System.Drawing.Color.White;
             this.TextBoxConfirmNewPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxConfirmNewPassword.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxConfirmNewPassword.Location = new System.Drawing.Point(76, 172);
@@ -119,7 +119,7 @@ namespace GADJIT_WIN_ASW
             // 
             // TextBoxOldPassword
             // 
-            this.TextBoxOldPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
+            this.TextBoxOldPassword.BackColor = System.Drawing.Color.White;
             this.TextBoxOldPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxOldPassword.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TextBoxOldPassword.Location = new System.Drawing.Point(76, 70);
@@ -144,9 +144,9 @@ namespace GADJIT_WIN_ASW
             // 
             // ButtonCancel
             // 
-            this.ButtonCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.ButtonCancel.BackColor = System.Drawing.Color.White;
             this.ButtonCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ButtonCancel.FlatAppearance.BorderSize = 0;
+            this.ButtonCancel.FlatAppearance.BorderColor = System.Drawing.Color.Goldenrod;
             this.ButtonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonCancel.ForeColor = System.Drawing.Color.Goldenrod;
@@ -162,7 +162,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.SystemColors.Menu;
             this.ClientSize = new System.Drawing.Size(306, 340);
             this.Controls.Add(this.ButtonCancel);
             this.Controls.Add(this.ButtonUpdate);
