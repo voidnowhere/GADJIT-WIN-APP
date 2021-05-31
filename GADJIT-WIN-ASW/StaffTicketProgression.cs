@@ -378,7 +378,7 @@ namespace GADJIT_WIN_ASW
                                 who = "Personnel";
                                 break;
                             case "W":
-                                who = "Employé";
+                                who = "Technicien";
                                 break;
                             case "C":
                                 who = "Client";
@@ -420,7 +420,7 @@ namespace GADJIT_WIN_ASW
 
         private void ClearTicketDetails()
         {
-            GroupBoxClient.Text = "";
+            GroupBoxClient.Text = "Client";
             TextBoxClientEmail.Clear();
             TextBoxClientPhoneNumber.Clear();
             RichTextBoxProblem.Clear();

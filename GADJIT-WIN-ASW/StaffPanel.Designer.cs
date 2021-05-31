@@ -120,6 +120,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.ShowSubMenuButton.BackColor = System.Drawing.Color.RoyalBlue;
             this.ShowSubMenuButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ShowSubMenuButton.Enabled = false;
             this.ShowSubMenuButton.FlatAppearance.BorderSize = 0;
             this.ShowSubMenuButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ShowSubMenuButton.ForeColor = System.Drawing.Color.White;
