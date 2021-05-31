@@ -28,6 +28,18 @@ namespace GADJIT_WIN_ASW
         int DID;
         private void TicketConsultationWorker_Load(object sender, EventArgs e)
         {
+            DGVTicket.BorderStyle = BorderStyle.None;
+            DGVTicket.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            DGVTicket.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            DGVTicket.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            DGVTicket.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            DGVTicket.BackgroundColor = Color.White;
+
+            DGVTicket.EnableHeadersVisualStyles = false;
+            DGVTicket.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            DGVTicket.ColumnHeadersDefaultCellStyle.BackColor = Color.Teal;
+            DGVTicket.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            //
             WID = WorkerPanel.WID;
             FillComboBoxsCategoryBrand();
             //
