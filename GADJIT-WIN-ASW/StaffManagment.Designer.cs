@@ -54,6 +54,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxTotalStaffs = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.DGVStaff = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             this.ColumnTextBoxID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTextBoxCIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPictureBox = new System.Windows.Forms.DataGridViewImageColumn();
@@ -67,7 +68,6 @@ namespace GADJIT_WIN_ASW
             this.ColumnTextBoxSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnComboBoxDisponibility = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.ColumnComboBoxStatus = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVStaff)).BeginInit();
             this.SuspendLayout();
@@ -357,6 +357,17 @@ namespace GADJIT_WIN_ASW
             this.DGVStaff.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.DGVStaff_UserDeletedRow);
             this.DGVStaff.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.DGVStaff_UserDeletingRow);
             // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(296, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(206, 25);
+            this.label1.TabIndex = 43;
+            this.label1.Text = "Gestion Personnel";
+            // 
             // ColumnTextBoxID
             // 
             this.ColumnTextBoxID.HeaderText = "Code";
@@ -406,8 +417,10 @@ namespace GADJIT_WIN_ASW
             // 
             // ColumnTextBoxPassword
             // 
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Menu;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Menu;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Menu;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.Menu;
             this.ColumnTextBoxPassword.DefaultCellStyle = dataGridViewCellStyle3;
             this.ColumnTextBoxPassword.HeaderText = "Mot de passe";
             this.ColumnTextBoxPassword.MinimumWidth = 90;
@@ -470,17 +483,6 @@ namespace GADJIT_WIN_ASW
             this.ColumnComboBoxStatus.Name = "ColumnComboBoxStatus";
             this.ColumnComboBoxStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ColumnComboBoxStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(296, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(206, 25);
-            this.label1.TabIndex = 43;
-            this.label1.Text = "Gestion Personnel";
             // 
             // StaffManagment
             // 
