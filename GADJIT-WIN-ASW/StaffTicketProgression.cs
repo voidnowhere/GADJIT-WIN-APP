@@ -495,7 +495,7 @@ namespace GADJIT_WIN_ASW
 
                         sqlCommand.CommandText = "insert into TicketMonitoring values(@ticID, GETDATE(), @status, 'S', @stafID, 1)";
                         sqlCommand.Parameters["@status"].Value = (isTicCanceled) ? ticCancelDes : ComboBoxProgression.Text;
-                        sqlCommand.Parameters.Add("@stafID", SqlDbType.VarChar).Value = staffID;
+                        sqlCommand.Parameters.Add("@stafID", SqlDbType.Int).Value = staffID;
                         sqlCommand.ExecuteNonQuery();
 
                         GADJIT.SendEmail(
