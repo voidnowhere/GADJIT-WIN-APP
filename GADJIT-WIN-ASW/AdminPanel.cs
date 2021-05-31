@@ -20,6 +20,7 @@ namespace GADJIT_WIN_ASW
 
         public Login login;
         public int adminID;
+        public bool logout = false;
 
         private void CloseMdiChildIdExists()
         {
@@ -86,7 +87,7 @@ namespace GADJIT_WIN_ASW
                 unlockAdminPanel.ShowDialog();
                 PannelButtonsLock(true);
                 //
-                AdminDispoChanger("En Ligne");
+                if(!logout) AdminDispoChanger("En Ligne");
                 ButtonDisponibility.BackColor = Color.Lime;
             }
         }
