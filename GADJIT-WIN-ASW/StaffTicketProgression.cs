@@ -420,7 +420,7 @@ namespace GADJIT_WIN_ASW
 
         private void ClearTicketDetails()
         {
-            GroupBoxClient.Text = "";
+            GroupBoxClient.Text = "Client";
             TextBoxClientEmail.Clear();
             TextBoxClientPhoneNumber.Clear();
             RichTextBoxProblem.Clear();
