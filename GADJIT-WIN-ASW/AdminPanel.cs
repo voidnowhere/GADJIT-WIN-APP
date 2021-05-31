@@ -125,7 +125,7 @@ namespace GADJIT_WIN_ASW
         private void ButtonTicketManagment_Click(object sender, EventArgs e)
         {
             ResetButtonsColor();
-            ButtonTicketManagment.BackColor = Color.FromArgb(218, 165, 33);
+            ButtonTicketManagment.BackColor = Color.FromArgb(239, 190, 34);
             //
             CloseMdiChildIdExists();
             PanelStatistics.Visible = false;
@@ -139,7 +139,7 @@ namespace GADJIT_WIN_ASW
         private void ButtonClientManagment_Click(object sender, EventArgs e)
         {
             ResetButtonsColor();
-            ButtonClientManagment.BackColor = Color.FromArgb(218, 165, 33);
+            ButtonClientManagment.BackColor = Color.FromArgb(239, 190, 34);
             //
             CloseMdiChildIdExists();
             PanelStatistics.Visible = false;
@@ -153,7 +153,7 @@ namespace GADJIT_WIN_ASW
         private void ButtonStaffManagment_Click(object sender, EventArgs e)
         {
             ResetButtonsColor();
-            ButtonStaffManagment.BackColor = Color.FromArgb(218, 165, 33);
+            ButtonStaffManagment.BackColor = Color.FromArgb(239, 190, 34);
             //
             CloseMdiChildIdExists();
             PanelStatistics.Visible = false;
@@ -167,7 +167,7 @@ namespace GADJIT_WIN_ASW
         private void ButtonWorkerManagment_Click(object sender, EventArgs e)
         {
             ResetButtonsColor();
-            ButtonWorkerManagment.BackColor = Color.FromArgb(218, 165, 33);
+            ButtonWorkerManagment.BackColor = Color.FromArgb(239, 190, 34);
             //
             CloseMdiChildIdExists();
             PanelStatistics.Visible = false;
@@ -181,7 +181,7 @@ namespace GADJIT_WIN_ASW
         private void ButtonGadgetCategoryBrandManagment_Click(object sender, EventArgs e)
         {
             ResetButtonsColor();
-            ButtonGadgetCategoryBrandManagment.BackColor = Color.FromArgb(218, 165, 33);
+            ButtonGadgetCategoryBrandManagment.BackColor = Color.FromArgb(239, 190, 34);
             ButtonGadgetCategoryBrandManagment.ForeColor = Color.White;
             //
             CloseMdiChildIdExists();
@@ -194,7 +194,7 @@ namespace GADJIT_WIN_ASW
         private void ButtonGadgetReferenceManagment_Click(object sender, EventArgs e)
         {
             ResetButtonsColor();
-            ButtonGadgetReferenceManagment.BackColor = Color.FromArgb(218, 165, 33);
+            ButtonGadgetReferenceManagment.BackColor = Color.FromArgb(239, 190, 34);
             ButtonGadgetReferenceManagment.ForeColor = Color.White;
             //
             CloseMdiChildIdExists();
@@ -207,7 +207,7 @@ namespace GADJIT_WIN_ASW
         private void ButtonCityManagement_Click(object sender, EventArgs e)
         {
             ResetButtonsColor();
-            ButtonCityManagement.BackColor = Color.FromArgb(218, 165, 33);
+            ButtonCityManagement.BackColor = Color.FromArgb(239, 190, 34);
             ButtonCityManagement.ForeColor = Color.White;
             PanelStatistics.Visible = false;
             PanelGadgetManagment.Visible = false;
