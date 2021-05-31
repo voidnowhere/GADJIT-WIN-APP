@@ -29,10 +29,10 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ComboBoxWorker = new System.Windows.Forms.ComboBox();
             this.TextBoxClientPhoneNumber = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -87,7 +87,7 @@ namespace GADJIT_WIN_ASW
             this.ComboBoxWorker.FormattingEnabled = true;
             this.ComboBoxWorker.Location = new System.Drawing.Point(96, 251);
             this.ComboBoxWorker.Name = "ComboBoxWorker";
-            this.ComboBoxWorker.Size = new System.Drawing.Size(248, 24);
+            this.ComboBoxWorker.Size = new System.Drawing.Size(223, 24);
             this.ComboBoxWorker.TabIndex = 32;
             // 
             // TextBoxClientPhoneNumber
@@ -101,7 +101,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxClientPhoneNumber.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TextBoxClientPhoneNumber.Name = "TextBoxClientPhoneNumber";
             this.TextBoxClientPhoneNumber.ReadOnly = true;
-            this.TextBoxClientPhoneNumber.Size = new System.Drawing.Size(248, 15);
+            this.TextBoxClientPhoneNumber.Size = new System.Drawing.Size(223, 15);
             this.TextBoxClientPhoneNumber.TabIndex = 25;
             // 
             // label16
@@ -127,7 +127,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxClientEmail.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TextBoxClientEmail.Name = "TextBoxClientEmail";
             this.TextBoxClientEmail.ReadOnly = true;
-            this.TextBoxClientEmail.Size = new System.Drawing.Size(248, 15);
+            this.TextBoxClientEmail.Size = new System.Drawing.Size(223, 15);
             this.TextBoxClientEmail.TabIndex = 23;
             // 
             // label14
@@ -152,7 +152,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonAssign.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonAssign.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonAssign.ForeColor = System.Drawing.Color.White;
-            this.ButtonAssign.Location = new System.Drawing.Point(261, 308);
+            this.ButtonAssign.Location = new System.Drawing.Point(236, 286);
             this.ButtonAssign.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonAssign.Name = "ButtonAssign";
             this.ButtonAssign.Size = new System.Drawing.Size(89, 30);
@@ -182,11 +182,11 @@ namespace GADJIT_WIN_ASW
             this.RichTextBoxProblem.BackColor = System.Drawing.Color.White;
             this.RichTextBoxProblem.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.RichTextBoxProblem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RichTextBoxProblem.Location = new System.Drawing.Point(96, 181);
+            this.RichTextBoxProblem.Location = new System.Drawing.Point(96, 175);
             this.RichTextBoxProblem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.RichTextBoxProblem.Name = "RichTextBoxProblem";
             this.RichTextBoxProblem.ReadOnly = true;
-            this.RichTextBoxProblem.Size = new System.Drawing.Size(248, 57);
+            this.RichTextBoxProblem.Size = new System.Drawing.Size(223, 64);
             this.RichTextBoxProblem.TabIndex = 9;
             this.RichTextBoxProblem.Text = "";
             // 
@@ -195,7 +195,7 @@ namespace GADJIT_WIN_ASW
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(14, 181);
+            this.label7.Location = new System.Drawing.Point(14, 175);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(67, 16);
@@ -218,11 +218,11 @@ namespace GADJIT_WIN_ASW
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.groupBox1.Location = new System.Drawing.Point(424, 160);
+            this.groupBox1.Location = new System.Drawing.Point(438, 178);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Size = new System.Drawing.Size(358, 344);
+            this.groupBox1.Size = new System.Drawing.Size(333, 322);
             this.groupBox1.TabIndex = 51;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ticket détail";
@@ -238,7 +238,7 @@ namespace GADJIT_WIN_ASW
             this.GroupBoxClient.ForeColor = System.Drawing.Color.RoyalBlue;
             this.GroupBoxClient.Location = new System.Drawing.Point(7, 21);
             this.GroupBoxClient.Name = "GroupBoxClient";
-            this.GroupBoxClient.Size = new System.Drawing.Size(344, 83);
+            this.GroupBoxClient.Size = new System.Drawing.Size(319, 83);
             this.GroupBoxClient.TabIndex = 32;
             this.GroupBoxClient.TabStop = false;
             this.GroupBoxClient.Text = "Client";
@@ -252,7 +252,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonCancel.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.ButtonCancel.Location = new System.Drawing.Point(164, 308);
+            this.ButtonCancel.Location = new System.Drawing.Point(139, 286);
             this.ButtonCancel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonCancel.Name = "ButtonCancel";
             this.ButtonCancel.Size = new System.Drawing.Size(89, 30);
@@ -273,7 +273,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxTicketAddress.Multiline = true;
             this.TextBoxTicketAddress.Name = "TextBoxTicketAddress";
             this.TextBoxTicketAddress.ReadOnly = true;
-            this.TextBoxTicketAddress.Size = new System.Drawing.Size(248, 43);
+            this.TextBoxTicketAddress.Size = new System.Drawing.Size(223, 40);
             this.TextBoxTicketAddress.TabIndex = 36;
             // 
             // label2
@@ -298,7 +298,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonVerify.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonVerify.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonVerify.ForeColor = System.Drawing.Color.White;
-            this.ButtonVerify.Location = new System.Drawing.Point(67, 308);
+            this.ButtonVerify.Location = new System.Drawing.Point(42, 286);
             this.ButtonVerify.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonVerify.Name = "ButtonVerify";
             this.ButtonVerify.Size = new System.Drawing.Size(89, 30);
@@ -327,9 +327,9 @@ namespace GADJIT_WIN_ASW
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.groupBox2.Location = new System.Drawing.Point(12, 46);
+            this.groupBox2.Location = new System.Drawing.Point(12, 37);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(770, 108);
+            this.groupBox2.Size = new System.Drawing.Size(759, 135);
             this.groupBox2.TabIndex = 43;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Recherche";
@@ -343,7 +343,7 @@ namespace GADJIT_WIN_ASW
             this.ComboBoxReferenceSearch.FormattingEnabled = true;
             this.ComboBoxReferenceSearch.Location = new System.Drawing.Point(85, 76);
             this.ComboBoxReferenceSearch.Name = "ComboBoxReferenceSearch";
-            this.ComboBoxReferenceSearch.Size = new System.Drawing.Size(187, 24);
+            this.ComboBoxReferenceSearch.Size = new System.Drawing.Size(217, 24);
             this.ComboBoxReferenceSearch.TabIndex = 31;
             // 
             // label23
@@ -367,7 +367,7 @@ namespace GADJIT_WIN_ASW
             this.ComboBoxCategorySearch.FormattingEnabled = true;
             this.ComboBoxCategorySearch.Location = new System.Drawing.Point(85, 22);
             this.ComboBoxCategorySearch.Name = "ComboBoxCategorySearch";
-            this.ComboBoxCategorySearch.Size = new System.Drawing.Size(187, 24);
+            this.ComboBoxCategorySearch.Size = new System.Drawing.Size(217, 24);
             this.ComboBoxCategorySearch.TabIndex = 29;
             this.ComboBoxCategorySearch.SelectedIndexChanged += new System.EventHandler(this.ComboBoxCategorySearch_SelectedIndexChanged);
             // 
@@ -392,7 +392,7 @@ namespace GADJIT_WIN_ASW
             this.ComboBoxBrandSearch.FormattingEnabled = true;
             this.ComboBoxBrandSearch.Location = new System.Drawing.Point(85, 49);
             this.ComboBoxBrandSearch.Name = "ComboBoxBrandSearch";
-            this.ComboBoxBrandSearch.Size = new System.Drawing.Size(187, 24);
+            this.ComboBoxBrandSearch.Size = new System.Drawing.Size(217, 24);
             this.ComboBoxBrandSearch.TabIndex = 27;
             this.ComboBoxBrandSearch.SelectedIndexChanged += new System.EventHandler(this.ComboBoxBrandSearch_SelectedIndexChanged);
             // 
@@ -404,7 +404,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonReset.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.ButtonReset.Location = new System.Drawing.Point(659, 64);
+            this.ButtonReset.Location = new System.Drawing.Point(648, 99);
             this.ButtonReset.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonReset.Name = "ButtonReset";
             this.ButtonReset.Size = new System.Drawing.Size(104, 30);
@@ -418,7 +418,7 @@ namespace GADJIT_WIN_ASW
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.Black;
-            this.label21.Location = new System.Drawing.Point(286, 52);
+            this.label21.Location = new System.Drawing.Point(7, 111);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(25, 16);
@@ -430,7 +430,7 @@ namespace GADJIT_WIN_ASW
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.Black;
-            this.label20.Location = new System.Drawing.Point(414, 52);
+            this.label20.Location = new System.Drawing.Point(181, 111);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(24, 16);
@@ -442,7 +442,7 @@ namespace GADJIT_WIN_ASW
             this.DTPTicketToSearch.DropDownAlign = System.Windows.Forms.LeftRightAlignment.Right;
             this.DTPTicketToSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DTPTicketToSearch.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTPTicketToSearch.Location = new System.Drawing.Point(445, 50);
+            this.DTPTicketToSearch.Location = new System.Drawing.Point(212, 109);
             this.DTPTicketToSearch.Name = "DTPTicketToSearch";
             this.DTPTicketToSearch.Size = new System.Drawing.Size(90, 22);
             this.DTPTicketToSearch.TabIndex = 23;
@@ -451,7 +451,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.DTPTicketFromSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DTPTicketFromSearch.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DTPTicketFromSearch.Location = new System.Drawing.Point(318, 50);
+            this.DTPTicketFromSearch.Location = new System.Drawing.Point(85, 109);
             this.DTPTicketFromSearch.Name = "DTPTicketFromSearch";
             this.DTPTicketFromSearch.Size = new System.Drawing.Size(90, 22);
             this.DTPTicketFromSearch.TabIndex = 22;
@@ -465,7 +465,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonSearch.ForeColor = System.Drawing.Color.White;
-            this.ButtonSearch.Location = new System.Drawing.Point(659, 24);
+            this.ButtonSearch.Location = new System.Drawing.Point(536, 99);
             this.ButtonSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonSearch.Name = "ButtonSearch";
             this.ButtonSearch.Size = new System.Drawing.Size(104, 30);
@@ -491,7 +491,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxClientLastNameSearch.BackColor = System.Drawing.Color.White;
             this.TextBoxClientLastNameSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxClientLastNameSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxClientLastNameSearch.Location = new System.Drawing.Point(391, 24);
+            this.TextBoxClientLastNameSearch.Location = new System.Drawing.Point(395, 30);
             this.TextBoxClientLastNameSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TextBoxClientLastNameSearch.Name = "TextBoxClientLastNameSearch";
             this.TextBoxClientLastNameSearch.Size = new System.Drawing.Size(144, 15);
@@ -502,7 +502,7 @@ namespace GADJIT_WIN_ASW
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(286, 23);
+            this.label9.Location = new System.Drawing.Point(314, 30);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(73, 16);
@@ -513,42 +513,42 @@ namespace GADJIT_WIN_ASW
             // 
             this.DGVTicket.AllowUserToAddRows = false;
             this.DGVTicket.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Menu;
-            this.DGVTicket.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Menu;
+            this.DGVTicket.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DGVTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVTicket.BackgroundColor = System.Drawing.Color.White;
             this.DGVTicket.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVTicket.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.RoyalBlue;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVTicket.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.RoyalBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVTicket.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGVTicket.ColumnHeadersHeight = 30;
             this.DGVTicket.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3,
             this.Column4});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVTicket.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.CornflowerBlue;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVTicket.DefaultCellStyle = dataGridViewCellStyle4;
             this.DGVTicket.EnableHeadersVisualStyles = false;
-            this.DGVTicket.Location = new System.Drawing.Point(13, 160);
+            this.DGVTicket.Location = new System.Drawing.Point(13, 178);
             this.DGVTicket.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.DGVTicket.Name = "DGVTicket";
             this.DGVTicket.ReadOnly = true;
-            this.DGVTicket.Size = new System.Drawing.Size(403, 323);
+            this.DGVTicket.Size = new System.Drawing.Size(417, 301);
             this.DGVTicket.TabIndex = 50;
             this.DGVTicket.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVTicket_CellMouseDoubleClick);
             // 
@@ -562,9 +562,9 @@ namespace GADJIT_WIN_ASW
             // 
             // Column2
             // 
-            dataGridViewCellStyle7.Format = "g";
-            dataGridViewCellStyle7.NullValue = null;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Format = "g";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column2.HeaderText = "Date";
             this.Column2.MinimumWidth = 115;
             this.Column2.Name = "Column2";
@@ -593,7 +593,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxTotalTickets.BackColor = System.Drawing.Color.White;
             this.TextBoxTotalTickets.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxTotalTickets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxTotalTickets.Location = new System.Drawing.Point(371, 489);
+            this.TextBoxTotalTickets.Location = new System.Drawing.Point(385, 485);
             this.TextBoxTotalTickets.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.TextBoxTotalTickets.Name = "TextBoxTotalTickets";
             this.TextBoxTotalTickets.ReadOnly = true;
@@ -605,7 +605,7 @@ namespace GADJIT_WIN_ASW
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(291, 9);
+            this.label10.Location = new System.Drawing.Point(286, 9);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(214, 25);
@@ -617,7 +617,7 @@ namespace GADJIT_WIN_ASW
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(264, 489);
+            this.label1.Location = new System.Drawing.Point(278, 485);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 16);
@@ -628,7 +628,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(795, 516);
+            this.ClientSize = new System.Drawing.Size(784, 512);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.DGVTicket);
