@@ -83,7 +83,7 @@ namespace GADJIT_WIN_ASW
             this.PanelGadgetManagment.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelGadgetManagment.Location = new System.Drawing.Point(0, 421);
             this.PanelGadgetManagment.Name = "PanelGadgetManagment";
-            this.PanelGadgetManagment.Size = new System.Drawing.Size(209, 86);
+            this.PanelGadgetManagment.Size = new System.Drawing.Size(210, 86);
             this.PanelGadgetManagment.TabIndex = 3;
             // 
             // ButtonGadgetReferenceManagment
@@ -91,12 +91,12 @@ namespace GADJIT_WIN_ASW
             this.ButtonGadgetReferenceManagment.Dock = System.Windows.Forms.DockStyle.Top;
             this.ButtonGadgetReferenceManagment.FlatAppearance.BorderSize = 0;
             this.ButtonGadgetReferenceManagment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonGadgetReferenceManagment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonGadgetReferenceManagment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonGadgetReferenceManagment.ForeColor = System.Drawing.Color.Goldenrod;
             this.ButtonGadgetReferenceManagment.Location = new System.Drawing.Point(0, 40);
             this.ButtonGadgetReferenceManagment.Name = "ButtonGadgetReferenceManagment";
             this.ButtonGadgetReferenceManagment.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.ButtonGadgetReferenceManagment.Size = new System.Drawing.Size(209, 38);
+            this.ButtonGadgetReferenceManagment.Size = new System.Drawing.Size(210, 38);
             this.ButtonGadgetReferenceManagment.TabIndex = 3;
             this.ButtonGadgetReferenceManagment.Text = "Référence";
             this.ButtonGadgetReferenceManagment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -108,12 +108,12 @@ namespace GADJIT_WIN_ASW
             this.ButtonGadgetCategoryBrandManagment.Dock = System.Windows.Forms.DockStyle.Top;
             this.ButtonGadgetCategoryBrandManagment.FlatAppearance.BorderSize = 0;
             this.ButtonGadgetCategoryBrandManagment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonGadgetCategoryBrandManagment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonGadgetCategoryBrandManagment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonGadgetCategoryBrandManagment.ForeColor = System.Drawing.Color.Goldenrod;
             this.ButtonGadgetCategoryBrandManagment.Location = new System.Drawing.Point(0, 0);
             this.ButtonGadgetCategoryBrandManagment.Name = "ButtonGadgetCategoryBrandManagment";
             this.ButtonGadgetCategoryBrandManagment.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.ButtonGadgetCategoryBrandManagment.Size = new System.Drawing.Size(209, 40);
+            this.ButtonGadgetCategoryBrandManagment.Size = new System.Drawing.Size(210, 40);
             this.ButtonGadgetCategoryBrandManagment.TabIndex = 2;
             this.ButtonGadgetCategoryBrandManagment.Text = "Marque et Catégorie";
             this.ButtonGadgetCategoryBrandManagment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -134,12 +134,12 @@ namespace GADJIT_WIN_ASW
             this.ButtonIncomes.Dock = System.Windows.Forms.DockStyle.Top;
             this.ButtonIncomes.FlatAppearance.BorderSize = 0;
             this.ButtonIncomes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonIncomes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonIncomes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonIncomes.ForeColor = System.Drawing.Color.Goldenrod;
             this.ButtonIncomes.Location = new System.Drawing.Point(0, 0);
             this.ButtonIncomes.Name = "ButtonIncomes";
             this.ButtonIncomes.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.ButtonIncomes.Size = new System.Drawing.Size(209, 34);
+            this.ButtonIncomes.Size = new System.Drawing.Size(210, 34);
             this.ButtonIncomes.TabIndex = 2;
             this.ButtonIncomes.Text = "Revenus";
             this.ButtonIncomes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -152,12 +152,12 @@ namespace GADJIT_WIN_ASW
             this.ButtonGadgetMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.ButtonGadgetMenu.FlatAppearance.BorderSize = 0;
             this.ButtonGadgetMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonGadgetMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonGadgetMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonGadgetMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(206)))));
             this.ButtonGadgetMenu.Location = new System.Drawing.Point(0, 0);
             this.ButtonGadgetMenu.Name = "ButtonGadgetMenu";
             this.ButtonGadgetMenu.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.ButtonGadgetMenu.Size = new System.Drawing.Size(209, 40);
+            this.ButtonGadgetMenu.Size = new System.Drawing.Size(210, 40);
             this.ButtonGadgetMenu.TabIndex = 8;
             this.ButtonGadgetMenu.Text = "Gestion Gadget";
             this.ButtonGadgetMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -171,12 +171,12 @@ namespace GADJIT_WIN_ASW
             this.ButtonWorkerManagment.Dock = System.Windows.Forms.DockStyle.Top;
             this.ButtonWorkerManagment.FlatAppearance.BorderSize = 0;
             this.ButtonWorkerManagment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonWorkerManagment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonWorkerManagment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonWorkerManagment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(206)))));
             this.ButtonWorkerManagment.Location = new System.Drawing.Point(0, 300);
             this.ButtonWorkerManagment.Name = "ButtonWorkerManagment";
             this.ButtonWorkerManagment.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.ButtonWorkerManagment.Size = new System.Drawing.Size(209, 40);
+            this.ButtonWorkerManagment.Size = new System.Drawing.Size(210, 40);
             this.ButtonWorkerManagment.TabIndex = 6;
             this.ButtonWorkerManagment.Text = "Gestion Technicien";
             this.ButtonWorkerManagment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -190,12 +190,12 @@ namespace GADJIT_WIN_ASW
             this.ButtonStaffManagment.Dock = System.Windows.Forms.DockStyle.Top;
             this.ButtonStaffManagment.FlatAppearance.BorderSize = 0;
             this.ButtonStaffManagment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonStaffManagment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonStaffManagment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonStaffManagment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(206)))));
             this.ButtonStaffManagment.Location = new System.Drawing.Point(0, 340);
             this.ButtonStaffManagment.Name = "ButtonStaffManagment";
             this.ButtonStaffManagment.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.ButtonStaffManagment.Size = new System.Drawing.Size(209, 40);
+            this.ButtonStaffManagment.Size = new System.Drawing.Size(210, 40);
             this.ButtonStaffManagment.TabIndex = 4;
             this.ButtonStaffManagment.Text = "Gestion Personnel";
             this.ButtonStaffManagment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -209,12 +209,12 @@ namespace GADJIT_WIN_ASW
             this.ButtonTicketManagment.Dock = System.Windows.Forms.DockStyle.Top;
             this.ButtonTicketManagment.FlatAppearance.BorderSize = 0;
             this.ButtonTicketManagment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonTicketManagment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonTicketManagment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonTicketManagment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(206)))));
             this.ButtonTicketManagment.Location = new System.Drawing.Point(0, 0);
             this.ButtonTicketManagment.Name = "ButtonTicketManagment";
             this.ButtonTicketManagment.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.ButtonTicketManagment.Size = new System.Drawing.Size(209, 40);
+            this.ButtonTicketManagment.Size = new System.Drawing.Size(210, 40);
             this.ButtonTicketManagment.TabIndex = 10;
             this.ButtonTicketManagment.Text = "Gestion Ticket";
             this.ButtonTicketManagment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -228,12 +228,12 @@ namespace GADJIT_WIN_ASW
             this.ButtonClientManagment.Dock = System.Windows.Forms.DockStyle.Top;
             this.ButtonClientManagment.FlatAppearance.BorderSize = 0;
             this.ButtonClientManagment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonClientManagment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonClientManagment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonClientManagment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(206)))));
             this.ButtonClientManagment.Location = new System.Drawing.Point(0, 0);
             this.ButtonClientManagment.Name = "ButtonClientManagment";
             this.ButtonClientManagment.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.ButtonClientManagment.Size = new System.Drawing.Size(209, 40);
+            this.ButtonClientManagment.Size = new System.Drawing.Size(210, 40);
             this.ButtonClientManagment.TabIndex = 9;
             this.ButtonClientManagment.Text = "Gestion Client";
             this.ButtonClientManagment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -256,7 +256,7 @@ namespace GADJIT_WIN_ASW
             this.PanelStatistics.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelStatistics.Location = new System.Drawing.Point(0, 183);
             this.PanelStatistics.Name = "PanelStatistics";
-            this.PanelStatistics.Size = new System.Drawing.Size(209, 42);
+            this.PanelStatistics.Size = new System.Drawing.Size(210, 42);
             this.PanelStatistics.TabIndex = 2;
             // 
             // ButtonStatisticsMenu
@@ -266,12 +266,12 @@ namespace GADJIT_WIN_ASW
             this.ButtonStatisticsMenu.Dock = System.Windows.Forms.DockStyle.Top;
             this.ButtonStatisticsMenu.FlatAppearance.BorderSize = 0;
             this.ButtonStatisticsMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonStatisticsMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonStatisticsMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonStatisticsMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(206)))));
             this.ButtonStatisticsMenu.Location = new System.Drawing.Point(0, 143);
             this.ButtonStatisticsMenu.Name = "ButtonStatisticsMenu";
             this.ButtonStatisticsMenu.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.ButtonStatisticsMenu.Size = new System.Drawing.Size(209, 40);
+            this.ButtonStatisticsMenu.Size = new System.Drawing.Size(210, 40);
             this.ButtonStatisticsMenu.TabIndex = 1;
             this.ButtonStatisticsMenu.Text = "Statistiques";
             this.ButtonStatisticsMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -289,7 +289,7 @@ namespace GADJIT_WIN_ASW
             this.PanelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelTop.Location = new System.Drawing.Point(0, 0);
             this.PanelTop.Name = "PanelTop";
-            this.PanelTop.Size = new System.Drawing.Size(209, 143);
+            this.PanelTop.Size = new System.Drawing.Size(210, 143);
             this.PanelTop.TabIndex = 0;
             // 
             // LabelTop
@@ -329,7 +329,7 @@ namespace GADJIT_WIN_ASW
             this.PanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PanelBottom.Location = new System.Drawing.Point(0, 570);
             this.PanelBottom.Name = "PanelBottom";
-            this.PanelBottom.Size = new System.Drawing.Size(209, 56);
+            this.PanelBottom.Size = new System.Drawing.Size(210, 56);
             this.PanelBottom.TabIndex = 3;
             // 
             // PictureBoxLogOut
@@ -347,7 +347,7 @@ namespace GADJIT_WIN_ASW
             // SideMenuPanel
             // 
             this.SideMenuPanel.AutoScroll = true;
-            this.SideMenuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(165)))), ((int)(((byte)(33)))));
+            this.SideMenuPanel.BackColor = System.Drawing.Color.Goldenrod;
             this.SideMenuPanel.Controls.Add(this.ButtonCityManagement);
             this.SideMenuPanel.Controls.Add(this.PanelGadgetManagment);
             this.SideMenuPanel.Controls.Add(this.panel3);
@@ -362,7 +362,7 @@ namespace GADJIT_WIN_ASW
             this.SideMenuPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.SideMenuPanel.Location = new System.Drawing.Point(0, 0);
             this.SideMenuPanel.Name = "SideMenuPanel";
-            this.SideMenuPanel.Size = new System.Drawing.Size(209, 626);
+            this.SideMenuPanel.Size = new System.Drawing.Size(210, 626);
             this.SideMenuPanel.TabIndex = 1;
             // 
             // ButtonCityManagement
@@ -372,12 +372,12 @@ namespace GADJIT_WIN_ASW
             this.ButtonCityManagement.Dock = System.Windows.Forms.DockStyle.Top;
             this.ButtonCityManagement.FlatAppearance.BorderSize = 0;
             this.ButtonCityManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonCityManagement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonCityManagement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonCityManagement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(206)))));
             this.ButtonCityManagement.Location = new System.Drawing.Point(0, 507);
             this.ButtonCityManagement.Name = "ButtonCityManagement";
             this.ButtonCityManagement.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.ButtonCityManagement.Size = new System.Drawing.Size(209, 40);
+            this.ButtonCityManagement.Size = new System.Drawing.Size(210, 40);
             this.ButtonCityManagement.TabIndex = 9;
             this.ButtonCityManagement.Text = "Gestion Ville";
             this.ButtonCityManagement.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -390,7 +390,7 @@ namespace GADJIT_WIN_ASW
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 380);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(209, 41);
+            this.panel3.Size = new System.Drawing.Size(210, 41);
             this.panel3.TabIndex = 4;
             // 
             // panel2
@@ -399,7 +399,7 @@ namespace GADJIT_WIN_ASW
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 262);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(209, 38);
+            this.panel2.Size = new System.Drawing.Size(210, 38);
             this.panel2.TabIndex = 10;
             // 
             // panel1
@@ -408,7 +408,7 @@ namespace GADJIT_WIN_ASW
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 225);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(209, 37);
+            this.panel1.Size = new System.Drawing.Size(210, 37);
             this.panel1.TabIndex = 11;
             // 
             // AdminPanel

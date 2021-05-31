@@ -145,7 +145,9 @@ namespace GADJIT_WIN_ASW
 
                             GADJIT.sqlConnection.Open();
 
-                            MessageBox.Show(sqlCommandInsert.ExecuteNonQuery() + " réussi", "Ajout", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            sqlCommandInsert.ExecuteNonQuery();
+
+                            MessageBox.Show("Ajout réussi", "Insertion", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             MakeCellsReadOnly();
                         }
@@ -160,7 +162,7 @@ namespace GADJIT_WIN_ASW
                     }
                     else
                     {
-                        MessageBox.Show("Spécialité existe deja", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Spécialité existe déjà", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         DGVWorkerSpecialistes.Rows.RemoveAt(e.RowIndex);
                     }
                 }
@@ -182,7 +184,9 @@ namespace GADJIT_WIN_ASW
 
                         GADJIT.sqlConnection.Open();
 
-                        MessageBox.Show(sqlCommandDelete.ExecuteNonQuery() + " réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        sqlCommandDelete.ExecuteNonQuery();
+
+                        MessageBox.Show("Suppression réussi", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception ex)
                     {
