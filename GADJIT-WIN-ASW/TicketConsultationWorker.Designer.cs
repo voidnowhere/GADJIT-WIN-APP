@@ -29,7 +29,7 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.GroupeBoxDiag = new System.Windows.Forms.GroupBox();
             this.textBoxWorkTime = new System.Windows.Forms.TextBox();
@@ -82,7 +82,8 @@ namespace GADJIT_WIN_ASW
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.GroupeBoxDiag);
             this.groupBox1.Controls.Add(this.TextBoxGadget);
@@ -98,7 +99,7 @@ namespace GADJIT_WIN_ASW
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Size = new System.Drawing.Size(622, 471);
+            this.groupBox1.Size = new System.Drawing.Size(524, 496);
             this.groupBox1.TabIndex = 75;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ticket détail";
@@ -106,93 +107,84 @@ namespace GADJIT_WIN_ASW
             // GroupeBoxDiag
             // 
             this.GroupeBoxDiag.Controls.Add(this.textBoxWorkTime);
-            this.GroupeBoxDiag.Controls.Add(this.label6);
-            this.GroupeBoxDiag.Controls.Add(this.TextBoxPrice);
-            this.GroupeBoxDiag.Controls.Add(this.label4);
             this.GroupeBoxDiag.Controls.Add(this.richTextBoxDiag);
             this.GroupeBoxDiag.Controls.Add(this.label14);
+            this.GroupeBoxDiag.Controls.Add(this.label6);
+            this.GroupeBoxDiag.Controls.Add(this.label4);
+            this.GroupeBoxDiag.Controls.Add(this.TextBoxPrice);
             this.GroupeBoxDiag.Location = new System.Drawing.Point(7, 197);
             this.GroupeBoxDiag.Name = "GroupeBoxDiag";
-            this.GroupeBoxDiag.Size = new System.Drawing.Size(608, 203);
+            this.GroupeBoxDiag.Size = new System.Drawing.Size(500, 203);
             this.GroupeBoxDiag.TabIndex = 34;
             this.GroupeBoxDiag.TabStop = false;
             // 
             // textBoxWorkTime
             // 
-            this.textBoxWorkTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxWorkTime.BackColor = System.Drawing.Color.White;
             this.textBoxWorkTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxWorkTime.Location = new System.Drawing.Point(176, 157);
+            this.textBoxWorkTime.Location = new System.Drawing.Point(167, 170);
             this.textBoxWorkTime.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBoxWorkTime.Multiline = true;
             this.textBoxWorkTime.Name = "textBoxWorkTime";
-            this.textBoxWorkTime.Size = new System.Drawing.Size(295, 24);
+            this.textBoxWorkTime.Size = new System.Drawing.Size(216, 22);
             this.textBoxWorkTime.TabIndex = 45;
             this.textBoxWorkTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxWorkTime_KeyPress);
             // 
             // label6
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(10, 164);
+            this.label6.Location = new System.Drawing.Point(1, 177);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(158, 17);
+            this.label6.Size = new System.Drawing.Size(165, 17);
             this.label6.TabIndex = 44;
-            this.label6.Text = "Reparation Temp en Heur";
+            this.label6.Text = "Reparation Temp en Heure";
             // 
             // TextBoxPrice
             // 
-            this.TextBoxPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxPrice.BackColor = System.Drawing.Color.White;
             this.TextBoxPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxPrice.Location = new System.Drawing.Point(176, 127);
+            this.TextBoxPrice.Location = new System.Drawing.Point(167, 140);
             this.TextBoxPrice.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.TextBoxPrice.Multiline = true;
             this.TextBoxPrice.Name = "TextBoxPrice";
-            this.TextBoxPrice.Size = new System.Drawing.Size(295, 24);
+            this.TextBoxPrice.Size = new System.Drawing.Size(216, 22);
             this.TextBoxPrice.TabIndex = 43;
             this.TextBoxPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBoxPrice_KeyPress);
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(62, 129);
+            this.label4.Location = new System.Drawing.Point(65, 140);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(97, 17);
             this.label4.TabIndex = 42;
             this.label4.Text = "Reparation Prix";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // richTextBoxDiag
             // 
-            this.richTextBoxDiag.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBoxDiag.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBoxDiag.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBoxDiag.Location = new System.Drawing.Point(176, 15);
+            this.richTextBoxDiag.Location = new System.Drawing.Point(167, 28);
             this.richTextBoxDiag.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.richTextBoxDiag.Name = "richTextBoxDiag";
-            this.richTextBoxDiag.Size = new System.Drawing.Size(420, 106);
+            this.richTextBoxDiag.Size = new System.Drawing.Size(216, 106);
             this.richTextBoxDiag.TabIndex = 41;
             this.richTextBoxDiag.Text = "";
             // 
             // label14
             // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label14.Location = new System.Drawing.Point(90, 17);
+            this.label14.Location = new System.Drawing.Point(93, 28);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(69, 17);
@@ -201,17 +193,14 @@ namespace GADJIT_WIN_ASW
             // 
             // TextBoxGadget
             // 
-            this.TextBoxGadget.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBoxGadget.BackColor = System.Drawing.Color.White;
             this.TextBoxGadget.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxGadget.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxGadget.Location = new System.Drawing.Point(183, 167);
+            this.TextBoxGadget.Location = new System.Drawing.Point(171, 167);
             this.TextBoxGadget.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.TextBoxGadget.Multiline = true;
             this.TextBoxGadget.Name = "TextBoxGadget";
             this.TextBoxGadget.ReadOnly = true;
-            this.TextBoxGadget.Size = new System.Drawing.Size(295, 24);
+            this.TextBoxGadget.Size = new System.Drawing.Size(216, 15);
             this.TextBoxGadget.TabIndex = 33;
             // 
             // label17
@@ -221,7 +210,7 @@ namespace GADJIT_WIN_ASW
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label17.Location = new System.Drawing.Point(44, 174);
+            this.label17.Location = new System.Drawing.Point(41, 174);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(122, 17);
@@ -237,7 +226,7 @@ namespace GADJIT_WIN_ASW
             this.ComboBoxPorg.FormattingEnabled = true;
             this.ComboBoxPorg.Location = new System.Drawing.Point(183, 421);
             this.ComboBoxPorg.Name = "ComboBoxPorg";
-            this.ComboBoxPorg.Size = new System.Drawing.Size(295, 29);
+            this.ComboBoxPorg.Size = new System.Drawing.Size(204, 29);
             this.ComboBoxPorg.TabIndex = 19;
             // 
             // label8
@@ -263,10 +252,10 @@ namespace GADJIT_WIN_ASW
             this.ButtonEnregistrer.FlatAppearance.BorderSize = 0;
             this.ButtonEnregistrer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonEnregistrer.ForeColor = System.Drawing.Color.White;
-            this.ButtonEnregistrer.Location = new System.Drawing.Point(491, 419);
+            this.ButtonEnregistrer.Location = new System.Drawing.Point(276, 456);
             this.ButtonEnregistrer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonEnregistrer.Name = "ButtonEnregistrer";
-            this.ButtonEnregistrer.Size = new System.Drawing.Size(112, 30);
+            this.ButtonEnregistrer.Size = new System.Drawing.Size(111, 30);
             this.ButtonEnregistrer.TabIndex = 14;
             this.ButtonEnregistrer.Text = "Enregistrer";
             this.ButtonEnregistrer.UseVisualStyleBackColor = false;
@@ -276,10 +265,10 @@ namespace GADJIT_WIN_ASW
             // 
             this.RichTextBoxProblem.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.RichTextBoxProblem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RichTextBoxProblem.Location = new System.Drawing.Point(183, 28);
+            this.RichTextBoxProblem.Location = new System.Drawing.Point(171, 28);
             this.RichTextBoxProblem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.RichTextBoxProblem.Name = "RichTextBoxProblem";
-            this.RichTextBoxProblem.Size = new System.Drawing.Size(420, 133);
+            this.RichTextBoxProblem.Size = new System.Drawing.Size(216, 133);
             this.RichTextBoxProblem.TabIndex = 9;
             this.RichTextBoxProblem.Text = "";
             // 
@@ -290,7 +279,7 @@ namespace GADJIT_WIN_ASW
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(102, 31);
+            this.label7.Location = new System.Drawing.Point(97, 27);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(64, 17);
@@ -307,10 +296,10 @@ namespace GADJIT_WIN_ASW
             this.ButtonReset.FlatAppearance.BorderSize = 0;
             this.ButtonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonReset.ForeColor = System.Drawing.Color.White;
-            this.ButtonReset.Location = new System.Drawing.Point(945, 65);
+            this.ButtonReset.Location = new System.Drawing.Point(808, 64);
             this.ButtonReset.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonReset.Name = "ButtonReset";
-            this.ButtonReset.Size = new System.Drawing.Size(105, 29);
+            this.ButtonReset.Size = new System.Drawing.Size(98, 29);
             this.ButtonReset.TabIndex = 53;
             this.ButtonReset.Text = "Annuler";
             this.ButtonReset.UseVisualStyleBackColor = false;
@@ -440,7 +429,7 @@ namespace GADJIT_WIN_ASW
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Nirmala UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Teal;
-            this.label10.Location = new System.Drawing.Point(400, 9);
+            this.label10.Location = new System.Drawing.Point(370, 9);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(266, 37);
@@ -460,7 +449,8 @@ namespace GADJIT_WIN_ASW
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.ButtonReset);
             this.groupBox2.Controls.Add(this.ComboBoxCode);
             this.groupBox2.Controls.Add(this.label5);
@@ -479,7 +469,7 @@ namespace GADJIT_WIN_ASW
             this.groupBox2.ForeColor = System.Drawing.Color.Teal;
             this.groupBox2.Location = new System.Drawing.Point(3, 64);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1069, 100);
+            this.groupBox2.Size = new System.Drawing.Size(986, 100);
             this.groupBox2.TabIndex = 76;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Recherche :";
@@ -494,10 +484,10 @@ namespace GADJIT_WIN_ASW
             this.ButtonRecherche.FlatAppearance.BorderSize = 0;
             this.ButtonRecherche.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonRecherche.ForeColor = System.Drawing.Color.White;
-            this.ButtonRecherche.Location = new System.Drawing.Point(945, 28);
+            this.ButtonRecherche.Location = new System.Drawing.Point(808, 29);
             this.ButtonRecherche.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonRecherche.Name = "ButtonRecherche";
-            this.ButtonRecherche.Size = new System.Drawing.Size(105, 29);
+            this.ButtonRecherche.Size = new System.Drawing.Size(98, 29);
             this.ButtonRecherche.TabIndex = 36;
             this.ButtonRecherche.Text = "Rechercher";
             this.ButtonRecherche.UseVisualStyleBackColor = false;
@@ -580,14 +570,14 @@ namespace GADJIT_WIN_ASW
             // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox3.Controls.Add(this.TextBoxTicketsNoRepare);
             this.groupBox3.Controls.Add(this.TextBoxTotalTickets);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.TextBoxTicketRepare);
             this.groupBox3.Controls.Add(this.label1);
-            this.groupBox3.Location = new System.Drawing.Point(3, 382);
+            this.groupBox3.Location = new System.Drawing.Point(3, 407);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(316, 145);
             this.groupBox3.TabIndex = 77;
@@ -597,9 +587,8 @@ namespace GADJIT_WIN_ASW
             // 
             this.DGVTicket.AllowUserToAddRows = false;
             this.DGVTicket.AllowUserToDeleteRows = false;
-            this.DGVTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.DGVTicket.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.DGVTicket.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVTicket.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CODE,
@@ -609,7 +598,7 @@ namespace GADJIT_WIN_ASW
             this.DGVTicket.Location = new System.Drawing.Point(3, 182);
             this.DGVTicket.Name = "DGVTicket";
             this.DGVTicket.ReadOnly = true;
-            this.DGVTicket.Size = new System.Drawing.Size(455, 206);
+            this.DGVTicket.Size = new System.Drawing.Size(455, 231);
             this.DGVTicket.TabIndex = 78;
             this.DGVTicket.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVTicket_CellMouseDoubleClick);
             // 
@@ -623,9 +612,9 @@ namespace GADJIT_WIN_ASW
             // 
             // DATE
             // 
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.DATE.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Format = "d";
+            dataGridViewCellStyle6.NullValue = null;
+            this.DATE.DefaultCellStyle = dataGridViewCellStyle6;
             this.DATE.HeaderText = "Date";
             this.DATE.MinimumWidth = 125;
             this.DATE.Name = "DATE";
@@ -652,7 +641,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1105, 653);
+            this.ClientSize = new System.Drawing.Size(1044, 678);
             this.Controls.Add(this.DGVTicket);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label10);
