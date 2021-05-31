@@ -33,16 +33,28 @@ namespace GADJIT_WIN_CLIENT
         SqlDataReader dr;
         private void ConsultationTicketForClient_Load(object sender, EventArgs e)
         {
+            DGVTicket.BorderStyle = BorderStyle.Fixed3D;
+            DGVTicket.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            DGVTicket.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            DGVTicket.DefaultCellStyle.SelectionBackColor = Color.DarkSlateBlue;
+            DGVTicket.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            DGVTicket.BackgroundColor = Color.White;
+            DGVTicket.EnableHeadersVisualStyles = false;
+            DGVTicket.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            DGVTicket.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(116, 86, 174);
+            DGVTicket.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            //
             SqlCommand cmd = new SqlCommand("select TicID from Ticket where CliID =@CID", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@CID", CID);
             GADJIT.sqlConnection.Open();
             dr = cmd.ExecuteReader();
+            ComboBoxCodeTicket.Items.Add("--TOUT--");
             while (dr.Read())
             {
                 ComboBoxCodeTicket.Items.Add(dr["TicID"].ToString());
             }
             dr.Close();
-            ComboBoxCodeTicket.SelectedIndex = -1;
+            ComboBoxCodeTicket.SelectedIndex = 0;
             //
             GADJIT.sqlConnection.Close();
             DGVTicket.Rows.Clear();
