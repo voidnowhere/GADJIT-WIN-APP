@@ -141,5 +141,15 @@ namespace GADJIT_WIN_ASW
         {
             Environment.Exit(1);
         }
+
+        private void TextBoxEMail_TextChanged(object sender, EventArgs e)
+        {
+            TextBoxEMail.Text = TextBoxEMail.Text.Trim();
+        }
+
+        private void TextBoxPassWord_TextChanged(object sender, EventArgs e)
+        {
+            TextBoxPassWord.Text = TextBoxPassWord.Text.Trim();
+        }
     }
 }
