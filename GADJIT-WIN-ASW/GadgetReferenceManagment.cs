@@ -198,7 +198,7 @@ namespace GADJIT_WIN_ASW
 
         private void ReferencesStats()
         {
-            int c = DGVReference.Rows.Count;
+            int c = DGVReference.Rows.Count - 1;
             int a = 0;
             int d = 0;
             for (int i = 0; i < c; i++)

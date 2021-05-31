@@ -220,7 +220,7 @@ namespace GADJIT_WIN_ASW
 
         private void WorkersStats()
         {
-            int c = DGVWorker.Rows.Count;
+            int c = DGVWorker.Rows.Count - 1;
             int a = 0;
             int d = 0;
             for (int i = 0; i < c; i++)
