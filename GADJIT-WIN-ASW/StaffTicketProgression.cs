@@ -378,7 +378,7 @@ namespace GADJIT_WIN_ASW
                                 who = "Personnel";
                                 break;
                             case "W":
-                                who = "Employé";
+                                who = "Technicien";
                                 break;
                             case "C":
                                 who = "Client";
