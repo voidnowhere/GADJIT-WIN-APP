@@ -132,16 +132,19 @@ namespace GADJIT_WIN_ASW
                 {
                     SqlCommand sqlCommand = new SqlCommand("update Client set CliSta = @sta where CliID = @id ", GADJIT.sqlConnection);
                     sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = (int)DGVClient[0, e.RowIndex].Value;
-                    sqlCommand.Parameters.Add("@sta", SqlDbType.Bit).Value = (DGVClient[7, e.RowIndex].Value.ToString() == "Activer") ? true : false;
+                    string status = DGVClient[8, e.RowIndex].Value.ToString();
+                    sqlCommand.Parameters.Add("@sta", SqlDbType.Bit).Value = (status == "Activer") ? true : false;
                     GADJIT.sqlConnection.Open();
 
                     sqlCommand.ExecuteNonQuery();
 
-                    MessageBox.Show("Modification réussi", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Compte client est " + ((status == "Activer") ? "activé" : "désactivé"), "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    ClientsStats();
 
                     GADJIT.SendEmail(
                         DGVClient[3, e.RowIndex].Value.ToString(),
-                        "Votre compte est " + DGVClient[7, e.RowIndex].Value.ToString());
+                        "Votre compte est " + DGVClient[8, e.RowIndex].Value.ToString());
                 }
                 catch (Exception ex)
                 {
@@ -156,17 +159,23 @@ namespace GADJIT_WIN_ASW
 
         private void ClientsStats()
         {
-            int c = DGVClient.Rows.Count - 1;
+            int c = DGVClient.Rows.Count;
+            int v = 0;
+            int n = 0;
             int a = 0;
             int d = 0;
             for (int i = 0; i < c; i++)
             {
-                if (DGVClient[7, i].Value.ToString() == "Activer") a++;
-                else if (DGVClient[7, i].Value.ToString() == "Désactiver") d++;
+                if (DGVClient[7, i].Value.ToString() == "oui") v++;
+                else if (DGVClient[7, i].Value.ToString() == "non") n++;
+                if (DGVClient[8, i].Value.ToString() == "Activer") a++;
+                else if (DGVClient[8, i].Value.ToString() == "Désactiver") d++;
             }
-            TextBoxActivedClients.Text = a.ToString();
+            TextBoxVerifiedClients.Text = v.ToString();
+            TextBoxUnverifiedClients.Text = n.ToString();
             TextBoxDeactivatedClients.Text = d.ToString();
             TextBoxTotalClients.Text = c.ToString();
+            TextBoxActivedClients.Text = a.ToString();
         }
 
         private void ClientManagment_Load(object sender, EventArgs e)
@@ -184,6 +193,7 @@ namespace GADJIT_WIN_ASW
                 || ComboBoxCitySearch.SelectedIndex > 0 || ComboBoxStatusSearch.SelectedIndex > 0)
             {
                 FillDGVClient();
+                ClientsStats();
             }
         }
 
@@ -194,6 +204,7 @@ namespace GADJIT_WIN_ASW
             ComboBoxCitySearch.SelectedIndex = 0;
             ComboBoxStatusSearch.SelectedIndex = 0;
             FillDGVClient();
+            ClientsStats();
         }
     }
 }

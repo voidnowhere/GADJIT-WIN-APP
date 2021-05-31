@@ -51,6 +51,10 @@ namespace GADJIT_WIN_ASW
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.DGVClient = new System.Windows.Forms.DataGridView();
+            this.TextBoxUnverifiedClients = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.TextBoxVerifiedClients = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.ColumnTextBoxID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTextBoxLastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnTextBoxFirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -328,6 +332,52 @@ namespace GADJIT_WIN_ASW
             this.DGVClient.TabIndex = 49;
             this.DGVClient.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVClient_CellValueChanged);
             // 
+            // TextBoxUnverifiedClients
+            // 
+            this.TextBoxUnverifiedClients.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBoxUnverifiedClients.BackColor = System.Drawing.Color.Red;
+            this.TextBoxUnverifiedClients.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxUnverifiedClients.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxUnverifiedClients.Location = new System.Drawing.Point(373, 573);
+            this.TextBoxUnverifiedClients.Name = "TextBoxUnverifiedClients";
+            this.TextBoxUnverifiedClients.ReadOnly = true;
+            this.TextBoxUnverifiedClients.Size = new System.Drawing.Size(49, 15);
+            this.TextBoxUnverifiedClients.TabIndex = 61;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(284, 573);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(88, 16);
+            this.label5.TabIndex = 60;
+            this.label5.Text = "Non verifier";
+            // 
+            // TextBoxVerifiedClients
+            // 
+            this.TextBoxVerifiedClients.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBoxVerifiedClients.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.TextBoxVerifiedClients.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TextBoxVerifiedClients.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxVerifiedClients.Location = new System.Drawing.Point(229, 573);
+            this.TextBoxVerifiedClients.Name = "TextBoxVerifiedClients";
+            this.TextBoxVerifiedClients.ReadOnly = true;
+            this.TextBoxVerifiedClients.Size = new System.Drawing.Size(49, 15);
+            this.TextBoxVerifiedClients.TabIndex = 59;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(167, 573);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 16);
+            this.label6.TabIndex = 58;
+            this.label6.Text = "Verifier";
+            // 
             // ColumnTextBoxID
             // 
             this.ColumnTextBoxID.HeaderText = "Code";
@@ -384,9 +434,10 @@ namespace GADJIT_WIN_ASW
             // Column1
             // 
             this.Column1.HeaderText = "Vérifié";
-            this.Column1.MinimumWidth = 50;
+            this.Column1.MinimumWidth = 55;
             this.Column1.Name = "Column1";
-            this.Column1.Width = 50;
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 55;
             // 
             // ColumnComboBoxStatus
             // 
@@ -404,6 +455,10 @@ namespace GADJIT_WIN_ASW
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 595);
+            this.Controls.Add(this.TextBoxUnverifiedClients);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.TextBoxVerifiedClients);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.TextBoxDeactivatedClients);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.TextBoxActivedClients);
@@ -446,6 +501,10 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView DGVClient;
         private System.Windows.Forms.Button ButtonReset;
+        private System.Windows.Forms.TextBox TextBoxUnverifiedClients;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox TextBoxVerifiedClients;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTextBoxID;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTextBoxLastName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTextBoxFirstName;
