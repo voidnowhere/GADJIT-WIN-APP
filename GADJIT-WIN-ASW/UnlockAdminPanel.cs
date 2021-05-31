@@ -54,6 +54,7 @@ namespace GADJIT_WIN_ASW
             else
             {
                 MessageBox.Show("Veuillez taper votre mot de passe", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                TextBoxPassWord.Focus();
             }
         }
 

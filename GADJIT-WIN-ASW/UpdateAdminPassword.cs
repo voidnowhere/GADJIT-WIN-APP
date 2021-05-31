@@ -90,6 +90,7 @@ namespace GADJIT_WIN_ASW
             else
             {
                 MessageBox.Show("Veuillez taper votre ancien mot de passe", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                TextBoxOldPassword.Focus();
             }
         }
 

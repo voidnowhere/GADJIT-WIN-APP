@@ -76,6 +76,7 @@ namespace GADJIT_WIN_ASW
                 AdminDispoChanger("Break");
                 ButtonDisponibility.BackColor = Color.Orange;
                 CloseMdiChildIdExists();
+                ResetButtonsColor();
                 PannelButtonsLock(false);
             }
             else if (ButtonDisponibility.BackColor == Color.Orange)
