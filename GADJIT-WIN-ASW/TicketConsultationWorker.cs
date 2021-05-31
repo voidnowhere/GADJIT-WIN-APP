@@ -513,5 +513,10 @@ namespace GADJIT_WIN_ASW
             }
         }
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
