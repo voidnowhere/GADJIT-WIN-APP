@@ -56,7 +56,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxNewPass.Name = "TextBoxNewPass";
             this.TextBoxNewPass.PasswordChar = '*';
             this.TextBoxNewPass.Size = new System.Drawing.Size(288, 37);
-            this.TextBoxNewPass.TabIndex = 42;
+            this.TextBoxNewPass.TabIndex = 1;
             // 
             // label4
             // 
@@ -83,7 +83,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxConfNewPass.Name = "TextBoxConfNewPass";
             this.TextBoxConfNewPass.PasswordChar = '*';
             this.TextBoxConfNewPass.Size = new System.Drawing.Size(288, 37);
-            this.TextBoxConfNewPass.TabIndex = 43;
+            this.TextBoxConfNewPass.TabIndex = 2;
             // 
             // label2
             // 
@@ -119,7 +119,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonAnnuler.Location = new System.Drawing.Point(77, 280);
             this.ButtonAnnuler.Name = "ButtonAnnuler";
             this.ButtonAnnuler.Size = new System.Drawing.Size(183, 37);
-            this.ButtonAnnuler.TabIndex = 56;
+            this.ButtonAnnuler.TabIndex = 4;
             this.ButtonAnnuler.Text = "Annuler";
             this.ButtonAnnuler.UseVisualStyleBackColor = false;
             this.ButtonAnnuler.Click += new System.EventHandler(this.ButtonAnnuler_Click);
@@ -135,7 +135,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonUpdate.Location = new System.Drawing.Point(266, 280);
             this.ButtonUpdate.Name = "ButtonUpdate";
             this.ButtonUpdate.Size = new System.Drawing.Size(183, 37);
-            this.ButtonUpdate.TabIndex = 55;
+            this.ButtonUpdate.TabIndex = 3;
             this.ButtonUpdate.Text = "Sauvegarder";
             this.ButtonUpdate.UseVisualStyleBackColor = false;
             this.ButtonUpdate.Click += new System.EventHandler(this.ButtonUpdate_Click);
@@ -157,7 +157,7 @@ namespace GADJIT_WIN_CLIENT
             this.textBoxOldpass.Name = "textBoxOldpass";
             this.textBoxOldpass.PasswordChar = '*';
             this.textBoxOldpass.Size = new System.Drawing.Size(288, 37);
-            this.textBoxOldpass.TabIndex = 57;
+            this.textBoxOldpass.TabIndex = 0;
             // 
             // label3
             // 

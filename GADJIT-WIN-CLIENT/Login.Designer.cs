@@ -47,7 +47,7 @@ namespace GADJIT_WIN_CLIENT
             // 
             this.LabelInscritpion.AutoSize = true;
             this.LabelInscritpion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.LabelInscritpion.Location = new System.Drawing.Point(83, 531);
+            this.LabelInscritpion.Location = new System.Drawing.Point(204, 336);
             this.LabelInscritpion.Name = "LabelInscritpion";
             this.LabelInscritpion.Size = new System.Drawing.Size(95, 17);
             this.LabelInscritpion.TabIndex = 4;
@@ -57,7 +57,7 @@ namespace GADJIT_WIN_CLIENT
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(83, 504);
+            this.label10.Location = new System.Drawing.Point(85, 336);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(93, 17);
             this.label10.TabIndex = 31;
@@ -69,11 +69,11 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonClear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ButtonClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonClear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.ButtonClear.Location = new System.Drawing.Point(86, 448);
+            this.ButtonClear.Location = new System.Drawing.Point(86, 282);
             this.ButtonClear.Name = "ButtonClear";
             this.ButtonClear.Size = new System.Drawing.Size(216, 35);
             this.ButtonClear.TabIndex = 3;
-            this.ButtonClear.Text = "CLEAR";
+            this.ButtonClear.Text = "VIDER";
             this.ButtonClear.UseVisualStyleBackColor = false;
             this.ButtonClear.Click += new System.EventHandler(this.ButtonClear_Click);
             // 
@@ -84,7 +84,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonLogin.FlatAppearance.BorderSize = 0;
             this.ButtonLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonLogin.ForeColor = System.Drawing.Color.White;
-            this.ButtonLogin.Location = new System.Drawing.Point(86, 394);
+            this.ButtonLogin.Location = new System.Drawing.Point(86, 228);
             this.ButtonLogin.Name = "ButtonLogin";
             this.ButtonLogin.Size = new System.Drawing.Size(216, 35);
             this.ButtonLogin.TabIndex = 2;
@@ -97,7 +97,7 @@ namespace GADJIT_WIN_CLIENT
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.label1.Location = new System.Drawing.Point(25, 42);
+            this.label1.Location = new System.Drawing.Point(28, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(274, 27);
             this.label1.TabIndex = 27;
@@ -106,7 +106,7 @@ namespace GADJIT_WIN_CLIENT
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(83, 153);
+            this.label2.Location = new System.Drawing.Point(83, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 17);
             this.label2.TabIndex = 26;
@@ -117,7 +117,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxPassWord.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.TextBoxPassWord.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxPassWord.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxPassWord.Location = new System.Drawing.Point(86, 255);
+            this.TextBoxPassWord.Location = new System.Drawing.Point(86, 153);
             this.TextBoxPassWord.Multiline = true;
             this.TextBoxPassWord.Name = "TextBoxPassWord";
             this.TextBoxPassWord.PasswordChar = '*';
@@ -127,7 +127,7 @@ namespace GADJIT_WIN_CLIENT
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(83, 235);
+            this.label3.Location = new System.Drawing.Point(83, 133);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 17);
             this.label3.TabIndex = 24;
@@ -138,7 +138,7 @@ namespace GADJIT_WIN_CLIENT
             this.TexrBoxEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.TexrBoxEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TexrBoxEmail.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TexrBoxEmail.Location = new System.Drawing.Point(86, 173);
+            this.TexrBoxEmail.Location = new System.Drawing.Point(86, 95);
             this.TexrBoxEmail.Multiline = true;
             this.TexrBoxEmail.Name = "TexrBoxEmail";
             this.TexrBoxEmail.Size = new System.Drawing.Size(216, 28);
@@ -148,7 +148,7 @@ namespace GADJIT_WIN_CLIENT
             // PictureBoxExit
             // 
             this.PictureBoxExit.Image = global::GADJIT_WIN_CLIENT.Properties.Resources.close_window_52px;
-            this.PictureBoxExit.Location = new System.Drawing.Point(351, -1);
+            this.PictureBoxExit.Location = new System.Drawing.Point(352, -2);
             this.PictureBoxExit.Name = "PictureBoxExit";
             this.PictureBoxExit.Size = new System.Drawing.Size(34, 33);
             this.PictureBoxExit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -161,7 +161,7 @@ namespace GADJIT_WIN_CLIENT
             this.LabelErreur.AutoSize = true;
             this.LabelErreur.BackColor = System.Drawing.Color.White;
             this.LabelErreur.ForeColor = System.Drawing.Color.Red;
-            this.LabelErreur.Location = new System.Drawing.Point(83, 296);
+            this.LabelErreur.Location = new System.Drawing.Point(83, 194);
             this.LabelErreur.Name = "LabelErreur";
             this.LabelErreur.Size = new System.Drawing.Size(140, 17);
             this.LabelErreur.TabIndex = 33;
@@ -172,7 +172,7 @@ namespace GADJIT_WIN_CLIENT
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(385, 585);
+            this.ClientSize = new System.Drawing.Size(385, 377);
             this.Controls.Add(this.LabelErreur);
             this.Controls.Add(this.PictureBoxExit);
             this.Controls.Add(this.LabelInscritpion);

@@ -37,7 +37,7 @@ namespace GADJIT_WIN_ASW
                 SqlCommand sqlCommand = new SqlCommand();
 
                 sqlQuery += " and TicDT between @dateF and @dateT";
-                sqlCommand.Parameters.Add("@dateF", SqlDbType.DateTime).Value = DTPTicketFromSearch.Value;
+                sqlCommand.Parameters.Add("@dateF", SqlDbType.DateTime).Value = DateTime.Parse(DTPTicketFromSearch.Value.ToShortDateString());
                 sqlCommand.Parameters.Add("@dateT", SqlDbType.DateTime).Value = DTPTicketToSearch.Value;
 
                 if (TextBoxRepairePriceFromSearch.Text != "" || TextBoxRepairePriceToSearch.Text != ""
@@ -150,9 +150,11 @@ namespace GADJIT_WIN_ASW
                             dataReader["TicDT"],
                             status,
                             dataReader["Gadget"],
-                            (dataReader["TicRepPri"] != null) ? dataReader.GetSqlMoney(4).ToString() : "");
+                            (dataReader["TicRepPri"] == DBNull.Value) ? null : dataReader.GetSqlMoney(4).ToString());
                     }
                     TextBoxTotalTickets.Text = DGVTicket.Rows.Count.ToString();
+                    GADJIT.sqlConnection.Close();
+                    DGVTicket_CellMouseDoubleClick(null, new DataGridViewCellMouseEventArgs(0, 0, 0, 0, new MouseEventArgs(MouseButtons.Left, 2, 0, 0, 0)));
                 }
             }
             catch (Exception ex)
@@ -176,9 +178,9 @@ namespace GADJIT_WIN_ASW
                 sqlCommandTicketDetail.Connection = GADJIT.sqlConnection;
                 //GetClient
                 sqlQuery =
-                    "select CONVERT(varchar, t.CliID) + ' - ' + CliLastName + ' ' + CliFirstName as Client, TicAddress, TicProb " +
-                    "from Ticket as t, Client as c " +
-                    "where TicID = @ticID and t.CliID = c.CliID";
+                    "select CONVERT(varchar, t.CliID) + ' - ' + CliLastName + ' ' + CliFirstName as Client, TicAddress + ' - ' + CitDesig as Address, TicProb " +
+                    "from Ticket as t, Client as cl, City as ci " +
+                    "where TicID = @ticID and t.CliID = cl.CliID and t.CitID = ci.CitID";
                 sqlCommandTicketDetail.CommandText = sqlQuery;
                 sqlCommandTicketDetail.Parameters.Add("@ticID", SqlDbType.Int).Value = ticID;
                 GADJIT.sqlConnection.Open();
@@ -187,7 +189,7 @@ namespace GADJIT_WIN_ASW
                 {
                     dataReader.Read();
                     TextBoxClient.Text = dataReader["Client"].ToString();
-                    TextBoxAddress.Text = dataReader["TicAddress"].ToString();
+                    TextBoxAddress.Text = dataReader["Address"].ToString();
                     RichTextBoxProblem.Text = dataReader["TicProb"].ToString();
                 }
                 dataReader.Close();
@@ -250,6 +252,8 @@ namespace GADJIT_WIN_ASW
                             dataReader["TicMonWhoID"]);
                     }
                     TextBoxTotalTicketMonitoring.Text = DGVTicketMonitoring.Rows.Count.ToString();
+                    GADJIT.sqlConnection.Close();
+                    DGVTicketMonitoring_CellMouseDoubleClick(sender, new DataGridViewCellMouseEventArgs(0, 0, 0, 0, new MouseEventArgs(MouseButtons.Left, 2, 0, 0, 0)));
                 }
             }
             catch (Exception ex)
@@ -292,7 +296,7 @@ namespace GADJIT_WIN_ASW
                 }
                 sqlCommand.CommandText = sqlQuery;
                 sqlCommand.Connection = GADJIT.sqlConnection;
-                sqlCommand.Parameters.Add("@whoID", SqlDbType.Int).Value = (int)DGVTicketMonitoring[3, e.RowIndex].Value;
+                sqlCommand.Parameters.Add("@whoID", SqlDbType.Int).Value = int.Parse(DGVTicketMonitoring[3, e.RowIndex].Value.ToString());
                 GADJIT.sqlConnection.Open();
                 dataReader = sqlCommand.ExecuteReader();
                 if (dataReader.HasRows)
@@ -315,8 +319,8 @@ namespace GADJIT_WIN_ASW
 
         private void TicketManagment_Load(object sender, EventArgs e)
         {
-            DTPTicketFromSearch.MaxDate = DateTime.Now.AddDays(-1);
-            DTPTicketToSearch.MaxDate = DateTime.Now;
+            DTPTicketFromSearch.MaxDate = DateTime.Parse(DateTime.Now.AddDays(-1).ToShortDateString());
+            DTPTicketToSearch.MaxDate = DateTime.Parse(DateTime.Now.ToShortDateString()).AddHours(23).AddMinutes(59).AddSeconds(59);
             ComboBoxStatusSearch.SelectedIndex = 0;
             FillDGVTicket();
         }
@@ -341,6 +345,8 @@ namespace GADJIT_WIN_ASW
         private void ButtonReset_Click(object sender, EventArgs e)
         {
             ClearTextBooxDetails();
+            DTPTicketFromSearch.MaxDate = DateTime.Parse(DateTime.Now.AddDays(-1).ToShortDateString());
+            DTPTicketToSearch.MaxDate = DateTime.Now;
             TextBoxRepairePriceFromSearch.Clear();
             TextBoxRepairePriceToSearch.Clear();
             ComboBoxStatusSearch.SelectedIndex = 0;

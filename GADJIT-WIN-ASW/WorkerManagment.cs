@@ -34,20 +34,18 @@ namespace GADJIT_WIN_ASW
         ColumnSpecialty
         ColumnComboBoxDisponibility
         ColumnComboBoxStatus
-
-        WorID WorCIN WorPicture WorLastName WorFirstName WorEmail WorPassWord WorPhoneNumber WorAdress WorDesig WorSalary WorDispo WorSta
         */
 
         SqlDataReader dataReader;
         //
+        Dictionary<int, string> city = new Dictionary<int, string>();
         bool filledDGV = false;
         bool where = false;
         String status = "";
 
         private bool CheckDGVCellsIfEmpty()
         {
-            if (DGVWorker["ColumnTextBoxID", DGVWorker.CurrentRow.Index].Value != null
-                && DGVWorker["ColumnTextBoxCIN", DGVWorker.CurrentRow.Index].Value != null
+            if (DGVWorker["ColumnTextBoxCIN", DGVWorker.CurrentRow.Index].Value != null
                 && DGVWorker["ColumnTextBoxLastName", DGVWorker.CurrentRow.Index].Value != null
                 && DGVWorker["ColumnTextBoxFirstName", DGVWorker.CurrentRow.Index].Value != null
                 && DGVWorker["ColumnTextBoxEmail", DGVWorker.CurrentRow.Index].Value != null
@@ -82,32 +80,45 @@ namespace GADJIT_WIN_ASW
             return false;
         }
 
-        private void InsertNewIDInDGV()
+        private int GenerateWorkerId()
         {
-            if (DGVWorker.Rows.Count > 2)
+            try
             {
-                DGVWorker[0, DGVWorker.CurrentRow.Index].Value = (int)DGVWorker[0, DGVWorker.CurrentRow.Index - 1].Value + 1;
+                SqlCommand sqlCommand = new SqlCommand("select MAX(WorID) from Worker", GADJIT.sqlConnection);
+                GADJIT.sqlConnection.Open();
+                return (sqlCommand.ExecuteScalar() == DBNull.Value) ? 0 : int.Parse(sqlCommand.ExecuteScalar().ToString()) + 1;
             }
-            else
+            catch (Exception ex)
             {
-                DGVWorker[0, DGVWorker.CurrentRow.Index].Value = 0;
+                MessageBox.Show(ex.Message, "Error GenerateWorkerId", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                GADJIT.sqlConnection.Close();
+            }
+            return 0;
         }
 
         private void FillComboBoxCity()
         {
             try
             {
-                SqlCommand sqlCommand = new SqlCommand("select CitDesig from City", GADJIT.sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("select CitID, CitDesig from City", GADJIT.sqlConnection);
                 GADJIT.sqlConnection.Open();
                 dataReader = sqlCommand.ExecuteReader();
                 if (dataReader.HasRows)
                 {
                     ComboBoxCitySearch.Items.Add("--tous--");
+                    //
+                    ColumnComboBoxCity.DisplayMember = "CitDesig";
+                    ColumnComboBoxCity.ValueMember = "CitID";
                     while (dataReader.Read())
                     {
-                        ComboBoxCitySearch.Items.Add(dataReader.GetString(0));
-                        ColumnComboBoxCity.Items.Add(dataReader.GetString(0));
+                        city.Add(dataReader.GetInt32(0), dataReader.GetString(1));
+                        //
+                        ComboBoxCitySearch.Items.Add(dataReader.GetString(1));
+                        //
+                        ColumnComboBoxCity.Items.Add(new { CitID = dataReader.GetInt32(0), CitDesig = dataReader.GetString(1) });
                     }
                 }
             }
@@ -134,7 +145,6 @@ namespace GADJIT_WIN_ASW
                 if (TextBoxCINSearch.Text != "" || TextBoxEmailSearch.Text != "" || TextBoxLastNameSearch.Text != ""
                     || ComboBoxCitySearch.SelectedIndex > 0 || ComboBoxStatusSearch.SelectedIndex > 0)
                 {
-                    DGVWorker.AllowUserToAddRows = false;
                     sqlQuery += " where";
                     if (TextBoxCINSearch.Text != "")
                     {
@@ -159,8 +169,8 @@ namespace GADJIT_WIN_ASW
                     if (ComboBoxCitySearch.SelectedIndex > 0)
                     {
                         if (where) sqlQuery += " and";
-                        sqlQuery += " CitDesig = @city";
-                        sqlCommand.Parameters.Add("@city", SqlDbType.VarChar).Value = ComboBoxCitySearch.Text;
+                        sqlQuery += " CitID = @city";
+                        sqlCommand.Parameters.Add("@city", SqlDbType.Int).Value = city.Keys.First(i => city[i] == ComboBoxCitySearch.Text);
                         where = true;
                     }
                     if (ComboBoxStatusSearch.SelectedIndex > 0)
@@ -170,10 +180,7 @@ namespace GADJIT_WIN_ASW
                         sqlCommand.Parameters.Add("@sta", SqlDbType.Bit).Value = (ComboBoxStatusSearch.SelectedIndex == 1) ? true : false;
                     }
                 }
-                else
-                {
-                    DGVWorker.AllowUserToAddRows = true;
-                }
+
                 sqlCommand.CommandText = sqlQuery;
                 sqlCommand.Connection = GADJIT.sqlConnection;
                 GADJIT.sqlConnection.Open();
@@ -182,7 +189,8 @@ namespace GADJIT_WIN_ASW
                 {
                     while (dataReader.Read())
                     {
-                        DGVWorker.Rows.Add(dataReader["WorID"],
+                        DGVWorker.Rows.Add(
+                            dataReader["WorID"],
                             dataReader["WorCIN"],
                             (dataReader["WorPicture"] == DBNull.Value) ? null : new Bitmap(new MemoryStream((byte[])dataReader["WorPicture"])),
                             dataReader["WorLastName"],
@@ -191,7 +199,7 @@ namespace GADJIT_WIN_ASW
                             dataReader["WorPassWord"], 
                             dataReader["WorPhoneNumber"],
                             dataReader["WorAddress"],
-                            dataReader["CitDesig"],
+                            dataReader["CitID"],
                             dataReader["WorSalary"], null,
                             dataReader["WorDispo"],
                             (dataReader.GetBoolean(12)) ? "Activer" : "Désactiver");
@@ -212,7 +220,7 @@ namespace GADJIT_WIN_ASW
 
         private void WorkersStats()
         {
-            int c = (DGVWorker.AllowUserToAddRows) ? DGVWorker.Rows.Count - 1 : DGVWorker.Rows.Count;
+            int c = DGVWorker.Rows.Count - 1;
             int a = 0;
             int d = 0;
             for (int i = 0; i < c; i++)
@@ -274,7 +282,7 @@ namespace GADJIT_WIN_ASW
 
         private void DGVWorker_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > -1 && e.RowIndex < ((DGVWorker.AllowUserToAddRows) ? DGVWorker.Rows.Count - 1 : DGVWorker.Rows.Count))
+            if (e.RowIndex > -1 && e.RowIndex < DGVWorker.Rows.Count)
             {
                 status = (DGVWorker[13, e.RowIndex].Value != null) ? DGVWorker[13, e.RowIndex].Value.ToString() : "";
             }
@@ -285,72 +293,88 @@ namespace GADJIT_WIN_ASW
             int rowIndex = e.RowIndex;
             if (filledDGV)
             {
-                if (DGVWorker[0, rowIndex].Value == null) // ID
+                if (DGVWorker[6, rowIndex].Value == null)
                 {
-                    InsertNewIDInDGV();
                     DGVWorker[6, rowIndex].Value = GADJIT.PasswordGenerator(8); //Password
+                }
+                if (DGVWorker[12, rowIndex].Value == null)
+                {
                     DGVWorker[12, rowIndex].Value = "Hors Ligne"; //Disponibility
+                }
+                if (DGVWorker[13, rowIndex].Value == null)
+                {
                     DGVWorker[13, rowIndex].Value = "Activer"; //Status
                 }
                 if (!CheckDGVCellsIfEmpty())
                 {
-                    if (CheckIDIfExists((int)DGVWorker[0, rowIndex].Value)) //update
+                    if (DGVWorker[0, rowIndex].Value != null && e.ColumnIndex != 0) //update
                     {
-                        try
+                        if (CheckIDIfExists((int)DGVWorker[0, rowIndex].Value))
                         {
-                            string sqlQuery = "update Worker set WorCIN = @cin, WorPicture = @img, WorLastName = @lastName, WorFirstName = @firstName, WorEmail = @email, " +
-                                "WorPassWord = @password, WorPhoneNumber = @phoneNumber, WorAddress = @address, CitDesig = @city, WorSalary = @salary, " +
-                                "WorSta = @status where WorID = @id";
-                            SqlCommand sqlCommandUpdate = new SqlCommand(sqlQuery, GADJIT.sqlConnection);
-
-                            sqlCommandUpdate.Parameters.Add("@id", SqlDbType.Int).Value = (int)DGVWorker["ColumnTextBoxID", rowIndex].Value;
-
-                            sqlCommandUpdate.Parameters.Add("@cin", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxCIN", rowIndex].Value.ToString().ToUpper();
-
-                            sqlCommandUpdate.Parameters.Add("@img", SqlDbType.Image).Value = (byte[])new ImageConverter().ConvertTo(DGVWorker["ColumnPictureBox", rowIndex].Value, typeof(byte[]));
-
-                            sqlCommandUpdate.Parameters.Add("@lastName", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxLastName", rowIndex].Value.ToString();
-
-                            sqlCommandUpdate.Parameters.Add("@firstName", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxFirstName", rowIndex].Value.ToString();
-
-                            sqlCommandUpdate.Parameters.Add("@email", SqlDbType.NVarChar).Value = DGVWorker["ColumnTextBoxEmail", rowIndex].Value.ToString();
-
-                            sqlCommandUpdate.Parameters.Add("@password", SqlDbType.NVarChar).Value = DGVWorker["ColumnTextBoxPassword", rowIndex].Value.ToString();
-
-                            sqlCommandUpdate.Parameters.Add("@phoneNumber", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxPhoneNumber", rowIndex].Value.ToString();
-
-                            sqlCommandUpdate.Parameters.Add("@address", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxAdress", rowIndex].Value.ToString();
-
-                            sqlCommandUpdate.Parameters.Add("@city", SqlDbType.VarChar).Value = DGVWorker["ColumnComboBoxCity", rowIndex].Value.ToString();
-
-                            sqlCommandUpdate.Parameters.Add("@salary", SqlDbType.Money).Value = Convert.ToDecimal(DGVWorker["ColumnTextBoxSalary", rowIndex].Value.ToString());
-
-                            String statusDGV = DGVWorker["ColumnComboBoxStatus", rowIndex].Value.ToString();
-                            sqlCommandUpdate.Parameters.Add("@status", SqlDbType.Bit).Value = (DGVWorker["ColumnComboBoxStatus", rowIndex].Value.ToString() == "Activer") ? 1 : 0;
-
-                            GADJIT.sqlConnection.Open();
-
-                            MessageBox.Show(sqlCommandUpdate.ExecuteNonQuery() + " réussi", "Mise à jour", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            if (status != statusDGV)
+                            try
                             {
-                                GADJIT.SendEmail(
-                                    DGVWorker["ColumnTextBoxEmail", rowIndex].Value.ToString(),
-                                    "Votre compte est " + statusDGV);
-                            }
+                                string sqlQuery = "update Worker set WorCIN = @cin, WorPicture = @img, WorLastName = @lastName, WorFirstName = @firstName, WorEmail = @email, " +
+                                    "WorPassWord = @password, WorPhoneNumber = @phoneNumber, WorAddress = @address, CitID = @city, WorSalary = @salary, " +
+                                    "WorSta = @status where WorID = @id";
+                                SqlCommand sqlCommandUpdate = new SqlCommand(sqlQuery, GADJIT.sqlConnection);
 
-                            WorkersStats();
+                                sqlCommandUpdate.Parameters.Add("@id", SqlDbType.Int).Value = (int)DGVWorker["ColumnTextBoxID", rowIndex].Value;
+
+                                sqlCommandUpdate.Parameters.Add("@cin", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxCIN", rowIndex].Value.ToString().ToUpper();
+
+                                sqlCommandUpdate.Parameters.Add("@img", SqlDbType.Image).Value = (byte[])new ImageConverter().ConvertTo(DGVWorker["ColumnPictureBox", rowIndex].Value, typeof(byte[]));
+
+                                sqlCommandUpdate.Parameters.Add("@lastName", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxLastName", rowIndex].Value.ToString();
+
+                                sqlCommandUpdate.Parameters.Add("@firstName", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxFirstName", rowIndex].Value.ToString();
+
+                                sqlCommandUpdate.Parameters.Add("@email", SqlDbType.NVarChar).Value = DGVWorker["ColumnTextBoxEmail", rowIndex].Value.ToString();
+
+                                sqlCommandUpdate.Parameters.Add("@password", SqlDbType.NVarChar).Value = DGVWorker["ColumnTextBoxPassword", rowIndex].Value.ToString();
+
+                                sqlCommandUpdate.Parameters.Add("@phoneNumber", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxPhoneNumber", rowIndex].Value.ToString();
+
+                                sqlCommandUpdate.Parameters.Add("@address", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxAdress", rowIndex].Value.ToString();
+
+                                sqlCommandUpdate.Parameters.Add("@city", SqlDbType.Int).Value = (int)DGVWorker["ColumnComboBoxCity", rowIndex].Value;
+
+                                sqlCommandUpdate.Parameters.Add("@salary", SqlDbType.Money).Value = Convert.ToDecimal(DGVWorker["ColumnTextBoxSalary", rowIndex].Value.ToString());
+
+                                String statusDGV = DGVWorker["ColumnComboBoxStatus", rowIndex].Value.ToString();
+                                sqlCommandUpdate.Parameters.Add("@status", SqlDbType.Bit).Value = (DGVWorker["ColumnComboBoxStatus", rowIndex].Value.ToString() == "Activer") ? 1 : 0;
+
+                                GADJIT.sqlConnection.Open();
+
+                                sqlCommandUpdate.ExecuteNonQuery();
+
+                                MessageBox.Show("Modification réussi", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                if (status != statusDGV)
+                                {
+                                    GADJIT.SendEmail(
+                                        DGVWorker["ColumnTextBoxEmail", rowIndex].Value.ToString(),
+                                        "Votre compte est " + statusDGV);
+                                }
+
+                                WorkersStats();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Error DGVWorker_CellValueChanged update", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            finally
+                            {
+                                GADJIT.sqlConnection.Close();
+                            }
                         }
-                        catch (Exception ex)
+                        else
                         {
-                            MessageBox.Show(ex.Message, "Error DGVWorker_CellValueChanged update", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        finally
-                        {
+                            MessageBox.Show("Ce technicien a été supprimer", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             GADJIT.sqlConnection.Close();
+                            FillDGVWorker();
                         }
                     }
-                    else //insert
+                    else if(e.ColumnIndex != 0) //insert
                     {
                         try
                         {
@@ -358,7 +382,8 @@ namespace GADJIT_WIN_ASW
                             "values(@id, @cin, @img, @lastName, @firstName, @email, @password, @phoneNumber, @address, @city, @salary, @dispo, @status)";
                             SqlCommand sqlCommandInsert = new SqlCommand(sqlQuery, GADJIT.sqlConnection);
 
-                            sqlCommandInsert.Parameters.Add("@id", SqlDbType.Int).Value = (int)DGVWorker["ColumnTextBoxID", rowIndex].Value;
+                            int id = GenerateWorkerId();
+                            sqlCommandInsert.Parameters.Add("@id", SqlDbType.Int).Value = id;
 
                             sqlCommandInsert.Parameters.Add("@cin", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxCIN", rowIndex].Value.ToString().ToUpper();
 
@@ -376,7 +401,7 @@ namespace GADJIT_WIN_ASW
 
                             sqlCommandInsert.Parameters.Add("@address", SqlDbType.VarChar).Value = DGVWorker["ColumnTextBoxAdress", rowIndex].Value.ToString();
 
-                            sqlCommandInsert.Parameters.Add("@city", SqlDbType.VarChar).Value = DGVWorker["ColumnComboBoxCity", rowIndex].Value.ToString();
+                            sqlCommandInsert.Parameters.Add("@city", SqlDbType.Int).Value = (int)DGVWorker["ColumnComboBoxCity", rowIndex].Value;
 
                             sqlCommandInsert.Parameters.Add("@salary", SqlDbType.Money).Value = Convert.ToDecimal(DGVWorker["ColumnTextBoxSalary", rowIndex].Value.ToString());
 
@@ -386,7 +411,9 @@ namespace GADJIT_WIN_ASW
 
                             GADJIT.sqlConnection.Open();
 
-                            MessageBox.Show(sqlCommandInsert.ExecuteNonQuery() + " réussi", "Ajout", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            sqlCommandInsert.ExecuteNonQuery();
+
+                            MessageBox.Show("Ajout réussi", "Insertion", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             GADJIT.SendEmail(
                                 DGVWorker["ColumnTextBoxEmail", rowIndex].Value.ToString(),
@@ -394,7 +421,11 @@ namespace GADJIT_WIN_ASW
                                 DGVWorker["ColumnTextBoxPassword", rowIndex].Value.ToString() +
                                 "\nVeuillez supprimé cet email.");
 
+                            GADJIT.sqlConnection.Close();
+
                             WorkersStats();
+
+                            DGVWorker[0, e.RowIndex].Value = id;
                         }
                         catch (Exception ex)
                         {
@@ -409,21 +440,24 @@ namespace GADJIT_WIN_ASW
             }
         }
 
-        private bool CheckIfEmailExists(string email, string worID)
+        private bool CheckIfEmailExists(int worID, string email)
         {
             try
             {
                 SqlCommand sqlCommand = new SqlCommand(
+                    (worID == -1) ?
+                    "select COUNT(WorEmail) from Worker where WorEmail = @email"
+                    :
                     "select COUNT(WorEmail) from Worker where WorID != @worID and WorEmail = @email",
                     GADJIT.sqlConnection);
-                sqlCommand.Parameters.Add("@worID", SqlDbType.NVarChar).Value = worID;
+                sqlCommand.Parameters.Add("@worID", SqlDbType.Int).Value = worID;
                 sqlCommand.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
                 GADJIT.sqlConnection.Open();
-                if ((int)sqlCommand.ExecuteScalar() == 1) return true;
+                if ((int)sqlCommand.ExecuteScalar() > 0) return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error CheckIfEmailExists(string email, string worID)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error CheckIfEmailExists(int worID, string email)", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -434,7 +468,7 @@ namespace GADJIT_WIN_ASW
 
         private void DGVWorker_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.FormattedValue != null && (e.RowIndex < ((DGVWorker.AllowUserToAddRows) ? DGVWorker.Rows.Count - 1 : DGVWorker.Rows.Count)))
+            if (e.FormattedValue != null)
             {
                 if (e.ColumnIndex == 1) //CIN
                 {
@@ -457,7 +491,7 @@ namespace GADJIT_WIN_ASW
                     }
                     else
                     {
-                        if (CheckIfEmailExists(e.FormattedValue.ToString(), DGVWorker[0, e.RowIndex].Value.ToString()))
+                        if (CheckIfEmailExists((DGVWorker[0, e.RowIndex].Value == null) ? -1 : (int)DGVWorker[0, e.RowIndex].Value, e.FormattedValue.ToString()))
                         {
                             e.Cancel = true;
                             DGVWorker.Rows[e.RowIndex].ErrorText = "email existe déjà";
@@ -483,6 +517,11 @@ namespace GADJIT_WIN_ASW
             }
         }
 
+        private void DGVWorker_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            DGVWorker.Rows[e.RowIndex].ErrorText = "";
+        }
+
         private bool CheckIfWorkerCanBeDeleted(int id)
         {
             try
@@ -490,10 +529,7 @@ namespace GADJIT_WIN_ASW
                 SqlCommand sqlCommand = new SqlCommand("select COUNT(WorID) from Ticket where WorID = @id", GADJIT.sqlConnection);
                 sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 GADJIT.sqlConnection.Open();
-                if ((int)sqlCommand.ExecuteScalar() >= 1)
-                {
-                    return false;
-                }
+                if ((int)sqlCommand.ExecuteScalar() > 0) return false;
             }
             catch (Exception ex)
             {
@@ -522,10 +558,10 @@ namespace GADJIT_WIN_ASW
                         SqlCommand sqlCommandDeleteWorker = new SqlCommand("delete from Worker where WorID = @id", GADJIT.sqlConnection);
                         sqlCommandDeleteWorker.Parameters.Add("@id", SqlDbType.Int).Value = id;
 
-                        if (MessageBox.Show("Voulez vous supprimer cet employé", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                        if (MessageBox.Show("Voulez-vous supprimer ce technicien ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                         {
                             GADJIT.sqlConnection.Open();
-                            MessageBox.Show(" réussi de " + WorkerSpecialty.ExecuteNonQuery() + " spécialité et " + sqlCommandDeleteWorker.ExecuteNonQuery() + " employé", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Suppression réussi de " + WorkerSpecialty.ExecuteNonQuery() + " spécialité et " + sqlCommandDeleteWorker.ExecuteNonQuery() + " technicien", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             WorkersStats();
                         }
                         else
@@ -536,8 +572,12 @@ namespace GADJIT_WIN_ASW
                     else
                     {
                         e.Cancel = true;
-                        MessageBox.Show("interdit cet employé est affecté dans des tickets", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Suppression interdit ce technicien est affectée dans des tickets", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                }
+                else
+                {
+                    MessageBox.Show("Suppression réussi", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -696,7 +736,11 @@ namespace GADJIT_WIN_ASW
 
         private void ButtonSearch_Click(object sender, EventArgs e)
         {
-            FillDGVWorker();
+            if(TextBoxCINSearch.Text != "" || TextBoxEmailSearch.Text != "" || TextBoxLastNameSearch.Text != ""
+                || ComboBoxCitySearch.SelectedIndex > 0 || ComboBoxStatusSearch.SelectedIndex > 0)
+            {
+                FillDGVWorker();
+            }
         }
 
         private void ButtonReset_Click(object sender, EventArgs e)

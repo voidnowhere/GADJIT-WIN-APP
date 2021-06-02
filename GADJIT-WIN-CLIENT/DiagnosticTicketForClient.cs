@@ -19,8 +19,9 @@ namespace GADJIT_WIN_CLIENT
         {
             InitializeComponent();
         }
-        string emailtemp = "";
         int TMID ;
+        public int CID;
+        public string email;
         private void PictureBoxExit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -28,9 +29,8 @@ namespace GADJIT_WIN_CLIENT
 
         private void DiagnosticTicketForClient_Load(object sender, EventArgs e)
         {
-            emailtemp = Login.Cemail;
             TextBoxCatDiag.Text = ConsultationTicketForClient.Cat;
-            TextBoxMarDiag.Text = ConsultationTicketForClient.Cat;
+            TextBoxMarDiag.Text = ConsultationTicketForClient.Brand;
             TextBoxRefDiag.Text = ConsultationTicketForClient.Ref;
             RichtextBoxProbDiag.Text = ConsultationTicketForClient.prob;
             TextBoxPrice.Text = ConsultationTicketForClient.price;
@@ -55,21 +55,11 @@ namespace GADJIT_WIN_CLIENT
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
             MessageBox.Show("Ticket Accepter!!", "Ticket Accepter", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-            client.EnableSsl = true;
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential("GADJITMA@gmail.com", "GADJIT2021");
-            MailMessage msg = new MailMessage();
-            msg.To.Add(emailtemp);
-            msg.From = new MailAddress("GADJITMA@gmail.com");
-            msg.Subject = "Acceptation Ticket chez GADJIT";
-            msg.Body = "Bonjour:\n \n Votre Ticket a été Accepté.\n Merci pour votre confiance. \n reparation en cours.\n \nGADJIT MAROC.";
-            client.Send(msg);
-            cmd = new SqlCommand("insert into TicketMonitoring values (@TID,GETDATE(),'Diagnostic Accepter','C',@CID,1)", GADJIT.sqlConnection);
-            TicketMonitoringID();
-            cmd.Parameters.AddWithValue("@TID", TMID);
-            cmd.Parameters.AddWithValue("@CID", ConsultationTicketForClient.CID);
+            GADJIT.SendEmail(email, "\n \n Votre Ticket a été Accepté.\n Merci pour votre confiance. \n reparation en cours.\n \n");
+            //
+            cmd = new SqlCommand("insert into TicketMonitoring values (@TID,GETDATE(),'diagnostic validé','C',@CID,1)", GADJIT.sqlConnection);
+            cmd.Parameters.AddWithValue("@TID", ConsultationTicketForClient.TID);
+            cmd.Parameters.AddWithValue("@CID",CID);
             GADJIT.sqlConnection.Open();
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
@@ -84,31 +74,22 @@ namespace GADJIT_WIN_CLIENT
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
             MessageBox.Show("Ticket Annuler , on vous contactera pour livre votre Gadget dans le plus bref délais  ", "Ticket Annuler", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-            client.EnableSsl = true;
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-            client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential("GADJITMA@gmail.com", "GADJIT2021");
-            MailMessage msg = new MailMessage();
-            msg.To.Add(emailtemp);
-            msg.From = new MailAddress("GADJITMA@gmail.com");
-            msg.Subject = "Annulation ticket chez GADJIT";
-            msg.Body = "Bonjour:\n \n Votre Ticket a été Annuler.\n Merci de nous envoyer votre feedback sur la cause d'annulation de ticket pour améliorer notre service.\n \nGADJIT MAROC.";
-            client.Send(msg);
-            cmd = new SqlCommand("insert into TicketMonitoring values (@TID,GETDATE(),'Diagnostic Annuler','C',@CID,1)", GADJIT.sqlConnection);
-            TicketMonitoringID();
-            cmd.Parameters.AddWithValue("@TID", TMID);
-            cmd.Parameters.AddWithValue("@CID", ConsultationTicketForClient.CID);
+            GADJIT.SendEmail(email, "\n \n Votre Ticket a été Accepté.\n Merci pour votre confiance. \n reparation en cours.\n \n");
+            //
+            cmd = new SqlCommand("insert into TicketMonitoring values (@TID,GETDATE(),'diagnostic rejeté','C',@CID,1)", GADJIT.sqlConnection);
+            cmd.Parameters.AddWithValue("@TID", ConsultationTicketForClient.TID);
+            cmd.Parameters.AddWithValue("@CID", CID);
             GADJIT.sqlConnection.Open();
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
             this.Close();
         }
-        private void TicketMonitoringID()
+        private void getclientemail()
         {
-            SqlCommand cmd = new SqlCommand("select max(TicID) from TicketMonitoring", GADJIT.sqlConnection);
+            SqlCommand cmd = new SqlCommand("select CliEmail from Client where CliID=@CID", GADJIT.sqlConnection);
+            cmd.Parameters.AddWithValue("@CID", CID);
             GADJIT.sqlConnection.Open();
-            TMID = (int)cmd.ExecuteScalar();
+            email = cmd.ExecuteScalar().ToString();
             GADJIT.sqlConnection.Close();
         }
     }

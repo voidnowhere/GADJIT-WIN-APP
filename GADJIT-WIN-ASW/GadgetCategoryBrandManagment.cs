@@ -24,6 +24,7 @@ namespace GADJIT_WIN_ASW
 
         private void FillDGVCategory()
         {
+            DGVCategory.Rows.Clear();
             try
             {
                 SqlCommand sqlCommand = new SqlCommand("select * from GadgetCategory", GADJIT.sqlConnection);
@@ -49,43 +50,23 @@ namespace GADJIT_WIN_ASW
             }
         }
 
-        private void FillDGVBrand()
+        private int GenerateGadgetCategoryId()
         {
             try
             {
-                SqlCommand sqlCommand = new SqlCommand("select * from GadgetBrand", GADJIT.sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("select MAX(GadCatID) from GadgetCategory", GADJIT.sqlConnection);
                 GADJIT.sqlConnection.Open();
-                dataReader = sqlCommand.ExecuteReader();
-                if (dataReader.HasRows)
-                {
-                    while (dataReader.Read())
-                    {
-                        DGVBrand.Rows.Add(dataReader.GetInt32(0), dataReader.GetString(1), (dataReader.GetBoolean(2)) ? "Activer" : "Désactiver");
-                    }
-                    BrandStats();
-                }
+                return (sqlCommand.ExecuteScalar() == DBNull.Value) ? 0 : int.Parse(sqlCommand.ExecuteScalar().ToString()) + 1;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error FillDGVBrand()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error GenerateGadgetCategoryId", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                dataReader.Close();
                 GADJIT.sqlConnection.Close();
             }
-        }
-
-        private void InsertNewIDInDGVCategory()
-        {
-            if (DGVCategory.Rows.Count > 2)
-            {
-                DGVCategory[0, DGVCategory.CurrentRow.Index].Value = (int)DGVCategory[0, DGVCategory.CurrentRow.Index - 1].Value + 1;
-            }
-            else
-            {
-                DGVCategory[0, DGVCategory.CurrentRow.Index].Value = 0;
-            }
+            return 0;
         }
 
         private bool CheckIfCategoryIDExists(int id)
@@ -108,19 +89,24 @@ namespace GADJIT_WIN_ASW
             return false;
         }
 
-        private bool CheckIfCategoryDesigExists(int id, string desig)
+        private bool CheckIfCategoryDesigExists(int catID, string desig)
         {
             try
             {
-                SqlCommand sqlCommand = new SqlCommand("select COUNT(GadCatDesig) from GadgetCategory where GadCatID != @id and GadCatDesig = @desig", GADJIT.sqlConnection);
-                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                SqlCommand sqlCommand = new SqlCommand(
+                    (catID == -1) ? 
+                        "select COUNT(GadCatDesig) from GadgetCategory where GadCatDesig = @desig" 
+                        :
+                        "select COUNT(GadCatDesig) from GadgetCategory where GadCatID != @id and GadCatDesig = @desig",
+                    GADJIT.sqlConnection);
+                sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = catID;
                 sqlCommand.Parameters.Add("@desig", SqlDbType.VarChar).Value = desig;
                 GADJIT.sqlConnection.Open();
-                if ((int)sqlCommand.ExecuteScalar() == 1) return true;
+                if ((int)sqlCommand.ExecuteScalar() > 0) return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error CheckIfCategoryDesigExists(int id, string desig)", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error CheckIfCategoryDesigExists(int catID, string desig)", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -152,64 +138,66 @@ namespace GADJIT_WIN_ASW
             if (filledDGV)
             {
                 int rowIndex = e.RowIndex;
-                DGVCategory.Rows[rowIndex].ErrorText = "";
-                if (DGVCategory[0, rowIndex].Value == null)
-                {
-                    InsertNewIDInDGVCategory();
-                }
                 if (DGVCategory["ColumnTextBoxCategoryDesignation", rowIndex].Value != null && DGVCategory["ColumnComboBoxCategoryStatus", rowIndex].Value != null)
                 {
-                    if (CheckIfCategoryIDExists((int)DGVCategory[0, rowIndex].Value)) //Update
+                    if (DGVCategory[0, rowIndex].Value != null && e.ColumnIndex != 0) //Update
                     {
-                        try
+                        if (CheckIfCategoryIDExists((int)DGVCategory[0, rowIndex].Value))
                         {
-                            SqlCommand sqlCommandUpdateCategory = new SqlCommand("update GadgetCategory set GadCatDesig = @desig, GadCatSta = @sta where GadCatID = @id", GADJIT.sqlConnection);
-                            string id = DGVCategory[0, rowIndex].Value.ToString();
-                            sqlCommandUpdateCategory.Parameters.Add("@id", SqlDbType.Int).Value = id;
-                            sqlCommandUpdateCategory.Parameters.Add("@desig", SqlDbType.VarChar).Value = DGVCategory[1, rowIndex].Value.ToString();
-                            bool status = (DGVCategory[2, rowIndex].Value.ToString() == "Activer") ? true : false;
-                            sqlCommandUpdateCategory.Parameters.Add("@sta", SqlDbType.Bit).Value = status;
-
-                            SqlCommand sqlCommandUpdateReference = new SqlCommand("update GadgetReference set GadRefSta = @sta where GadCatID = @id", GADJIT.sqlConnection);
-                            sqlCommandUpdateReference.Parameters.Add("@id", SqlDbType.Int).Value = id;
-                            sqlCommandUpdateReference.Parameters.Add("@sta", SqlDbType.Bit).Value = status;
-
-                            GADJIT.sqlConnection.Open();
-
-                            MessageBox.Show("réussi pour " + sqlCommandUpdateCategory.ExecuteNonQuery() + " catégorie et " + sqlCommandUpdateReference.ExecuteNonQuery() + " référence", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            CategoryStats();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message, "Error DGVCategory_CellValueChanged update", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        finally
-                        {
-                            GADJIT.sqlConnection.Close();
-                        }
-                    }
-                    else // Insert
-                    {
-                        try
-                        {
-                            if (!CheckIfCategoryDesigExists((int)DGVCategory[0, e.RowIndex].Value, DGVCategory[1, e.RowIndex].Value.ToString()))
+                            try
                             {
-                                SqlCommand sqlCommandInsertCategory = new SqlCommand("insert into GadgetCategory values(@id, @desig, @sta)", GADJIT.sqlConnection);
-                                sqlCommandInsertCategory.Parameters.Add("@id", SqlDbType.Int).Value = DGVCategory[0, rowIndex].Value.ToString();
-                                sqlCommandInsertCategory.Parameters.Add("@desig", SqlDbType.VarChar).Value = DGVCategory[1, rowIndex].Value.ToString();
-                                sqlCommandInsertCategory.Parameters.Add("@sta", SqlDbType.Bit).Value = (DGVCategory[2, rowIndex].Value.ToString() == "Activer") ? true : false;
+                                SqlCommand sqlCommandUpdateCategory = new SqlCommand("update GadgetCategory set GadCatDesig = @desig, GadCatSta = @sta where GadCatID = @id", GADJIT.sqlConnection);
+                                string id = DGVCategory[0, rowIndex].Value.ToString();
+                                sqlCommandUpdateCategory.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                                sqlCommandUpdateCategory.Parameters.Add("@desig", SqlDbType.VarChar).Value = DGVCategory[1, rowIndex].Value.ToString();
+                                bool status = (DGVCategory[2, rowIndex].Value.ToString() == "Activer") ? true : false;
+                                sqlCommandUpdateCategory.Parameters.Add("@sta", SqlDbType.Bit).Value = status;
+
+                                SqlCommand sqlCommandUpdateReference = new SqlCommand("update GadgetReference set GadRefSta = @sta where GadCatID = @id", GADJIT.sqlConnection);
+                                sqlCommandUpdateReference.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                                sqlCommandUpdateReference.Parameters.Add("@sta", SqlDbType.Bit).Value = status;
 
                                 GADJIT.sqlConnection.Open();
 
-                                MessageBox.Show(sqlCommandInsertCategory.ExecuteNonQuery() + " réussi", "Ajout", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Modification réussi pour " + sqlCommandUpdateCategory.ExecuteNonQuery() + " catégorie et " + sqlCommandUpdateReference.ExecuteNonQuery() + " référence", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 CategoryStats();
                             }
-                            else
+                            catch (Exception ex)
                             {
-                                DGVCategory.Rows[rowIndex].ErrorText = "cet désignation existe déjà pour une catégorie";
+                                MessageBox.Show(ex.Message, "Error DGVCategory_CellValueChanged update", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
+                            finally
+                            {
+                                GADJIT.sqlConnection.Close();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cette catégorie a été supprimer", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            GADJIT.sqlConnection.Close();
+                            FillDGVCategory();
+                        }
+                    }
+                    else if(e.ColumnIndex != 0) // Insert
+                    {
+                        try
+                        {
+                            SqlCommand sqlCommandInsertCategory = new SqlCommand("insert into GadgetCategory values(@id, @desig, @sta)", GADJIT.sqlConnection);
+                            int id = GenerateGadgetCategoryId();
+                            sqlCommandInsertCategory.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                            sqlCommandInsertCategory.Parameters.Add("@desig", SqlDbType.VarChar).Value = DGVCategory[1, rowIndex].Value.ToString();
+                            sqlCommandInsertCategory.Parameters.Add("@sta", SqlDbType.Bit).Value = (DGVCategory[2, rowIndex].Value.ToString() == "Activer") ? true : false;
+
+                            GADJIT.sqlConnection.Open();
+
+                            sqlCommandInsertCategory.ExecuteNonQuery();
+
+                            MessageBox.Show("Ajout réussi", "Insertion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            CategoryStats();
+
+                            DGVCategory[0, e.RowIndex].Value = id;
                         }
                         catch (Exception ex)
                         {
@@ -226,9 +214,9 @@ namespace GADJIT_WIN_ASW
 
         private void DGVCategory_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.ColumnIndex == 1 && e.FormattedValue != null && DGVCategory[0, e.RowIndex].Value != null)
+            if (e.ColumnIndex == 1 && e.FormattedValue != null)
             {
-                if (CheckIfCategoryDesigExists((int)DGVCategory[0, e.RowIndex].Value, e.FormattedValue.ToString()))
+                if (CheckIfCategoryDesigExists((DGVCategory[0, e.RowIndex].Value == null) ? -1 : (int)DGVCategory[0, e.RowIndex].Value, e.FormattedValue.ToString()))
                 {
                     e.Cancel = true;
                     DGVCategory.Rows[e.RowIndex].ErrorText = "cet désignation existe déjà pour une catégorie";
@@ -240,6 +228,11 @@ namespace GADJIT_WIN_ASW
             }
         }
 
+        private void DGVCategory_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            DGVCategory.Rows[e.RowIndex].ErrorText = "";
+        }
+
         private bool CheckIfCategoryCanBeDeleted(int id)
         {
             try
@@ -247,14 +240,14 @@ namespace GADJIT_WIN_ASW
                 SqlCommand sqlCommandCheckInGadgetReference = new SqlCommand("select COUNT(GadCatID) from GadgetReference where GadCatID = @id", GADJIT.sqlConnection);
                 sqlCommandCheckInGadgetReference.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 GADJIT.sqlConnection.Open();
-                if ((int)sqlCommandCheckInGadgetReference.ExecuteScalar() >= 1)
+                if ((int)sqlCommandCheckInGadgetReference.ExecuteScalar() > 0)
                 {
                     return false;
                 }
                 //
                 SqlCommand sqlCommandCheckInWorkerSpecialty = new SqlCommand("select COUNT(GadCatID) from WorkerSpecialty where GadCatID = @id", GADJIT.sqlConnection);
                 sqlCommandCheckInWorkerSpecialty.Parameters.Add("@id", SqlDbType.Int).Value = id;
-                if ((int)sqlCommandCheckInWorkerSpecialty.ExecuteScalar() >= 1)
+                if ((int)sqlCommandCheckInWorkerSpecialty.ExecuteScalar() > 0)
                 {
                     return false;
                 }
@@ -283,10 +276,13 @@ namespace GADJIT_WIN_ASW
                             SqlCommand sqlCommandDelete = new SqlCommand("delete from GadgetCategory where GadCatID = @id", GADJIT.sqlConnection);
                             sqlCommandDelete.Parameters.Add("@id", SqlDbType.Int).Value = e.Row.Cells[0].Value;
 
-                            if (MessageBox.Show("Voulez vous supprimer cet catégorie", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                            if (MessageBox.Show("Voulez-vous supprimer cette catégorie ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                             {
                                 GADJIT.sqlConnection.Open();
-                                MessageBox.Show(sqlCommandDelete.ExecuteNonQuery() + " réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                sqlCommandDelete.ExecuteNonQuery();
+
+                                MessageBox.Show("Suppression réussi", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 CategoryStats();
                             }
                             else
@@ -297,8 +293,12 @@ namespace GADJIT_WIN_ASW
                         else
                         {
                             e.Cancel = true;
-                            MessageBox.Show("interdit cet catégorie est deja assigné a une reference ou une specialité d'un employé", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Suppression interdit cette catégorie est déjà assignée à une référence ou une spécialité d'un technicien", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Suppression réussi", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 catch (Exception ex)
@@ -326,16 +326,51 @@ namespace GADJIT_WIN_ASW
             }
         }
 
-        private void InsertNewIDInDGVBrand()
+        private void FillDGVBrand()
         {
-            if (DGVBrand.Rows.Count > 1)
+            DGVBrand.Rows.Clear();
+            try
             {
-                DGVBrand[0, DGVBrand.CurrentRow.Index].Value = (int)DGVBrand[0, DGVBrand.CurrentRow.Index - 1].Value + 1;
+                SqlCommand sqlCommand = new SqlCommand("select * from GadgetBrand", GADJIT.sqlConnection);
+                GADJIT.sqlConnection.Open();
+                dataReader = sqlCommand.ExecuteReader();
+                if (dataReader.HasRows)
+                {
+                    while (dataReader.Read())
+                    {
+                        DGVBrand.Rows.Add(dataReader.GetInt32(0), dataReader.GetString(1), (dataReader.GetBoolean(2)) ? "Activer" : "Désactiver");
+                    }
+                    BrandStats();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                DGVBrand[0, DGVBrand.CurrentRow.Index].Value = 0;
+                MessageBox.Show(ex.Message, "Error FillDGVBrand()", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                dataReader.Close();
+                GADJIT.sqlConnection.Close();
+            }
+        }
+
+        private int GenerateGadgetBrandId()
+        {
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand("select MAX(GadBraID) from GadgetBrand", GADJIT.sqlConnection);
+                GADJIT.sqlConnection.Open();
+                return (sqlCommand.ExecuteScalar() == DBNull.Value) ? 0 : int.Parse(sqlCommand.ExecuteScalar().ToString()) + 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error GenerateGadgetBrandId", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                GADJIT.sqlConnection.Close();
+            }
+            return 0;
         }
 
         private bool CheckIfBrandIDExists(int id)
@@ -362,11 +397,16 @@ namespace GADJIT_WIN_ASW
         {
             try
             {
-                SqlCommand sqlCommand = new SqlCommand("select COUNT(GadBraDesig) from GadgetBrand where GadBraID != @id and GadBraDesig = @desig", GADJIT.sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand(
+                    (id == -1) ?
+                        "select COUNT(GadBraDesig) from GadgetBrand where GadBraDesig = @desig"
+                        :
+                        "select COUNT(GadBraDesig) from GadgetBrand where GadBraID != @id and GadBraDesig = @desig",
+                    GADJIT.sqlConnection);
                 sqlCommand.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 sqlCommand.Parameters.Add("@desig", SqlDbType.VarChar).Value = desig;
                 GADJIT.sqlConnection.Open();
-                if ((int)sqlCommand.ExecuteScalar() == 1) return true;
+                if ((int)sqlCommand.ExecuteScalar() > 0) return true;
             }
             catch (Exception ex)
             {
@@ -402,65 +442,67 @@ namespace GADJIT_WIN_ASW
             if (filledDGV)
             {
                 int rowIndex = e.RowIndex;
-                DGVBrand.Rows[rowIndex].ErrorText = "";
-                if (DGVBrand[0, rowIndex].Value == null)
-                {
-                    InsertNewIDInDGVBrand();
-                }
                 if (DGVBrand["ColumnTextBoxBrandDesignation", rowIndex].Value != null && DGVBrand["ColumnComboBoxBrandStatus", rowIndex].Value != null)
                 {
-                    if (CheckIfBrandIDExists((int)DGVBrand[0, rowIndex].Value)) //Update
+                    if(DGVBrand[0, rowIndex].Value != null && e.ColumnIndex != 0) //Update
                     {
-                        try
+                        if (CheckIfBrandIDExists((int)DGVBrand[0, rowIndex].Value))
                         {
-                            SqlCommand sqlCommandUpdateCategory = new SqlCommand("update GadgetBrand set GadBraDesig = @desig, GadBraSta = @sta where GadBraID = @id", GADJIT.sqlConnection);
-                            string id = DGVBrand[0, rowIndex].Value.ToString();
-                            sqlCommandUpdateCategory.Parameters.Add("@id", SqlDbType.Int).Value = id;
-                            sqlCommandUpdateCategory.Parameters.Add("@desig", SqlDbType.VarChar).Value = DGVBrand[1, rowIndex].Value.ToString();
-                            bool status = (DGVBrand[2, rowIndex].Value.ToString() == "Activer") ? true : false;
-                            sqlCommandUpdateCategory.Parameters.Add("@sta", SqlDbType.Bit).Value = status;
-
-                            SqlCommand sqlCommandUpdateReference = new SqlCommand("update GadgetReference set GadRefSta = @sta where GadBraID = @id", GADJIT.sqlConnection);
-                            sqlCommandUpdateReference.Parameters.Add("@id", SqlDbType.Int).Value = id;
-                            sqlCommandUpdateReference.Parameters.Add("@sta", SqlDbType.Bit).Value = status;
-
-                            GADJIT.sqlConnection.Open();
-
-                            MessageBox.Show("réussi pour " + sqlCommandUpdateCategory.ExecuteNonQuery() + " marque et "
-                                + sqlCommandUpdateReference.ExecuteNonQuery() + " référence", "Modification", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            BrandStats();
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message, "Error DGVBrand_CellValueChanged update", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        finally
-                        {
-                            GADJIT.sqlConnection.Close();
-                        }
-                    }
-                    else // Insert
-                    {
-                        try
-                        {
-                            if (!CheckIfBrandDesigExists((int)DGVBrand[0, e.RowIndex].Value, DGVBrand[1, e.RowIndex].Value.ToString()))
+                            try
                             {
-                                SqlCommand sqlCommandInsertCategory = new SqlCommand("insert into GadgetBrand values(@id, @desig, @sta)", GADJIT.sqlConnection);
-                                sqlCommandInsertCategory.Parameters.Add("@id", SqlDbType.Int).Value = (int)DGVBrand[0, rowIndex].Value;
-                                sqlCommandInsertCategory.Parameters.Add("@desig", SqlDbType.VarChar).Value = DGVBrand[1, rowIndex].Value.ToString();
-                                sqlCommandInsertCategory.Parameters.Add("@sta", SqlDbType.Bit).Value = (DGVBrand[2, rowIndex].Value.ToString() == "Activer") ? true : false;
+                                SqlCommand sqlCommandUpdateCategory = new SqlCommand("update GadgetBrand set GadBraDesig = @desig, GadBraSta = @sta where GadBraID = @id", GADJIT.sqlConnection);
+                                string id = DGVBrand[0, rowIndex].Value.ToString();
+                                sqlCommandUpdateCategory.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                                sqlCommandUpdateCategory.Parameters.Add("@desig", SqlDbType.VarChar).Value = DGVBrand[1, rowIndex].Value.ToString();
+                                bool status = (DGVBrand[2, rowIndex].Value.ToString() == "Activer") ? true : false;
+                                sqlCommandUpdateCategory.Parameters.Add("@sta", SqlDbType.Bit).Value = status;
+
+                                SqlCommand sqlCommandUpdateReference = new SqlCommand("update GadgetReference set GadRefSta = @sta where GadBraID = @id", GADJIT.sqlConnection);
+                                sqlCommandUpdateReference.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                                sqlCommandUpdateReference.Parameters.Add("@sta", SqlDbType.Bit).Value = status;
 
                                 GADJIT.sqlConnection.Open();
 
-                                MessageBox.Show(sqlCommandInsertCategory.ExecuteNonQuery() + " réussi", "Ajout", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                MessageBox.Show("Modification réussi pour " + sqlCommandUpdateCategory.ExecuteNonQuery() + " marque et "
+                                    + sqlCommandUpdateReference.ExecuteNonQuery() + " référence", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 BrandStats();
                             }
-                            else
+                            catch (Exception ex)
                             {
-                                DGVBrand.Rows[rowIndex].ErrorText = "cet désignation existe déjà pour une marque";
+                                MessageBox.Show(ex.Message, "Error DGVBrand_CellValueChanged update", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
+                            finally
+                            {
+                                GADJIT.sqlConnection.Close();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cette marque a été supprimer", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            GADJIT.sqlConnection.Close();
+                            FillDGVBrand();
+                        }
+                    }
+                    else if(e.ColumnIndex != 0) // Insert
+                    {
+                        try
+                        {
+                            SqlCommand sqlCommandInsertCategory = new SqlCommand("insert into GadgetBrand values(@id, @desig, @sta)", GADJIT.sqlConnection);
+                            int id = GenerateGadgetBrandId();
+                            sqlCommandInsertCategory.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                            sqlCommandInsertCategory.Parameters.Add("@desig", SqlDbType.VarChar).Value = DGVBrand[1, rowIndex].Value.ToString();
+                            sqlCommandInsertCategory.Parameters.Add("@sta", SqlDbType.Bit).Value = (DGVBrand[2, rowIndex].Value.ToString() == "Activer") ? true : false;
+
+                            GADJIT.sqlConnection.Open();
+
+                            sqlCommandInsertCategory.ExecuteNonQuery();
+
+                            MessageBox.Show("Ajout réussi", "Insertion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            BrandStats();
+
+                            DGVBrand[0, e.RowIndex].Value = id;
                         }
                         catch (Exception ex)
                         {
@@ -477,9 +519,9 @@ namespace GADJIT_WIN_ASW
 
         private void DGVBrand_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.ColumnIndex == 1 && e.FormattedValue != null && DGVBrand[0, e.RowIndex].Value != null)
+            if (e.ColumnIndex == 1 && e.FormattedValue != null)
             {
-                if (CheckIfBrandDesigExists((int)DGVBrand[0, e.RowIndex].Value, e.FormattedValue.ToString()))
+                if (CheckIfBrandDesigExists((DGVBrand[0, e.RowIndex].Value == null) ? -1 : (int)DGVBrand[0, e.RowIndex].Value, e.FormattedValue.ToString()))
                 {
                     e.Cancel = true;
                     DGVBrand.Rows[e.RowIndex].ErrorText = "cet désignation existe déjà pour une marque";
@@ -491,6 +533,11 @@ namespace GADJIT_WIN_ASW
             }
         }
 
+        private void DGVBrand_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            DGVBrand.Rows[e.RowIndex].ErrorText = "";
+        }
+
         private bool CheckIfBrandCanBeDeleted(int id)
         {
             try
@@ -498,14 +545,14 @@ namespace GADJIT_WIN_ASW
                 SqlCommand sqlCommandCheckInGadgetReference = new SqlCommand("select COUNT(GadBraID) from GadgetReference where GadBraID = @id", GADJIT.sqlConnection);
                 sqlCommandCheckInGadgetReference.Parameters.Add("@id", SqlDbType.Int).Value = id;
                 GADJIT.sqlConnection.Open();
-                if ((int)sqlCommandCheckInGadgetReference.ExecuteScalar() >= 1)
+                if ((int)sqlCommandCheckInGadgetReference.ExecuteScalar() > 0)
                 {
                     return false;
                 }
                 //
                 SqlCommand sqlCommandCheckInWorkerSpecialty = new SqlCommand("select COUNT(GadBraID) from WorkerSpecialty where GadBraID = @id", GADJIT.sqlConnection);
                 sqlCommandCheckInWorkerSpecialty.Parameters.Add("@id", SqlDbType.Int).Value = id;
-                if ((int)sqlCommandCheckInWorkerSpecialty.ExecuteScalar() >= 1)
+                if ((int)sqlCommandCheckInWorkerSpecialty.ExecuteScalar() > 0)
                 {
                     return false;
                 }
@@ -534,10 +581,13 @@ namespace GADJIT_WIN_ASW
                             SqlCommand sqlCommandDelete = new SqlCommand("delete from GadgetBrand where GadBraID = @id", GADJIT.sqlConnection);
                             sqlCommandDelete.Parameters.Add("@id", SqlDbType.Int).Value = e.Row.Cells[0].Value;
 
-                            if (MessageBox.Show("Voulez vous supprimer cet marque", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                            if (MessageBox.Show("Voulez-vous supprimer cette marque ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                             {
                                 GADJIT.sqlConnection.Open();
-                                MessageBox.Show(sqlCommandDelete.ExecuteNonQuery() + " réussi", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                sqlCommandDelete.ExecuteNonQuery();
+
+                                MessageBox.Show("Suppression réussi", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 BrandStats();
                             }
                             else
@@ -548,8 +598,12 @@ namespace GADJIT_WIN_ASW
                         else
                         {
                             e.Cancel = true;
-                            MessageBox.Show("interdit cet marque est deja assigné a une reference ou une specialité d'un employé", "Suppression", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Suppression interdit cette marque est déjà assignée à une référence ou une spécialité d'un technicien", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Suppression réussi", "Changement", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 catch (Exception ex)
