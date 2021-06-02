@@ -79,12 +79,14 @@ namespace GADJIT_WIN_ASW
                         if (dr.GetBoolean(5) == true)
                         {
                             WorkerPanel Worker = new WorkerPanel();
+                            Worker.login = this;
                             Worker.LabelLastName.Text = dr.GetString(0);
                             Worker.LabelFirstName.Text = dr.GetString(1);
                             Worker.LabelEmail.Text = dr.GetString(2);
                             Worker.CircularProfilPicture.Image = (dr.GetValue(3) == DBNull.Value) ? null : Image.FromStream(new MemoryStream((byte[])dr.GetValue(3)));
                             dr.Close();
                             GADJIT.sqlConnection.Close();
+                            this.Hide();
                             Worker.ShowDialog();
                         }
                         else
