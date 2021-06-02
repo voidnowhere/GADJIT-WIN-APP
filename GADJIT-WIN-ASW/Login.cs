@@ -86,6 +86,7 @@ namespace GADJIT_WIN_ASW
                                         if (dr.GetBoolean(4) == true)
                                         {
                                             WorkerPanel Worker = new WorkerPanel();
+                                            Worker.login = this;
                                             Worker.LabelLastName.Text = dr.GetString(0);
                                             Worker.LabelFirstName.Text = dr.GetString(1);
                                             Worker.LabelEmail.Text = TextBoxEMail.Text;
