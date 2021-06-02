@@ -55,6 +55,8 @@ namespace GADJIT_WIN_CLIENT
                         GADJIT.sqlConnection.Close();
                         this.Hide();
                         home.ShowDialog();
+                        TextBoxPassWord.Clear();
+                        TexrBoxEmail.Clear();
                         this.Show();
                     }
                     else
