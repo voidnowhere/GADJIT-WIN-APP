@@ -249,11 +249,11 @@ namespace GADJIT_WIN_ASW
                 cmd.Parameters.AddWithValue("@DiagCmt", richTextBoxDiag.Text);
                 cmd.Parameters.AddWithValue("@Price", TextBoxPrice.Text);
                 cmd.Parameters.AddWithValue("@Time", textBoxWorkTime.Text);
-                cmd.Parameters.AddWithValue("@prix", int.Parse(TextBoxPrice.Text) + 100);
+                cmd.Parameters.AddWithValue("@prix", int.Parse(TextBoxPrice.Text));
                 GADJIT.sqlConnection.Open();
                 cmd.ExecuteNonQuery();
                 GADJIT.sqlConnection.Close();
-                cmd = new SqlCommand("update Ticket set TicSta=@statut,TicRepPri=@prix where TicID=@TID", GADJIT.sqlConnection);
+                cmd = new SqlCommand("update Ticket set TicSta=@statut,TicRepPri=@price where TicID=@TID", GADJIT.sqlConnection);
                 switch (ComboBoxPorg.Text)
                 {
                     case "Confirmation de Diagnostic":
@@ -267,7 +267,7 @@ namespace GADJIT_WIN_ASW
                         break;
                 }
                 cmd.Parameters.AddWithValue("@TID", TID);
-                cmd.Parameters.AddWithValue("@prix", TextBoxPrice.Text);
+                cmd.Parameters.AddWithValue("@price", int.Parse(TextBoxPrice.Text) + 100);
                 GADJIT.sqlConnection.Open();
                 cmd.ExecuteNonQuery();
                 GADJIT.sqlConnection.Close();
