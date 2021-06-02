@@ -29,9 +29,15 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.GroupeBoxDiag = new System.Windows.Forms.GroupBox();
+            this.textBoxWorkTime = new System.Windows.Forms.TextBox();
+            this.richTextBoxDiag = new System.Windows.Forms.RichTextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.TextBoxPrice = new System.Windows.Forms.TextBox();
             this.TextBoxGadget = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.ComboBoxPorg = new System.Windows.Forms.ComboBox();
@@ -63,12 +69,6 @@ namespace GADJIT_WIN_ASW
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.DGVTicket = new System.Windows.Forms.DataGridView();
-            this.textBoxWorkTime = new System.Windows.Forms.TextBox();
-            this.richTextBoxDiag = new System.Windows.Forms.RichTextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.TextBoxPrice = new System.Windows.Forms.TextBox();
             this.CODE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DATE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GADGET = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,8 +82,7 @@ namespace GADJIT_WIN_ASW
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.GroupeBoxDiag);
             this.groupBox1.Controls.Add(this.TextBoxGadget);
@@ -119,6 +118,82 @@ namespace GADJIT_WIN_ASW
             this.GroupeBoxDiag.Size = new System.Drawing.Size(303, 237);
             this.GroupeBoxDiag.TabIndex = 34;
             this.GroupeBoxDiag.TabStop = false;
+            // 
+            // textBoxWorkTime
+            // 
+            this.textBoxWorkTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxWorkTime.BackColor = System.Drawing.Color.White;
+            this.textBoxWorkTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxWorkTime.Location = new System.Drawing.Point(1, 209);
+            this.textBoxWorkTime.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBoxWorkTime.Name = "textBoxWorkTime";
+            this.textBoxWorkTime.Size = new System.Drawing.Size(287, 22);
+            this.textBoxWorkTime.TabIndex = 51;
+            // 
+            // richTextBoxDiag
+            // 
+            this.richTextBoxDiag.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.richTextBoxDiag.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBoxDiag.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBoxDiag.Location = new System.Drawing.Point(4, 35);
+            this.richTextBoxDiag.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.richTextBoxDiag.Name = "richTextBoxDiag";
+            this.richTextBoxDiag.Size = new System.Drawing.Size(284, 106);
+            this.richTextBoxDiag.TabIndex = 47;
+            this.richTextBoxDiag.Text = "";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label14.Location = new System.Drawing.Point(6, 15);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(69, 17);
+            this.label14.TabIndex = 46;
+            this.label14.Text = "Diagnostic";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label6.Location = new System.Drawing.Point(1, 189);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(165, 17);
+            this.label6.TabIndex = 50;
+            this.label6.Text = "Reparation Temp en Heure";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label4.Location = new System.Drawing.Point(6, 144);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 17);
+            this.label4.TabIndex = 48;
+            this.label4.Text = "Reparation Prix";
+            // 
+            // TextBoxPrice
+            // 
+            this.TextBoxPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBoxPrice.BackColor = System.Drawing.Color.White;
+            this.TextBoxPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TextBoxPrice.Location = new System.Drawing.Point(1, 164);
+            this.TextBoxPrice.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.TextBoxPrice.Name = "TextBoxPrice";
+            this.TextBoxPrice.Size = new System.Drawing.Size(286, 22);
+            this.TextBoxPrice.TabIndex = 49;
             // 
             // TextBoxGadget
             // 
@@ -512,8 +587,9 @@ namespace GADJIT_WIN_ASW
             // 
             this.DGVTicket.AllowUserToAddRows = false;
             this.DGVTicket.AllowUserToDeleteRows = false;
-            this.DGVTicket.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.DGVTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.DGVTicket.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DGVTicket.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CODE,
@@ -527,82 +603,6 @@ namespace GADJIT_WIN_ASW
             this.DGVTicket.TabIndex = 78;
             this.DGVTicket.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVTicket_CellMouseDoubleClick);
             // 
-            // textBoxWorkTime
-            // 
-            this.textBoxWorkTime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxWorkTime.BackColor = System.Drawing.Color.White;
-            this.textBoxWorkTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxWorkTime.Location = new System.Drawing.Point(1, 209);
-            this.textBoxWorkTime.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBoxWorkTime.Name = "textBoxWorkTime";
-            this.textBoxWorkTime.Size = new System.Drawing.Size(287, 22);
-            this.textBoxWorkTime.TabIndex = 51;
-            // 
-            // richTextBoxDiag
-            // 
-            this.richTextBoxDiag.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBoxDiag.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBoxDiag.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBoxDiag.Location = new System.Drawing.Point(4, 35);
-            this.richTextBoxDiag.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.richTextBoxDiag.Name = "richTextBoxDiag";
-            this.richTextBoxDiag.Size = new System.Drawing.Size(284, 106);
-            this.richTextBoxDiag.TabIndex = 47;
-            this.richTextBoxDiag.Text = "";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label14.Location = new System.Drawing.Point(6, 15);
-            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(69, 17);
-            this.label14.TabIndex = 46;
-            this.label14.Text = "Diagnostic";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(1, 189);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(165, 17);
-            this.label6.TabIndex = 50;
-            this.label6.Text = "Reparation Temp en Heure";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(6, 144);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 17);
-            this.label4.TabIndex = 48;
-            this.label4.Text = "Reparation Prix";
-            // 
-            // TextBoxPrice
-            // 
-            this.TextBoxPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBoxPrice.BackColor = System.Drawing.Color.White;
-            this.TextBoxPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxPrice.Location = new System.Drawing.Point(1, 164);
-            this.TextBoxPrice.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.TextBoxPrice.Name = "TextBoxPrice";
-            this.TextBoxPrice.Size = new System.Drawing.Size(286, 22);
-            this.TextBoxPrice.TabIndex = 49;
-            // 
             // CODE
             // 
             this.CODE.HeaderText = "Code";
@@ -613,9 +613,9 @@ namespace GADJIT_WIN_ASW
             // 
             // DATE
             // 
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.DATE.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.DATE.DefaultCellStyle = dataGridViewCellStyle2;
             this.DATE.HeaderText = "Date";
             this.DATE.MinimumWidth = 115;
             this.DATE.Name = "DATE";
