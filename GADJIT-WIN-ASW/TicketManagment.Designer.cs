@@ -280,9 +280,9 @@ namespace GADJIT_WIN_ASW
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.Location = new System.Drawing.Point(6, 190);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(62, 16);
+            this.label9.Size = new System.Drawing.Size(74, 16);
             this.label9.TabIndex = 6;
-            this.label9.Text = "Employé";
+            this.label9.Text = "Technicien";
             // 
             // RichTextBoxProblem
             // 
