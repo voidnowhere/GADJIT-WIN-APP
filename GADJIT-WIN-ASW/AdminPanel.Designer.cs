@@ -34,17 +34,17 @@ namespace GADJIT_WIN_ASW
             this.ButtonGadgetReferenceManagment = new System.Windows.Forms.Button();
             this.ButtonGadgetCategoryBrandManagment = new System.Windows.Forms.Button();
             this.LabelEmail = new System.Windows.Forms.Label();
-            this.ButtonIncomes = new System.Windows.Forms.Button();
             this.ButtonGadgetMenu = new System.Windows.Forms.Button();
             this.ButtonWorkerManagment = new System.Windows.Forms.Button();
             this.ButtonStaffManagment = new System.Windows.Forms.Button();
             this.ButtonTicketManagment = new System.Windows.Forms.Button();
             this.ButtonClientManagment = new System.Windows.Forms.Button();
             this.LabelLastName = new System.Windows.Forms.Label();
-            this.PanelStatistics = new System.Windows.Forms.Panel();
-            this.ButtonStatisticsMenu = new System.Windows.Forms.Button();
+            this.ButtonStatistics = new System.Windows.Forms.Button();
             this.PanelTop = new System.Windows.Forms.Panel();
             this.LabelTop = new System.Windows.Forms.Label();
+            this.CircularPicturePasswordChange = new GADJIT_WIN_ASW.CircularPicture();
+            this.ButtonDisponibility = new GADJIT_WIN_ASW.CirucularButton();
             this.PanelBottom = new System.Windows.Forms.Panel();
             this.PictureBoxLogOut = new System.Windows.Forms.PictureBox();
             this.SideMenuPanel = new System.Windows.Forms.Panel();
@@ -52,18 +52,15 @@ namespace GADJIT_WIN_ASW
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.CircularPicturePasswordChange = new GADJIT_WIN_ASW.CircularPicture();
-            this.ButtonDisponibility = new GADJIT_WIN_ASW.CirucularButton();
             this.PanelGadgetManagment.SuspendLayout();
-            this.PanelStatistics.SuspendLayout();
             this.PanelTop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CircularPicturePasswordChange)).BeginInit();
             this.PanelBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogOut)).BeginInit();
             this.SideMenuPanel.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.CircularPicturePasswordChange)).BeginInit();
             this.SuspendLayout();
             // 
             // LabelFirstName
@@ -81,7 +78,7 @@ namespace GADJIT_WIN_ASW
             this.PanelGadgetManagment.Controls.Add(this.ButtonGadgetReferenceManagment);
             this.PanelGadgetManagment.Controls.Add(this.ButtonGadgetCategoryBrandManagment);
             this.PanelGadgetManagment.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelGadgetManagment.Location = new System.Drawing.Point(0, 419);
+            this.PanelGadgetManagment.Location = new System.Drawing.Point(0, 379);
             this.PanelGadgetManagment.Name = "PanelGadgetManagment";
             this.PanelGadgetManagment.Size = new System.Drawing.Size(210, 80);
             this.PanelGadgetManagment.TabIndex = 3;
@@ -129,22 +126,6 @@ namespace GADJIT_WIN_ASW
             this.LabelEmail.TabIndex = 4;
             this.LabelEmail.Text = "Admin Mail";
             // 
-            // ButtonIncomes
-            // 
-            this.ButtonIncomes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ButtonIncomes.FlatAppearance.BorderSize = 0;
-            this.ButtonIncomes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonIncomes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonIncomes.ForeColor = System.Drawing.Color.Goldenrod;
-            this.ButtonIncomes.Location = new System.Drawing.Point(0, 0);
-            this.ButtonIncomes.Name = "ButtonIncomes";
-            this.ButtonIncomes.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.ButtonIncomes.Size = new System.Drawing.Size(210, 40);
-            this.ButtonIncomes.TabIndex = 2;
-            this.ButtonIncomes.Text = "Revenus";
-            this.ButtonIncomes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ButtonIncomes.UseVisualStyleBackColor = true;
-            // 
             // ButtonGadgetMenu
             // 
             this.ButtonGadgetMenu.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -173,7 +154,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonWorkerManagment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonWorkerManagment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonWorkerManagment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(206)))));
-            this.ButtonWorkerManagment.Location = new System.Drawing.Point(0, 298);
+            this.ButtonWorkerManagment.Location = new System.Drawing.Point(0, 258);
             this.ButtonWorkerManagment.Name = "ButtonWorkerManagment";
             this.ButtonWorkerManagment.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.ButtonWorkerManagment.Size = new System.Drawing.Size(210, 40);
@@ -192,7 +173,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonStaffManagment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonStaffManagment.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonStaffManagment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(206)))));
-            this.ButtonStaffManagment.Location = new System.Drawing.Point(0, 338);
+            this.ButtonStaffManagment.Location = new System.Drawing.Point(0, 298);
             this.ButtonStaffManagment.Name = "ButtonStaffManagment";
             this.ButtonStaffManagment.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.ButtonStaffManagment.Size = new System.Drawing.Size(210, 40);
@@ -249,34 +230,24 @@ namespace GADJIT_WIN_ASW
             this.LabelLastName.TabIndex = 5;
             this.LabelLastName.Text = "Last Name";
             // 
-            // PanelStatistics
-            // 
-            this.PanelStatistics.BackColor = System.Drawing.Color.White;
-            this.PanelStatistics.Controls.Add(this.ButtonIncomes);
-            this.PanelStatistics.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelStatistics.Location = new System.Drawing.Point(0, 183);
-            this.PanelStatistics.Name = "PanelStatistics";
-            this.PanelStatistics.Size = new System.Drawing.Size(210, 40);
-            this.PanelStatistics.TabIndex = 2;
-            // 
             // ButtonStatisticsMenu
             // 
-            this.ButtonStatisticsMenu.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ButtonStatisticsMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(181)))), ((int)(((byte)(46)))));
-            this.ButtonStatisticsMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ButtonStatisticsMenu.FlatAppearance.BorderSize = 0;
-            this.ButtonStatisticsMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonStatisticsMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ButtonStatisticsMenu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(206)))));
-            this.ButtonStatisticsMenu.Location = new System.Drawing.Point(0, 143);
-            this.ButtonStatisticsMenu.Name = "ButtonStatisticsMenu";
-            this.ButtonStatisticsMenu.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.ButtonStatisticsMenu.Size = new System.Drawing.Size(210, 40);
-            this.ButtonStatisticsMenu.TabIndex = 1;
-            this.ButtonStatisticsMenu.Text = "Statistiques";
-            this.ButtonStatisticsMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ButtonStatisticsMenu.UseVisualStyleBackColor = false;
-            this.ButtonStatisticsMenu.Click += new System.EventHandler(this.ButtonStatisticsMenu_Click);
+            this.ButtonStatistics.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ButtonStatistics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(181)))), ((int)(((byte)(46)))));
+            this.ButtonStatistics.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ButtonStatistics.FlatAppearance.BorderSize = 0;
+            this.ButtonStatistics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonStatistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonStatistics.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(206)))));
+            this.ButtonStatistics.Location = new System.Drawing.Point(0, 143);
+            this.ButtonStatistics.Name = "ButtonStatisticsMenu";
+            this.ButtonStatistics.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.ButtonStatistics.Size = new System.Drawing.Size(210, 40);
+            this.ButtonStatistics.TabIndex = 1;
+            this.ButtonStatistics.Text = "Statistiques";
+            this.ButtonStatistics.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ButtonStatistics.UseVisualStyleBackColor = false;
+            this.ButtonStatistics.Click += new System.EventHandler(this.ButtonStatistics_Click);
             // 
             // PanelTop
             // 
@@ -301,6 +272,27 @@ namespace GADJIT_WIN_ASW
             this.LabelTop.Size = new System.Drawing.Size(117, 20);
             this.LabelTop.TabIndex = 7;
             this.LabelTop.Text = "Configuration";
+            // 
+            // CircularPicturePasswordChange
+            // 
+            this.CircularPicturePasswordChange.Image = global::GADJIT_WIN_ASW.Properties.Resources.passwordChange;
+            this.CircularPicturePasswordChange.Location = new System.Drawing.Point(184, 101);
+            this.CircularPicturePasswordChange.Name = "CircularPicturePasswordChange";
+            this.CircularPicturePasswordChange.Size = new System.Drawing.Size(22, 22);
+            this.CircularPicturePasswordChange.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.CircularPicturePasswordChange.TabIndex = 3;
+            this.CircularPicturePasswordChange.TabStop = false;
+            this.CircularPicturePasswordChange.Click += new System.EventHandler(this.CircularPicturePasswordChange_Click);
+            // 
+            // ButtonDisponibility
+            // 
+            this.ButtonDisponibility.BackColor = System.Drawing.Color.Lime;
+            this.ButtonDisponibility.Location = new System.Drawing.Point(184, 7);
+            this.ButtonDisponibility.Name = "ButtonDisponibility";
+            this.ButtonDisponibility.Size = new System.Drawing.Size(22, 22);
+            this.ButtonDisponibility.TabIndex = 3;
+            this.ButtonDisponibility.UseVisualStyleBackColor = false;
+            this.ButtonDisponibility.Click += new System.EventHandler(this.ButtonDisponibility_Click);
             // 
             // PanelBottom
             // 
@@ -335,8 +327,7 @@ namespace GADJIT_WIN_ASW
             this.SideMenuPanel.Controls.Add(this.panel2);
             this.SideMenuPanel.Controls.Add(this.panel1);
             this.SideMenuPanel.Controls.Add(this.PanelBottom);
-            this.SideMenuPanel.Controls.Add(this.PanelStatistics);
-            this.SideMenuPanel.Controls.Add(this.ButtonStatisticsMenu);
+            this.SideMenuPanel.Controls.Add(this.ButtonStatistics);
             this.SideMenuPanel.Controls.Add(this.PanelTop);
             this.SideMenuPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.SideMenuPanel.Location = new System.Drawing.Point(0, 0);
@@ -353,7 +344,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonCityManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonCityManagement.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonCityManagement.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(206)))));
-            this.ButtonCityManagement.Location = new System.Drawing.Point(0, 499);
+            this.ButtonCityManagement.Location = new System.Drawing.Point(0, 459);
             this.ButtonCityManagement.Name = "ButtonCityManagement";
             this.ButtonCityManagement.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.ButtonCityManagement.Size = new System.Drawing.Size(210, 40);
@@ -367,7 +358,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.panel3.Controls.Add(this.ButtonGadgetMenu);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 378);
+            this.panel3.Location = new System.Drawing.Point(0, 338);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(210, 41);
             this.panel3.TabIndex = 4;
@@ -376,7 +367,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.panel2.Controls.Add(this.ButtonClientManagment);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 260);
+            this.panel2.Location = new System.Drawing.Point(0, 220);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(210, 38);
             this.panel2.TabIndex = 10;
@@ -385,31 +376,10 @@ namespace GADJIT_WIN_ASW
             // 
             this.panel1.Controls.Add(this.ButtonTicketManagment);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 223);
+            this.panel1.Location = new System.Drawing.Point(0, 183);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(210, 37);
             this.panel1.TabIndex = 11;
-            // 
-            // CircularPicturePasswordChange
-            // 
-            this.CircularPicturePasswordChange.Image = global::GADJIT_WIN_ASW.Properties.Resources.passwordChange;
-            this.CircularPicturePasswordChange.Location = new System.Drawing.Point(184, 101);
-            this.CircularPicturePasswordChange.Name = "CircularPicturePasswordChange";
-            this.CircularPicturePasswordChange.Size = new System.Drawing.Size(22, 22);
-            this.CircularPicturePasswordChange.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.CircularPicturePasswordChange.TabIndex = 3;
-            this.CircularPicturePasswordChange.TabStop = false;
-            this.CircularPicturePasswordChange.Click += new System.EventHandler(this.CircularPicturePasswordChange_Click);
-            // 
-            // ButtonDisponibility
-            // 
-            this.ButtonDisponibility.BackColor = System.Drawing.Color.Lime;
-            this.ButtonDisponibility.Location = new System.Drawing.Point(184, 7);
-            this.ButtonDisponibility.Name = "ButtonDisponibility";
-            this.ButtonDisponibility.Size = new System.Drawing.Size(22, 22);
-            this.ButtonDisponibility.TabIndex = 3;
-            this.ButtonDisponibility.UseVisualStyleBackColor = false;
-            this.ButtonDisponibility.Click += new System.EventHandler(this.ButtonDisponibility_Click);
             // 
             // AdminPanel
             // 
@@ -424,16 +394,15 @@ namespace GADJIT_WIN_ASW
             this.Text = "AdminPanel";
             this.Load += new System.EventHandler(this.AdminPanel_Load);
             this.PanelGadgetManagment.ResumeLayout(false);
-            this.PanelStatistics.ResumeLayout(false);
             this.PanelTop.ResumeLayout(false);
             this.PanelTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CircularPicturePasswordChange)).EndInit();
             this.PanelBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxLogOut)).EndInit();
             this.SideMenuPanel.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.CircularPicturePasswordChange)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -442,15 +411,13 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.Panel PanelGadgetManagment;
         private System.Windows.Forms.Button ButtonGadgetReferenceManagment;
         private System.Windows.Forms.Button ButtonGadgetCategoryBrandManagment;
-        private System.Windows.Forms.Button ButtonIncomes;
         private System.Windows.Forms.Button ButtonGadgetMenu;
         private System.Windows.Forms.Button ButtonWorkerManagment;
         private System.Windows.Forms.Button ButtonStaffManagment;
         private System.Windows.Forms.Button ButtonTicketManagment;
         private System.Windows.Forms.PictureBox PictureBoxLogOut;
         private System.Windows.Forms.Button ButtonClientManagment;
-        private System.Windows.Forms.Panel PanelStatistics;
-        private System.Windows.Forms.Button ButtonStatisticsMenu;
+        private System.Windows.Forms.Button ButtonStatistics;
         private System.Windows.Forms.Panel PanelTop;
         private System.Windows.Forms.Panel PanelBottom;
         private System.Windows.Forms.Panel SideMenuPanel;

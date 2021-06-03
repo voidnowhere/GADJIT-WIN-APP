@@ -53,14 +53,13 @@ namespace GADJIT_WIN_ASW
             //
             this.Size = new Size(Screen.PrimaryScreen.WorkingArea.Width, Screen.PrimaryScreen.WorkingArea.Height);
             this.CenterToScreen();
-            PanelStatistics.Visible = false;
             PanelGadgetManagment.Visible = false;
         }
 
         private void PannelButtonsLock(bool tf)
         {
             CircularPicturePasswordChange.Enabled = tf;
-            ButtonStatisticsMenu.Enabled = tf;
+            ButtonStatistics.Enabled = tf;
             ButtonClientManagment.Enabled = tf;
             ButtonTicketManagment.Enabled = tf;
             ButtonStaffManagment.Enabled = tf;
@@ -115,12 +114,17 @@ namespace GADJIT_WIN_ASW
             ButtonGadgetReferenceManagment.ForeColor = Color.FromArgb(218, 165, 33);
         }
 
-        private void ButtonStatisticsMenu_Click(object sender, EventArgs e)
+        private void ButtonStatistics_Click(object sender, EventArgs e)
         {
             ResetButtonsColor();
-            PanelStatistics.Visible = true;
-            PanelGadgetManagment.Visible = false;
+            ButtonStatistics.BackColor = Color.FromArgb(239, 190, 34);
+            //
             CloseMdiChildIdExists();
+            PanelGadgetManagment.Visible = false;
+            Statistics statistics = new Statistics();
+            statistics.MdiParent = this;
+            statistics.Dock = DockStyle.Fill;
+            statistics.Show();
         }
 
         private void ButtonTicketManagment_Click(object sender, EventArgs e)
@@ -129,7 +133,6 @@ namespace GADJIT_WIN_ASW
             ButtonTicketManagment.BackColor = Color.FromArgb(239, 190, 34);
             //
             CloseMdiChildIdExists();
-            PanelStatistics.Visible = false;
             PanelGadgetManagment.Visible = false;
             TicketManagment ticketManagment = new TicketManagment();
             ticketManagment.MdiParent = this;
@@ -143,7 +146,6 @@ namespace GADJIT_WIN_ASW
             ButtonClientManagment.BackColor = Color.FromArgb(239, 190, 34);
             //
             CloseMdiChildIdExists();
-            PanelStatistics.Visible = false;
             PanelGadgetManagment.Visible = false;
             ClientManagment clientManagment = new ClientManagment();
             clientManagment.MdiParent = this;
@@ -157,7 +159,6 @@ namespace GADJIT_WIN_ASW
             ButtonStaffManagment.BackColor = Color.FromArgb(239, 190, 34);
             //
             CloseMdiChildIdExists();
-            PanelStatistics.Visible = false;
             PanelGadgetManagment.Visible = false;
             StaffManagment staffManage = new StaffManagment();
             staffManage.MdiParent = this;
@@ -171,7 +172,6 @@ namespace GADJIT_WIN_ASW
             ButtonWorkerManagment.BackColor = Color.FromArgb(239, 190, 34);
             //
             CloseMdiChildIdExists();
-            PanelStatistics.Visible = false;
             PanelGadgetManagment.Visible = false;
             WorkerManagment workerManage = new WorkerManagment();
             workerManage.MdiParent = this;
@@ -210,7 +210,6 @@ namespace GADJIT_WIN_ASW
             ResetButtonsColor();
             ButtonCityManagement.BackColor = Color.FromArgb(239, 190, 34);
             ButtonCityManagement.ForeColor = Color.White;
-            PanelStatistics.Visible = false;
             PanelGadgetManagment.Visible = false;
             //
             CloseMdiChildIdExists();
@@ -223,7 +222,6 @@ namespace GADJIT_WIN_ASW
         private void ButtonGadgetMenu_Click(object sender, EventArgs e)
         {
             ResetButtonsColor();
-            PanelStatistics.Visible = false;
             PanelGadgetManagment.Visible = true;
             CloseMdiChildIdExists();
         }
