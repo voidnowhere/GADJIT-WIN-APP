@@ -232,7 +232,8 @@ namespace GADJIT_WIN_ASW
             GADJIT.sqlConnection.Open();
             if (cmd.ExecuteScalar() != DBNull.Value)
             {
-                DID += (int)cmd.ExecuteScalar();
+                DID = (int)cmd.ExecuteScalar();
+                DID++;
             }
             else
             {
