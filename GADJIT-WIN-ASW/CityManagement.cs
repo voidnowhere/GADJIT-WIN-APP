@@ -218,7 +218,7 @@ namespace GADJIT_WIN_ASW
 
         private void DGVCity_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.ColumnIndex == 1 && e.FormattedValue != null)
+            if (e.ColumnIndex == 1 && e.FormattedValue.ToString() != "")
             {
                 if (CheckIfCityDesigExists((DGVCity[0, e.RowIndex].Value == null) ? -1 : (int)DGVCity[0, e.RowIndex].Value, e.FormattedValue.ToString()))
                 {

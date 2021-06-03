@@ -457,7 +457,7 @@ namespace GADJIT_WIN_ASW
 
         private void DGVStaff_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if(e.FormattedValue != null)
+            if(e.FormattedValue.ToString() != "")
             {
                 if (e.ColumnIndex == 1) //CIN
                 {
