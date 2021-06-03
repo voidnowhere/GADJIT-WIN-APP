@@ -39,10 +39,10 @@ namespace GADJIT_WIN_ASW
             // TextBoxPassWord
             // 
             this.TextBoxPassWord.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxPassWord.Location = new System.Drawing.Point(38, 104);
+            this.TextBoxPassWord.Location = new System.Drawing.Point(28, 103);
             this.TextBoxPassWord.Name = "TextBoxPassWord";
             this.TextBoxPassWord.PasswordChar = '*';
-            this.TextBoxPassWord.Size = new System.Drawing.Size(104, 22);
+            this.TextBoxPassWord.Size = new System.Drawing.Size(130, 22);
             this.TextBoxPassWord.TabIndex = 0;
             // 
             // LogoutButton
@@ -62,14 +62,14 @@ namespace GADJIT_WIN_ASW
             this.ButtonLogin.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.ButtonLogin.FlatAppearance.BorderSize = 0;
             this.ButtonLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ButtonLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ButtonLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonLogin.ForeColor = System.Drawing.Color.White;
-            this.ButtonLogin.Location = new System.Drawing.Point(38, 144);
+            this.ButtonLogin.Location = new System.Drawing.Point(28, 141);
             this.ButtonLogin.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonLogin.Name = "ButtonLogin";
-            this.ButtonLogin.Size = new System.Drawing.Size(104, 34);
+            this.ButtonLogin.Size = new System.Drawing.Size(130, 34);
             this.ButtonLogin.TabIndex = 22;
-            this.ButtonLogin.Text = "LOGIN";
+            this.ButtonLogin.Text = "Reconnecter";
             this.ButtonLogin.UseVisualStyleBackColor = false;
             this.ButtonLogin.Click += new System.EventHandler(this.ButtonLogin_Click);
             // 
@@ -77,12 +77,12 @@ namespace GADJIT_WIN_ASW
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(34, 62);
+            this.label2.Location = new System.Drawing.Point(24, 62);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 23);
+            this.label2.Size = new System.Drawing.Size(134, 23);
             this.label2.TabIndex = 23;
-            this.label2.Text = "PassWord :";
+            this.label2.Text = "Mot de passe";
             // 
             // UnlockStaffPanel
             // 

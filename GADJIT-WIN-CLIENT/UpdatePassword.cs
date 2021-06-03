@@ -18,13 +18,14 @@ namespace GADJIT_WIN_CLIENT
             InitializeComponent();
         }
 
-        string emailtemp = "";
-        string mdp = "";
+        public int CID;
+        public string mdp;
+        public string email;
+        public string nom;
 
         private void UpdatePassword_Load(object sender, EventArgs e)
         {
-            emailtemp = Login.Cemail;
-            mdp = ClientInformation.passCont;
+
         }
 
         private void ButtonAnnuler_Click(object sender, EventArgs e)
@@ -38,20 +39,25 @@ namespace GADJIT_WIN_CLIENT
             {
                 if (TextBoxNewPass.Text == TextBoxConfNewPass.Text)
                 {
-                    SqlCommand cmd = new SqlCommand("update Client set CliPassWord=@pass where CliEmail =@emailtemp", GADJIT.sqlConnection);
-                    cmd.Parameters.AddWithValue("@emailtemp", emailtemp);
+                    SqlCommand cmd = new SqlCommand("update Client set CliPassWord=@pass where CliID =@CID", GADJIT.sqlConnection);
+                    cmd.Parameters.AddWithValue("@CID", CID);
                     cmd.Parameters.AddWithValue("@pass", TextBoxNewPass.Text);
                     GADJIT.sqlConnection.Open();
                     cmd.ExecuteNonQuery();
                     GADJIT.sqlConnection.Close();
                     errorProviderConfPass.SetError(TextBoxConfNewPass, null);
                     MessageBox.Show("Mot de passe modifie avec succes", "modification mot de passe", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    GADJIT.SendEmail(email, "Bonjour " + nom + " :\nvous avez modifier votre mot de passe voici le nouveau mot de pass." + TextBoxNewPass.Text + " \nGADJIT MAROC.");
                     this.Close();
                 }
                 else
                 {
-                    errorProviderConfPass.SetError(TextBoxConfNewPass, "mot de passe doit etre identique");
+                    errorProviderConfPass.SetError(TextBoxConfNewPass, "mot de passe doit Être identique");
                 }
+            }
+            else
+            {
+                MessageBox.Show("Entrez l'ancien mot de passe correct", "Incorrect", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

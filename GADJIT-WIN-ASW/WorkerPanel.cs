@@ -18,8 +18,10 @@ namespace GADJIT_WIN_ASW
         {
             InitializeComponent();
         }
+
         public static int WID;
         public Login login;
+
         private void cirucularButton_Click(object sender, EventArgs e)
         {
             if (cirucularButton.BackColor == Color.Lime)
@@ -76,6 +78,7 @@ namespace GADJIT_WIN_ASW
             GADJIT.sqlConnection.Open();
             cmd.ExecuteNonQuery();
             GADJIT.sqlConnection.Close();
+            login.Show();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

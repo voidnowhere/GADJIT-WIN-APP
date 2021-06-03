@@ -97,6 +97,7 @@ namespace GADJIT_WIN_ASW
             this.Font = new System.Drawing.Font("Nirmala UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "UnlockWorkerPanel";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UnlockWorkerPanel";
             ((System.ComponentModel.ISupportInitialize)(this.LogoutButton)).EndInit();
             this.ResumeLayout(false);
