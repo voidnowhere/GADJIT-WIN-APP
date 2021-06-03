@@ -20,40 +20,26 @@ namespace GADJIT_WIN_ASW
 
         SqlDataReader dataReader;
         //
-        public string email;
-        string ticID;
-        string stafID;
-
-        private void GetStaffID()
-        {
-            try
-            {
-                SqlCommand sqlCommandStaffID = new SqlCommand("select StafID from Staff where StafEmail = @email", GADJIT.sqlConnection);
-
-                GADJIT.sqlConnection.Open();
-                sqlCommandStaffID.Parameters.Add("@email", SqlDbType.VarChar).Value = email;
-                stafID = sqlCommandStaffID.ExecuteScalar().ToString();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error GetStaffID()", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                GADJIT.sqlConnection.Close();
-            }
-        }
+        Dictionary<int, string> category = new Dictionary<int, string>();
+        Dictionary<int, string> brand = new Dictionary<int, string>();
+        Dictionary<int, string> reference = new Dictionary<int, string>();
+        public int staffID;
+        int ticID;
+        public String ticCancelDes;
+        public bool isTicCanceled = false;
+        bool ticStaCancel = false;
 
         private void FillComboBoxCategory()
         {
             try
             {
-                SqlCommand sqlCommand = new SqlCommand("select GadCatDesig from GadgetCategory", GADJIT.sqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("select GadCatID, GadCatDesig from GadgetCategory", GADJIT.sqlConnection);
                 GADJIT.sqlConnection.Open();
                 dataReader = sqlCommand.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    ComboBoxCategorySearch.Items.Add(dataReader.GetString(0));
+                    category.Add(dataReader.GetInt32(0), dataReader.GetString(1));
+                    ComboBoxCategorySearch.Items.Add(dataReader.GetString(1));
                 }
                 ComboBoxCategorySearch.Items.Insert(0, "--tous--");
                 ComboBoxCategorySearch.SelectedIndex = 0;
@@ -73,20 +59,22 @@ namespace GADJIT_WIN_ASW
         {
             if (ComboBoxCategorySearch.SelectedIndex > 0)
             {
+                brand.Clear();
                 ComboBoxBrandSearch.Items.Clear();
                 ComboBoxReferenceSearch.Items.Clear();
                 try
                 {
                     SqlCommand sqlCommand = new SqlCommand(
-                        "select distinct GadBraDesig from GadgetReference as gr, GadgetCategory as gc, GadgetBrand as gb " +
-                        "where gr.GadBraID = gb.GadBraID and gr.GadCatID = gc.GadCatID and GadCatDesig = @catID",
+                        "select distinct gr.GadBraID, GadBraDesig from GadgetReference as gr, GadgetBrand as gb " +
+                        "where gr.GadBraID = gb.GadBraID and GadCatID = @catID",
                         GADJIT.sqlConnection);
-                    sqlCommand.Parameters.Add("@catID", SqlDbType.VarChar).Value = ComboBoxCategorySearch.Text;
+                    sqlCommand.Parameters.Add("@catID", SqlDbType.Int).Value = category.Keys.First(k => category[k] == ComboBoxCategorySearch.Text);
                     GADJIT.sqlConnection.Open();
                     dataReader = sqlCommand.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        ComboBoxBrandSearch.Items.Add(dataReader.GetString(0));
+                        brand.Add(dataReader.GetInt32(0), dataReader.GetString(1));
+                        ComboBoxBrandSearch.Items.Add(dataReader.GetString(1));
                     }
                     ComboBoxBrandSearch.Items.Insert(0, "--tous--");
                     ComboBoxBrandSearch.SelectedIndex = 0;
@@ -103,6 +91,7 @@ namespace GADJIT_WIN_ASW
             }
             else
             {
+                brand.Clear();
                 ComboBoxBrandSearch.Items.Clear();
                 ComboBoxReferenceSearch.Items.Clear();
             }
@@ -117,20 +106,22 @@ namespace GADJIT_WIN_ASW
         {
             if (ComboBoxBrandSearch.SelectedIndex > 0)
             {
+                reference.Clear();
                 ComboBoxReferenceSearch.Items.Clear();
                 try
                 {
                     SqlCommand sqlCommand = new SqlCommand(
-                        "select GadRefDesig from GadgetReference as gr, GadgetCategory as gc, GadgetBrand as gb " +
-                        "where gr.GadCatID = gc.GadCatID and gc.GadCatDesig = @catDesig and gr.GadBraID = gb.GadBraID and gb.GadBraDesig = @braDesig",
+                        "select GadRefID, GadRefDesig from GadgetReference " +
+                        "where GadCatID = @catID and GadBraID = @braID",
                         GADJIT.sqlConnection);
-                    sqlCommand.Parameters.Add("@catDesig", SqlDbType.VarChar).Value = ComboBoxCategorySearch.Text;
-                    sqlCommand.Parameters.Add("@braDesig", SqlDbType.VarChar).Value = ComboBoxBrandSearch.Text;
+                    sqlCommand.Parameters.Add("@catID", SqlDbType.Int).Value = category.Keys.First(k => category[k] == ComboBoxCategorySearch.Text);
+                    sqlCommand.Parameters.Add("@braID", SqlDbType.Int).Value = brand.Keys.First(k => brand[k] == ComboBoxBrandSearch.Text);
                     GADJIT.sqlConnection.Open();
                     dataReader = sqlCommand.ExecuteReader();
                     while (dataReader.Read())
                     {
-                        ComboBoxReferenceSearch.Items.Add(dataReader.GetString(0));
+                        reference.Add(dataReader.GetInt32(0), dataReader.GetString(1));
+                        ComboBoxReferenceSearch.Items.Add(dataReader.GetString(1));
                     }
                     ComboBoxReferenceSearch.Items.Insert(0, "--tous--");
                     ComboBoxReferenceSearch.SelectedIndex = 0;
@@ -147,6 +138,7 @@ namespace GADJIT_WIN_ASW
             }
             else
             {
+                reference.Clear();
                 ComboBoxReferenceSearch.Items.Clear();
             }
         }
@@ -166,14 +158,14 @@ namespace GADJIT_WIN_ASW
                 String sqlQuery =
                     "select distinct TicID, TicDT, TicSta, TicRepPri, gc.GadCatDesig + ' ' + gb.GadBraDesig + ' ' + gr.GadRefDesig as Gadget, GadRefDescr " +
                     "from Ticket as t, GadgetReference as gr, GadgetCategory as gc, GadgetBrand as gb, Worker as w, Client as c " +
-                    "where t.StafID = @satfID and t.WorID is not null " +
+                    "where t.StafID = @satfID and (t.WorID is not null or (t.WorID is null and TicSta = 'A')) " +
                     "and t.GadRefID = gr.GadRefID and gr.GadCatID = gc.GadCatID and gr.GadBraID = gb.GadBraID " +
                     "and TicDT between @dateF and @dateT";
 
                 SqlCommand sqlCommand = new SqlCommand();
 
-                sqlCommand.Parameters.Add("@satfID", SqlDbType.VarChar).Value = stafID;
-                sqlCommand.Parameters.Add("@dateF", SqlDbType.DateTime).Value = DTPTicketFromSearch.Value;
+                sqlCommand.Parameters.Add("@satfID", SqlDbType.Int).Value = staffID;
+                sqlCommand.Parameters.Add("@dateF", SqlDbType.DateTime).Value = DateTime.Parse(DTPTicketFromSearch.Value.ToShortDateString());
                 sqlCommand.Parameters.Add("@dateT", SqlDbType.DateTime).Value = DTPTicketToSearch.Value;
 
                 if (ComboBoxCategorySearch.SelectedIndex > 0 || ComboBoxBrandSearch.SelectedIndex > 0 || ComboBoxReferenceSearch.SelectedIndex > 0
@@ -181,18 +173,18 @@ namespace GADJIT_WIN_ASW
                 {
                     if (ComboBoxCategorySearch.SelectedIndex > 0)
                     {
-                        sqlQuery += " and gr.GadCatID = gc.GadCatID and gc.GadCatDesig = @gcDesig";
-                        sqlCommand.Parameters.Add("@gcDesig", SqlDbType.VarChar).Value = ComboBoxCategorySearch.Text;
+                        sqlQuery += " and gr.GadCatID = @catID";
+                        sqlCommand.Parameters.Add("@catID", SqlDbType.Int).Value = category.Keys.First(k => category[k] == ComboBoxCategorySearch.Text);
                     }
                     if (ComboBoxBrandSearch.SelectedIndex > 0)
                     {
-                        sqlQuery += " and gr.GadBraID = gb.GadBraID and gb.GadBraDesig = @gbDesig";
-                        sqlCommand.Parameters.Add("@gbDesig", SqlDbType.VarChar).Value = ComboBoxBrandSearch.Text;
+                        sqlQuery += " and gr.GadBraID = @braID";
+                        sqlCommand.Parameters.Add("@braID", SqlDbType.Int).Value = brand.Keys.First(k => brand[k] == ComboBoxBrandSearch.Text);
                     }
                     if (ComboBoxReferenceSearch.SelectedIndex > 0)
                     {
-                        sqlQuery += " and gr.GadRefDesig = @grDesig";
-                        sqlCommand.Parameters.Add("@grDesig", SqlDbType.VarChar).Value = ComboBoxReferenceSearch.Text;
+                        sqlQuery += " and gr.GadRefID = @refID";
+                        sqlCommand.Parameters.Add("@refID", SqlDbType.Int).Value = reference.Keys.First(k => brand[k] == ComboBoxReferenceSearch.Text);
                     }
                     if (TextBoxClientLastNameSearch.Text != "")
                     {
@@ -248,7 +240,7 @@ namespace GADJIT_WIN_ASW
                                 status = "retour au client";
                                 break;
                             case "EL":
-                                status = "En cours de livraison";
+                                status = "en cours de livraison";
                                 break;
                             case "L":
                                 status = "livré";
@@ -258,11 +250,13 @@ namespace GADJIT_WIN_ASW
                             dataReader["TicID"],
                             dataReader["TicDT"], 
                             status,
-                            (dataReader["TicRepPri"].ToString() == "") ? "" : dataReader.GetSqlMoney(3).ToString(),
+                            (dataReader["TicRepPri"] == DBNull.Value) ? "" : dataReader.GetSqlMoney(3).ToString(),
                             dataReader["Gadget"],
                             dataReader["GadRefDescr"]);
                     }
                     TextBoxTotalTickets.Text = DGVTicket.Rows.Count.ToString();
+                    GADJIT.sqlConnection.Close();
+                    DGVTicket_CellMouseDoubleClick(null, new DataGridViewCellMouseEventArgs(0, 0, 0, 0, new MouseEventArgs(MouseButtons.Left, 2, 0, 0, 0)));
                 }
             }
             catch (Exception ex)
@@ -280,15 +274,23 @@ namespace GADJIT_WIN_ASW
         {
             try
             {
+                ClearTicketDetails();
                 DGVTicketMonitoring.Rows.Clear();
                 ComboBoxProgression.Items.Clear();
                 //
+                string ticSta = DGVTicket[2, e.RowIndex].Value.ToString();
+                //
                 SqlCommand sqlCommandTicketDetail = new SqlCommand(
-                    "select TicSta, TicAddress, TicProb, CONVERT(varchar, t.CliID) + ' - ' + CliLastName + ' ' + CliFirstName as Client, CliEmail, CliPhoneNumber, WorLastName + ' ' + WorFirstName as WorName " +
-                    "from Ticket as t, Worker as w, Client as c " +
-                    "where TicID = @ticID and t.WorID = w.WorID and t.CliID = c.CliID",
+                    (ticSta != "annulé") ?
+                    "select TicSta, TicAddress + ' - ' + CitDesig as Address, TicProb, CONVERT(varchar, t.CliID) + ' - ' + CliLastName + ' ' + CliFirstName as Client, CliEmail, CliPhoneNumber, WorLastName + ' ' + WorFirstName as WorName " +
+                    "from Ticket as t, Worker as w, Client as cl, City as ci " +
+                    "where TicID = @ticID and t.WorID = w.WorID and t.CliID = cl.CliID and t.CitID = ci.CitID"
+                    :
+                    "select TicSta, TicAddress + ' - ' + CitDesig as Address, TicProb, CONVERT(varchar, t.CliID) + ' - ' + CliLastName + ' ' + CliFirstName as Client, CliEmail, CliPhoneNumber " +
+                    "from Ticket as t, Client as cl, City as ci " +
+                    "where TicID = @ticID and t.CliID = cl.CliID and t.CitID = ci.CitID",
                     GADJIT.sqlConnection);
-                ticID = DGVTicket[0, e.RowIndex].Value.ToString();
+                ticID = (int)DGVTicket[0, e.RowIndex].Value;
                 sqlCommandTicketDetail.Parameters.Add("@ticID", SqlDbType.Int).Value = ticID;
                 GADJIT.sqlConnection.Open();
                 dataReader = sqlCommandTicketDetail.ExecuteReader();
@@ -307,9 +309,11 @@ namespace GADJIT_WIN_ASW
                             ButtonSave.Enabled = true;
                             break;
                         case "A":
+                        case "DR":
+                            ticStaCancel = true;
                             ComboBoxProgression.Items.AddRange(new String[] {
                                 "--choisissez pour enregistrer--",
-                                "retour au client",
+                                "retour au client"
                             });
                             ComboBoxProgression.SelectedIndex = 0;
                             ButtonSave.Enabled = true;
@@ -317,7 +321,7 @@ namespace GADJIT_WIN_ASW
                         case "R":
                             ComboBoxProgression.Items.AddRange(new String[] {
                                 "--choisissez pour enregistrer--",
-                                "en cours de livraison",
+                                "en cours de livraison"
                             });
                             ComboBoxProgression.SelectedIndex = 0;
                             ButtonSave.Enabled = true;
@@ -325,19 +329,35 @@ namespace GADJIT_WIN_ASW
                         case "EL":
                             ComboBoxProgression.Items.AddRange(new String[] {
                                 "--choisissez pour enregistrer--",
-                                "livré",
+                                "livré"
                             });
                             ComboBoxProgression.SelectedIndex = 0;
                             ButtonSave.Enabled = true;
                             break;
+                        case "DV":
+                            ComboBoxProgression.Items.AddRange(new String[] {
+                                "--choisissez pour enregistrer--",
+                                "annulé"
+                            });
+                            ComboBoxProgression.SelectedIndex = 0;
+                            ButtonSave.Enabled = true;
+                            break;
+                        default:
+                            ComboBoxProgression.Items.Add("--non disponible--");
+                            ComboBoxProgression.SelectedIndex = 0;
+                            ButtonSave.Enabled = false;
+                            break;
                     }
                     //
-                    TextBoxClient.Text = dataReader["Client"].ToString();
+                    GroupBoxClient.Text = "Client - " + dataReader["Client"].ToString();
                     TextBoxClientEmail.Text = dataReader["CliEmail"].ToString();
                     TextBoxClientPhoneNumber.Text = dataReader["CliPhoneNumber"].ToString();
-                    TextBoxTicketAddress.Text = dataReader["TicAddress"].ToString();
+                    TextBoxTicketAddress.Text = dataReader["Address"].ToString();
                     RichTextBoxProblem.Text = dataReader["TicProb"].ToString();
-                    TextBoxWorker.Text = dataReader["WorName"].ToString();
+                    if(ticSta != "annulé")
+                    {
+                        TextBoxWorker.Text = dataReader["WorName"].ToString();
+                    }
                 }
                 dataReader.Close();
                 //
@@ -358,13 +378,24 @@ namespace GADJIT_WIN_ASW
                                 who = "Personnel";
                                 break;
                             case "W":
-                                who = "Employé";
+                                who = "Technicien";
                                 break;
                             case "C":
                                 who = "Client";
                                 break;
                         }
                         DGVTicketMonitoring.Rows.Add(dataReader["TicMonDT"], who, dataReader["TicMonDes"]);
+                    }
+                    if (ticStaCancel)
+                    {
+                        if(DGVTicketMonitoring.Rows.Count < 4)
+                        {
+                            ComboBoxProgression.Items.Clear();
+                            ComboBoxProgression.Items.Add("--non disponible--");
+                            ComboBoxProgression.SelectedIndex = 0;
+                            ButtonSave.Enabled = false;
+                        }
+                        ticStaCancel = false;
                     }
                 }
             }
@@ -381,16 +412,15 @@ namespace GADJIT_WIN_ASW
 
         private void StaffTicketProgression_Load(object sender, EventArgs e)
         {
-            DTPTicketFromSearch.MaxDate = DateTime.Now.AddDays(-1);
-            DTPTicketToSearch.MaxDate = DateTime.Now;
+            DTPTicketFromSearch.MaxDate = DateTime.Parse(DateTime.Now.AddDays(-1).ToShortDateString());
+            DTPTicketToSearch.MaxDate = DateTime.Parse(DateTime.Now.ToShortDateString()).AddHours(23).AddMinutes(59).AddSeconds(59);
             FillComboBoxCategory();
-            GetStaffID();
             FillDGVTicket();
         }
 
         private void ClearTicketDetails()
         {
-            TextBoxClient.Clear();
+            GroupBoxClient.Text = "Client";
             TextBoxClientEmail.Clear();
             TextBoxClientPhoneNumber.Clear();
             RichTextBoxProblem.Clear();
@@ -408,6 +438,8 @@ namespace GADJIT_WIN_ASW
         private void ButtonReset_Click(object sender, EventArgs e)
         {
             ClearTicketDetails();
+            DTPTicketFromSearch.MaxDate = DateTime.Parse(DateTime.Now.AddDays(-1).ToShortDateString());
+            DTPTicketToSearch.MaxDate = DateTime.Now;
             ComboBoxCategorySearch.SelectedIndex = 0;
             TextBoxClientLastNameSearch.Clear();
             TextBoxWorkerLastNameSearch.Clear();
@@ -421,10 +453,17 @@ namespace GADJIT_WIN_ASW
         {
             if(ComboBoxProgression.SelectedIndex > 0)
             {
-                if (MessageBox.Show("Voulez vous confirmer la progression", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
+                if (MessageBox.Show("Voulez-vous confirmer la progression ?", "Confirmation", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) == DialogResult.OK)
                 {
                     try
                     {
+                        if(ComboBoxProgression.Text == "annulé")
+                        {
+                            TicketCancellationReason ticketCancellationReason = new TicketCancellationReason();
+                            ticketCancellationReason.staffTicketProgression = this;
+                            ticketCancellationReason.ShowDialog();
+                            if (!isTicCanceled) return;
+                        }
                         SqlCommand sqlCommand = new SqlCommand();
                         sqlCommand.CommandText = "update Ticket set TicSta = @status where TicID = @ticID";
                         String status = "";
@@ -455,8 +494,8 @@ namespace GADJIT_WIN_ASW
                         sqlCommand.ExecuteNonQuery();
 
                         sqlCommand.CommandText = "insert into TicketMonitoring values(@ticID, GETDATE(), @status, 'S', @stafID, 1)";
-                        sqlCommand.Parameters["@status"].Value = ComboBoxProgression.Text;
-                        sqlCommand.Parameters.Add("@stafID", SqlDbType.VarChar).Value = stafID;
+                        sqlCommand.Parameters["@status"].Value = (isTicCanceled) ? ticCancelDes : ComboBoxProgression.Text;
+                        sqlCommand.Parameters.Add("@stafID", SqlDbType.Int).Value = staffID;
                         sqlCommand.ExecuteNonQuery();
 
                         GADJIT.SendEmail(
@@ -464,7 +503,7 @@ namespace GADJIT_WIN_ASW
                             "Votre ticket sous le code [" + ticID.ToString() + "] " +
                             "a changer de progression vers \"" + ComboBoxProgression.Text + "\"");
 
-                        MessageBox.Show("Modifier", "Progression", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Etat du ticket changé", "Progression", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ButtonSave.Enabled = false;
                         GADJIT.sqlConnection.Close();
                         ButtonSearch_Click(sender, e);
@@ -478,6 +517,10 @@ namespace GADJIT_WIN_ASW
                         GADJIT.sqlConnection.Close();
                     }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez choisir une progression", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

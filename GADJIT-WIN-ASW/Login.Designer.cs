@@ -105,6 +105,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxPassWord.PasswordChar = '*';
             this.TextBoxPassWord.Size = new System.Drawing.Size(359, 29);
             this.TextBoxPassWord.TabIndex = 12;
+            this.TextBoxPassWord.TextChanged += new System.EventHandler(this.TextBoxPassWord_TextChanged);
             // 
             // TextBoxEMail
             // 
@@ -117,6 +118,7 @@ namespace GADJIT_WIN_ASW
             this.TextBoxEMail.Name = "TextBoxEMail";
             this.TextBoxEMail.Size = new System.Drawing.Size(359, 29);
             this.TextBoxEMail.TabIndex = 11;
+            this.TextBoxEMail.TextChanged += new System.EventHandler(this.TextBoxEMail_TextChanged);
             // 
             // pictureBox3
             // 

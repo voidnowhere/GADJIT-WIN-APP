@@ -20,7 +20,7 @@ namespace GADJIT_WIN_ASW
 
         public Login login;
         public StaffPanel staffPanel;
-        public string email;
+        public int staffID;
 
         private void UnlockStaffPanel_Load(object sender, EventArgs e)
         {
@@ -33,8 +33,8 @@ namespace GADJIT_WIN_ASW
             {
                 try
                 {
-                    SqlCommand sqlCommandDispo = new SqlCommand("select COUNT(StafEmail) from Staff where StafEmail = @email and StafPassWord = @pass", GADJIT.sqlConnection);
-                    sqlCommandDispo.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
+                    SqlCommand sqlCommandDispo = new SqlCommand("select COUNT(StafID) from Staff where StafID = @staffID and StafPassWord = @pass", GADJIT.sqlConnection);
+                    sqlCommandDispo.Parameters.Add("@staffID", SqlDbType.Int).Value = staffID;
                     sqlCommandDispo.Parameters.Add("@pass", SqlDbType.NVarChar).Value = TextBoxPassWord.Text;
                     GADJIT.sqlConnection.Open();
                     if ((int)sqlCommandDispo.ExecuteScalar() == 1)
@@ -43,7 +43,7 @@ namespace GADJIT_WIN_ASW
                     }
                     else
                     {
-                        MessageBox.Show("mot de passe incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Mot de passe incorrect", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         TextBoxPassWord.Clear();
                     }
                 }
@@ -56,16 +56,21 @@ namespace GADJIT_WIN_ASW
                     GADJIT.sqlConnection.Close();
                 }
             }
+            else
+            {
+                MessageBox.Show("Veuillez taper votre mot de passe", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)
         {
             try
             {
-                SqlCommand sqlCommandDispo = new SqlCommand("update Staff set StafDispo = 'Hors Ligne' where StafEmail = @email", GADJIT.sqlConnection);
-                sqlCommandDispo.Parameters.Add("@email", SqlDbType.NVarChar).Value = email;
+                SqlCommand sqlCommandDispo = new SqlCommand("update Staff set StafDispo = 'Hors Ligne' where StafID = @staffID", GADJIT.sqlConnection);
+                sqlCommandDispo.Parameters.Add("@staffID", SqlDbType.Int).Value = staffID;
                 GADJIT.sqlConnection.Open();
                 sqlCommandDispo.ExecuteNonQuery();
+                staffPanel.logout = true;
                 this.Close();
                 staffPanel.Close();
                 login.Show();

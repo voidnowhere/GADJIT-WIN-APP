@@ -69,8 +69,8 @@ namespace GADJIT_WIN_ASW
                                             Staff.LabelLastName.Text = dr.GetString(0);
                                             Staff.LabelFirstName.Text = dr.GetString(1);
                                             Staff.LabelEmail.Text = TextBoxEMail.Text;
-                                            Staff.CircularProfilPicture.Image = (dr.GetValue(2) == DBNull.Value) ? null : Image.FromStream(new MemoryStream((byte[])dr.GetValue(3)));
-                                            //Staff.staffID = dr.GetInt32(3);
+                                            Staff.CircularProfilPicture.Image = (dr.GetValue(2) == DBNull.Value) ? null : Image.FromStream(new MemoryStream((byte[])dr.GetValue(2)));
+                                            Staff.staffID = dr.GetInt32(3);
                                             //
                                             dr.Close();
                                             GADJIT.sqlConnection.Close();
@@ -86,10 +86,11 @@ namespace GADJIT_WIN_ASW
                                         if (dr.GetBoolean(4) == true)
                                         {
                                             WorkerPanel Worker = new WorkerPanel();
+                                            Worker.login = this;
                                             Worker.LabelLastName.Text = dr.GetString(0);
                                             Worker.LabelFirstName.Text = dr.GetString(1);
                                             Worker.LabelEmail.Text = TextBoxEMail.Text;
-                                            Worker.CircularProfilPicture.Image = (dr.GetValue(2) == DBNull.Value) ? null : Image.FromStream(new MemoryStream((byte[])dr.GetValue(3)));
+                                            Worker.CircularProfilPicture.Image = (dr.GetValue(2) == DBNull.Value) ? null : Image.FromStream(new MemoryStream((byte[])dr.GetValue(2)));
                                             //Worker.workerID = dr.GetInt32(3);
                                             //
                                             dr.Close();
@@ -140,6 +141,16 @@ namespace GADJIT_WIN_ASW
         private void PictureBoxExit_Click(object sender, EventArgs e)
         {
             Environment.Exit(1);
+        }
+
+        private void TextBoxEMail_TextChanged(object sender, EventArgs e)
+        {
+            TextBoxEMail.Text = TextBoxEMail.Text.Trim();
+        }
+
+        private void TextBoxPassWord_TextChanged(object sender, EventArgs e)
+        {
+            TextBoxPassWord.Text = TextBoxPassWord.Text.Trim();
         }
     }
 }

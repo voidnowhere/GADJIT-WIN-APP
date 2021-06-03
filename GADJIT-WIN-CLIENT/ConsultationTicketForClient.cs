@@ -17,39 +17,44 @@ namespace GADJIT_WIN_CLIENT
         {
             InitializeComponent();
         }
-        string emailtemp = "";
-        public static int CID ;
-        public static int TID ;
+        public int CID;
+        public static int TID;
         int RefID;
-        int CatID ;
-        int BrandID ;
-        public static string price = "";
-        public static string Ref = "";
-        public static string Cat = "";
-        public static string Brand = "";
-        public static string prob = "";
+        int CatID;
+        int BrandID;
+        public static string price;
+        public static string Ref;
+        public static string Cat;
+        public static string Brand;
+        public static string prob;
+        public string email;
+        string status;
         //
         SqlDataReader dr;
         private void ConsultationTicketForClient_Load(object sender, EventArgs e)
         {
-            emailtemp = Login.Cemail;
+            DGVTicket.BorderStyle = BorderStyle.Fixed3D;
+            DGVTicket.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            DGVTicket.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            DGVTicket.DefaultCellStyle.SelectionBackColor = Color.DarkSlateBlue;
+            DGVTicket.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            DGVTicket.BackgroundColor = Color.White;
+            DGVTicket.EnableHeadersVisualStyles = false;
+            DGVTicket.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            DGVTicket.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(116, 86, 174);
+            DGVTicket.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             //
-            GADJIT.sqlConnection.Open();
-            SqlCommand cmd = new SqlCommand("select CliID from Client where CliEmail = '" + emailtemp + "'", GADJIT.sqlConnection);
-            SqlDataReader dr = cmd.ExecuteReader();
-            dr.Read();
-            CID = Convert.ToInt32(dr["CliID"]);
-            dr.Close();
-            //
-            cmd = new SqlCommand("select TicID from Ticket where CliID = @CID", GADJIT.sqlConnection);
+            SqlCommand cmd = new SqlCommand("select TicID from Ticket where CliID =@CID", GADJIT.sqlConnection);
             cmd.Parameters.AddWithValue("@CID", CID);
+            GADJIT.sqlConnection.Open();
             dr = cmd.ExecuteReader();
+            ComboBoxCodeTicket.Items.Add("--TOUT--");
             while (dr.Read())
             {
                 ComboBoxCodeTicket.Items.Add(dr["TicID"].ToString());
             }
             dr.Close();
-            ComboBoxCodeTicket.SelectedIndex = -1;
+            ComboBoxCodeTicket.SelectedIndex = 0;
             //
             GADJIT.sqlConnection.Close();
             DGVTicket.Rows.Clear();
@@ -60,20 +65,60 @@ namespace GADJIT_WIN_CLIENT
         {
             try
             {
-                SqlCommand cmd = new SqlCommand("Select TicID,TicDT,TicRepPri,TicSta from ticket ", GADJIT.sqlConnection);
+                SqlCommand cmd = new SqlCommand("Select TicID,TicDT,TicRepPri,TicSta from ticket where CliID=@CID", GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("@CID", CID);
                 GADJIT.sqlConnection.Open();
                 dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
                     while (dr.Read())
                     {
-                        DGVTicket.Rows.Add(dr["TicID"], dr["TicDT"], dr["TicRepPri"], dr["TicSta"]);
+                        switch (dr["TicSta"].ToString())
+                        {
+                            case "PV":
+                                status = "pas encore vérifié";
+                                break;
+                            case "V":
+                                status = "vérifié";
+                                break;
+                            case "A":
+                                status = "annulé";
+                                break;
+                            case "ED":
+                                status = "en cours de diagnostic";
+                                break;
+                            case "CD":
+                                status = "diagnostic disponible";
+                                break;
+                            case "ER":
+                                status = "en cours de reparation";
+                                break;
+                            case "R":
+                                status = "reparé";
+                                break;
+                            case "DV":
+                                status = "diagnostic validé";
+                                break;
+                            case "DR":
+                                status = "diagnostic rejeté";
+                                break;
+                            case "RC":
+                                status = "retour au client";
+                                break;
+                            case "EL":
+                                status = "en cours de livraison";
+                                break;
+                            case "L":
+                                status = "livré";
+                                break;
+                        }
+                        DGVTicket.Rows.Add(dr["TicID"], dr["TicDT"], dr["TicRepPri"], status);
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,"erreur FillDGVTicket");
+                MessageBox.Show(ex.Message, "erreur FillDGVTicket");
             }
             finally
             {
@@ -98,10 +143,8 @@ namespace GADJIT_WIN_CLIENT
                 dr = cmd.ExecuteReader();
                 if (dr.HasRows)
                 {
-                    while (dr.Read())
-                    {
-                        DGVTicket.Rows.Add(dr["TicID"], dr["TicDT"], dr["TicRepPri"], dr["TicSta"]);
-                    }
+                    dr.Read();
+                    DGVTicket.Rows.Add(dr["TicID"], dr["TicDT"], dr["TicRepPri"], dr["TicSta"]);
                 }
                 price = dr["TicRepPri"].ToString();
             }
@@ -124,7 +167,7 @@ namespace GADJIT_WIN_CLIENT
             if (dr.HasRows)
             {
                 dr.Read();
-                Ref= TextBoxRef.Text = dr["GadRefDesig"].ToString();
+                Ref = TextBoxRef.Text = dr["GadRefDesig"].ToString();
                 CatID = Convert.ToInt32(dr["GadCatID"]);
                 BrandID = Convert.ToInt32(dr["GadBraID"]);
                 dr.Close();
@@ -237,9 +280,9 @@ namespace GADJIT_WIN_CLIENT
                     {
                         labelDiag.Visible = TextBoxDiag.Visible = ButtonDiagnostic.Visible = true;
                         TextBoxDiag.Text = "Diagnostic Disponible";
+                        price = (dr.GetSqlMoney(2)).ToString();
                     }
                     RefID = Convert.ToInt32(dr["GadRefID"]);
-                    price = (dr.GetSqlMoney(3)).ToString();
                     dr.Close();
                     GADJIT.sqlConnection.Close();
                     BringBrandCatRef();
@@ -250,8 +293,45 @@ namespace GADJIT_WIN_CLIENT
         private void ButtonDiagnostic_Click(object sender, EventArgs e)
         {
             DiagnosticTicketForClient diag = new DiagnosticTicketForClient();
+            diag.CID = CID;
+            diag.email = email;
             diag.ShowDialog();
+            TextBoxCat.Clear();
+            TextBoxDiag.Clear();
+            TextBoxMarque.Clear();
+            TextBoxRef.Clear();
+            RichTextBoxProb.Clear();
+            labelDiag.Visible = TextBoxDiag.Visible = ButtonDiagnostic.Visible = true;
             ConsultationTicketForClient_Load(sender, e);
+        }
+
+        private void DGVTicket_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            clearTxtBox();
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.DGVTicket.Rows[e.RowIndex];
+                TID = Convert.ToInt32(row.Cells["TicketID"].Value);
+                SqlCommand cmd = new SqlCommand("select TicProb,GadRefID,TicRepPri,TicSta from Ticket where TicID=@TID", GADJIT.sqlConnection);
+                cmd.Parameters.AddWithValue("@TID", TID);
+                GADJIT.sqlConnection.Open();
+                dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    dr.Read();
+                    prob = RichTextBoxProb.Text = dr["TicProb"].ToString();
+                    if (dr["TicSta"].ToString() == "CD")
+                    {
+                        labelDiag.Visible = TextBoxDiag.Visible = ButtonDiagnostic.Visible = true;
+                        TextBoxDiag.Text = "Diagnostic Disponible";
+                    }
+                    RefID = Convert.ToInt32(dr["GadRefID"]);
+                    price = dr["TicRepPri"].ToString();
+                    dr.Close();
+                    GADJIT.sqlConnection.Close();
+                    BringBrandCatRef();
+                }
+            }
         }
     }
 }
