@@ -32,12 +32,13 @@ namespace GADJIT_WIN_ASW
             this.CrystalReportViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.label1 = new System.Windows.Forms.Label();
             this.RadioButtonWorkerStats = new System.Windows.Forms.RadioButton();
-            this.RadioButtonGadgetStats = new System.Windows.Forms.RadioButton();
+            this.RadioButtonGadgetCategoryStats = new System.Windows.Forms.RadioButton();
             this.DTPFrom = new System.Windows.Forms.DateTimePicker();
             this.DTPTo = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.RadioButtonGadgetBrandStats = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +50,7 @@ namespace GADJIT_WIN_ASW
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CrystalReportViewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.CrystalReportViewer.Cursor = System.Windows.Forms.Cursors.Default;
-            this.CrystalReportViewer.Location = new System.Drawing.Point(12, 123);
+            this.CrystalReportViewer.Location = new System.Drawing.Point(12, 126);
             this.CrystalReportViewer.Name = "CrystalReportViewer";
             this.CrystalReportViewer.ShowCloseButton = false;
             this.CrystalReportViewer.ShowGroupTreeButton = false;
@@ -57,7 +58,7 @@ namespace GADJIT_WIN_ASW
             this.CrystalReportViewer.ShowParameterPanelButton = false;
             this.CrystalReportViewer.ShowRefreshButton = false;
             this.CrystalReportViewer.ShowTextSearchButton = false;
-            this.CrystalReportViewer.Size = new System.Drawing.Size(648, 389);
+            this.CrystalReportViewer.Size = new System.Drawing.Size(648, 386);
             this.CrystalReportViewer.TabIndex = 0;
             this.CrystalReportViewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
@@ -78,7 +79,7 @@ namespace GADJIT_WIN_ASW
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RadioButtonWorkerStats.AutoSize = true;
             this.RadioButtonWorkerStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RadioButtonWorkerStats.Location = new System.Drawing.Point(570, 59);
+            this.RadioButtonWorkerStats.Location = new System.Drawing.Point(570, 48);
             this.RadioButtonWorkerStats.Name = "RadioButtonWorkerStats";
             this.RadioButtonWorkerStats.Size = new System.Drawing.Size(92, 20);
             this.RadioButtonWorkerStats.TabIndex = 2;
@@ -87,20 +88,20 @@ namespace GADJIT_WIN_ASW
             this.RadioButtonWorkerStats.UseVisualStyleBackColor = true;
             this.RadioButtonWorkerStats.Click += new System.EventHandler(this.RadioButtonWorkerStats_Click);
             // 
-            // RadioButtonGadgetStats
+            // RadioButtonGadgetCategoryStats
             // 
-            this.RadioButtonGadgetStats.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.RadioButtonGadgetCategoryStats.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.RadioButtonGadgetStats.AutoSize = true;
-            this.RadioButtonGadgetStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RadioButtonGadgetStats.Location = new System.Drawing.Point(570, 93);
-            this.RadioButtonGadgetStats.Name = "RadioButtonGadgetStats";
-            this.RadioButtonGadgetStats.Size = new System.Drawing.Size(71, 20);
-            this.RadioButtonGadgetStats.TabIndex = 3;
-            this.RadioButtonGadgetStats.TabStop = true;
-            this.RadioButtonGadgetStats.Text = "Gadget";
-            this.RadioButtonGadgetStats.UseVisualStyleBackColor = true;
-            this.RadioButtonGadgetStats.Click += new System.EventHandler(this.RadioButtonGadgetStats_Click);
+            this.RadioButtonGadgetCategoryStats.AutoSize = true;
+            this.RadioButtonGadgetCategoryStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RadioButtonGadgetCategoryStats.Location = new System.Drawing.Point(570, 74);
+            this.RadioButtonGadgetCategoryStats.Name = "RadioButtonGadgetCategoryStats";
+            this.RadioButtonGadgetCategoryStats.Size = new System.Drawing.Size(85, 20);
+            this.RadioButtonGadgetCategoryStats.TabIndex = 3;
+            this.RadioButtonGadgetCategoryStats.TabStop = true;
+            this.RadioButtonGadgetCategoryStats.Text = "Catégorie";
+            this.RadioButtonGadgetCategoryStats.UseVisualStyleBackColor = true;
+            this.RadioButtonGadgetCategoryStats.Click += new System.EventHandler(this.RadioButtonGadgetCategoryStats_Click);
             // 
             // DTPFrom
             // 
@@ -159,13 +160,29 @@ namespace GADJIT_WIN_ASW
             this.label2.TabIndex = 7;
             this.label2.Text = "De";
             // 
+            // RadioButtonGadgetBrandStats
+            // 
+            this.RadioButtonGadgetBrandStats.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.RadioButtonGadgetBrandStats.AutoSize = true;
+            this.RadioButtonGadgetBrandStats.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RadioButtonGadgetBrandStats.Location = new System.Drawing.Point(569, 100);
+            this.RadioButtonGadgetBrandStats.Name = "RadioButtonGadgetBrandStats";
+            this.RadioButtonGadgetBrandStats.Size = new System.Drawing.Size(72, 20);
+            this.RadioButtonGadgetBrandStats.TabIndex = 7;
+            this.RadioButtonGadgetBrandStats.TabStop = true;
+            this.RadioButtonGadgetBrandStats.Text = "Marque";
+            this.RadioButtonGadgetBrandStats.UseVisualStyleBackColor = true;
+            this.RadioButtonGadgetBrandStats.Click += new System.EventHandler(this.RadioButtonGadgetBrandStats_Click);
+            // 
             // Statistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(672, 524);
+            this.Controls.Add(this.RadioButtonGadgetBrandStats);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.RadioButtonGadgetStats);
+            this.Controls.Add(this.RadioButtonGadgetCategoryStats);
             this.Controls.Add(this.RadioButtonWorkerStats);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.CrystalReportViewer);
@@ -185,11 +202,12 @@ namespace GADJIT_WIN_ASW
         private CrystalDecisions.Windows.Forms.CrystalReportViewer CrystalReportViewer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton RadioButtonWorkerStats;
-        private System.Windows.Forms.RadioButton RadioButtonGadgetStats;
+        private System.Windows.Forms.RadioButton RadioButtonGadgetCategoryStats;
         private System.Windows.Forms.DateTimePicker DTPFrom;
         private System.Windows.Forms.DateTimePicker DTPTo;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.RadioButton RadioButtonGadgetBrandStats;
     }
 }

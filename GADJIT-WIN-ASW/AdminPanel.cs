@@ -101,6 +101,7 @@ namespace GADJIT_WIN_ASW
 
         private void ResetButtonsColor()
         {
+            ButtonStatistics.BackColor = Color.FromArgb(247, 181, 46);
             ButtonTicketManagment.BackColor = Color.FromArgb(247, 181, 46);
             ButtonClientManagment.BackColor = Color.FromArgb(247, 181, 46);
             ButtonStaffManagment.BackColor = Color.FromArgb(247, 181, 46);
