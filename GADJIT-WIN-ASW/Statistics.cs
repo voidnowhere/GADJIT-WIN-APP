@@ -34,16 +34,33 @@ namespace GADJIT_WIN_ASW
             }
         }
 
-        private void LoadGadgetStatsReport()
+        private void LoadGadgetCategoryStatsReport()
         {
             try
             {
-                CrystalReportGadgetStats crystalReportGadgetStats = new CrystalReportGadgetStats();
-                crystalReportGadgetStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", "pff-win-app.database.windows.net", "GADJIT");
-                crystalReportGadgetStats.SetParameterValue("from", DTPFrom.Value.ToShortDateString());
-                crystalReportGadgetStats.SetParameterValue("to", DateTime.Parse(DateTime.Now.ToShortDateString()).AddHours(23).AddMinutes(59).AddSeconds(59).ToString());
-                crystalReportGadgetStats.SetParameterValue("toDate", DateTime.Now.ToShortDateString());
-                CrystalReportViewer.ReportSource = crystalReportGadgetStats;
+                CrystalReportGadgetCategoryStats gadgetCategoryStats = new CrystalReportGadgetCategoryStats();
+                gadgetCategoryStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", "pff-win-app.database.windows.net", "GADJIT");
+                gadgetCategoryStats.SetParameterValue("from", DTPFrom.Value.ToShortDateString());
+                gadgetCategoryStats.SetParameterValue("to", DateTime.Parse(DateTime.Now.ToShortDateString()).AddHours(23).AddMinutes(59).AddSeconds(59).ToString());
+                gadgetCategoryStats.SetParameterValue("toDate", DateTime.Now.ToShortDateString());
+                CrystalReportViewer.ReportSource = gadgetCategoryStats;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error LoadGadgetStatsReport()", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadGadgetBrandStatsReport()
+        {
+            try
+            {
+                CrystalReportGadgetBrandStats gadgetBrandStats = new CrystalReportGadgetBrandStats();
+                gadgetBrandStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", "pff-win-app.database.windows.net", "GADJIT");
+                gadgetBrandStats.SetParameterValue("from", DTPFrom.Value.ToShortDateString());
+                gadgetBrandStats.SetParameterValue("to", DateTime.Parse(DateTime.Now.ToShortDateString()).AddHours(23).AddMinutes(59).AddSeconds(59).ToString());
+                gadgetBrandStats.SetParameterValue("toDate", DateTime.Now.ToShortDateString());
+                CrystalReportViewer.ReportSource = gadgetBrandStats;
             }
             catch (Exception ex)
             {
@@ -67,11 +84,19 @@ namespace GADJIT_WIN_ASW
             }
         }
 
-        private void RadioButtonGadgetStats_Click(object sender, EventArgs e)
+        private void RadioButtonGadgetCategoryStats_Click(object sender, EventArgs e)
         {
-            if (RadioButtonGadgetStats.Checked)
+            if (RadioButtonGadgetCategoryStats.Checked)
             {
-                LoadGadgetStatsReport();
+                LoadGadgetCategoryStatsReport();
+            }
+        }
+
+        private void RadioButtonGadgetBrandStats_Click(object sender, EventArgs e)
+        {
+            if (RadioButtonGadgetBrandStats.Checked)
+            {
+                LoadGadgetBrandStatsReport();
             }
         }
     }

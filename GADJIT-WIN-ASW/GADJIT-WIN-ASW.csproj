@@ -78,10 +78,16 @@
     <Compile Include="ClientManagment.Designer.cs">
       <DependentUpon>ClientManagment.cs</DependentUpon>
     </Compile>
-    <Compile Include="CrystalReportGadgetStats.cs">
+    <Compile Include="CrystalReportGadgetBrandStats.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CrystalReportGadgetStats.rpt</DependentUpon>
+      <DependentUpon>CrystalReportGadgetBrandStats.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReportGadgetCategoryStats.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CrystalReportGadgetCategoryStats.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReportWorkerStats.cs">
@@ -210,9 +216,13 @@
     <EmbeddedResource Include="ClientManagment.resx">
       <DependentUpon>ClientManagment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CrystalReportGadgetStats.rpt">
+    <EmbeddedResource Include="CrystalReportGadgetBrandStats.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CrystalReportGadgetStats.cs</LastGenOutput>
+      <LastGenOutput>CrystalReportGadgetBrandStats.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReportGadgetCategoryStats.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CrystalReportGadgetCategoryStats.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReportWorkerStats.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

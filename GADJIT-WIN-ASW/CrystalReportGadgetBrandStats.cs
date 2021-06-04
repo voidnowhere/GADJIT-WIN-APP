@@ -16,14 +16,14 @@ namespace GADJIT_WIN_ASW {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CrystalReportGadgetStats : ReportClass {
+    public class CrystalReportGadgetBrandStats : ReportClass {
         
-        public CrystalReportGadgetStats() {
+        public CrystalReportGadgetBrandStats() {
         }
         
         public override string ResourceName {
             get {
-                return "CrystalReportGadgetStats.rpt";
+                return "CrystalReportGadgetBrandStats.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace GADJIT_WIN_ASW {
         
         public override string FullResourceName {
             get {
-                return "GADJIT_WIN_ASW.CrystalReportGadgetStats.rpt";
+                return "GADJIT_WIN_ASW.CrystalReportGadgetBrandStats.rpt";
             }
             set {
                 // Do nothing
@@ -114,9 +114,9 @@ namespace GADJIT_WIN_ASW {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCrystalReportGadgetStats : Component, ICachedReport {
+    public class CachedCrystalReportGadgetBrandStats : Component, ICachedReport {
         
-        public CachedCrystalReportGadgetStats() {
+        public CachedCrystalReportGadgetBrandStats() {
         }
         
         [Browsable(false)]
@@ -153,7 +153,7 @@ namespace GADJIT_WIN_ASW {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CrystalReportGadgetStats rpt = new CrystalReportGadgetStats();
+            CrystalReportGadgetBrandStats rpt = new CrystalReportGadgetBrandStats();
             rpt.Site = this.Site;
             return rpt;
         }
