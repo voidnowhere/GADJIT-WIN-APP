@@ -214,7 +214,7 @@ namespace GADJIT_WIN_ASW
 
         private void DGVCategory_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.ColumnIndex == 1 && e.FormattedValue != null)
+            if (e.ColumnIndex == 1 && e.FormattedValue.ToString() != "")
             {
                 if (CheckIfCategoryDesigExists((DGVCategory[0, e.RowIndex].Value == null) ? -1 : (int)DGVCategory[0, e.RowIndex].Value, e.FormattedValue.ToString()))
                 {
@@ -519,7 +519,7 @@ namespace GADJIT_WIN_ASW
 
         private void DGVBrand_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.ColumnIndex == 1 && e.FormattedValue != null)
+            if (e.ColumnIndex == 1 && e.FormattedValue.ToString() != "")
             {
                 if (CheckIfBrandDesigExists((DGVBrand[0, e.RowIndex].Value == null) ? -1 : (int)DGVBrand[0, e.RowIndex].Value, e.FormattedValue.ToString()))
                 {

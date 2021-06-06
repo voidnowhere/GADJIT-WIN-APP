@@ -348,7 +348,7 @@ namespace GADJIT_WIN_ASW
 
         private void DGVReference_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.ColumnIndex == 3 && e.FormattedValue != null)
+            if (e.ColumnIndex == 3 && e.FormattedValue.ToString() != "")
             {
                 if (CheckIfReferenceDesigExists((DGVReference[0, e.RowIndex].Value == null) ? -1 : (int)DGVReference[0, e.RowIndex].Value, e.FormattedValue.ToString()))
                 {
