@@ -29,7 +29,7 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.GroupeBoxDiag = new System.Windows.Forms.GroupBox();
             this.textBoxWorkTime = new System.Windows.Forms.TextBox();
@@ -46,8 +46,6 @@ namespace GADJIT_WIN_ASW
             this.RichTextBoxProblem = new System.Windows.Forms.RichTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.ButtonReset = new System.Windows.Forms.Button();
-            this.ComboBoxCode = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.ComboBoxReferenceSearch = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
             this.ComboBoxCategorySearch = new System.Windows.Forms.ComboBox();
@@ -84,6 +82,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.ButtonReset);
             this.groupBox1.Controls.Add(this.GroupeBoxDiag);
             this.groupBox1.Controls.Add(this.TextBoxGadget);
             this.groupBox1.Controls.Add(this.label17);
@@ -227,6 +226,7 @@ namespace GADJIT_WIN_ASW
             this.ComboBoxPorg.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ComboBoxPorg.BackColor = System.Drawing.Color.White;
+            this.ComboBoxPorg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboBoxPorg.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ComboBoxPorg.FormattingEnabled = true;
             this.ComboBoxPorg.Location = new System.Drawing.Point(5, 427);
@@ -298,36 +298,14 @@ namespace GADJIT_WIN_ASW
             this.ButtonReset.FlatAppearance.BorderSize = 0;
             this.ButtonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonReset.ForeColor = System.Drawing.Color.White;
-            this.ButtonReset.Location = new System.Drawing.Point(633, 93);
+            this.ButtonReset.Location = new System.Drawing.Point(5, 490);
             this.ButtonReset.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonReset.Name = "ButtonReset";
-            this.ButtonReset.Size = new System.Drawing.Size(98, 29);
+            this.ButtonReset.Size = new System.Drawing.Size(114, 29);
             this.ButtonReset.TabIndex = 53;
-            this.ButtonReset.Text = "Annuler";
+            this.ButtonReset.Text = "Reinitialiser";
             this.ButtonReset.UseVisualStyleBackColor = false;
             this.ButtonReset.Click += new System.EventHandler(this.ButtonReset_Click);
-            // 
-            // ComboBoxCode
-            // 
-            this.ComboBoxCode.BackColor = System.Drawing.Color.White;
-            this.ComboBoxCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBoxCode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ComboBoxCode.FormattingEnabled = true;
-            this.ComboBoxCode.Location = new System.Drawing.Point(420, 93);
-            this.ComboBoxCode.Name = "ComboBoxCode";
-            this.ComboBoxCode.Size = new System.Drawing.Size(187, 29);
-            this.ComboBoxCode.TabIndex = 52;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(418, 74);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 16);
-            this.label5.TabIndex = 51;
-            this.label5.Text = "CODE";
             // 
             // ComboBoxReferenceSearch
             // 
@@ -453,9 +431,6 @@ namespace GADJIT_WIN_ASW
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.ButtonReset);
-            this.groupBox2.Controls.Add(this.ComboBoxCode);
-            this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.ComboBoxReferenceSearch);
             this.groupBox2.Controls.Add(this.label23);
             this.groupBox2.Controls.Add(this.ComboBoxCategorySearch);
@@ -613,9 +588,9 @@ namespace GADJIT_WIN_ASW
             // 
             // DATE
             // 
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            this.DATE.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.DATE.DefaultCellStyle = dataGridViewCellStyle3;
             this.DATE.HeaderText = "Date";
             this.DATE.MinimumWidth = 115;
             this.DATE.Name = "DATE";
@@ -679,8 +654,6 @@ namespace GADJIT_WIN_ASW
         private System.Windows.Forms.RichTextBox RichTextBoxProblem;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button ButtonReset;
-        private System.Windows.Forms.ComboBox ComboBoxCode;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox ComboBoxReferenceSearch;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.ComboBox ComboBoxCategorySearch;
