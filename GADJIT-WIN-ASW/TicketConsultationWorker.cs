@@ -26,6 +26,9 @@ namespace GADJIT_WIN_ASW
         int CID;
         string emailtemp;
         int DID;
+        int CatID;
+        int BrandID;
+        int RefID;
         private void TicketConsultationWorker_Load(object sender, EventArgs e)
         {
             DGVTicket.BorderStyle = BorderStyle.None;
@@ -41,7 +44,17 @@ namespace GADJIT_WIN_ASW
             DGVTicket.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             //
             WID = WorkerPanel.WID;
-            FillComboBoxsCategoryBrand();
+            GADJIT.sqlConnection.Open();
+            SqlCommand cmd = new SqlCommand("select GadCatDesig from GadgetCategory where GadCatSta = 1 ", GADJIT.sqlConnection);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                ComboBoxCategorySearch.Items.Add(dr["GadCatDesig"].ToString());
+            }
+            dr.Close();
+            GADJIT.sqlConnection.Close();
+            ComboBoxCategorySearch.Items.Insert(0, "Tout");
+            ComboBoxCategorySearch.SelectedIndex = 0;
             //
             FillDGV();
             TicketsStats();
@@ -51,6 +64,8 @@ namespace GADJIT_WIN_ASW
             DTPTicketToSearch.MaxDate = DateTime.Now;
             GroupeBoxDiag.Visible = false;
         }
+      
+
         private void FillDGV()
         {
             try
@@ -391,24 +406,85 @@ namespace GADJIT_WIN_ASW
 
         private void ComboBoxCategorySearch_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GetGadgetReferences();
+            if (ComboBoxCategorySearch.SelectedIndex > 0)
+            {
+                try
+                {
+                    GADJIT.sqlConnection.Open();
+                    SqlCommand cmd = new SqlCommand("select GadCatID from GadgetCategory where GadCatDesig = @CatDes", GADJIT.sqlConnection);
+                    cmd.Parameters.AddWithValue("CatDes", ComboBoxCategorySearch.Text);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    dr.Read();
+                    CatID = Convert.ToInt32(dr["GadCatID"]);
+                    dr.Close();
+                    //
+                    ComboBoxBrandSearch.Items.Clear();
+                    cmd = new SqlCommand("SELECT DISTINCT GadBraDesig FROM GadgetReference, GadgetBrand WHERE GadgetReference.GadBraID = GadgetBrand.GadBraID AND(GadCatID = @CatID) AND GadBraSta = 1 ", GADJIT.sqlConnection);
+                    cmd.Parameters.AddWithValue("@CatID", CatID);
+                    dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        ComboBoxBrandSearch.Items.Add(dr["GadBraDesig"].ToString());
+                    }
+                    dr.Close();
+                    ComboBoxBrandSearch.Items.Insert(0, "--Tous--");
+                    //
+                    ComboBoxBrandSearch.SelectedIndex = 0;
+                    ComboBoxReferenceSearch.Items.Clear();
+                    ComboBoxReferenceSearch.SelectedIndex = -1;
+                    GADJIT.sqlConnection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Cat selectedindex changed");
+                }
+            }
+            else
+            {
+                ComboBoxBrandSearch.Items.Clear();
+                ComboBoxReferenceSearch.Items.Clear();
+            }
         }
 
         private void ComboBoxBrandSearch_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GetGadgetReferences();
+            ComboBoxReferenceSearch.Items.Clear();
+            ComboBoxReferenceSearch.SelectedIndex = -1;
+            if (ComboBoxCategorySearch.SelectedIndex != 0 && ComboBoxBrandSearch.SelectedIndex != 0)
+            {
+                try
+                {
+                    GADJIT.sqlConnection.Open();
+                    SqlCommand cmd = new SqlCommand("select GadBraID from GadgetBrand where GadBraDesig=@bradDes", GADJIT.sqlConnection);
+                    cmd.Parameters.AddWithValue("@bradDes", ComboBoxBrandSearch.Text);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    dr.Read();
+                    BrandID = Convert.ToInt32(dr["GadBraID"]);
+                    dr.Close();
+                    //
+                    cmd = new SqlCommand("select GadRefDesig from GadgetReference where GadCatID = @CatID and GadBraID = @BrandID and GadRefSta=1", GADJIT.sqlConnection);
+                    cmd.Parameters.AddWithValue("@CatID", CatID);
+                    cmd.Parameters.AddWithValue("@BrandID", BrandID);
+                    dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        ComboBoxReferenceSearch.Items.Add(dr["GadRefDesig"].ToString());
+                    }
+                    dr.Close();
+                    ComboBoxReferenceSearch.Items.Insert(0, "--Tous--");
+                    ComboBoxReferenceSearch.SelectedIndex = 0;
+                    GADJIT.sqlConnection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Erreur comboBoxBrand changed index");
+                }
+            }
         }
 
         private void ButtonReset_Click(object sender, EventArgs e)
         {
-            ComboBoxBrandSearch.SelectedIndex = 0;
-            ComboBoxCategorySearch.SelectedIndex = 0;
-            ComboBoxReferenceSearch.Items.Clear();
-            textBoxWorkTime.Clear();
-            TextBoxGadget.Clear();
-            RichTextBoxProblem.Clear();
-            richTextBoxDiag.Clear();
-            TextBoxPrice.Clear();
+            TicketConsultationWorker_Load(sender, e);
         }
 
         private void TextBoxPrice_KeyPress(object sender, KeyPressEventArgs e)
@@ -506,6 +582,11 @@ namespace GADJIT_WIN_ASW
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ComboBoxReferenceSearch_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

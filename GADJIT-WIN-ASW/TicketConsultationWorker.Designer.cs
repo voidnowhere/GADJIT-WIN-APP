@@ -29,8 +29,9 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ButtonReset = new System.Windows.Forms.Button();
             this.GroupeBoxDiag = new System.Windows.Forms.GroupBox();
             this.textBoxWorkTime = new System.Windows.Forms.TextBox();
             this.richTextBoxDiag = new System.Windows.Forms.RichTextBox();
@@ -45,7 +46,6 @@ namespace GADJIT_WIN_ASW
             this.ButtonEnregistrer = new System.Windows.Forms.Button();
             this.RichTextBoxProblem = new System.Windows.Forms.RichTextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.ButtonReset = new System.Windows.Forms.Button();
             this.ComboBoxReferenceSearch = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
             this.ComboBoxCategorySearch = new System.Windows.Forms.ComboBox();
@@ -101,6 +101,23 @@ namespace GADJIT_WIN_ASW
             this.groupBox1.TabIndex = 75;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ticket détail";
+            // 
+            // ButtonReset
+            // 
+            this.ButtonReset.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.ButtonReset.BackColor = System.Drawing.Color.Teal;
+            this.ButtonReset.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
+            this.ButtonReset.FlatAppearance.BorderSize = 0;
+            this.ButtonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ButtonReset.ForeColor = System.Drawing.Color.White;
+            this.ButtonReset.Location = new System.Drawing.Point(5, 490);
+            this.ButtonReset.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.ButtonReset.Name = "ButtonReset";
+            this.ButtonReset.Size = new System.Drawing.Size(114, 29);
+            this.ButtonReset.TabIndex = 53;
+            this.ButtonReset.Text = "Reinitialiser";
+            this.ButtonReset.UseVisualStyleBackColor = false;
+            this.ButtonReset.Click += new System.EventHandler(this.ButtonReset_Click);
             // 
             // GroupeBoxDiag
             // 
@@ -317,6 +334,7 @@ namespace GADJIT_WIN_ASW
             this.ComboBoxReferenceSearch.Name = "ComboBoxReferenceSearch";
             this.ComboBoxReferenceSearch.Size = new System.Drawing.Size(187, 29);
             this.ComboBoxReferenceSearch.TabIndex = 50;
+            this.ComboBoxReferenceSearch.SelectedIndexChanged += new System.EventHandler(this.ComboBoxReferenceSearch_SelectedIndexChanged);
             // 
             // label23
             // 
@@ -588,9 +606,9 @@ namespace GADJIT_WIN_ASW
             // 
             // DATE
             // 
-            dataGridViewCellStyle3.Format = "d";
-            dataGridViewCellStyle3.NullValue = null;
-            this.DATE.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.DATE.DefaultCellStyle = dataGridViewCellStyle1;
             this.DATE.HeaderText = "Date";
             this.DATE.MinimumWidth = 115;
             this.DATE.Name = "DATE";
