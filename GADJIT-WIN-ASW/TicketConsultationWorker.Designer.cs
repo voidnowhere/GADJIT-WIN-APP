@@ -104,7 +104,7 @@ namespace GADJIT_WIN_ASW
             // 
             // ButtonReset
             // 
-            this.ButtonReset.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.ButtonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonReset.BackColor = System.Drawing.Color.Teal;
             this.ButtonReset.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.ButtonReset.FlatAppearance.BorderSize = 0;
