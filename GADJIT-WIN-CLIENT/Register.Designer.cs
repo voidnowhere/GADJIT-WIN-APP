@@ -208,7 +208,7 @@ namespace GADJIT_WIN_CLIENT
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(5, 211);
+            this.label6.Location = new System.Drawing.Point(12, 211);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(190, 17);
             this.label6.TabIndex = 36;

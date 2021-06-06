@@ -31,7 +31,6 @@ namespace GADJIT_WIN_CLIENT
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.ComboBoxCodeTicket = new System.Windows.Forms.ComboBox();
             this.ButtonDiagnostic = new System.Windows.Forms.Button();
             this.TextBoxDiag = new System.Windows.Forms.TextBox();
             this.labelDiag = new System.Windows.Forms.Label();
@@ -42,32 +41,17 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxCat = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.PictureBoxSearch = new System.Windows.Forms.PictureBox();
             this.Information = new System.Windows.Forms.GroupBox();
             this.DGVTicket = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.TicketID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DTTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrixTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StatutTicket = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxSearch)).BeginInit();
+            this.label1 = new System.Windows.Forms.Label();
             this.Information.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVTicket)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ComboBoxCodeTicket
-            // 
-            this.ComboBoxCodeTicket.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
-            this.ComboBoxCodeTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ComboBoxCodeTicket.FormattingEnabled = true;
-            this.ComboBoxCodeTicket.Location = new System.Drawing.Point(157, 27);
-            this.ComboBoxCodeTicket.Name = "ComboBoxCodeTicket";
-            this.ComboBoxCodeTicket.Size = new System.Drawing.Size(443, 25);
-            this.ComboBoxCodeTicket.TabIndex = 36;
             // 
             // ButtonDiagnostic
             // 
@@ -77,7 +61,7 @@ namespace GADJIT_WIN_CLIENT
             this.ButtonDiagnostic.FlatAppearance.BorderSize = 0;
             this.ButtonDiagnostic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonDiagnostic.ForeColor = System.Drawing.Color.White;
-            this.ButtonDiagnostic.Location = new System.Drawing.Point(322, 285);
+            this.ButtonDiagnostic.Location = new System.Drawing.Point(322, 246);
             this.ButtonDiagnostic.Name = "ButtonDiagnostic";
             this.ButtonDiagnostic.Size = new System.Drawing.Size(132, 28);
             this.ButtonDiagnostic.TabIndex = 39;
@@ -93,7 +77,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxDiag.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.TextBoxDiag.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TextBoxDiag.Font = new System.Drawing.Font("Nirmala UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxDiag.Location = new System.Drawing.Point(115, 285);
+            this.TextBoxDiag.Location = new System.Drawing.Point(115, 246);
             this.TextBoxDiag.Multiline = true;
             this.TextBoxDiag.Name = "TextBoxDiag";
             this.TextBoxDiag.Size = new System.Drawing.Size(201, 28);
@@ -104,7 +88,7 @@ namespace GADJIT_WIN_CLIENT
             // 
             this.labelDiag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelDiag.AutoSize = true;
-            this.labelDiag.Location = new System.Drawing.Point(16, 289);
+            this.labelDiag.Location = new System.Drawing.Point(16, 250);
             this.labelDiag.Name = "labelDiag";
             this.labelDiag.Size = new System.Drawing.Size(99, 17);
             this.labelDiag.TabIndex = 36;
@@ -120,7 +104,7 @@ namespace GADJIT_WIN_CLIENT
             this.RichTextBoxProb.ForeColor = System.Drawing.Color.Black;
             this.RichTextBoxProb.Location = new System.Drawing.Point(115, 154);
             this.RichTextBoxProb.Name = "RichTextBoxProb";
-            this.RichTextBoxProb.Size = new System.Drawing.Size(339, 92);
+            this.RichTextBoxProb.Size = new System.Drawing.Size(339, 53);
             this.RichTextBoxProb.TabIndex = 35;
             this.RichTextBoxProb.Text = "";
             // 
@@ -190,15 +174,6 @@ namespace GADJIT_WIN_CLIENT
             this.label3.TabIndex = 29;
             this.label3.Text = "Marques :";
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(17, 35);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(112, 17);
-            this.label14.TabIndex = 32;
-            this.label14.Text = "Par Code Ticket :";
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -207,31 +182,6 @@ namespace GADJIT_WIN_CLIENT
             this.label6.Size = new System.Drawing.Size(81, 17);
             this.label6.TabIndex = 28;
             this.label6.Text = "Catégories :";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.groupBox2.BackColor = System.Drawing.Color.White;
-            this.groupBox2.Controls.Add(this.PictureBoxSearch);
-            this.groupBox2.Controls.Add(this.ComboBoxCodeTicket);
-            this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Location = new System.Drawing.Point(68, 39);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(662, 83);
-            this.groupBox2.TabIndex = 39;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Recherche :";
-            // 
-            // PictureBoxSearch
-            // 
-            this.PictureBoxSearch.Image = global::GADJIT_WIN_CLIENT.Properties.Resources.search_96px;
-            this.PictureBoxSearch.Location = new System.Drawing.Point(626, 27);
-            this.PictureBoxSearch.Name = "PictureBoxSearch";
-            this.PictureBoxSearch.Size = new System.Drawing.Size(32, 27);
-            this.PictureBoxSearch.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PictureBoxSearch.TabIndex = 42;
-            this.PictureBoxSearch.TabStop = false;
-            this.PictureBoxSearch.Click += new System.EventHandler(this.PictureBoxSearch_Click);
             // 
             // Information
             // 
@@ -248,9 +198,9 @@ namespace GADJIT_WIN_CLIENT
             this.Information.Controls.Add(this.label4);
             this.Information.Controls.Add(this.label3);
             this.Information.Controls.Add(this.label6);
-            this.Information.Location = new System.Drawing.Point(319, 128);
+            this.Information.Location = new System.Drawing.Point(319, 51);
             this.Information.Name = "Information";
-            this.Information.Size = new System.Drawing.Size(469, 368);
+            this.Information.Size = new System.Drawing.Size(469, 329);
             this.Information.TabIndex = 38;
             this.Information.TabStop = false;
             this.Information.Text = "Information :";
@@ -268,28 +218,16 @@ namespace GADJIT_WIN_CLIENT
             this.DTTicket,
             this.PrixTicket,
             this.StatutTicket});
-            this.DGVTicket.Location = new System.Drawing.Point(12, 128);
+            this.DGVTicket.Location = new System.Drawing.Point(12, 51);
             this.DGVTicket.Name = "DGVTicket";
             this.DGVTicket.ReadOnly = true;
-            this.DGVTicket.Size = new System.Drawing.Size(301, 357);
+            this.DGVTicket.Size = new System.Drawing.Size(301, 329);
             this.DGVTicket.TabIndex = 36;
             this.DGVTicket.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentDoubleClick);
             this.DGVTicket.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentClick);
             this.DGVTicket.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellContentDoubleClick);
             this.DGVTicket.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGVTicket_CellDoubleClick);
             this.DGVTicket.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVTicket_CellMouseDoubleClick);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.label1.Location = new System.Drawing.Point(278, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(253, 27);
-            this.label1.TabIndex = 35;
-            this.label1.Text = "Consultation Ticket";
             // 
             // TicketID
             // 
@@ -332,13 +270,24 @@ namespace GADJIT_WIN_CLIENT
             this.StatutTicket.Name = "StatutTicket";
             this.StatutTicket.ReadOnly = true;
             // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("MS UI Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.label1.Location = new System.Drawing.Point(278, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(253, 27);
+            this.label1.TabIndex = 35;
+            this.label1.Text = "Consultation Ticket";
+            // 
             // ConsultationTicketForClient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 497);
-            this.Controls.Add(this.groupBox2);
+            this.ClientSize = new System.Drawing.Size(800, 392);
             this.Controls.Add(this.Information);
             this.Controls.Add(this.DGVTicket);
             this.Controls.Add(this.label1);
@@ -350,9 +299,6 @@ namespace GADJIT_WIN_CLIENT
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "ConsultationTicketForClient";
             this.Load += new System.EventHandler(this.ConsultationTicketForClient_Load);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBoxSearch)).EndInit();
             this.Information.ResumeLayout(false);
             this.Information.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVTicket)).EndInit();
@@ -362,20 +308,16 @@ namespace GADJIT_WIN_CLIENT
         }
 
         #endregion
-        private System.Windows.Forms.ComboBox ComboBoxCodeTicket;
         private System.Windows.Forms.Button ButtonDiagnostic;
         private System.Windows.Forms.TextBox TextBoxDiag;
         private System.Windows.Forms.Label labelDiag;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox Information;
         private System.Windows.Forms.DataGridView DGVTicket;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox PictureBoxSearch;
         public System.Windows.Forms.RichTextBox RichTextBoxProb;
         public System.Windows.Forms.TextBox TextBoxRef;
         public System.Windows.Forms.TextBox TextBoxMarque;
