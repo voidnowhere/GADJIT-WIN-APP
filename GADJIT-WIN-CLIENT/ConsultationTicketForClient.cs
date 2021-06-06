@@ -44,18 +44,6 @@ namespace GADJIT_WIN_CLIENT
             DGVTicket.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(116, 86, 174);
             DGVTicket.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             //
-            SqlCommand cmd = new SqlCommand("select TicID from Ticket where CliID =@CID", GADJIT.sqlConnection);
-            cmd.Parameters.AddWithValue("@CID", CID);
-            GADJIT.sqlConnection.Open();
-            dr = cmd.ExecuteReader();
-            ComboBoxCodeTicket.Items.Add("--TOUT--");
-            while (dr.Read())
-            {
-                ComboBoxCodeTicket.Items.Add(dr["TicID"].ToString());
-            }
-            dr.Close();
-            ComboBoxCodeTicket.SelectedIndex = 0;
-            //
             GADJIT.sqlConnection.Close();
             DGVTicket.Rows.Clear();
             FillDGVTicket();
@@ -130,33 +118,6 @@ namespace GADJIT_WIN_CLIENT
         private void PictureBoxExit_Click(object sender, EventArgs e)
         {
             Environment.Exit(1);
-        }
-
-        private void PictureBoxSearch_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                DGVTicket.Rows.Clear();
-                SqlCommand cmd = new SqlCommand("Select TicID,TicDT,TicRepPri,TicSta from ticket where TicID=@ID ", GADJIT.sqlConnection);
-                cmd.Parameters.AddWithValue("@ID", ComboBoxCodeTicket.Text);
-                GADJIT.sqlConnection.Open();
-                dr = cmd.ExecuteReader();
-                if (dr.HasRows)
-                {
-                    dr.Read();
-                    DGVTicket.Rows.Add(dr["TicID"], dr["TicDT"], dr["TicRepPri"], dr["TicSta"]);
-                }
-                price = dr["TicRepPri"].ToString();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Erreur Search");
-            }
-            finally
-            {
-                dr.Close();
-                GADJIT.sqlConnection.Close();
-            }
         }
         private void BringBrandCatRef()
         {
