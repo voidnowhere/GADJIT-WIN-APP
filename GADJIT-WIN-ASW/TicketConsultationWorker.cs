@@ -63,7 +63,6 @@ namespace GADJIT_WIN_ASW
                     "where t.WorID = @WorID " +
                     "and t.GadRefID = gr.GadRefID and gr.GadCatID = gc.GadCatID and gr.GadBraID = gb.GadBraID " +
                     "and TicDT between @dateF and @dateT";
-
                 SqlCommand sqlCommand = new SqlCommand();
                 sqlCommand.Parameters.AddWithValue("@WorID", WID);
                 sqlCommand.Parameters.Add("@dateF", SqlDbType.DateTime).Value = DTPTicketFromSearch.Value.AddDays(-1);
@@ -189,14 +188,6 @@ namespace GADJIT_WIN_ASW
                 }
                 ComboBoxBrandSearch.Items.Insert(0, "--tous--");
                 dataReader.Close();
-                sqlCommand.CommandText = "select TicID from Ticket where WorID=@ID";
-                sqlCommand.Parameters.AddWithValue("@ID", WID);
-                dataReader = sqlCommand.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    ComboBoxCode.Items.Add(dataReader.GetInt32(0));
-                }
-                ComboBoxCode.Items.Insert(0, "--tous--");
             }
             catch (Exception ex)
             {
@@ -208,7 +199,6 @@ namespace GADJIT_WIN_ASW
                 GADJIT.sqlConnection.Close();
                 ComboBoxBrandSearch.SelectedIndex = 0;
                 ComboBoxCategorySearch.SelectedIndex = 0;
-                ComboBoxCode.SelectedIndex = 0;
             }
         }
         private void TicketsStats()
@@ -330,6 +320,7 @@ namespace GADJIT_WIN_ASW
             GADJIT.sqlConnection.Close();
             //
             ComboBoxPorg.Items.Clear();
+            MessageBox.Show("Enregistrement reussit", "Enregister");
             TicketConsultationWorker_Load(sender, e);
         }
         private void GetClientEmail()
@@ -412,7 +403,6 @@ namespace GADJIT_WIN_ASW
         {
             ComboBoxBrandSearch.SelectedIndex = 0;
             ComboBoxCategorySearch.SelectedIndex = 0;
-            ComboBoxCode.SelectedIndex = 0;
             ComboBoxReferenceSearch.Items.Clear();
             textBoxWorkTime.Clear();
             TextBoxGadget.Clear();

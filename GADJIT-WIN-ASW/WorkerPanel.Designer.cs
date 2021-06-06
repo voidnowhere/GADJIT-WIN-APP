@@ -57,7 +57,7 @@ namespace GADJIT_WIN_ASW
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(250, 453);
+            this.panel1.Size = new System.Drawing.Size(228, 453);
             this.panel1.TabIndex = 1;
             // 
             // LogoutButton
@@ -79,9 +79,9 @@ namespace GADJIT_WIN_ASW
             this.ButtomGestionTicket.FlatAppearance.BorderSize = 0;
             this.ButtomGestionTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtomGestionTicket.ForeColor = System.Drawing.Color.White;
-            this.ButtomGestionTicket.Location = new System.Drawing.Point(0, 129);
+            this.ButtomGestionTicket.Location = new System.Drawing.Point(0, 147);
             this.ButtomGestionTicket.Name = "ButtomGestionTicket";
-            this.ButtomGestionTicket.Size = new System.Drawing.Size(250, 40);
+            this.ButtomGestionTicket.Size = new System.Drawing.Size(228, 40);
             this.ButtomGestionTicket.TabIndex = 1;
             this.ButtomGestionTicket.Text = "Gestion Ticket";
             this.ButtomGestionTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -101,7 +101,7 @@ namespace GADJIT_WIN_ASW
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(250, 129);
+            this.panel2.Size = new System.Drawing.Size(228, 147);
             this.panel2.TabIndex = 0;
             // 
             // label1
@@ -118,7 +118,7 @@ namespace GADJIT_WIN_ASW
             // pictureBox1
             // 
             this.pictureBox1.Image = global::GADJIT_WIN_ASW.Properties.Resources.lock_64px;
-            this.pictureBox1.Location = new System.Drawing.Point(190, 105);
+            this.pictureBox1.Location = new System.Drawing.Point(161, 105);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(30, 21);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -129,7 +129,7 @@ namespace GADJIT_WIN_ASW
             // CircularProfilPicture
             // 
             this.CircularProfilPicture.Image = global::GADJIT_WIN_ASW.Properties.Resources.user_60px;
-            this.CircularProfilPicture.Location = new System.Drawing.Point(190, 40);
+            this.CircularProfilPicture.Location = new System.Drawing.Point(161, 40);
             this.CircularProfilPicture.Name = "CircularProfilPicture";
             this.CircularProfilPicture.Size = new System.Drawing.Size(60, 60);
             this.CircularProfilPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -140,7 +140,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.cirucularButton.BackColor = System.Drawing.Color.Lime;
             this.cirucularButton.FlatAppearance.BorderSize = 2;
-            this.cirucularButton.Location = new System.Drawing.Point(223, 106);
+            this.cirucularButton.Location = new System.Drawing.Point(194, 106);
             this.cirucularButton.Name = "cirucularButton";
             this.cirucularButton.Size = new System.Drawing.Size(24, 23);
             this.cirucularButton.TabIndex = 7;
