@@ -427,7 +427,7 @@ namespace GADJIT_WIN_ASW
                         ComboBoxBrandSearch.Items.Add(dr["GadBraDesig"].ToString());
                     }
                     dr.Close();
-                    ComboBoxBrandSearch.Items.Insert(0, "Choisissez une marque");
+                    ComboBoxBrandSearch.Items.Insert(0, "--Tous--");
                     //
                     ComboBoxBrandSearch.SelectedIndex = 0;
                     ComboBoxReferenceSearch.Items.Clear();
@@ -471,7 +471,7 @@ namespace GADJIT_WIN_ASW
                         ComboBoxReferenceSearch.Items.Add(dr["GadRefDesig"].ToString());
                     }
                     dr.Close();
-                    ComboBoxReferenceSearch.Items.Insert(0, "choisissez une reference");
+                    ComboBoxReferenceSearch.Items.Insert(0, "--Tous--");
                     ComboBoxReferenceSearch.SelectedIndex = 0;
                     GADJIT.sqlConnection.Close();
                 }
@@ -582,6 +582,11 @@ namespace GADJIT_WIN_ASW
         }
 
         private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ComboBoxReferenceSearch_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
