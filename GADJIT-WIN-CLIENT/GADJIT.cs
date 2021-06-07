@@ -12,14 +12,11 @@ namespace GADJIT_WIN_CLIENT
 {
     class GADJIT
     {
-        public static SqlConnection sqlConnection = new SqlConnection(@"Server=pff-win-app.database.windows.net; Database=GADJIT; User Id=gadjit_basic; Password=cz3l@K$H%!W2;");
+        //Azure
+        //public static SqlConnection sqlConnection = new SqlConnection(@"Server=pff-win-app.database.windows.net; Database=GADJIT; User Id=gadjit_basic; Password=cz3l@K$H%!W2;");
+        //LOCAL
+        public static SqlConnection sqlConnection = new SqlConnection(@"Server=.\SQLEXPRESS; Database=GADJIT; Integrated security = true;");
 
-        public static string IDGenerator(string id)
-        {
-            String code = Regex.Match(id, @"^\D+").ToString();
-            String num = Regex.Match(id, @"\d+$").ToString();
-            return code + (int.Parse(num) + 1).ToString();
-        }
         public static void SendEmail(string toEmail, string msg)
         {
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
@@ -32,7 +29,7 @@ namespace GADJIT_WIN_CLIENT
                 "GADJITMA@gmail.com",
                 toEmail,
                 "GADJIT",
-                "Bonjour:\n\n" + msg + "\n\nGADJIT MAROC.");
+                "Bonjour " + msg + "\n\nGADJIT MAROC.");
             smtp.Send(mail);
         }
     }
