@@ -104,16 +104,16 @@ namespace GADJIT_WIN_ASW
             // 
             // ButtonReset
             // 
-            this.ButtonReset.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.ButtonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ButtonReset.BackColor = System.Drawing.Color.Teal;
             this.ButtonReset.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.ButtonReset.FlatAppearance.BorderSize = 0;
             this.ButtonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonReset.ForeColor = System.Drawing.Color.White;
-            this.ButtonReset.Location = new System.Drawing.Point(7, 490);
+            this.ButtonReset.Location = new System.Drawing.Point(5, 490);
             this.ButtonReset.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonReset.Name = "ButtonReset";
-            this.ButtonReset.Size = new System.Drawing.Size(102, 30);
+            this.ButtonReset.Size = new System.Drawing.Size(120, 30);
             this.ButtonReset.TabIndex = 53;
             this.ButtonReset.Text = "Reinitialiser";
             this.ButtonReset.UseVisualStyleBackColor = false;
@@ -272,10 +272,10 @@ namespace GADJIT_WIN_ASW
             this.ButtonEnregistrer.FlatAppearance.BorderSize = 0;
             this.ButtonEnregistrer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonEnregistrer.ForeColor = System.Drawing.Color.White;
-            this.ButtonEnregistrer.Location = new System.Drawing.Point(191, 490);
+            this.ButtonEnregistrer.Location = new System.Drawing.Point(172, 490);
             this.ButtonEnregistrer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonEnregistrer.Name = "ButtonEnregistrer";
-            this.ButtonEnregistrer.Size = new System.Drawing.Size(101, 30);
+            this.ButtonEnregistrer.Size = new System.Drawing.Size(120, 30);
             this.ButtonEnregistrer.TabIndex = 14;
             this.ButtonEnregistrer.Text = "Enregistrer";
             this.ButtonEnregistrer.UseVisualStyleBackColor = false;
