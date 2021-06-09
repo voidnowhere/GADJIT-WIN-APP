@@ -39,7 +39,10 @@ namespace GADJIT_WIN_ASW
             try
             {
                 CrystalReportGadgetCategoryStats gadgetCategoryStats = new CrystalReportGadgetCategoryStats();
-                gadgetCategoryStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", "pff-win-app.database.windows.net", "GADJIT");
+                //azure
+                //gadgetBrandStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", "pff-win-app.database.windows.net", "GADJIT");
+                //local
+                gadgetCategoryStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", @".\SQLEXPRESS", "GADJIT");
                 gadgetCategoryStats.SetParameterValue("from", DTPFrom.Value.ToShortDateString());
                 gadgetCategoryStats.SetParameterValue("to", DateTime.Parse(DateTime.Now.ToShortDateString()).AddHours(23).AddMinutes(59).AddSeconds(59).ToString());
                 gadgetCategoryStats.SetParameterValue("toDate", DateTime.Now.ToShortDateString());
@@ -56,7 +59,10 @@ namespace GADJIT_WIN_ASW
             try
             {
                 CrystalReportGadgetBrandStats gadgetBrandStats = new CrystalReportGadgetBrandStats();
-                gadgetBrandStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", "pff-win-app.database.windows.net", "GADJIT");
+                //azure
+                //gadgetBrandStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", "pff-win-app.database.windows.net", "GADJIT");
+                //local
+                gadgetBrandStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", @".\SQLEXPRESS", "GADJIT");
                 gadgetBrandStats.SetParameterValue("from", DTPFrom.Value.ToShortDateString());
                 gadgetBrandStats.SetParameterValue("to", DateTime.Parse(DateTime.Now.ToShortDateString()).AddHours(23).AddMinutes(59).AddSeconds(59).ToString());
                 gadgetBrandStats.SetParameterValue("toDate", DateTime.Now.ToShortDateString());

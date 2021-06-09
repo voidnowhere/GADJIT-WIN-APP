@@ -13,9 +13,9 @@ namespace GADJIT_WIN_ASW
     static class GADJIT
     {
         //azure
-        public static SqlConnection sqlConnection = new SqlConnection(@"Server=pff-win-app.database.windows.net; Database=GADJIT; User Id=gadjit_basic; Password=cz3l@K$H%!W2;");
+        //public static SqlConnection sqlConnection = new SqlConnection(@"Server=pff-win-app.database.windows.net; Database=GADJIT; User Id=gadjit_basic; Password=cz3l@K$H%!W2;");
         //local
-        //public static SqlConnection sqlConnection = new SqlConnection(@".\SQLEXPRESS; Database=GADJIT; Integrated Security=true");
+        public static SqlConnection sqlConnection = new SqlConnection(@"Server=.\SQLEXPRESS; Database=GADJIT; User Id=gadjit_basic; Password=cz3l@K$H%!W2;");
 
         public static bool IsCINValid(string cin)
         {
