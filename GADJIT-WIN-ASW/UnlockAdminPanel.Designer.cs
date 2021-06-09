@@ -29,6 +29,7 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UnlockAdminPanel));
             this.ButtonLogin = new System.Windows.Forms.Button();
             this.TextBoxPassWord = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -97,6 +98,7 @@ namespace GADJIT_WIN_ASW
             this.Controls.Add(this.TextBoxPassWord);
             this.Controls.Add(this.ButtonLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UnlockAdminPanel";

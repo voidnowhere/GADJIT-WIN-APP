@@ -29,6 +29,7 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminPanel));
             this.LabelFirstName = new System.Windows.Forms.Label();
             this.PanelGadgetManagment = new System.Windows.Forms.Panel();
             this.ButtonGadgetReferenceManagment = new System.Windows.Forms.Button();
@@ -230,7 +231,7 @@ namespace GADJIT_WIN_ASW
             this.LabelLastName.TabIndex = 5;
             this.LabelLastName.Text = "Last Name";
             // 
-            // ButtonStatisticsMenu
+            // ButtonStatistics
             // 
             this.ButtonStatistics.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ButtonStatistics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(181)))), ((int)(((byte)(46)))));
@@ -240,7 +241,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonStatistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonStatistics.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(206)))));
             this.ButtonStatistics.Location = new System.Drawing.Point(0, 143);
-            this.ButtonStatistics.Name = "ButtonStatisticsMenu";
+            this.ButtonStatistics.Name = "ButtonStatistics";
             this.ButtonStatistics.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.ButtonStatistics.Size = new System.Drawing.Size(210, 40);
             this.ButtonStatistics.TabIndex = 1;
@@ -388,6 +389,7 @@ namespace GADJIT_WIN_ASW
             this.ClientSize = new System.Drawing.Size(952, 626);
             this.Controls.Add(this.SideMenuPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.IsMdiContainer = true;
             this.Name = "AdminPanel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;

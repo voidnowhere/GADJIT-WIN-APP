@@ -32,6 +32,7 @@ namespace GADJIT_WIN_ASW
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WorkerSpeciality));
             this.DGVWorkerSpecialistes = new System.Windows.Forms.DataGridView();
             this.ColumnComboBoxCategory = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.ColumnComboBoxBrand = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -92,9 +93,11 @@ namespace GADJIT_WIN_ASW
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(447, 270);
             this.Controls.Add(this.DGVWorkerSpecialistes);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "WorkerSpeciality";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employé Spécialité";
             this.Load += new System.EventHandler(this.WorkerSpeciality_Load);

@@ -29,6 +29,7 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UnlockStaffPanel));
             this.TextBoxPassWord = new System.Windows.Forms.TextBox();
             this.LogoutButton = new GADJIT_WIN_ASW.CircularPicture();
             this.ButtonLogin = new System.Windows.Forms.Button();
@@ -95,6 +96,7 @@ namespace GADJIT_WIN_ASW
             this.Controls.Add(this.LogoutButton);
             this.Controls.Add(this.TextBoxPassWord);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UnlockStaffPanel";
             this.Text = "UnlockStaffPanel";
             this.Load += new System.EventHandler(this.UnlockStaffPanel_Load);
