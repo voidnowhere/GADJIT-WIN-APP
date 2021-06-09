@@ -323,8 +323,6 @@ namespace GADJIT_WIN_CLIENT
             // 
             // ComboxBoxCity
             // 
-            this.ComboxBoxCity.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.ComboxBoxCity.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.ComboxBoxCity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(231)))), ((int)(((byte)(233)))));
             this.ComboxBoxCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ComboxBoxCity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
