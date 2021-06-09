@@ -29,7 +29,7 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ButtonReset = new System.Windows.Forms.Button();
             this.GroupeBoxDiag = new System.Windows.Forms.GroupBox();
@@ -103,7 +103,7 @@ namespace GADJIT_WIN_ASW
             // 
             // ButtonReset
             // 
-            this.ButtonReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ButtonReset.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.ButtonReset.BackColor = System.Drawing.Color.Teal;
             this.ButtonReset.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
             this.ButtonReset.FlatAppearance.BorderSize = 0;
@@ -589,9 +589,9 @@ namespace GADJIT_WIN_ASW
             // 
             // DATE
             // 
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            this.DATE.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.DATE.DefaultCellStyle = dataGridViewCellStyle3;
             this.DATE.HeaderText = "Date";
             this.DATE.MinimumWidth = 115;
             this.DATE.Name = "DATE";
