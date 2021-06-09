@@ -80,6 +80,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxDiag.Location = new System.Drawing.Point(115, 246);
             this.TextBoxDiag.Multiline = true;
             this.TextBoxDiag.Name = "TextBoxDiag";
+            this.TextBoxDiag.ReadOnly = true;
             this.TextBoxDiag.Size = new System.Drawing.Size(201, 28);
             this.TextBoxDiag.TabIndex = 37;
             this.TextBoxDiag.Visible = false;
@@ -104,6 +105,7 @@ namespace GADJIT_WIN_CLIENT
             this.RichTextBoxProb.ForeColor = System.Drawing.Color.Black;
             this.RichTextBoxProb.Location = new System.Drawing.Point(115, 154);
             this.RichTextBoxProb.Name = "RichTextBoxProb";
+            this.RichTextBoxProb.ReadOnly = true;
             this.RichTextBoxProb.Size = new System.Drawing.Size(339, 53);
             this.RichTextBoxProb.TabIndex = 35;
             this.RichTextBoxProb.Text = "";
@@ -127,6 +129,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxRef.Location = new System.Drawing.Point(115, 96);
             this.TextBoxRef.Multiline = true;
             this.TextBoxRef.Name = "TextBoxRef";
+            this.TextBoxRef.ReadOnly = true;
             this.TextBoxRef.Size = new System.Drawing.Size(339, 28);
             this.TextBoxRef.TabIndex = 33;
             // 
@@ -140,6 +143,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxMarque.Location = new System.Drawing.Point(115, 62);
             this.TextBoxMarque.Multiline = true;
             this.TextBoxMarque.Name = "TextBoxMarque";
+            this.TextBoxMarque.ReadOnly = true;
             this.TextBoxMarque.Size = new System.Drawing.Size(339, 28);
             this.TextBoxMarque.TabIndex = 32;
             // 
@@ -153,6 +157,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxCat.Location = new System.Drawing.Point(115, 28);
             this.TextBoxCat.Multiline = true;
             this.TextBoxCat.Name = "TextBoxCat";
+            this.TextBoxCat.ReadOnly = true;
             this.TextBoxCat.Size = new System.Drawing.Size(339, 28);
             this.TextBoxCat.TabIndex = 31;
             // 

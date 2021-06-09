@@ -85,6 +85,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxPrice.Location = new System.Drawing.Point(343, 513);
             this.TextBoxPrice.Multiline = true;
             this.TextBoxPrice.Name = "TextBoxPrice";
+            this.TextBoxPrice.ReadOnly = true;
             this.TextBoxPrice.Size = new System.Drawing.Size(527, 28);
             this.TextBoxPrice.TabIndex = 45;
             // 
@@ -95,6 +96,7 @@ namespace GADJIT_WIN_CLIENT
             this.RichTextBoxDiag.ForeColor = System.Drawing.Color.Black;
             this.RichTextBoxDiag.Location = new System.Drawing.Point(343, 395);
             this.RichTextBoxDiag.Name = "RichTextBoxDiag";
+            this.RichTextBoxDiag.ReadOnly = true;
             this.RichTextBoxDiag.Size = new System.Drawing.Size(527, 102);
             this.RichTextBoxDiag.TabIndex = 44;
             this.RichTextBoxDiag.Text = "";
@@ -106,6 +108,7 @@ namespace GADJIT_WIN_CLIENT
             this.RichtextBoxProbDiag.ForeColor = System.Drawing.Color.Black;
             this.RichtextBoxProbDiag.Location = new System.Drawing.Point(343, 267);
             this.RichtextBoxProbDiag.Name = "RichtextBoxProbDiag";
+            this.RichtextBoxProbDiag.ReadOnly = true;
             this.RichtextBoxProbDiag.Size = new System.Drawing.Size(527, 102);
             this.RichtextBoxProbDiag.TabIndex = 43;
             this.RichtextBoxProbDiag.Text = "";
@@ -118,6 +121,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxRefDiag.Location = new System.Drawing.Point(343, 216);
             this.TextBoxRefDiag.Multiline = true;
             this.TextBoxRefDiag.Name = "TextBoxRefDiag";
+            this.TextBoxRefDiag.ReadOnly = true;
             this.TextBoxRefDiag.Size = new System.Drawing.Size(527, 28);
             this.TextBoxRefDiag.TabIndex = 42;
             // 
@@ -129,6 +133,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxMarDiag.Location = new System.Drawing.Point(343, 175);
             this.TextBoxMarDiag.Multiline = true;
             this.TextBoxMarDiag.Name = "TextBoxMarDiag";
+            this.TextBoxMarDiag.ReadOnly = true;
             this.TextBoxMarDiag.Size = new System.Drawing.Size(527, 28);
             this.TextBoxMarDiag.TabIndex = 41;
             // 
@@ -140,6 +145,7 @@ namespace GADJIT_WIN_CLIENT
             this.TextBoxCatDiag.Location = new System.Drawing.Point(343, 127);
             this.TextBoxCatDiag.Multiline = true;
             this.TextBoxCatDiag.Name = "TextBoxCatDiag";
+            this.TextBoxCatDiag.ReadOnly = true;
             this.TextBoxCatDiag.Size = new System.Drawing.Size(527, 28);
             this.TextBoxCatDiag.TabIndex = 40;
             // 
