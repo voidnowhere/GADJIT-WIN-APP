@@ -15,7 +15,7 @@ namespace GADJIT_WIN_CLIENT
         //Azure
         //public static SqlConnection sqlConnection = new SqlConnection(@"Server=pff-win-app.database.windows.net; Database=GADJIT; User Id=gadjit_basic; Password=cz3l@K$H%!W2;");
         //LOCAL
-        public static SqlConnection sqlConnection = new SqlConnection(@"Server=.\SQLEXPRESS; Database=GADJIT; Integrated security = true;");
+        public static SqlConnection sqlConnection = new SqlConnection(@"Server=.\SQLEXPRESS; Database=GADJIT; User Id=gadjit_basic; Password=cz3l@K$H%!W2;");
 
         public static void SendEmail(string toEmail, string msg)
         {
