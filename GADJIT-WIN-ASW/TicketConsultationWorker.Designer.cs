@@ -29,7 +29,7 @@ namespace GADJIT_WIN_ASW
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ButtonReset = new System.Windows.Forms.Button();
             this.GroupeBoxDiag = new System.Windows.Forms.GroupBox();
@@ -82,7 +82,6 @@ namespace GADJIT_WIN_ASW
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.ButtonReset);
             this.groupBox1.Controls.Add(this.GroupeBoxDiag);
             this.groupBox1.Controls.Add(this.TextBoxGadget);
             this.groupBox1.Controls.Add(this.label17);
@@ -110,10 +109,10 @@ namespace GADJIT_WIN_ASW
             this.ButtonReset.FlatAppearance.BorderSize = 0;
             this.ButtonReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonReset.ForeColor = System.Drawing.Color.White;
-            this.ButtonReset.Location = new System.Drawing.Point(5, 490);
+            this.ButtonReset.Location = new System.Drawing.Point(614, 92);
             this.ButtonReset.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonReset.Name = "ButtonReset";
-            this.ButtonReset.Size = new System.Drawing.Size(120, 30);
+            this.ButtonReset.Size = new System.Drawing.Size(117, 30);
             this.ButtonReset.TabIndex = 53;
             this.ButtonReset.Text = "Reinitialiser";
             this.ButtonReset.UseVisualStyleBackColor = false;
@@ -432,6 +431,7 @@ namespace GADJIT_WIN_ASW
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.ButtonReset);
             this.groupBox2.Controls.Add(this.ComboBoxReferenceSearch);
             this.groupBox2.Controls.Add(this.label23);
             this.groupBox2.Controls.Add(this.ComboBoxCategorySearch);
@@ -460,10 +460,10 @@ namespace GADJIT_WIN_ASW
             this.ButtonRecherche.FlatAppearance.BorderSize = 0;
             this.ButtonRecherche.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ButtonRecherche.ForeColor = System.Drawing.Color.White;
-            this.ButtonRecherche.Location = new System.Drawing.Point(633, 42);
+            this.ButtonRecherche.Location = new System.Drawing.Point(614, 42);
             this.ButtonRecherche.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.ButtonRecherche.Name = "ButtonRecherche";
-            this.ButtonRecherche.Size = new System.Drawing.Size(98, 29);
+            this.ButtonRecherche.Size = new System.Drawing.Size(117, 29);
             this.ButtonRecherche.TabIndex = 36;
             this.ButtonRecherche.Text = "Recherche";
             this.ButtonRecherche.UseVisualStyleBackColor = false;
@@ -589,9 +589,9 @@ namespace GADJIT_WIN_ASW
             // 
             // DATE
             // 
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.DATE.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.DATE.DefaultCellStyle = dataGridViewCellStyle2;
             this.DATE.HeaderText = "Date";
             this.DATE.MinimumWidth = 115;
             this.DATE.Name = "DATE";
