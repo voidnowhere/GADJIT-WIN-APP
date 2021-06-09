@@ -22,10 +22,13 @@ namespace GADJIT_WIN_ASW
             try
             {
                 CrystalReportWorkerStats crystalReportWorkerStats = new CrystalReportWorkerStats();
+                //azure
                 crystalReportWorkerStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", "pff-win-app.database.windows.net", "GADJIT");
+                //local
+                //crystalReportWorkerStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", @".\SQLEXPRESS", "GADJIT");
                 crystalReportWorkerStats.SetParameterValue("from", DTPFrom.Value.ToShortDateString());
-                crystalReportWorkerStats.SetParameterValue("to", DateTime.Parse(DateTime.Now.ToShortDateString()).AddHours(23).AddMinutes(59).AddSeconds(59).ToString());
-                crystalReportWorkerStats.SetParameterValue("toDate", DateTime.Now.ToShortDateString());
+                crystalReportWorkerStats.SetParameterValue("to", DateTime.Parse(DTPTo.Value.ToShortDateString()).AddHours(23).AddMinutes(59).AddSeconds(59).ToString());
+                crystalReportWorkerStats.SetParameterValue("toDate", DTPTo.Value.ToShortDateString());
                 CrystalReportViewer.ReportSource = crystalReportWorkerStats;
             }
             catch(Exception ex)
@@ -40,12 +43,12 @@ namespace GADJIT_WIN_ASW
             {
                 CrystalReportGadgetCategoryStats gadgetCategoryStats = new CrystalReportGadgetCategoryStats();
                 //azure
-                //gadgetBrandStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", "pff-win-app.database.windows.net", "GADJIT");
+                gadgetCategoryStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", "pff-win-app.database.windows.net", "GADJIT");
                 //local
-                gadgetCategoryStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", @".\SQLEXPRESS", "GADJIT");
+                //gadgetCategoryStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", @".\SQLEXPRESS", "GADJIT");
                 gadgetCategoryStats.SetParameterValue("from", DTPFrom.Value.ToShortDateString());
-                gadgetCategoryStats.SetParameterValue("to", DateTime.Parse(DateTime.Now.ToShortDateString()).AddHours(23).AddMinutes(59).AddSeconds(59).ToString());
-                gadgetCategoryStats.SetParameterValue("toDate", DateTime.Now.ToShortDateString());
+                gadgetCategoryStats.SetParameterValue("to", DateTime.Parse(DTPTo.Value.ToShortDateString()).AddHours(23).AddMinutes(59).AddSeconds(59).ToString());
+                gadgetCategoryStats.SetParameterValue("toDate", DTPTo.Value.ToShortDateString());
                 CrystalReportViewer.ReportSource = gadgetCategoryStats;
             }
             catch (Exception ex)
@@ -60,12 +63,12 @@ namespace GADJIT_WIN_ASW
             {
                 CrystalReportGadgetBrandStats gadgetBrandStats = new CrystalReportGadgetBrandStats();
                 //azure
-                //gadgetBrandStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", "pff-win-app.database.windows.net", "GADJIT");
+                gadgetBrandStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", "pff-win-app.database.windows.net", "GADJIT");
                 //local
-                gadgetBrandStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", @".\SQLEXPRESS", "GADJIT");
+                //gadgetBrandStats.SetDatabaseLogon("gadjit_basic", "cz3l@K$H%!W2", @".\SQLEXPRESS", "GADJIT");
                 gadgetBrandStats.SetParameterValue("from", DTPFrom.Value.ToShortDateString());
-                gadgetBrandStats.SetParameterValue("to", DateTime.Parse(DateTime.Now.ToShortDateString()).AddHours(23).AddMinutes(59).AddSeconds(59).ToString());
-                gadgetBrandStats.SetParameterValue("toDate", DateTime.Now.ToShortDateString());
+                gadgetBrandStats.SetParameterValue("to", DateTime.Parse(DTPTo.Value.ToShortDateString()).AddHours(23).AddMinutes(59).AddSeconds(59).ToString());
+                gadgetBrandStats.SetParameterValue("toDate", DTPTo.Value.ToShortDateString());
                 CrystalReportViewer.ReportSource = gadgetBrandStats;
             }
             catch (Exception ex)
