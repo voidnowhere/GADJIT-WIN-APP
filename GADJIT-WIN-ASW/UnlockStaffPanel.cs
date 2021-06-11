@@ -70,6 +70,7 @@ namespace GADJIT_WIN_ASW
                 sqlCommandDispo.Parameters.Add("@staffID", SqlDbType.Int).Value = staffID;
                 GADJIT.sqlConnection.Open();
                 sqlCommandDispo.ExecuteNonQuery();
+                GADJIT.sqlConnection.Close();
                 staffPanel.logout = true;
                 this.Close();
                 staffPanel.Close();

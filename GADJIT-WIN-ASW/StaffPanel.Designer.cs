@@ -236,6 +236,7 @@ namespace GADJIT_WIN_ASW
             this.Name = "StaffPanel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "StaffPanel";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StaffPanel_FormClosing);
             this.Load += new System.EventHandler(this.StaffPanel_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LogoutButton)).EndInit();
