@@ -94,8 +94,12 @@ namespace GADJIT_WIN_ASW
 
         private void PictureBoxLogOut_Click(object sender, EventArgs e)
         {
-            AdminDispoChanger("Hors Ligne");
             this.Close();
+        }
+
+        private void AdminPanel_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            AdminDispoChanger("Hors Ligne");
             login.Show();
         }
 

@@ -230,7 +230,7 @@ namespace GADJIT_WIN_ASW
             this.LabelLastName.TabIndex = 5;
             this.LabelLastName.Text = "Last Name";
             // 
-            // ButtonStatisticsMenu
+            // ButtonStatistics
             // 
             this.ButtonStatistics.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ButtonStatistics.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(181)))), ((int)(((byte)(46)))));
@@ -240,7 +240,7 @@ namespace GADJIT_WIN_ASW
             this.ButtonStatistics.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ButtonStatistics.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(249)))), ((int)(((byte)(206)))));
             this.ButtonStatistics.Location = new System.Drawing.Point(0, 143);
-            this.ButtonStatistics.Name = "ButtonStatisticsMenu";
+            this.ButtonStatistics.Name = "ButtonStatistics";
             this.ButtonStatistics.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.ButtonStatistics.Size = new System.Drawing.Size(210, 40);
             this.ButtonStatistics.TabIndex = 1;
@@ -392,6 +392,7 @@ namespace GADJIT_WIN_ASW
             this.Name = "AdminPanel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "AdminPanel";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdminPanel_FormClosing);
             this.Load += new System.EventHandler(this.AdminPanel_Load);
             this.PanelGadgetManagment.ResumeLayout(false);
             this.PanelTop.ResumeLayout(false);
