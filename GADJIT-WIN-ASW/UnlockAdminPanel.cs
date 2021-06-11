@@ -66,6 +66,7 @@ namespace GADJIT_WIN_ASW
                 sqlCommandDispo.Parameters.Add("@adminID", SqlDbType.Int).Value = adminID;
                 GADJIT.sqlConnection.Open();
                 sqlCommandDispo.ExecuteNonQuery();
+                GADJIT.sqlConnection.Close();
                 adminPanel.logout = true;
                 this.Close();
                 adminPanel.Close();

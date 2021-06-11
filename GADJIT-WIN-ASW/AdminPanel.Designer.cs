@@ -394,6 +394,7 @@ namespace GADJIT_WIN_ASW
             this.Name = "AdminPanel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "AdminPanel";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdminPanel_FormClosing);
             this.Load += new System.EventHandler(this.AdminPanel_Load);
             this.PanelGadgetManagment.ResumeLayout(false);
             this.PanelTop.ResumeLayout(false);
