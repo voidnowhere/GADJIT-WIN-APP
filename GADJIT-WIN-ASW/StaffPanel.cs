@@ -87,8 +87,12 @@ namespace GADJIT_WIN_ASW
 
         private void LogoutButton_Click(object sender, EventArgs e)
         {
-            StaffDispoChanger("Hors Ligne");
             this.Close();
+        }
+
+        private void StaffPanel_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            StaffDispoChanger("Hors Ligne");
             login.Show();
         }
 
