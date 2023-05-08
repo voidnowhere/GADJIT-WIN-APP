@@ -12,18 +12,19 @@ namespace GADJIT_WIN_CLIENT
 {
     class GADJIT
     {
-        //Azure
-        public static SqlConnection sqlConnection = new SqlConnection(@"Server=pff-win-app.database.windows.net; Database=GADJIT; User Id=gadjit_basic; Password=cz3l@K$H%!W2;");
-        //LOCAL
-        //public static SqlConnection sqlConnection = new SqlConnection(@"Server=.\SQLEXPRESS; Database=GADJIT; User Id=gadjit_basic; Password=cz3l@K$H%!W2;");
+        public static SqlConnection sqlConnection = new SqlConnection(@"Server=localhost; Database=GADJIT; Trusted_Connection=True;");
 
         public static void SendEmail(string toEmail, string msg)
         {
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.EnableSsl = true;
-            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("GADJITMA@gmail.com", "GADJIT2021");
+            string mailHost = "";
+            int mailPort = 0;
+            string mailUsername = "";
+            string mailPassword = "";
+            SmtpClient smtp = new SmtpClient(mailHost, mailPort)
+            {
+                Credentials = new NetworkCredential(mailUsername, mailPassword),
+                EnableSsl = true,
+            };
             //
             MailMessage mail = new MailMessage(
                 "GADJITMA@gmail.com",
